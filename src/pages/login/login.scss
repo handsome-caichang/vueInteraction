@@ -257,6 +257,7 @@ image {
   color: #2074f1;
   text-decoration: none;
   margin-left: 97px;
+  cursor: pointer;
 }
 .registerHref:hover {
   color: #5291f4;
@@ -700,8 +701,6 @@ image {
 }
 .tips2 .tipsClose {
   margin: 0 10px 0 7px;
-  width: 23px;
-  height: 22px;
   cursor: pointer;
   background: url(./images/close.png) -2px -3px no-repeat;
   display: inline;
@@ -711,8 +710,6 @@ image {
 }
 .tips2 .close {
   margin-right: 6px;
-  width: 23px;
-  height: 22px;
   cursor: pointer;
   background: url(./images/close.png) -2px -3px no-repeat;
   display: inline;
