@@ -1,0 +1,1500 @@
+﻿@charset "utf-8";
+body {
+  background: #f5f5f5;
+}
+#hdContainer {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: none repeat scroll 0 0 #f5f5f5;
+  overflow-x: hidden;
+}
+.redDot {
+  color: #f33;
+  vertical-align: -2px;
+  margin-right: 5px;
+}
+#hdContainer #hdManageLeft {
+  width: 144px;
+  height: 100%;
+  float: left;
+  background-color: #329fea;
+  overflow: hidden;
+  position: relative;
+}
+#hdManageLeft .leftUtil {
+  position: relative;
+  height: 56px;
+  width: 100%;
+  cursor: pointer;
+  line-height: 56px;
+  text-align: center;
+  color: #ceebff;
+}
+#hdManageLeft .leftUtil:hover,
+#hdManageLeft .leftUtil.hoverChecked {
+  background: #1184d3;
+  color: #fff;
+}
+#hdManageLeft .leftUtil.hoverChecked .iconHolder {
+  background-position: -85px -355px;
+}
+#hdManageLeft .leftUtil .iconHolder {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  width: 22px;
+  height: 22px;
+  background: url("../images/iconall3.png") no-repeat -49px -355px;
+  margin-top: -2px;
+}
+#hdManageLeft .leftUtil.checked:after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 22px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid transparent;
+  border-right: 7px solid #f5f5f5;
+}
+#hdManageLeft .leftUtil.hoverChecked .iconActList {
+  background-position: -175px -355px;
+}
+#hdManageLeft .leftUtil.hoverChecked .iconHexiao {
+  background-position: -256px -355px;
+}
+#hdManageLeft .leftUtil.hoverChecked .iconMyinfo {
+  background-position: -332px -355px;
+}
+#hdManageLeft .leftUtil.hoverChecked .iconGiftCenter {
+  background-position: -792px -355px;
+}
+#hdManageLeft .leftUtil.hoverChecked .iconPermis {
+  background-position: -497px -355px;
+}
+#hdManageLeft .leftUtil.hoverChecked .iconDaris {
+  background-position: -580px -355px;
+}
+#hdManageLeft .leftUtil.hoverChecked .iconMendian {
+  background-position: -648px -355px;
+}
+#hdManageLeft .leftUtil.hoverChecked .iconArea {
+  background-position: -717px -355px;
+}
+#hdManageLeft .leftUtil.hoverChecked .iconPayService {
+  background-image: url("../images/leftbar_fffw.png");
+  background-position: center;
+}
+#hdManageLeft .leftUtil .iconActList {
+  background-position: -131px -355px;
+}
+#hdManageLeft .leftUtil .iconHexiao {
+  background-position: -220px -355px;
+}
+#hdManageLeft .leftUtil .iconMyinfo {
+  background-position: -296px -355px;
+}
+#hdManageLeft .leftUtil .iconGiftCenter {
+  background-position: -754px -355px;
+}
+#hdManageLeft .leftUtil .iconPermis {
+  background-position: -457px -355px;
+}
+#hdManageLeft .leftUtil .iconDaris {
+  background-position: -540px -355px;
+}
+#hdManageLeft .leftUtil .iconMendian {
+  background-position: -616px -355px;
+}
+#hdManageLeft .leftUtil .iconArea {
+  background-position: -682px -355px;
+}
+#hdManageLeft .leftUtil .iconPayService {
+  background: url("../images/leftbar_fffw_hover.png") no-repeat;
+  background-position: center;
+}
+#hdManageLeft .leftUtil .iconHolder > div {
+  width: 100%;
+  height: 100%;
+}
+#hdManageLeft .leftUtil .icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+#hdManageLeft .actIconBox_in .newActIcon {
+  background: url("../images/icon.png") no-repeat;
+  background-position: -8px -14px;
+}
+#hdManageLeft .actIconBox_out .newActIcon {
+  background: url("../images/icon.png") no-repeat;
+  background-position: -8px -282px;
+}
+#hdManageLeft .actIconBox_in .myActIcon {
+  background: url("../images/icon.png") no-repeat;
+  background-position: -8px -103px;
+}
+#hdManageLeft .actIconBox_out .myActIcon {
+  background: url("../images/icon.png") no-repeat;
+  background-position: -8px -371px;
+}
+#hdManageLeft .actIconBox_in .cavIcon {
+  background: url("../images/icon.png") no-repeat;
+  background-position: -72px -203px;
+}
+#hdManageLeft .actIconBox_out .cavIcon {
+  background: url("../images/icon.png") no-repeat;
+  background-position: -72px -280px;
+}
+#hdManageLeft .actIconBox_in .myInfoIcon {
+  background: url("../images/icon.png") no-repeat;
+  background-position: -8px -204px;
+}
+#hdManageLeft .actIconBox_out .myInfoIcon {
+  background: url("../images/icon.png") no-repeat;
+  background-position: -8px -472px;
+}
+#hdManageLeft .actIconBox_in .employeeMagIcon {
+  background: url("../images/icon2.png") no-repeat;
+  background-position: -4px -9px;
+}
+#hdManageLeft .actIconBox_out .employeeMagIcon {
+  background: url("../images/icon2.png") no-repeat;
+  background-position: -4px -110px;
+}
+#hdManageLeft .actIconBox_in .staffLogIcon {
+  background: url("../images/icon-normal.png") no-repeat;
+}
+#hdManageLeft .actIconBox_out .staffLogIcon {
+  background: url("../images/icon-staff.png") no-repeat;
+}
+#hdManageLeft .actIconBox_in .wxCardIcon {
+  background: url("../images/icon.png") no-repeat;
+  background-position: -72px -13px;
+}
+#hdManageLeft .actIconBox_out .wxCardIcon {
+  background: url("../images/icon.png") no-repeat;
+  background-position: -72px -100px;
+}
+#hdManageLeft .actIconBox_in .myDiscountIcon {
+  background: url("../images/icon_discount.png") no-repeat;
+  background-position: -2px -10px;
+}
+#hdManageLeft .actIconBox_out .myDiscountIcon {
+  background: url("../images/icon_discount.png") no-repeat;
+  background-position: -2px -50px;
+}
+#hdManageLeft .leftUtil .leftUtildescr {
+  display: inline-block;
+}
+#hdManageLeft .leftUtil.checked .leftUtildescr {
+  border-color: transparent;
+}
+#hdManageLeft .wxImgBox {
+  text-align: center;
+  margin-top: 20px;
+  border-right: 1px solid #e1e1e1;
+  height: 100%;
+}
+#hdManageLeft .wxImgBox img {
+  width: 128px;
+  height: 128px;
+}
+#hdManageLeft .wxImgBox p {
+  line-height: 20px;
+  font-size: 12px;
+  margin-top: 5px;
+  color: #333;
+}
+#hdContainer #manageFrame {
+  height: 100%;
+  position: absolute;
+  left: 144px;
+  right: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 1400px;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+#manageFrame .manageFrameWarp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 1115px;
+}
+#manageFrame .manageFrameWarp .manageFramePage {
+  width: 100%;
+  height: 100%;
+}
+.popWin {
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.popWinContent {
+  position: absolute;
+  width: 983px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.popWinContent .kthd {
+  display: block;
+  border-radius: 10px;
+  width: 100%;
+}
+.bottomLine {
+  height: 96px;
+  position: absolute;
+  top: 400px;
+  right: 110px;
+  text-align: left;
+  line-height: 96px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: table;
+}
+.bottomLine .button {
+  height: 48px;
+  width: 150px;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 18px;
+  font-family: 微软雅黑;
+  line-height: 48px;
+  cursor: pointer;
+}
+.bottomLine .leftArea {
+  display: table-cell;
+  width: 50%;
+  text-align: right;
+}
+.bottomLine .rightArea {
+  display: table-cell;
+  text-align: center;
+}
+.bottomLine .leftArea .button {
+  background-color: #ef7d22;
+  display: inline-block;
+  text-align: center;
+  margin-right: 12px;
+}
+.bottomLine .leftArea .button:hover {
+  background-color: #f78e39;
+}
+.bottomLine .rightArea .button {
+  background-color: #a1a1a1;
+  margin-left: 12px;
+}
+.bottomLine .rightArea .button:hover {
+  background-color: #b6b6b6;
+}
+#hdAdImg {
+  width: 148px;
+  height: 148px;
+  margin-top: 54px;
+  position: absolute;
+  display: none;
+  margin-left: 10px;
+  bottom: 100px;
+  z-index: 999;
+}
+#hdAdImg .hdAdBg {
+  width: 148px;
+  height: 148px;
+  cursor: pointer;
+}
+#hdAdImg .hdAdClose {
+  height: 17px;
+  width: 17px;
+  position: absolute;
+  top: 2px;
+  right: -7px;
+  cursor: pointer;
+}
+.fHCboxOne {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ececec;
+  height: 22px;
+  line-height: 22px;
+}
+.fHCboxTwo {
+  line-height: 17px;
+  text-align: left;
+  margin-top: 10px;
+}
+.hd-searchInputBox {
+  position: fixed;
+  top: 70px;
+  right: 70px;
+  height: 32px;
+  width: 170px;
+}
+.hd-searchInputBox .innerBox {
+  width: 168px;
+  height: 30px;
+  border: 1px solid #c8c8c8;
+  padding-left: 8px;
+}
+.clearBtn {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 5px;
+  top: 8px;
+  background: url("../images/inputclear.png");
+  background-position: 0 0;
+  cursor: pointer;
+}
+.clearActive {
+  background-position: 0 -60px;
+}
+::-ms-clear {
+  display: none;
+}
+.abs img {
+  display: block;
+  margin: 0 auto;
+  margin-top: 173px !important;
+}
+#openHdPanel {
+  font-family: "微软雅黑";
+}
+#openHdPanel .openHdTxt {
+  position: absolute;
+  width: 350px;
+  top: 160px;
+  right: 91px;
+  font-size: 30px;
+  color: #0c7da5;
+}
+#openHdPanel .openHdTxt .title {
+  margin-top: 10px;
+  font-size: 20px;
+}
+#hdCompanyGoalErr {
+  font-size: 14px;
+  color: #f33;
+  background: url("../images/warm.png") 0 8px no-repeat;
+  padding-left: 20px;
+  display: none;
+}
+.hdCompanyGoal input[type="radio"] + label:before,
+.formMSG input[type="radio"] + label:before {
+  border: 0;
+}
+.hdCompanyGoal input[type="radio"]:checked + label:after,
+.formMSG input[type="radio"]:checked + label:after {
+  display: none;
+}
+.hdCompanyGoal .header_radio {
+  text-indent: 5px;
+  color: #fff;
+}
+.hdCompanyGoal input[type="radio"] {
+  left: -4px;
+  top: 3px;
+  width: 0;
+  height: 0;
+}
+.hdCompanyGoal input[type="radio"] + label {
+  display: inline-block;
+  background: url(../images/radio.png) 0 8px no-repeat;
+  text-indent: 0;
+  width: 110px;
+  text-align: left;
+}
+.hdCompanyGoal input[type="radio"]:checked + label {
+  background: url(../images/radiocheck.png) 0 8px no-repeat;
+}
+.hdCompanyGoal .titleRadio {
+  color: #0c7da5;
+  font-size: 14px;
+}
+.hdCompanyGoal {
+  width: 380px;
+  position: absolute;
+  top: 260px;
+  right: 46px;
+  color: #848383;
+  text-align: left;
+  font-size: 16px;
+  height: 16px;
+  line-height: 30px;
+}
+.sliderBlock .blockTitle {
+  font-size: 16px;
+  position: relative;
+  padding: 20px 0;
+}
+.sliderBlock .blockTitle .columnTitle {
+  padding: 0;
+  line-height: 16px;
+  border: 0;
+}
+.sliderBlock .blockTitle a {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 20px;
+  color: #74b7e6;
+  text-decoration: underline;
+}
+.sliderBlock .blockTitle a:hover {
+  color: #329fea;
+}
+.sliderBlock .columnTitle:before {
+  margin-right: 4px;
+}
+#slideBar_qrCode {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  line-height: 20px;
+  color: #969696;
+}
+#slideBar_qrCode img {
+  width: 100%;
+  display: block;
+  margin: 24px 0 5px;
+}
+#slideBar_qrCode .txt {
+  width: 110px;
+  margin: -9px auto 0;
+  text-align: center;
+}
+#setAwardContent {
+  max-height: 692px;
+}
+#drawalBox {
+  padding-bottom: 45px;
+}
+#cav_title .backBtn {
+  cursor: pointer;
+}
+.redPacketTopUpBox .poupContent {
+  text-align: left;
+  padding: 20px 36px;
+}
+.poupBox .poupContent {
+  padding: 30px 24px 16px;
+  line-height: 22px;
+}
+.poupBox .poupContent .drawalLine {
+  padding-bottom: 14px;
+}
+.poupBox .poupContent .drawalLine a {
+  color: #74b7e6;
+  text-decoration: underline;
+}
+#poup_setAwardContent .poupContent {
+  padding: 0 !important;
+}
+.poupWindow {
+  width: 800px;
+  height: 474px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -400px;
+  margin-top: -237px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 9999;
+}
+.poupWindowBoxer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.poupWindow .closeBtn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: url("../images/drawlottery3.png");
+  background-repeat: no-repeat;
+  background-position: 0 -350px;
+  cursor: pointer;
+  width: 11px;
+  height: 11px;
+  z-index: 99;
+  transition: transform ease 0.3s;
+  -moz-transition: -moz-transform ease 0.3s;
+  -webkit-transition: -webkit-transform ease 0.3s;
+  -o-transition: -o-transform ease 0.3s;
+}
+.poupWindow .closeBtn:hover {
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}
+.getRedPackage {
+  background: url("../images/drawlottery1.jpg");
+}
+.getRedPackage .limitRedPackage {
+  width: 378px;
+  height: 100px;
+  margin: 0 auto;
+  margin-top: 22px;
+  background: url("../images/limitredpackage.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.getRedPackage .theRedTypeBoxer {
+  margin-top: 200px;
+  height: 140px;
+  text-align: center;
+}
+.theRedTypeBoxer .theRedType {
+  display: inline-block;
+  width: 140px;
+  height: 125px;
+  background: url("../images/drawlottery3.png");
+  background-repeat: no-repeat;
+  background-position: -10px 0;
+  margin-left: 30px;
+}
+.theRedType .boxerKeeper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: center;
+}
+.boxerKeeper .MoneyShower {
+  width: 80px;
+  height: 40px;
+  display: inline-block;
+  margin-top: 60px;
+  background: url("../images/drawlottery3.png");
+  background-repeat: no-repeat;
+  background-position: -185px -10px;
+}
+.theRedType2 .MoneyShower {
+  background-position: -265px -10px;
+}
+.theRedType3 .MoneyShower {
+  background-position: -185px -58px;
+}
+.theRedType4 .MoneyShower {
+  background-position: -275px -58px;
+}
+.boxerKeeper .goingTips {
+  position: absolute;
+  left: 50%;
+  bottom: -27px;
+  width: 40px;
+  height: 11px;
+  margin-left: -17px;
+  background: url("../images/drawlottery3.png");
+  background-repeat: no-repeat;
+  background-position: -60px -310px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.boxerKeeper .brightTips {
+  background-position: 0 -310px;
+}
+.getRedPackage .clickBtn {
+  width: 170px;
+  height: 50px;
+  margin: 0 auto;
+  margin-top: 25px;
+  background: url("../images/drawlottery3.png");
+  background-position: -4px -162px;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.theOutSideBoxer .theShowerForOcoup {
+  margin-left: 406px;
+  font-size: 18px;
+}
+.theShowerForOcoup .oneBaby {
+  margin-top: 170px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.theShowerForOcoup .twoBaby {
+  margin-top: 25px;
+  font-size: 14px;
+}
+.theShowerForOcoup .useClickBtn {
+  margin-top: 35px;
+}
+.getRedPackage .hoverBtn {
+  background-position: -222px -162px;
+}
+.getRedPackage .tipsWord {
+  width: 100%;
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+}
+.theTipsWord {
+  font-size: 12px;
+  color: #fff;
+  font-family: "微软雅黑";
+}
+.getRedPackage .tipsWordRight {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+}
+.getRedPackage2 {
+  background: url("../images/drawlottery2.jpg");
+}
+.getRedPackage2 .theOutSideBoxer {
+  width: 100%;
+}
+.theOutSideBoxer .leftSide {
+  margin-left: 42px;
+  margin-top: 116px;
+  width: 281px;
+  height: 310px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.theOutSideBoxer .get100 {
+  background: url("../images/theredpackage100.png");
+}
+.theOutSideBoxer .rightSide {
+  width: 426px;
+}
+.rightSide .cuxiaoTimer {
+  height: 185px;
+}
+.cuxiaoTimer .cuxiaoBoxer {
+  width: 162px;
+  height: 185px;
+  margin-right: 35px;
+  background: url("../images/tipspai.png") no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+}
+.cuxiaoBoxer .cuxiaoBar {
+  margin-top: 40px;
+  font-size: 18px;
+}
+.cuxiaoBoxer .distanceEnd {
+  margin-top: 16px;
+  font-size: 12px;
+}
+.cuxiaoBoxer .distanceTimer {
+  margin-top: 8px;
+  font-size: 14px;
+}
+.distanceTimer .distanceBoxerNow {
+  display: inline-block;
+  background: red;
+}
+.cuxiaoBoxer .cuxiaoInfo,
+.cuxiaoBoxer .cuxiaoSay {
+  margin-top: 9px;
+  font-size: 12px;
+}
+.cuxiaoBoxer .fontSet {
+  font-family: "微软雅黑";
+  color: #fff;
+}
+.cuxiaoBoxer .cuxiaoSay {
+  margin-top: 5px;
+}
+.rightSide .theFontLeftSay {
+  width: 330px;
+  height: 36px;
+  line-height: 36px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding-left: 8px;
+  border-radius: 18px;
+}
+.rightSide .useInforMation {
+  margin-top: 47px;
+}
+.rightSide .useTimeLimit {
+  margin-top: 8px;
+}
+.getRedPackage2 .useClickBtn {
+  margin-top: 26px;
+  background: url("../images/drawlottery3.png") no-repeat;
+  width: 195px;
+  height: 50px;
+  background-position: -5px -239px;
+}
+.useClickBtn {
+  cursor: pointer;
+}
+.getRedPackage2 .hoverBtn {
+  background-position: -223px -239px;
+}
+.packAgeEnd,
+.gotToLose {
+  height: 470px;
+}
+.packAgeEnd {
+  background: url("../images/packageend.png");
+  text-align: center;
+}
+.packAgeEnd .fontSet {
+  font-family: "微软雅黑";
+  font-weight: bold;
+}
+.packAgeEnd .willEndSoon {
+  margin-top: 36px;
+  font-size: 36px;
+  color: #fff;
+}
+.willEndSoon .specialTips {
+  color: #ffec4f;
+}
+.packAgeEnd .moreInfluence {
+  font-size: 22px;
+  color: #fff;
+  margin-top: 18px;
+}
+.packAgeEnd .bojin {
+  width: 179px;
+  height: 99px;
+  background: url("../images/bojindarmond.png") no-repeat;
+  background-size: 100% 100%;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+.packAgeEnd .theWord {
+  margin-top: 3px;
+  font-size: 20px;
+  color: #fff;
+}
+.packAgeEnd .theInfoMation {
+  width: 500px;
+  margin: 0 auto;
+}
+.theInfoMation .theBoxer {
+  width: 70px;
+  height: 78px;
+  background: url("../images/theiconnow.png") no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+}
+.theInfoMation .theBoxer2 {
+  background-position: -120px 0;
+  margin-left: 69px;
+}
+.theInfoMation .theBoxer3 {
+  background-position: -240px 0;
+  margin-left: 69px;
+}
+.theInfoMation .theBoxer4 {
+  width: 80px;
+  background-position: -364px 0;
+  margin-left: 69px;
+}
+.packAgeEnd .useClickBtn {
+  margin: 0 auto;
+  margin-top: 26px;
+  background: url("../images/gottoknow.png") no-repeat;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 190px;
+  height: 51px;
+}
+.packAgeEnd .hoverBtn {
+  background: url("../images/gottoknowhover.png") no-repeat;
+}
+.gotToLose {
+  background: url("../images/gottolose.png");
+}
+.gotToLose .gotToLoseBoxer {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.gotToLoseBoxer .theTipsBow {
+  margin-top: 132px;
+  font-size: 34px;
+}
+.gotToLoseBoxer .theSpecial {
+  color: #ffec4f;
+}
+.gotToLoseBoxer .fontset {
+  color: #fff;
+  font-family: "微软雅黑";
+  font-weight: bold;
+}
+.gotToLoseBoxer .hasDay {
+  margin-top: 10px;
+  font-size: 60px;
+}
+.gotToLoseBoxer .limitOne {
+  margin-top: 16px;
+  font-size: 26px;
+}
+.theTipsBow,
+.limitOne,
+.hasDay {
+  text-align: center;
+}
+.gotToLoseBoxer .tipsLeft {
+  position: absolute;
+  left: 106px;
+  top: 350px;
+  font-size: 14px;
+  color: #fff;
+  font-family: "微软雅黑";
+}
+.gotToLoseBoxer .useClickBtn {
+  margin-top: 0;
+  position: absolute;
+  right: 116px;
+  top: 344px;
+  background: url("../images/gottoknow.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 190px;
+  height: 51px;
+}
+.gotToLose .hoverBtn {
+  background: url("../images/gottoknowhover.png");
+}
+.useClickBtn a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.theRealBoxer {
+  width: 100%;
+  height: 100%;
+}
+#poup_showPlayerList_modifyAward .poupContent .titleName {
+  float: left;
+  line-height: 44px;
+}
+#poup_showPlayerList_modifyAward .poupContent #awardList {
+  float: left;
+  width: 516px;
+  margin-left: 10px;
+}
+#poup_showPlayerList_modifyAward .poupContent #awardList .awardItem,
+#poup_showPlayerList_modifyAward .poupContent #awardList #addAwardItem {
+  display: inline-block;
+  width: 210px;
+  height: 42px;
+  line-height: 44px;
+  padding-left: 14px;
+  margin: 0 32px 24px 0;
+  background-color: #e6f4fd;
+  border: 1px solid #add9f7;
+  cursor: default;
+  position: relative;
+}
+#poup_showPlayerList_modifyAward .poupContent #awardList #addAwardItem {
+  width: 224px;
+  height: 42px;
+  color: #74b7e6;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+}
+#poup_showPlayerList_modifyAward .poupContent #awardList .awardItem .icon {
+  background-position: -906px -988px;
+  position: absolute;
+  top: -7px;
+  right: -10px;
+  cursor: pointer;
+}
+#poup_showPlayerList_modifyAward .poupContent #awardList #addAwardItem .icon {
+  background-position: -828px -988px;
+}
+#poup_showPlayerList_addAward .poupContent .awardPrice {
+  display: inline-block;
+  width: 112px;
+  height: 44px;
+  border: 1px solid #dcdcdc;
+  text-align: center;
+  margin: 0 14px 14px 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+#poup_showPlayerList_addAward .poupContent .awardPrice.selected {
+  color: #fff !important;
+  background-color: #329fea !important;
+  border: 1px solid #329fea !important;
+}
+#poup_showPlayerList_addAward .poupContent .awardPrice.unselectable {
+  color: #a6a6a6;
+  background-color: #dcdcdc;
+}
+#poup_showPlayerList_addAward .poupContent .errTip {
+  color: #fe896a;
+  position: absolute;
+  top: 3px;
+  left: 78px;
+}
+#poup_showPlayerList_addAward .poupContent .errTip .icon {
+  background-position: -92px -223px;
+}
+.submitBox {
+  height: 470px;
+  width: 670px;
+  display: none;
+}
+.submitBox_head {
+  width: 100%;
+  height: 54px;
+  font-size: 17px;
+  line-height: 54px;
+  color: white;
+  background-color: #31a0ea;
+  cursor: pointer;
+}
+.submitBox_head .closeBtn {
+  display: inline-block;
+  background: url(../images/iconall2.png) -282px -480px no-repeat;
+  width: 25px;
+  height: 25px;
+  margin-right: 8px;
+  margin-bottom: -1px;
+  margin-left: 492px;
+}
+.submitBox_head .title {
+  margin-left: 26px;
+  font-weight: bold;
+}
+.submitBox_body {
+  height: 360px;
+}
+.submitBox_body .banner {
+  margin: 25px;
+  cursor: pointer;
+}
+.submitBox_body .textBox {
+  text-align: left;
+  margin: 27px;
+  width: 93%;
+  font-size: 14px;
+  font-color: #585858;
+  line-height: 24px;
+}
+.submitBox_body .textBox .activeName {
+  margin-bottom: 30px;
+}
+.submitBox_body .textBox .activeNum {
+  margin-bottom: 24px;
+}
+.submitBox_body .textBox .authorName {
+  margin-bottom: 12px;
+}
+.submitBox_body .textBox .authorPhone {
+  margin-bottom: 12px;
+}
+.submitBox_body .textBox .authorName input,
+.submitBox_body .textBox .authorPhone input {
+  border: 1px solid #e7e7e7;
+  width: 300px;
+  height: 42px;
+  padding-left: 10px;
+}
+.submitBox_foot {
+  width: 66.9%;
+  height: 66px;
+  background-color: #e7e7e7;
+  padding-left: 222px;
+}
+.submitBox_foot input {
+  margin: 5px;
+  margin-top: 15px;
+  background-color: #31a0ea;
+  color: white;
+  width: 100px;
+  height: 36px;
+  border: 0 solid;
+  cursor: pointer;
+}
+.example .exampleClose {
+  position: absolute;
+  background: url(../images/iconall.png) -546px -75px no-repeat;
+  width: 40px;
+  height: 52px;
+  z-index: 7000;
+  left: 50%;
+  top: 50%;
+  margin-left: 214px;
+  margin-top: -277px;
+  cursor: pointer;
+}
+.closeBtnOver {
+  display: inline-block;
+  background: url(../images/iconall2.png) -598px -694px no-repeat;
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+  margin-bottom: -6px;
+  margin-left: 492px;
+}
+.popBoxBgMask {
+  position: fixed;
+  z-index: 6999;
+  opacity: 0.8;
+  background-color: #4d4d4d;
+  width: 100%;
+  height: 100%;
+}
+.theBoxContolerNewRegister {
+  position: absolute;
+  width: 408px;
+  height: 470px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: -webkit-linear-gradient(#e24861, #f76269);
+  background: -o-linear-gradient(#e24861, #f76269);
+  background: -moz-linear-gradient(#e24861, #f76269);
+  background: linear-gradient(#e24861, #f76269);
+  border-radius: 10px;
+  z-index: 100;
+}
+.leadUserTopcRegister,
+#hdFasterGetGame {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1001;
+}
+.hd-Lead-New-register {
+  opacity: 0.7;
+  z-index: 90 !important;
+}
+.closeImgBtn {
+  position: absolute;
+  width: 64px;
+  height: 88px;
+  right: 0;
+  top: -88px;
+  cursor: pointer;
+}
+.theOneShowPoup {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}
+.theTopImg {
+  display: block;
+  margin: 0 auto;
+  margin-top: 34px;
+  width: 124px;
+}
+.theControlBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.firstIntroduce {
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  margin-top: 8px;
+}
+.coupBoxer {
+  width: 394px;
+  height: 250px;
+  margin: 0 auto;
+  margin-top: 26px;
+  background: url("../images/coupon_pc.png") no-repeat;
+  background-size: contain;
+}
+.letHerGotoPC {
+  width: 300px;
+  font-size: 14px;
+  color: #c32843;
+  margin: 0 auto;
+  transform: translateY(40px);
+}
+.letHerGotoPC .theTips {
+  color: #e87f92;
+}
+.coupInfoIntroduce {
+  width: 330px;
+  margin: 0 auto;
+  margin-top: 66px;
+  height: 150px;
+}
+.theLeftOne {
+  width: 130px;
+  margin-top: 43px;
+}
+.theLeftTwo {
+  width: 200px;
+  height: 86px;
+  margin-top: 30px;
+  background: url("../images/line_pc.png") no-repeat;
+  background: contain;
+}
+.redParInfo,
+.limitInfo {
+  margin-left: 12px;
+}
+.redParInfo {
+  color: #c32843;
+}
+.infoOne {
+  font-size: 22px;
+}
+.infoTwo {
+  font-size: 16px;
+  margin: 5px 0;
+}
+.limitInfo {
+  font-size: 14px;
+  color: #959595;
+}
+.moneyNumber {
+  font-size: 52px;
+  color: #c32843;
+  height: 52px;
+  line-height: 52px;
+  margin-right: 12px;
+  text-align: right;
+  position: relative;
+}
+.moneyPointer {
+  font-size: 22px;
+  height: 22px;
+  line-height: 22px;
+  position: absolute;
+  top: 6px;
+  left: 10px;
+}
+.TheBtn {
+  margin: 0 auto;
+  width: 266px;
+  height: 74px;
+  background: url("../images/btn.png") no-repeat;
+  cursor: pointer;
+}
+.btnWasHover {
+  background: url("../images/btn_hover.png") no-repeat;
+}
+#poup_exportTaskCenter .poupContent {
+  padding-top: 0;
+}
+.hd_faster_get_game {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  background: #fff;
+  width: 800px;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 400px;
+}
+.theTopFixer {
+  padding-top: 54px;
+  text-align: center;
+  color: #313131;
+  font-size: 28px;
+  font-weight: bold;
+  height: 28px;
+  overflow: hidden;
+}
+.theTopFixer span {
+  display: inline-block;
+  margin: 0 12px;
+}
+.theTopFixer img {
+  width: 18px;
+  height: 22px;
+}
+.mainBoxer {
+  margin-top: 30px;
+  text-align: center;
+  height: 192px;
+  overflow: hidden;
+}
+.faster_marginLeft {
+  margin-right: 16px;
+}
+.hd_faster_special_3 .faster_marginLeft {
+  margin-right: 20px;
+}
+.theTopFixer * {
+  vertical-align: middle;
+}
+.faster_Boxer {
+  display: inline-block;
+  width: 160px;
+  height: 188px;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.hd_faster_special_3 .faster_Boxer {
+  width: 220px;
+}
+.hd_faster_special_3 .faster_Boxer:last-child {
+  margin-right: 0;
+}
+.faster_Boxer:hover {
+  border: 2px solid #c3cbf2;
+}
+.faster_Boxer img {
+  display: block;
+  width: 128px;
+  height: 103px;
+  margin: 0 auto;
+  margin-top: 28px;
+}
+.faster_Boxer .hd_inforMsg {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #626262;
+}
+.notCreate {
+  margin-top: 26px;
+  font-size: 16px;
+  text-align: center;
+}
+.notCreate a {
+  text-decoration: none;
+  color: #b5b5b5;
+}
+.notCreate a:hover {
+  text-decoration: underline;
+}
+#giftCenterTab .new_Icon {
+  position: absolute;
+  width: 23px;
+  height: 14px;
+  margin-left: 113px;
+  margin-top: -42px;
+  background: url(../images/giftcenter_newicon.png) no-repeat;
+  background-position: center;
+}
+#giftCenterTab .new_coupTips {
+  position: absolute;
+  background: url(../images/couptipsnow.png) no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 14px;
+  right: 8px;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+.popWin01.popWinContent {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.popWin01 .popWinBox {
+  position: absolute;
+  z-index: 3;
+  top: 62px;
+  right: 15px;
+  width: 355px;
+  text-align: left;
+  color: #fff;
+}
+.popWin01 .close {
+  background: url("../images/icon_close.png") no-repeat;
+  background-size: cover;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  right: 30px;
+  top: -50px;
+  width: 42px;
+  height: 50px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.popWin01 .close:hover {
+  background-image: url("../images/icon_close_hover.png");
+}
+.popWin01 .popWinBox .popWinBoxHeader,
+.popWin01 .popWinBox .popWinBoxBody {
+  margin-bottom: 32px;
+}
+.popWin01 .popWinBox .popWinBoxHeader .title,
+.popWin01 .popWinBox .popWinBoxHeader .desc {
+  font-family: "微软雅黑";
+}
+.popWin01 .popWinBox .popWinBoxHeader .title {
+  letter-spacing: 2px;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 1;
+}
+.popWin01 .popWinBox .popWinBoxHeader .desc {
+  margin-top: 8px;
+  font-size: 16px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+.popWin01 .popWinBox .popWinBoxBody {
+  font-size: 14px;
+}
+.popWin01 .popWinBox .popWinBoxBody p:first-child {
+  margin-top: 0;
+}
+.popWin01 .popWinBox .popWinBoxBody p {
+  line-height: 1;
+}
+.popWin01 .popWinBox .popWinBoxBody #hdCompanyGoalErr {
+  height: 30px;
+  line-height: 30px;
+  float: left;
+}
+.popWin01 .popWinBox .popWinBoxBody .text {
+  margin-bottom: 6px;
+}
+.popWin01 .popWinBox .popWinBoxBody .trackAppLable {
+  margin: 0;
+  font-size: 14px;
+  height: 30px;
+  line-height: 18px;
+  display: block;
+  padding: 6px 0;
+}
+.popWin01 .popWinBox .popWinBoxBody .trackAppLable:before {
+  content: " ";
+  border: 0;
+  position: static;
+  background: url("../images/btn_unselected.png") no-repeat;
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: text-bottom;
+  display: inline-block;
+}
+.popWin01 .popWinBox .popWinBoxBody .trackAppLable:after {
+  display: none;
+}
+.popWin01
+  .popWinBox
+  .popWinBoxBody
+  [type="radio"]:checked
+  + .trackAppLable:before {
+  background-image: url("../images/btn_selected.png");
+}
+.popWin01 .popWinBox .popWinBoxFooter .button:first-child {
+  margin-left: 0;
+}
+.popWin01 .popWinBox .popWinBoxFooter .button {
+  width: 120px;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 6px;
+  margin-left: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.popWin01 .popWinBox .popWinBoxFooter .button.confirm {
+  background: #fff;
+  color: #18c7e5;
+}
+.popWin01 .popWinBox .popWinBoxFooter .button.confirm:hover {
+  color: #02b5d4;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+.popWin01 .popWinBox .popWinBoxFooter .button.cancel {
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+.popWin01 .popWinBox .popWinBoxFooter .button.cancel:hover {
+  border-color: #fff;
+  color: #fff;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+#hd-poup-Floaer {
+  position: absolute;
+  z-index: 100;
+}
+#hd-poup-Floaer.redPacket {
+  bottom: 32px;
+  left: 30px;
+}
+#hd-poup-Floaer.endActive {
+  bottom: 28px;
+  left: 20px;
+}
+#hd-poup-Floaer .hd-floer-inner {
+  position: relative;
+}
+.redPacket .hd-floer-inner {
+  width: 141px;
+  height: 138px;
+}
+.endActive .hd-floer-inner {
+  width: 196px;
+  height: 213px;
+}
+#hd-poup-Floaer .hd-floer-inner .shutDownBtn {
+  position: absolute;
+  right: -15px;
+  top: -28px;
+  width: 28px;
+  height: 28px;
+  background: url("../images/close.png") no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+}
+#hd-poup-Floaer.endActive .hd-floer-inner .shutDownBtn {
+  right: 14px;
+  top: -4px;
+}
+#hd-poup-Floaer.endActive .hd-floer-inner .countDown {
+  position: absolute;
+  width: 30px;
+  height: 38px;
+  left: 62px;
+  top: 140px;
+}
+#hd-poup-Floaer .hd-floer-inner .floaerImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+#hdManageLeft .leftUtil .iconRecomm {
+  background: url(../images/iconall7.png) no-repeat -828px -355px;
+}
+#hdManageLeft .leftUtil.hoverChecked .iconRecomm {
+  background: url(../images/iconall7.png) no-repeat -861px -355px;
+}

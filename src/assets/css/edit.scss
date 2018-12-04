@@ -1,0 +1,2066 @@
+@charset "utf-8";
+
+html,
+body {
+  height: 100%
+}
+
+body {
+  color: #585858
+}
+
+textarea {
+  color: #585858;
+  resize: none
+}
+
+.moveFrame {
+  position: absolute;
+  font-size: 0;
+  overflow: hidden;
+  zoom: 1;
+  z-index: 9028
+}
+
+.portalMoveFrame {
+  -webkit-animation: frameTwinkle .8s 3 linear;
+  border: #e2cb18 0 solid
+}
+
+.inputErrMsg a {
+  text-decoration: underline;
+  color: #ff4d4d !important;
+  cursor: pointer
+}
+
+.inputErrMsg:hover a {
+  color: #e41919 !important
+}
+
+.flag {
+  display: inline-block;
+  width: 14px;
+  color: #fe896a;
+  font-size: 16px;
+  vertical-align: middle
+}
+
+.mustFill {
+  position: relative
+}
+
+.mustFill:after {
+  content: '*';
+  display: block;
+  text-align: center;
+  width: 20px;
+  height: 40px;
+  line-height: 45px;
+  position: absolute;
+  right: -20px;
+  top: 0;
+  color: #fe896a;
+  font-size: 16px
+}
+
+@-webkit-keyframes frameTwinkle {
+  from {
+    opacity: .3
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+.gameMoveFrame {
+  border: #969696 0 dashed;
+  background: #fff
+}
+
+#moduleLayerBox {
+  position: absolute;
+  right: 52px;
+  top: 40px;
+  display: none;
+  overflow: hidden
+}
+
+#moduleLayerBox:after {
+  content: '';
+  display: block;
+  width: 2px;
+  background-color: rgba(0, 0, 0, .9);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 14px
+}
+
+.moduleLayer {
+  z-index: 100;
+  font-size: 12px;
+  color: #000;
+  font-family: 宋体, 新宋体;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .9)
+}
+
+.moduleLayer .tool {
+  position: relative;
+  float: left;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 4px 6px;
+  display: inline-block
+}
+
+.moduleLayer .tool:hover {
+  color: rgba(255, 255, 255, 1)
+}
+
+.moduleLayer .tool:after {
+  content: '';
+  display: block;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 14px
+}
+
+.absCenter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto
+}
+
+.commBg {
+  background-color: #f5f5f5
+}
+
+.commBgImp {
+  background-color: #f5f5f5 !important
+}
+
+.knowMore {
+  display: inline-block;
+  margin: 0 10px
+}
+
+.checkBorder {
+  box-shadow: 1px 0 15px rgba(255, 99, 0, 0.8), -1px 0 15px rgba(255, 99, 0, 0.8), 0px 1px 15px rgba(255, 99, 0, 0.8), 0px -1px 15px rgba(255, 99, 0, 0.8)
+}
+
+.powerIcon {
+  width: 22px;
+  margin: -5px 5px 0
+}
+
+.commTextarea {
+  height: 145px;
+  line-height: 18px;
+  padding: 5px;
+  width: 100%
+}
+
+.testVersion3 {
+  display: block !important
+}
+
+.testVersion32 {
+  display: flex !important
+}
+
+.editContent input[type='text'] {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  outline: 0;
+  padding-left: 8px
+}
+
+.newAttention {
+  display: inline-block
+}
+
+.oneAttention {
+  margin-left: 12px
+}
+
+.ui-datepicker .ui-datepicker-next-hover {
+  background-position: -686px -620px !important
+}
+
+#editActContainer {
+  height: 100%;
+  min-width: 1270px;
+  overflow-y: hidden;
+  overflow-x: auto
+}
+
+#editActContainer .headBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  line-height: 60px;
+  font-size: 16px;
+  width: 100%;
+  min-width: 1270px;
+  border-bottom: solid 1px #dadada;
+  z-index: 200;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1)
+}
+
+#editActContainer .headBar .middleHander {
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle
+}
+
+#editActContainer .headBar .logo {
+  max-height: 40px;
+  max-width: 200px;
+  vertical-align: middle;
+  margin-left: 20px
+}
+
+#editActContainer .headBar .upgrade {
+  margin-left: 33px;
+  font-size: 14px;
+  color: #7d7d7d;
+  height: 20px;
+  line-height: 20px;
+  display: inline-block;
+  position: relative
+}
+
+#editActContainer .headBar .upgrade:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -16px;
+  width: 1px;
+  height: 100%;
+  background-color: #dadada
+}
+
+#editActContainer .headBar .upgrade:hover {
+  color: #4381f7
+}
+
+#editActContainer .headBar .headerRight {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  height: 100%;
+  font-size: 0
+}
+
+#editActContainer .headBar .headBtn {
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: middle
+}
+
+#editActContainer .headBar .headBtn.mbtn {
+  min-width: 80px;
+  padding: 0 10px;
+  margin-left: 10px;
+  line-height: 34px;
+  height: 34px
+}
+
+#editActContainer #savePubButon {
+  position: relative
+}
+
+#editActContainer #newSavePubButon {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 80px;
+  margin-left: 0;
+  white-space: nowrap
+}
+
+#editActContainer #newSavePubButon:hover {
+  width: 170px
+}
+
+#editActContainer #newSavePubButon:hover .viewSave {
+  display: inline
+}
+
+#editActContainer #newSavePubButon:hover .view {
+  display: none
+}
+
+#editActContainer #cancelButton {
+  width: 34px;
+  min-width: 34px;
+  padding: 0
+}
+
+#editActContainer #cancelButton .cancelIcon {
+  display: inline-block;
+  width: 15px;
+  height: 16px;
+  background: url('../images/officon.png') no-repeat;
+  vertical-align: -2px
+}
+
+#editActiveWarp {
+  height: 100%;
+  box-sizing: border-box;
+  padding-top: 61px
+}
+
+#editActive {
+  background: #e9e9e9;
+  position: relative;
+  height: 100%;
+  box-sizing: border-box
+}
+
+#editActive .topBarWarp {
+  position: relative;
+  width: 130px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #fff;
+  border-right: 1px solid #dadada
+}
+
+#editActive .topBarSrollBox {
+  padding: 20px 15px
+}
+
+#editActive .topBar {
+  position: relative
+}
+
+#editActive .topBar .column {
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  cursor: pointer;
+  margin-bottom: 14px;
+  text-align: center
+}
+
+#editActive .topBar .column.checked {
+  color: #4381fd
+}
+
+#editActive .phoneWarp {
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 30%;
+  min-width: 456px;
+  max-width: 520px
+}
+
+#editActive .phoneBox {
+  height: 667px;
+  width: 425px;
+  z-index: 100;
+  margin: 60px auto;
+  position: relative
+}
+
+#editActive .phoneBox .rightBar {
+  width: 40px;
+  height: 100%;
+  position: relative;
+  margin-left: 10px;
+  float: left
+}
+
+#editActive .rightBar .changePageBox {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center
+}
+
+#editActive .changePageBox .changePage {
+  cursor: pointer
+}
+
+#editActive .changePageBox .changePage .img {
+  height: 16px;
+  width: 26px;
+  margin: 0 auto;
+  background-image: url('../images/icon.png')
+}
+
+#editActive .changePageBox .changePage.prev .img {
+  background-position: -438px -160px
+}
+
+#editActive .changePageBox .changePage.prev:hover .img {
+  background-position: -477px -160px
+}
+
+#editActive .changePageBox .changePage.next .img {
+  background-position: -439px -194px
+}
+
+#editActive .changePageBox .changePage.next:hover .img {
+  background-position: -477px -194px
+}
+
+#editActive .changePageBox .currentPage {
+  height: 20px;
+  line-height: 20px;
+  margin: 15px 0;
+  color: #a0a0a0
+}
+
+#editActive .phone {
+  width: 375px;
+  background: #fff;
+  float: left;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1)
+}
+
+#editActive .phone .wxTitle {
+  height: 64px
+}
+
+#editActive .phone #gameContent {
+  height: 603px;
+  position: relative
+}
+
+#editActive .phone #gameContent #imgSizeShow {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 30px;
+  z-index: 999999;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  color: #fff;
+  padding: 5px
+}
+
+#phonePreLoadWrap {
+  position: absolute;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden
+}
+
+#phonePreLoad {
+  background: #fff;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  font-size: 14px;
+  color: #000;
+  transition: transform .3s
+}
+
+#phonePreLoad.close {
+  transform: translate3d(-100%, 0, 0)
+}
+
+#phonePreLoad .spinner {
+  margin: 0 auto 1.25rem;
+  padding-top: 9.25rem;
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  display: block
+}
+
+#phonePreLoad .spinner .spinner-container>div {
+  width: .7rem;
+  height: .7rem;
+  background-color: #169af7
+}
+
+#phonePreLoad .info {
+  line-height: .7rem;
+  width: 100%;
+  height: .7rem;
+  color: #333;
+  text-align: center;
+  font-size: .6rem
+}
+
+#editActive .editContent {
+  position: relative;
+  height: 100%;
+  background: #fff;
+  z-index: 110;
+  box-sizing: border-box
+}
+
+#editActive .commTabBox .commTab {
+  position: relative;
+  height: 100%;
+  text-align: center;
+  cursor: pointer;
+  border: transparent 1px solid;
+  border-bottom: 0;
+  color: #535353
+}
+
+#editActive .commTabBox .commTab:hover {
+  color: #4381fd
+}
+
+#editActive .commTabBox .commTab.checked {
+  background: #fff;
+  color: #4381fd;
+  border-color: #dadada
+}
+
+#editActive .commTabBox .commTab .commTabName {
+  display: inline-block;
+  border-left: #dadada 1px solid;
+  width: 100%;
+  box-sizing: border-box
+}
+
+#editActive .commTabBox .checked .commTabName,
+#editActive .commTabBox .checked+.commTab .commTabName,
+#editActive .commTabBox .commTab:first-child .commTabName {
+  border-left-color: transparent
+}
+
+#editActive #activeTab {
+  height: 60px;
+  line-height: 60px;
+  background: #f6f6f6;
+  border-bottom: 1px solid #dadada;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%
+}
+
+#editActive #activeTab .commTab.checked {
+  border-top-color: transparent
+}
+
+#editActive #activeTab .commTab.checked:first-child {
+  border-left-color: transparent
+}
+
+#editActive #activeTab .commTab.checked:last-child {
+  border-right-color: transparent
+}
+
+#editActive #activeTab .commTab .commTabName {
+  height: 26px;
+  line-height: 26px
+}
+
+#editActive .editDetail {
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+  padding-top: 60px
+}
+
+#editActive .settingBox {
+  display: none;
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 36px
+}
+
+#editActive .settingBox:after {
+  content: '';
+  display: block;
+  height: 50px
+}
+
+#editActive .settingBox:first-of-type {
+  display: block
+}
+
+#editActive .settingBox .topHolder {
+  height: 20px
+}
+
+#editActive #awardsSetting {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  padding: 0
+}
+
+#editActive #awardsSetting:after {
+  display: none
+}
+
+#awardsSetting #awardBox {
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 36px
+}
+
+#awardsSetting #awardBox:after {
+  content: '';
+  display: block;
+  height: 50px
+}
+
+#awardsSetting #awardBoxTitleWarp {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 36px;
+  right: 36px;
+  background: #fff;
+  padding-top: 20px;
+  box-sizing: border-box
+}
+
+#awardsSetting #awardBoxTitle {
+  border: 1px solid #dadada;
+  position: relative
+}
+
+#awardsSetting #awardBoxTitle_holder {
+  height: 112px
+}
+
+#editActive .editContent .inputErrMsg {
+  margin-left: 0 !important;
+  margin-top: 0 !important
+}
+
+#editActive .editContent .minInput {
+  margin-top: 7px;
+  margin-bottom: 7px
+}
+
+#editActive .editContent .leftTitle {
+  display: inline-block;
+  width: 130px;
+  text-align: right;
+  margin-right: 50px;
+  position: relative;
+  min-height: 40px;
+  color: #535353
+}
+
+#editActive .editContent .leftTitle .bottomTips {
+  height: 18px;
+  line-height: 18px;
+  font-size: 12px;
+  color: #898989;
+  position: absolute;
+  top: 22px;
+  right: 0
+}
+
+#editActive .editContent .leftTitle .bottomTips+.nameWrap {
+  line-height: 22px
+}
+
+#editActive .editContent .leftTitle .hoverContentBox {
+  position: absolute;
+  right: -21px;
+  top: 0
+}
+
+#editActive .editContent .mainInput {
+  width: 100%
+}
+
+#editActive .editContent .settingLine {
+  padding: 10px 0;
+  line-height: 40px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex
+}
+
+#editActive .editContent .settingLine .content {
+  padding-right: 20px
+}
+
+#editActive .editContent .hoverTipsBox .text p.content {
+  padding-right: 0
+}
+
+#editActive .editContent .settingLine .content .other {
+  line-height: 20px
+}
+
+#editActive .editContent .settingLine .content+.flag {
+  width: 20px;
+  height: 40px;
+  margin-left: -20px;
+  line-height: 45px
+}
+
+#editActive .editContent .settingLine .singleSelectTitle {
+  width: 22px;
+  height: 40px;
+  margin-left: 20px
+}
+
+#editActive .editContent .settingLine .selectIcon {
+  width: 22px;
+  height: 40px;
+  margin-left: 20px;
+  cursor: pointer
+}
+
+#editActive .editContent .settingLine .selectRightIcon {
+  background: url(../images/selectrighticon.png) -39px 5px no-repeat
+}
+
+#editActive .editContent .settingLine .selectRightIcon_check {
+  background: url(../images/selectrighticon.png) -8px 5px no-repeat
+}
+
+#editActive .editContent .settingLine .content .mid {
+  width: 46px;
+  text-align: center;
+  display: inline-block
+}
+
+#editActive .editContent .settingLine.isYKY .selectBtn {
+  display: inline-block;
+  width: 80px;
+  text-align: center;
+  margin-left: 18px;
+  line-height: 32px;
+  height: 32px
+}
+
+#editActive .editContent .secondBox.aligned {
+  margin-right: -20px
+}
+
+#editActive .editContent .secondBox .leftTitle {
+  width: 92px;
+  margin-right: 12px
+}
+
+#editActive .editContent .secondBox .verTipsBox .leftTitle {
+  width: 124px
+}
+
+#editActive .editContent .secondBox .leftTitle.auto_w {
+  width: auto
+}
+
+#editActive .editContent .secondBox .leftTitle+.hoverContentBox {
+  margin: 0 8px 0 -7px
+}
+
+#editActive .editContent .secondBox .settingLine {
+  padding: 7px 0
+}
+
+#editActive .editContent .menuBox {
+  padding: 13px 20px;
+  border: 1px solid #dadada;
+  overflow: hidden
+}
+
+#editActive .editContent .rightBox {
+  display: inline-block;
+  vertical-align: top
+}
+
+#editActive .editContent #attention_item {
+  color: #666;
+  font-size: 12px;
+  font-weight: 500
+}
+
+#editActive .editContent #signUpTips_item {
+  color: #666;
+  clear: both;
+  font-size: 12px;
+  font-weight: 500
+}
+
+#editActive .editContent .detailIcon {
+  width: 20px;
+  height: 12px;
+  background: url(../images/iconall.png) -721px -622px no-repeat;
+  float: right
+}
+
+#editActive .editContent .commMg {
+  margin-left: 156px
+}
+
+#editActive .editContent .flag2 {
+  display: inline-block;
+  width: 24px;
+  color: red;
+  margin: 0
+}
+
+#awardsSetting .contactBox.inputErr,
+#contactBoxNoDraw.inputErr,
+#editActive .noBorderImp {
+  border: none !important
+}
+
+#awardsSetting .tipsColor {
+  line-height: 20px;
+  margin: 10px 0
+}
+
+#awardsSetting .awardNums {
+  height: 36px;
+  line-height: 36px;
+  padding: 10px 20px 0
+}
+
+#awardsSetting .topAwardExplain {
+  color: #000
+}
+
+#awardsSetting .comfortCheckbox {
+  position: absolute;
+  right: 20px;
+  top: 12px
+}
+
+#awardsSetting .awardLevelBox {
+  height: 44px;
+  line-height: 44px;
+  background: #f6f6f6;
+  position: relative;
+  padding: 0 88px 0 20px
+}
+
+#awardsSetting .awardLevelBox .awardNumOptBox {
+  position: absolute;
+  height: 21px;
+  line-height: 21px;
+  right: 20px;
+  top: 10px
+}
+
+#awardsSetting .awardLevelBox .awardNumOpt {
+  width: 21px;
+  height: 21px;
+  display: inline-block
+}
+
+#awardsSetting .awardLevelBox #delAwardNum {
+  background: url('../images/icon.png') -480px -91px no-repeat
+}
+
+#awardsSetting .awardLevelBox #delAwardNum.disabled {
+  background-position: -441px -91px
+}
+
+#awardsSetting .awardLevelBox #addAwardNum {
+  margin-left: 6px;
+  background: url('../images/icon.png') -480px -126px no-repeat
+}
+
+#awardsSetting .awardLevelBox #addAwardNum.disabled {
+  background-position: -441px -126px
+}
+
+#awardsSetting .awardLevelBox .awardLevelItem {
+  width: 11.11%;
+  display: inline-block;
+  box-sizing: border-box
+}
+
+#awardsSetting .awardLevelBox .awardLevelItem .awardErrDot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #f00;
+  top: 0;
+  right: 2px;
+  border-radius: 20px;
+  display: none
+}
+
+#awardsSetting .awardLevelBox .awardLevelItem.hasErr .awardErrDot {
+  display: block
+}
+
+#awardsSetting .awardLevelBox .awardLevelItem.checked .awardErrDot {
+  display: none
+}
+
+#awardsSetting .awardLevelBox .awardLevelItem .awardItemName {
+  height: 12px;
+  line-height: 12px
+}
+
+#awardsSetting .divBeInput {
+  border: 1px solid #dadada;
+  padding-left: 8px;
+  background-color: #fff;
+  position: relative;
+  border-radius: 4px
+}
+
+#awardsSetting .awardTypeBox {
+  position: absolute;
+  width: 100%;
+  border: 1px solid #dadada;
+  background: #fff;
+  z-index: 1;
+  top: 47px;
+  left: -1px;
+  border-radius: 4px
+}
+
+#awardsSetting .awardTypeBox.hdGiftTypeBox {
+  height: auto;
+  max-height: 220px;
+  overflow-y: scroll
+}
+
+#awardsSetting .awardTypeValue .detailIcon {
+  margin: 15px 12px 0 0
+}
+
+#awardsSetting .awardTypeSetBox:hover .awardTypeValue .detailIcon {
+  background-position: -757px -622px
+}
+
+#awardsSetting .awardTypeBox .option {
+  cursor: default;
+  padding-left: 8px;
+  line-height: 40px
+}
+
+#awardsSetting .awardTypeBox .option:hover,
+#awardsSetting .awardTypeBox .option.checked {
+  background: #3896dc;
+  color: #fff
+}
+
+#awardsSetting .awardTypeSetBox .hot {
+  width: 46px;
+  height: 20px;
+  display: inline-block;
+  background: url("../images/award-type-hot.png") no-repeat;
+  vertical-align: middle;
+  margin-left: 6px
+}
+
+#awardsSetting .setAwardAmountBox {
+  position: absolute;
+  border: 1px solid #dadada;
+  background-color: #fff;
+  width: 230px;
+  top: 60px;
+  left: 0;
+  padding: 20px;
+  z-index: 10;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2)
+}
+
+#awardsSetting .setAwardAmountBox .addCuscode {
+  width: 100%
+}
+
+#awardsSetting .setAwardAmountBox .tipsBoxArrow {
+  left: 50px
+}
+
+#awardsSetting .setAwardAmountBox .buttonBox {
+  margin-bottom: 0;
+  text-align: left
+}
+
+#awardsSetting .setAwardAmountBox .amountModifyBtn {
+  width: 125px
+}
+
+#awardsSetting .setAwardAmountBox .amountCancelBtn {
+  width: 95px
+}
+
+#awardsSetting .awardAmountBox .amountIcon {
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
+  background: url('../images/bi_new.png') center no-repeat;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer
+}
+
+#awardsSetting .exitCuscodeTips {
+  position: absolute;
+  color: #333;
+  border: 1px solid #dadada;
+  padding: 2px 8px;
+  bottom: 30px;
+  background: #fff;
+  left: 84px;
+  max-height: 180px;
+  overflow-y: auto;
+  width: 390px;
+  line-height: 20px;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  min-height: 55px
+}
+
+#awardsSetting .exitCuscodeCloseBtn {
+  bottom: 31px;
+  position: absolute;
+  width: 370px;
+  text-align: right;
+  left: 90px;
+  right: 0;
+  margin-right: 50px;
+  color: #666;
+  padding-bottom: 8px
+}
+
+#awardsSetting .cusCodeInputBox {
+  position: relative
+}
+
+#awardsSetting .tipsArrow {
+  position: absolute;
+  bottom: 13px;
+  right: 5px;
+  border: solid 9px transparent;
+  border-top: solid 9px #c8c8c8
+}
+
+#awardsSetting .tipsArrow:after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  right: -7px;
+  border: solid 7px transparent;
+  border-top: solid 7px #fff
+}
+
+#awardsSetting .awardTextArea {
+  width: 100%;
+  height: 120px;
+  padding: 5px;
+  border: 1px solid #dadada;
+  box-sizing: border-box;
+  display: block
+}
+
+#awardsSetting .checkCuscodeBtn,
+#awardsSetting .uploadCuscodeBtn {
+  width: 90px;
+  height: 34px;
+  line-height: 34px;
+  margin-top: 10px
+}
+
+#awardsSetting #awardDetail {
+  position: relative
+}
+
+#awardsSetting #awardDetail.overflowHide {
+  overflow-x: hidden
+}
+
+#awardsSetting .awardSettingBox {
+  position: relative;
+  top: 0;
+  width: 100%
+}
+
+#awardsSetting .timeLimitSelBox .timeLimitDayLabel {
+  display: inline-block;
+  height: 30px;
+  vertical-align: middle
+}
+
+#awardsSetting .showImgBox {
+  background: rgba(0, 0, 0, 0.2);
+  position: relative
+}
+
+#awardsSetting .uploadCusCode {
+  position: relative
+}
+
+#awardsSetting .uploadCusCode .getCodeBtn {
+  width: 70px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  color: #666;
+  border: 1px solid #c8c8c8;
+  background: #f5f5f5;
+  display: inline-block
+}
+
+#awardsSetting .uploadCusCode .upload {
+  width: 80px;
+  height: 34px;
+  line-height: 34px;
+  display: inline-block;
+  position: relative
+}
+
+#awardsSetting .uploadCusCode .upload a {
+  color: #fff
+}
+
+#awardsSetting .uploadCusCode .getCodeBtn:hover {
+  cursor: pointer;
+  background: #fff
+}
+
+#awardsSetting .uploadCusCode .cusCodeFile {
+  position: absolute;
+  top: 0;
+  left: 90px
+}
+
+#awardsSetting .uploadCusCode .inputErr {
+  border: 0 !important
+}
+
+#awardsSetting .uploadCusCode .cusCodeFile a {
+  font-family: "微软雅黑";
+  text-decoration: underline
+}
+
+#awardsSetting .uploadCusCode .downloadBtn {
+  width: 70px;
+  height: 30px;
+  line-height: 30px;
+  position: absolute;
+  right: 0;
+  top: 0
+}
+
+#awardsSetting .uploadCusCode .uploadTip {
+  line-height: 16px
+}
+
+#awardsSetting .detailTip {
+  position: absolute;
+  right: 2px
+}
+
+#awardsSetting .storeWrap table {
+  width: 436px;
+  text-align: center;
+  border: solid #dadada;
+  border-width: 1px 0 0 1px
+}
+
+#awardsSetting .storeWrap table .storeName {
+  width: 178px
+}
+
+#awardsSetting .storeWrap table .storeAddr {
+  width: 258px
+}
+
+#awardsSetting .storeWrap table th {
+  height: 40px;
+  line-height: 40px;
+  border: solid #dadada;
+  border-width: 0 1px 1px 0
+}
+
+#awardsSetting .storeWrap table td {
+  border: solid #dadada;
+  border-width: 0 1px 1px 0;
+  padding: 10px 0 10px 16px;
+  line-height: 21px;
+  text-align: left
+}
+
+#awardsSetting .storeWrap.inputErr {
+  border: none !important
+}
+
+#awardsSetting .storeWrap.inputErr .restore {
+  color: #ff4d4d
+}
+
+#awardsSetting .storeWrap.inputErr .restore:hover {
+  color: #e41919
+}
+
+#awardsSetting .sellMoneyBox {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #dadada;
+  border-radius: 4px
+}
+
+#awardsSetting .sellMoneyBox .sellMoneyTip {
+  color: #898989;
+  line-height: 20px
+}
+
+#awardsSetting .sellMoneyBox .price {
+  padding: 10px 0
+}
+
+#awardsSetting .sellMoneyBox .price:last-of-type {
+  padding-bottom: 0
+}
+
+#awardsSetting .sellMoneyBox .aTips.disabled {
+  color: #b2b2b2
+}
+
+#awardsSetting .sellMoneyBox .aTips .addPriceIcon {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  padding: 1px;
+  margin-right: 4px;
+  vertical-align: middle;
+  background: url(../images/addpriceicon.png) no-repeat -18px -1px
+}
+
+#awardsSetting .sellMoneyBox .aTips:hover .addPriceIcon {
+  background-position: -36px -1px
+}
+
+#awardsSetting .sellMoneyBox .aTips.disabled .addPriceIcon {
+  background-position: -1px -1px
+}
+
+#awardsSetting .scene {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+  margin-right: 12px;
+  box-sizing: border-box
+}
+
+#awardsSetting .scene.selected {
+  border-color: #4381fd
+}
+
+#awardsSetting .scene.selected:after {
+  position: absolute;
+  content: "";
+  width: 13px;
+  height: 13px;
+  background: url("../images/icon.png") no-repeat -158px -18px;
+  right: -5px;
+  top: -5px
+}
+
+#gameTypeSetting .gameTypeTips {
+  line-height: 32px;
+  height: 32px;
+  margin-top: 42px;
+  color: #000
+}
+
+#gameTypeSetting .setGameType {
+  float: right;
+  position: relative
+}
+
+#gameTypeSetting #drawSetBox .onceAccessKeyTips {
+  margin-left: 35px
+}
+
+#gameTypeSetting #drawInfoBox .onceAccessKeyTips {
+  margin-left: 60px
+}
+
+#gameTypeSetting .setGameType .gameTypeItemBox {
+  height: 40px;
+  line-height: 40px
+}
+
+#gameTypeSetting .setGameType .gameTypeItem {
+  width: 100px;
+  height: 100%;
+  text-align: center;
+  margin-right: 10px;
+  border-radius: 4px;
+  background-color: #f6f6f6;
+  box-sizing: border-box;
+  color: #898989;
+  position: relative;
+  cursor: pointer
+}
+
+#gameTypeSetting .setGameType .gameTypeItem:hover {
+  color: #535353
+}
+
+#gameTypeSetting .setGameType .gameTypeItem.checked {
+  color: #535353;
+  border: 1px solid #4381fd;
+  background-color: transparent
+}
+
+#gameTypeSetting .setGameType .gameTypeItem.checked:after {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url(../images/icon.png) no-repeat -184px -11px;
+  right: 0;
+  bottom: 0
+}
+
+#gameTypeSetting .setGameType .gameTypeItem.disabled {
+  background-color: #dcdcdc;
+  color: #898989;
+  cursor: not-allowed
+}
+
+#gameTypeSetting .setGameType .gameTypeDetail {
+  font-size: 12px;
+  line-height: 18px
+}
+
+#gameTypeSetting .setGameType .gameTypeDetail.checked {
+  font-weight: bold;
+  color: #535353
+}
+
+#gameTypeSetting .divBeInput {
+  border: 1px solid #dadada;
+  padding-left: 8px;
+  background-color: #fff;
+  position: relative;
+  border-radius: 4px
+}
+
+#gameTypeSetting #msSceneSettingBox .detailIcon {
+  margin: 15px 12px 0 0
+}
+
+#gameTypeSetting .sceneNumSelectBox:hover .divBeInput .detailIcon {
+  background-position: -757px -622px
+}
+
+#gameTypeSetting #msSceneSettingBox .sceneNumBox {
+  position: absolute;
+  width: 100%;
+  border: 1px solid #dadada;
+  background: #fff;
+  z-index: 1;
+  top: 47px;
+  left: -1px;
+  border-radius: 4px
+}
+
+#gameTypeSetting .sceneNumBox .option {
+  cursor: default;
+  padding-left: 8px;
+  line-height: 40px
+}
+
+#gameTypeSetting .sceneNumBox .option:hover {
+  background: #3896dc;
+  color: #fff
+}
+
+#gameTypeSetting .sceneBox .sceneNum .sceneStutas {
+  display: inline-block;
+  width: 60px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 10px;
+  margin-left: 5px
+}
+
+#gameTypeSetting .sceneBox .sceneNum .onGoing {
+  color: #ff553b;
+  background-color: #ffe7e7
+}
+
+#gameTypeSetting .sceneBox .sceneNum .notStart {
+  color: #fc8f1a;
+  background-color: #fde7d0
+}
+
+#gameTypeSetting .sceneBox .sceneNum .hasEnded {
+  color: #888;
+  background-color: #eee
+}
+
+#gameTypeSetting .sceneBox .sceneSet {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #dadada;
+  border-radius: 4px
+}
+
+#gameTypeSetting .sceneBox .levelBox {
+  line-height: 28px;
+  margin-top: 10px
+}
+
+#gameTypeSetting .sceneBox .levelBox .levelItem {
+  display: inline-block;
+  width: 90px;
+  height: 28px;
+  text-align: center;
+  color: #898989;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+  margin-right: 12px
+}
+
+#gameTypeSetting .sceneBox .awardSet {
+  position: relative;
+  margin-top: 10px
+}
+
+#gameTypeSetting .sceneBox .editAwardBtn {
+  position: relative;
+  width: 94px;
+  height: 34px;
+  text-align: center;
+  line-height: 32px;
+  color: #4381fd;
+  border: 1px solid #4381fd;
+  border-radius: 4px;
+  padding-left: 18px;
+  cursor: pointer;
+  box-sizing: border-box
+}
+
+#gameTypeSetting .sceneBox .editAwardBtn .editAwardIcon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 13px;
+  height: 13px;
+  background: url("../images/editawardicon.png") no-repeat
+}
+
+#gameTypeSetting .sceneBox .editAwardBox {
+  position: absolute;
+  top: 40px;
+  width: 350px;
+  height: 223px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.22);
+  box-sizing: border-box;
+  z-index: 10;
+  display: none
+}
+
+#gameTypeSetting .sceneBox .editAwardBox .editSceneNum {
+  font-size: 16px;
+  line-height: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #dadada
+}
+
+#gameTypeSetting .sceneBox .editAwardBox .awardSelectbox {
+  min-height: 80px;
+  margin: 12px 0
+}
+
+#gameTypeSetting .sceneBox .editAwardBox .awardSelectbox label {
+  margin-right: 20px
+}
+
+#gameTypeSetting .sceneBox .editAwardBox .awardSelectbox label.noMargin {
+  margin: 0
+}
+
+#gameTypeSetting .sceneBox .editAwardBox .awardSelectbox .awardNameTip {
+  position: absolute;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  line-height: 28px;
+  padding: 0 10px;
+  border-radius: 4px;
+  display: none
+}
+
+#gameTypeSetting .sceneBox .editAwardBox .btnBox div {
+  display: inline-block;
+  width: 150px;
+  font-size: 16px
+}
+
+#editActive .editContent .tabSetting .awardErrDot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #f00;
+  top: 0;
+  right: 0;
+  border-radius: 30px
+}
+
+#editActive .editContent .tabSetting .awardErrDot {
+  display: none
+}
+
+#editActive .editContent .tabSetting.hasErr .awardErrDot {
+  display: block
+}
+
+#editActive .editContent .tabSetting.checked .awardErrDot {
+  display: none
+}
+
+#accessKey .accessKeyBtn {
+  width: 90px
+}
+
+#accessKey #accessKeyTipsBox {
+  position: absolute;
+  width: 480px;
+  top: -60px;
+  left: 34px;
+  text-align: left
+}
+
+#redPacketSetBox .tipsColor {
+  line-height: 20px;
+  margin: 5px 0
+}
+
+.underLineWay {
+  padding-bottom: 10px;
+  margin: 36px 0 10px;
+  border-bottom: 1px #dadada solid;
+  color: #000
+}
+
+.underLineWay .tipsColor {
+  font-weight: normal;
+  margin-left: 12px
+}
+
+.seniorSetBoxOption {
+  cursor: pointer;
+  position: relative
+}
+
+.transiton300ms {
+  -moz-transition: .3s all;
+  -webkit-transition: .3s all;
+  -o-transition: .3s all;
+  transition: .3s all
+}
+
+.seniorSetBox {
+  position: relative
+}
+
+.underLineWay .baseSeniorSet {
+  color: #4381fd
+}
+
+.underLineWay:hover .baseSeniorSet {
+  color: #2566e9
+}
+
+.baseSeniorSet {
+  position: absolute;
+  right: 11px;
+  top: 5px;
+  cursor: pointer
+}
+
+.baseSeniorSet span {
+  display: inline-block;
+  vertical-align: middle
+}
+
+.baseSeniorSet .roteteArrow {
+  width: 0;
+  height: 0;
+  border-width: 0 6px 6px;
+  border-style: solid;
+  border-color: transparent transparent #4381fd;
+  position: relative;
+  margin-top: 2px
+}
+
+.underLineWay:hover .baseSeniorSet .roteteArrow {
+  border-color: transparent transparent #2566e9
+}
+
+.baseSeniorSet .roteteArrow.rotate180 {
+  transform: rotate(180deg)
+}
+
+.seniorBoxInfoClose {
+  height: 0;
+  overflow: hidden
+}
+
+#questionSettingBox .hide {
+  display: none
+}
+
+#questionSettingBox .select_text_input {
+  display: inline-block;
+  position: relative
+}
+
+#questionSettingBox .select_ui input,
+#questionSettingBox .select_text_input.active input {
+  border: 1px solid #4381fd !important
+}
+
+#questionSettingBox .input_line .detailIcon {
+  position: absolute;
+  right: 8px;
+  top: 7px;
+  width: 22px;
+  height: 26px;
+  background: url(../images/iconall.png) -314px -773px no-repeat;
+  cursor: pointer
+}
+
+#questionSettingBox .input_line .detailIcon:hover,
+#questionSettingBox .question_num[readonly]:hover+.detailIcon,
+#questionSettingBox .select_text_input.active .detailIcon {
+  background-position: -346px -773px
+}
+
+#questionSettingBox .question_num[readonly] {
+  cursor: pointer
+}
+
+#questionSettingBox .select_content {
+  position: absolute;
+  top: 39px;
+  left: 8px;
+  width: 58px;
+  max-height: 292px;
+  border: 1px solid #e7e7e7;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #fff;
+  z-index: 100;
+  box-sizing: border-box;
+  border-radius: 4px
+}
+
+#questionSettingBox .firstInputBox .select_content {
+  left: 0
+}
+
+#questionSettingBox .seleceBox {
+  position: absolute;
+  top: 375px;
+  max-height: 299px;
+  border: 1px solid #e7e7e7;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #fff;
+  z-index: 100;
+  box-sizing: border-box;
+  border-radius: 4px
+}
+
+#questionSettingBox .answerNum_Select {
+  right: 84px;
+  width: 58px
+}
+
+#questionSettingBox .isSingle_Select {
+  right: 10px;
+  width: 76px
+}
+
+#questionSettingBox .select_item {
+  color: #585858;
+  position: relative;
+  height: 29px;
+  line-height: 29px;
+  text-align: left;
+  padding-left: 8px;
+  box-sizing: border-box;
+  cursor: default
+}
+
+#questionSettingBox .select_item:hover {
+  background-color: #3896dc;
+  color: #fff
+}
+
+#questionSettingBox .export_part {
+  position: absolute;
+  right: 36px
+}
+
+#questionSettingBox .tipsLabel {
+  float: right;
+  margin: 0 0 0 25px;
+  position: relative;
+  right: 0
+}
+
+#questionSettingBox .tipsIcon {
+  position: relative;
+  float: right;
+  width: 17px;
+  height: 21px;
+  background: url(../images/selectarrow.png) -10px 8px no-repeat;
+  cursor: pointer
+}
+
+#questionSettingBox .tipsIcon.rotate180 {
+  transform: rotate(180deg)
+}
+
+#questionSettingBox .tipsIcon.transiton300ms {
+  -moz-transition: .3s all;
+  -webkit-transition: .3s all;
+  -o-transition: .3s all;
+  transition: .3s all
+}
+
+#questionSettingBox #question_list_content {
+  position: relative
+}
+
+#question_list_content .question_item {
+  position: relative;
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #dadada;
+  padding: 10px 20px 20px 0
+}
+
+#question_list_content .question_item .question_answer span.name {
+  color: #000
+}
+
+#question_list_content .question_item textarea {
+  padding: 9px 8px 9px 8px !important;
+  line-height: 20px;
+  height: 40px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  outline: 0
+}
+
+#question_list_content .question_item .main.textarea_H {
+  line-height: 10px
+}
+
+#question_list_content .question_item .main.textarea_H textarea {
+  resize: vertical;
+  max-height: 110px;
+  min-height: 40px
+}
+
+#editActive #question_list_content .settingLine {
+  padding: 10px 0 0
+}
+
+#editActive #question_list_content .question_music .uploadContainer {
+  position: static
+}
+
+#editActive #question_list_content .question_music>.content {
+  position: relative
+}
+
+#editActive #question_list_content .question_music .uploadtime {
+  position: static;
+  margin-top: 3px
+}
+
+#question_list_content .uploadContainer {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 18px
+}
+
+#question_list_content .uploadBtn {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 34px;
+  position: relative
+}
+
+#question_list_content .question_image .imgContainer {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px dashed #d7d7d7;
+  overflow: hidden;
+  text-align: center;
+  background: #e8e8e8;
+  position: relative
+}
+
+#question_list_content .question_image .uploadImg {
+  vertical-align: middle;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0
+}
+
+#question_list_content .question_music .songText {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px
+}
+
+#questionSettingBox .goTopBtn {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 999;
+  border-radius: 4px;
+  cursor: pointer;
+  background: url(../images/top.png) center center no-repeat;
+  background-color: rgba(0, 0, 0, .6)
+}
+
+#questionSettingBox .goTopBtn:hover {
+  background-color: rgba(0, 0, 0, .7)
+}
+
+#questionSettingBox .r_answer {
+  background-color: #f5f5f5;
+  margin-top: 20px;
+  padding: 16px 0
+}
+
+#questionSettingBox .r_answer input {
+  width: 431px
+}
+
+#questionSettingBox .r_answer .leftTitle {
+  width: 100px !important;
+  padding-right: 10px !important
+}
+
+#questionSettingBox .downloadDoc {
+  position: absolute;
+  right: 10px
+}
+
+#paymentGameTip {
+  position: fixed;
+  width: 526px;
+  top: 30px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 15px 17px;
+  border-radius: 4px;
+  z-index: 9999
+}
+
+#paymentGameTip .closeIcon {
+  position: absolute;
+  right: 17px;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background: url("../images/closeicon.png") no-repeat;
+  opacity: .7;
+  filter: Alpha(opacity=70)
+}
+
+#paymentGameTip a {
+  color: #fff;
+  text-decoration: underline
+}
+
+#paymentGameTip a:hover {
+  color: #fff
+}
+
+#paymentGameTip .closeIcon:hover {
+  opacity: 1;
+  filter: Alpha(opacity=100)
+}
+
+#actNameSetting #name {
+  padding-right: 50px
+}
+
+#actNameSetting .openTipsIcon {
+  position: absolute;
+  top: 20px;
+  right: 41px;
+  z-index: 5;
+  background: url(../images/opentipsicon.png) 0 0 no-repeat;
+  width: 24px;
+  height: 23px;
+  cursor: pointer
+}
+
+#actNameSetting .openTipsIcon:hover {
+  background-position: -26px 0
+}
+
+#actNameSetting .actNameTipsLine {
+  position: relative
+}
+
+#actNameSetting .actNameTipsBox {
+  width: 100%;
+  padding: 0 0 10px;
+  position: absolute;
+  border: 1px solid #dadada;
+  background: #fff;
+  z-index: 100;
+  top: 3px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  transform-origin: 100% -41px 0;
+  transition: .4s;
+  -webkit-transition: .4s
+}
+
+#actNameSetting .actNameTipsBox .actNameTipsTitle {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px
+}
+
+#actNameSetting .actNameTipsBox .actNameTipsTitle .titleTips {
+  float: left
+}
+
+#actNameSetting .actNameTipsBox .actNameTipsTitle .closeTips {
+  color: #949494;
+  float: right;
+  cursor: pointer;
+  text-decoration: underline
+}
+
+#actNameSetting .actNameTipsBox .actNameTips {
+  height: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  padding: 10px 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden
+}
+
+#actNameSetting .actNameTipsBox .actNameTips:hover {
+  background-color: #f6f6f6
+}
+
+#actNameSetting .actNameTipsBox .actNameTips .actNameTipsIcon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 15px;
+  height: 16px;
+  margin-right: 5px;
+  // background: url('../images/actnametipsicon.png') no-repeat;
+  vertical-align: middle
+}
+
+#actNameSetting .actNameTipsBox .actNameTips .actNameTipsText {
+  display: inline-block;
+  width: 92%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle
+}
+
+#actNameSetting .animation_Box {
+  transform: scale(0, 0);
+  -webkit-transform: scale(0, 0)
+}
+
+#actNameSetting #NewActNameTips {
+  height: 28px;
+  line-height: 28px;
+  padding: 0 10px;
+  position: absolute;
+  top: -25px;
+  right: 15px;
+  border-radius: 4px;
+  background-color: #000;
+  opacity: .6;
+  color: #fff
+}
+
+#actNameSetting #NewActNameTips:after {
+  content: " ";
+  height: 7px;
+  width: 7px;
+  background-color: #000;
+  border: 1px solid #000;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  margin-top: 23px;
+  margin-left: -36px
+}
