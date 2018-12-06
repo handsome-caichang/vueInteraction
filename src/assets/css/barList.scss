@@ -1,0 +1,174 @@
+@charset "utf-8";
+.container .active .actPic .previewGif {
+  display: none;
+}
+
+.container .active:hover .actPic .previewGif {
+  display: block;
+}
+
+.swiper-pic {
+  height: 100%;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+.hdcontent {
+  padding: 0 0 28px 0;
+}
+.hdcontent.scrollBox {
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box
+}
+
+.hdBannerWrap {
+  position: relative;
+  z-index: 1;
+  user-select: none;
+  height: 200px;
+}
+.activeScrollBox {
+  overflow: hidden
+}
+
+.staticClass {
+  position: relative;
+  background-color: #fff;
+  border: 0;
+  min-width: 1200px;
+  height: 50px;
+  text-align: center;
+}
+.column {
+  padding: 8px 26px;
+  color: #535353;
+  display: inline-block;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  position: relative;
+  z-index: 1;
+  line-height: 35px;
+  cursor: pointer;
+}
+.littleBlue {
+  color: #74b7e6;
+}
+
+.new_activeBox {
+    margin-top: 20px;
+}
+
+.activeContent {
+  padding: 16px 0 4px 16px
+}
+
+.new_activeContent {
+  width: 1600px;
+  min-height: 30vh;
+  margin: 0 auto;
+}
+
+
+@media only screen and (max-width:1600px) {
+  .new_activeContent {
+    width: 1330px;
+  }
+}
+
+@media only screen and (max-width:1366px) {
+  .new_activeContent {
+    width: 1123px;
+    padding: 16px 0 4px 40px
+  }
+}
+ .active {
+  width: 233px;
+  height: 181px;
+  border: 1px solid #e7e7e7;
+  margin-right: 14px;
+  margin-bottom: 24px;
+  display: inline-block;
+  cursor: pointer;
+  transition: all .2s ease;
+  position: relative;
+  vertical-align: middle;
+  background-color: #fff;
+  padding: 0 6px;
+  border-radius: 6px;
+}
+ .active:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25)
+}
+
+ .active:hover .actCreateImg {
+  width: 38px;
+  height: 38px;
+  line-height: 28px;
+  float: right;
+  margin-top: 6px;
+  margin-right: -9px;
+  background: url(../images/btn.png) -53px -8px no-repeat
+}
+
+ .active .actPic {
+  width: 225px;
+  height: 125px;
+  margin: 4px;
+  overflow: hidden;
+  position: relative;
+  background: url(../images/defimage.jpg) no-repeat;
+  background-size: 100%;
+  margin-bottom: 0
+}
+
+ .active .actPic>img {
+  width: 100%;
+  height: 100%
+}
+
+ .active .recomPic {
+  width: 43px;
+  height: 43px;
+  background: url(../images/iconall.png) -384px -477px no-repeat;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1
+}
+
+ .active .hotScorePic {
+  width: 56px;
+  height: 43px;
+  background: url(../images/hot.png) no-repeat;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1
+}
+
+ .active .actName {
+  display: inline-block;
+  width: 144px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden
+}
+
+ .active .previewGif {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%
+}
+
+ .active .actDescripe {
+  margin-left: 8px;
+  color: #333;
+  width: 216px;
+  display: inline-block;
+  height: 46px;
+  line-height: 46px
+}

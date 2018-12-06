@@ -20,7 +20,7 @@
                                 <div id="actName" class="actName" ng-bind="game.name">参与活动赢大奖</div>
                             </div>
                             <div id="gameContent">
-                                <iframe id="gamePreviewPage" src="http://localhost:8080"
+                                <iframe id="gamePreviewPage" src="http://localhost:8081"
                                         frameborder="0" scrolling="no" style="width:100%;height:100%;"></iframe>
                             </div>
                             <div id='moduleLayerBox' class="moduleLayer"></div>
@@ -288,6 +288,7 @@
 <script>
 import { leftList } from './edit.js'
 import editHeader from './compoent/header'
+import {mapMutations} from 'vuex'
 export default {
     name: 'editHaeder',
     data() {
@@ -297,19 +298,25 @@ export default {
         }
     },
     methods: {
+        ...mapMutations([
+            'set_headerType'
+        ]),
         checkLeft(item) {
             this.checked = item.type;
         }
     },
     components: {
         editHeader
+    },
+    created() {
+        this.set_headerType('2')
     }
 }
 </script>
 
 <style scoped>
 @import '../../assets/css/edit.scss';
-@import '../../assets/css/version.scss';
+/* @import '../../assets/css/version.scss'; */
 .version3 {
     height: 100%;
 }

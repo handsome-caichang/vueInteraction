@@ -1,10 +1,10 @@
 @charset "utf-8";
 
-#cav_container {
+.cav_container {
   margin: 28px
 }
 
-#cav_container input[type='text'] {
+.cav_container input[type='text'] {
   border-color: #e4e4e4;
   padding-left: 10px;
   outline: 0
@@ -15,14 +15,14 @@
   font-size: 12px
 }
 
-#cav_tabBox {
+.cav_tabBox {
   height: 56px;
   border-bottom: solid 1px #e7e7e7;
   line-height: 56px;
   position: relative
 }
 
-#cav_tabBox .cav_tab {
+.cav_tabBox .cav_tab {
   font-size: 16px;
   cursor: pointer;
   float: left;
@@ -30,11 +30,11 @@
   position: relative
 }
 
-#cav_tabBox .cav_tab.checked {
+.cav_tabBox .cav_tab.checked {
   color: #329fea
 }
 
-#cav_tabBox .cav_tab.checked:after {
+.cav_tabBox .cav_tab.checked:after {
   height: 4px;
   background: #329fea;
   content: '';
@@ -46,7 +46,7 @@
   position: absolute
 }
 
-#cav_container .reminder,
+.cav_container .reminder,
 .cav_container .reminder {
   width: 360px;
   height: 230px;
@@ -54,7 +54,7 @@
   margin-bottom: 28px
 }
 
-#cav_container .oemReminder,
+.cav_container .oemReminder,
 .cav_container .oemReminder {
   width: 160px;
   height: 160px;
@@ -62,12 +62,12 @@
   margin-bottom: 28px
 }
 
-#cav_container .searchBox,
+.cav_container .searchBox,
 .cav_container .searchBox {
   position: relative
 }
 
-#cav_container #searchMode,
+.cav_container #searchMode,
 .cav_container #searchMode {
   border: 1px solid transparent;
   border-right-color: #e4e4e4;
@@ -79,12 +79,12 @@
   top: 0
 }
 
-#cav_container #searchMode.select,
+.cav_container #searchMode.select,
 .cav_container #searchMode.select {
   border: 1px solid #e4e4e4
 }
 
-#cav_container #searchModeIcon {
+.cav_container #searchModeIcon {
   width: 9px;
   height: 5px;
   position: absolute;
@@ -95,11 +95,11 @@
   background-position: 0 -35px
 }
 
-#cav_container .select #searchModeIcon {
+.cav_container .select #searchModeIcon {
   background-position: 0 0
 }
 
-#cav_container #searchMode .mode {
+.cav_container #searchMode .mode {
   height: 40px;
   width: 88px;
   padding-left: 12px;
@@ -108,29 +108,29 @@
   cursor: pointer
 }
 
-#cav_container #searchMode .mode.option {
+.cav_container #searchMode .mode.option {
   display: none
 }
 
-#cav_container #searchMode .mode.option:hover {
+.cav_container #searchMode .mode.option:hover {
   background: #f4f4f4
 }
 
-#cav_container #searchMode.select .mode.option {
+.cav_container #searchMode.select .mode.option {
   display: block
 }
 
-#cav_container #searchMode.select .val {
+.cav_container #searchMode.select .val {
   border-bottom: 1px solid #e4e4e4
 }
 
-#cav_container .cav_c_web .searchInput {
+.cav_container .cav_c_web .searchInput {
   width: 400px;
   height: 40px;
   padding: 0 50px 0 110px
 }
 
-#cav_container .searchIcon {
+.cav_container .searchIcon {
   position: absolute;
   top: 1px;
   left: 520px;
@@ -145,138 +145,140 @@
   cursor: pointer
 }
 
-#cav_container .searchTips {
+.cav_container .searchTips {
   margin-top: 28px
 }
 
-#cav_container .tipsImg {
+.cav_container .tipsImg {
   width: 320px;
   height: 280px;
   background: url(../images/cav_pchx.jpg) 100% 100% no-repeat;
   float: left
 }
 
-#cav_container .tipsItem {
+.cav_container .tipsItem {
   float: left;
   margin: 14px 0 0 29px
 }
 
-#cav_container .hx {
+.cav_container .hx {
   width: 35px;
   height: 35px;
   background: 100% 100% no-repeat
 }
 
-#cav_container .hx1 {
+.cav_container .hx1 {
   background-image: url(../images/cav_hx1.png)
 }
 
-#cav_container .hx2 {
+.cav_container .hx2 {
   background-image: url(../images/cav_hx2.png)
 }
 
-#cav_container .hx3 {
+.cav_container .hx3 {
   background-image: url(../images/cav_hx3.png)
 }
 
-#cav_container .line {
+.cav_container .line {
   width: 2px;
   height: 80px;
   background: url(../images/cav_line.jpg) repeat;
   margin-left: 16.5px
 }
 
-#cav_container .tipsText {
+.cav_container .tipsText {
   float: left;
   margin: 14px 0 0 10px
 }
 
-#cav_container .tipsText {
+.cav_container .tipsText {
   float: left;
   margin: 19px 0 0 10px
 }
 
-#cav_container .tipsText div {
+.cav_container .tipsText div {
   margin-bottom: 78px
 }
 
-#cav_container .tipsText p {
+.cav_container .tipsText p {
   font-size: 12px;
   line-height: 12px;
   color: #999
 }
 
-#cav_container .cavTips {
+.cav_container .cavTips {
   margin: 14px 0 0 370px;
   color: #999
 }
 
-#cav_container .tipsText .title {
+.cav_container .tipsText .title {
   margin-bottom: 10px;
   font-weight: bold;
   color: #333
 }
 
-#cav_container .searchResult {
+.cav_container .searchResult {
   display: none;
   max-width: 910px;
   margin-top: 28px
 }
 
-#cav_container .faiTableWrap .center table.faiTable thead tr {
+.cav_container .faiTableWrap .center table.faiTable thead tr {
   height: 56px
 }
 
-#cav_container .faiTableWrap .center table.faiTable thead tr th {
+.cav_container .faiTableWrap .center table.faiTable thead tr th {
   font-size: 14px;
   height: 56px
 }
 
-#cav_container .faiTableWrap .center table.faiTable tbody tr:last-child td {
+.cav_container .faiTableWrap .center table.faiTable tbody tr:last-child td {
   border-bottom: 0
 }
 
-#cav_container .faiTableWrap .center table.faiTable thead tr th.col-width-140 {
+.cav_container .faiTableWrap .center table.faiTable thead tr th.col-width-140 {
   width: 165px
 }
 
-#cav_container .faiTableWrap .center table.faiTable thead tr th.col-width-180 {
+.cav_container .faiTableWrap .center table.faiTable thead tr th.col-width-180 {
   width: 175px
 }
 
-#cav_container .faiTableWrap .center table.faiTable tbody tr td.awardUser {
+.cav_container .faiTableWrap .center table.faiTable tbody tr td.awardUser {
   max-width: 100px
 }
 
-#cav_container .faiTableWrap .center table.faiTable tbody tr.odd {
-  background: #fff
+.cav_container .faiTableWrap .center table.faiTable tbody tr.odd {
+  background: #fff;
 }
-
-#cav_container .faiTableWrap .center table.faiTable {
+.cav_container .faiTableWrap .center table.faiTable tbody tr.odd:hover {
+  background: #f5f5f5;
+}
+.cav_container .faiTableWrap .center table.faiTable {
   border-collapse: collapse
 }
 
-#cav_container .searchTable .column {
+.cav_container .searchTable .column {
   width: 106px
 }
 
-#cav_container .searchTable .column1 {
+.cav_container .searchTable .column1 {
   width: 90px
 }
 
-#cav_container .searchTable .column2 {
+.cav_container .searchTable .column2 {
   width: 140px
 }
 
-#cav_container .searchTable .column3 {
+.cav_container .searchTable .column3 {
   width: 130px
 }
 
-#cav_container .searchTable .column4 {
+.cav_container .searchTable .column4 {
   width: 80px
 }
 
-#cav_container .searchTable .column5 {
+.cav_container .searchTable .column5 {
   width: 60px
 }
 
@@ -288,7 +290,7 @@
   overflow: hidden
 }
 
-#cav_container .cavBtn {
+.cav_container .cavBtn {
   width: 120px;
   height: 30px;
   border-radius: 2px;
@@ -302,42 +304,42 @@
   cursor: pointer
 }
 
-#cav_container .cavBtn.disabled {
+.cav_container .cavBtn.disabled {
   background-color: #f4f5f7;
   color: #888;
   border: 1px solid #e4e4e4;
   display: block
 }
 
-#cav_container #recordCutLine {
+.cav_container #recordCutLine {
   width: 1110px;
   border-bottom: 1px #f1f1f1 solid;
   margin: 0 0 30px -10px
 }
 
-#cav_container .recordBar {
+.cav_container .recordBar {
   position: relative;
   text-align: right;
   height: 56px
 }
 
-#cav_container .recordBar .recordsearchBox {
+.cav_container .recordBar .recordsearchBox {
   position: relative;
   width: 195px;
   display: inline-block
 }
 
-#cav_container .recordBar .recordsearchBox .recordInput {
+.cav_container .recordBar .recordsearchBox .recordInput {
   width: 180px;
   height: 30px
 }
 
-#cav_container .recordBar .recordLine {
+.cav_container .recordBar .recordLine {
   height: 32px;
   margin-bottom: 10px
 }
 
-#cav_container .recordBar .recordLine .recordInput {
+.cav_container .recordBar .recordLine .recordInput {
   width: 130px;
   height: 30px;
   padding: 0 40px 0 10px;
@@ -346,7 +348,7 @@
   margin-right: 0
 }
 
-#cav_container .recordBar .recordIcon {
+.cav_container .recordBar .recordIcon {
   position: absolute;
   top: 1px;
   right: 8px;
@@ -361,10 +363,10 @@
   cursor: pointer
 }
 
-#cav_container .recordBar .filter,
-#cav_container .recordBar .filterHb,
-#cav_container .recordBar input,
-#cav_container .recordBar .exportBtn {
+.cav_container .recordBar .filter,
+.cav_container .recordBar .filterHb,
+.cav_container .recordBar input,
+.cav_container .recordBar .exportBtn {
   display: inline-block;
   vertical-align: middle;
   text-align: center;
@@ -375,17 +377,17 @@
   cursor: pointer
 }
 
-#cav_container .recordBar .filter:hover,
-#cav_container .recordBar .filter.checked {
+.cav_container .recordBar .filter:hover,
+.cav_container .recordBar .filter.checked {
   color: #329fea
 }
 
-#cav_container .recordBar .recordBtn.checked {
+.cav_container .recordBar .recordBtn.checked {
   color: #787878
 }
 
-#cav_container .recordBar .startTime,
-#cav_container .recordBar .endTime {
+.cav_container .recordBar .startTime,
+.cav_container .recordBar .endTime {
   width: 96px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -396,15 +398,15 @@
   height: 32px
 }
 
-#cav_container .startTime,
-#cav_container .endTime {
+.cav_container .startTime,
+.cav_container .endTime {
   width: 107px;
   height: 28px;
   cursor: pointer
 }
 
 .recordBtn,
-#cav_container .recordBar .exportBtn {
+.cav_container .recordBar .exportBtn {
   height: 30px;
   line-height: 30px !important;
   text-align: center;
@@ -414,8 +416,8 @@
 }
 
 .recordBtn:hover,
-#cav_container .recordBar .exportBtn:hover,
-#cav_container .recordBar .exportBtn.checked {
+.cav_container .recordBar .exportBtn:hover,
+.cav_container .recordBar .exportBtn.checked {
   background: #329fea;
   color: #fff !important;
   border-color: #329fea
@@ -427,7 +429,7 @@
   background-position: -554px -907px
 }
 
-#cav_container .recordBar .exportBtn .icon {
+.cav_container .recordBar .exportBtn .icon {
   width: 24px;
   height: 24px;
   background-position: -657px -907px
@@ -437,34 +439,34 @@
   background-position: -606px -907px
 }
 
-#cav_container .recordBar .exportBtn {
+.cav_container .recordBar .exportBtn {
   margin-right: 16px
 }
 
-#cav_container .recordBar .exportBtn:hover .icon,
-#cav_container .recordBar .exportBtn.checked .icon {
+.cav_container .recordBar .exportBtn:hover .icon,
+.cav_container .recordBar .exportBtn.checked .icon {
   background-position: -704px -907px
 }
 
-#cav_container .recordTable {
+.cav_container .recordTable {
   border-top: solid 1px #e7e7e7
 }
 
-#cav_container .recordTable .column1 {
+.cav_container .recordTable .column1 {
   width: 150px
 }
 
-#cav_container .recordTable .column2,
-#cav_container .recordTable .column3,
-#cav_container .recordTable .column5 {
+.cav_container .recordTable .column2,
+.cav_container .recordTable .column3,
+.cav_container .recordTable .column5 {
   width: 90px
 }
 
-#cav_container .recordTable .column9 {
+.cav_container .recordTable .column9 {
   width: 140px
 }
 
-#cav_container .recordTable .column3 {
+.cav_container .recordTable .column3 {
   width: 110px
 }
 
@@ -483,7 +485,7 @@
   padding-left: 10px
 }
 
-#searchGameId {
+.searchGameId {
   position: absolute;
   width: 106px;
   height: 30px;
@@ -493,11 +495,11 @@
   margin: auto
 }
 
-#hb_description {
+.hb_description {
   padding: 0 16px 20px
 }
 
-#hb_description p {
+.hb_description p {
   font-size: 12px;
   color: #989898
 }
@@ -605,7 +607,7 @@
   border-top: solid 1px #e7e7e7
 }
 
-#cav_container .recordBar .searchBoxCont {
+.cav_container .recordBar .searchBoxCont {
   display: inline-block;
   vertical-align: middle;
   margin-left: 8px;
@@ -613,7 +615,7 @@
   width: 136px
 }
 
-#cav_container .recordBar .searchBoxCont input {
+.cav_container .recordBar .searchBoxCont input {
   width: 130px;
   margin-top: 0;
   cursor: auto;
@@ -629,7 +631,7 @@
   padding-left: 16px
 }
 
-#cav_gotoCavBtn {
+.cav_gotoCavBtn {
   position: absolute;
   height: 36px;
   right: 16px;
@@ -639,7 +641,7 @@
   padding: 0 12px
 }
 
-#cav_gotoCavBtn .icon {
+.cav_gotoCavBtn .icon {
   background-position: -315px -987px;
   width: 22px
 }
@@ -666,12 +668,12 @@
   white-space: pre-wrap
 }
 
-#cav_container .hostSetting {
+.cav_container .hostSetting {
   text-align: left;
   height: auto
 }
 
-#cav_container .saveHostSettingBtn {
+.cav_container .saveHostSettingBtn {
   width: 104px;
   height: 35px;
   background-color: #329fea;
@@ -683,15 +685,15 @@
   cursor: pointer
 }
 
-#cav_container .saveHostSettingBtn:hover {
+.cav_container .saveHostSettingBtn:hover {
   background-color: #1184d4
 }
 
-#cav_container .saveHostSettingBtn.canNotSave {
+.cav_container .saveHostSettingBtn.canNotSave {
   background: #b1b1b1
 }
 
-#cav_container .canNotClickUploadBtn {
+.cav_container .canNotClickUploadBtn {
   cursor: Default;
   background: #b1b1b1
 }
@@ -702,12 +704,12 @@
   background: #329fea
 }
 
-#cav_container .saveHostSettingBtn .icon {
+.cav_container .saveHostSettingBtn .icon {
   background-position: -215px -621px !important;
   width: 22px !important
 }
 
-#cav_container .cav_hostIntroduce .hostName {
+.cav_container .cav_hostIntroduce .hostName {
   width: 440px;
   padding: 0 8px;
   display: inline-block;
@@ -719,7 +721,7 @@
   cursor: auto
 }
 
-#cav_container .cav_hostIntroduce .siteUrlInput {
+.cav_container .cav_hostIntroduce .siteUrlInput {
   width: 440px;
   padding: 0 8px;
   display: inline-block;
@@ -731,38 +733,38 @@
   cursor: auto
 }
 
-#cav_container .cav_hostIntroduce .jumpTypeTips {
+.cav_container .cav_hostIntroduce .jumpTypeTips {
   color: #999;
   margin-left: 91px
 }
 
-#cav_container .recordBar .hostContain {
+.cav_container .recordBar .hostContain {
   padding: 26px
 }
 
-#cav_container .recordBar .hostContain .settingItem .flag {
+.cav_container .recordBar .hostContain .settingItem .flag {
   margin-left: -8px;
   width: 8px
 }
 
-#cav_container .cav_hostIntroduce input {
+.cav_container .cav_hostIntroduce input {
   display: none
 }
 
-#cav_container .cav_hostIntroduce label {
+.cav_container .cav_hostIntroduce label {
   margin-left: 19px
 }
 
-#cav_container .cav_hostIntroduce .settingItem {
+.cav_container .cav_hostIntroduce .settingItem {
   margin: 14px 0 0;
   line-height: 44px
 }
 
-#cav_container .cav_hostIntroduce .editContain {
+.cav_container .cav_hostIntroduce .editContain {
   margin-top: 17px
 }
 
-#cav_container .cav_hostIntroduce .editContain .wxTitle {
+.cav_container .cav_hostIntroduce .editContain .wxTitle {
   margin: 30px auto 0;
   width: 320px;
   height: 64px;
@@ -771,7 +773,7 @@
   position: relative
 }
 
-#cav_container .cav_hostIntroduce .editContain .phone {
+.cav_container .cav_hostIntroduce .editContain .phone {
   width: 348px;
   height: 650px;
   vertical-align: top;
@@ -782,25 +784,25 @@
   position: relative
 }
 
-#cav_container .cav_hostIntroduce .editContain .phone .tmpIframe {
+.cav_container .cav_hostIntroduce .editContain .phone .tmpIframe {
   width: 320px;
   height: 504px;
   margin: 0 auto
 }
 
-#cav_container .cav_hostIntroduce .editContain .inputGroup {
+.cav_container .cav_hostIntroduce .editContain .inputGroup {
   height: 44px;
   line-height: 44px;
   margin-bottom: 10px
 }
 
-#cav_container .cav_hostIntroduce .editContain .btnBox {
+.cav_container .cav_hostIntroduce .editContain .btnBox {
   height: 44px;
   line-height: 44px;
   margin-bottom: 10px
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit {
   width: 612px;
   height: auto;
   background-color: #f5f5f5;
@@ -810,16 +812,16 @@
   border: 1px solid #e7e7e7
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .itemBox {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .itemBox {
   float: left;
   width: 618px
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .imgGroup {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .imgGroup {
   margin: 17px 0 10px 10px
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .imgGroup .delectIcon {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .imgGroup .delectIcon {
   width: 17px;
   height: 17px;
   position: absolute;
@@ -827,11 +829,11 @@
   margin: -22px 0 0 41px
 }
 
-#cav_container .cav_hostIntroduce .editContain .ieDelectIcon {
+.cav_container .cav_hostIntroduce .editContain .ieDelectIcon {
   margin: -8px 0 0 79px !important
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .imgGroup .moveUp {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .imgGroup .moveUp {
   position: absolute;
   padding: 0 6px;
   height: 20px;
@@ -842,11 +844,11 @@
   margin: 14px 0 0 -25px
 }
 
-#cav_container .cav_hostIntroduce .editContain .ieMoveUp {
+.cav_container .cav_hostIntroduce .editContain .ieMoveUp {
   margin: -23px 0 0 0 !important
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .imgGroup .moveDown {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .imgGroup .moveDown {
   position: absolute;
   padding: 0 6px;
   height: 20px;
@@ -857,16 +859,16 @@
   margin: 14px 0 0 24px
 }
 
-#cav_container .cav_hostIntroduce .editContain .ieMoveDown {
+.cav_container .cav_hostIntroduce .editContain .ieMoveDown {
   margin: -23px 0 0 50px !important
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .comUploadImg img {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .comUploadImg img {
   max-width: 80px;
   max-height: 80px
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .editHostLogo {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .editHostLogo {
   margin: 0 0 17px 99px;
   padding: 5px;
   width: 470px;
@@ -874,11 +876,11 @@
   border: 1px solid #e7e7e7
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .editHostImg {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .editHostImg {
   margin-left: 89px
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .editHostImg .comUploadTipsBox {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .editHostImg .comUploadTipsBox {
   display: inline-block;
   vertical-align: middle;
   margin-left: 12px;
@@ -887,12 +889,12 @@
   line-height: 16px
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .editHostImg .sizeStyle {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .editHostImg .sizeStyle {
   color: #64cea6;
   margin-right: 16px
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .imgTemp {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .imgTemp {
   width: 85px;
   height: 48px;
   margin: 0 11px 10px 0;
@@ -918,36 +920,36 @@
   background-color: #e8e8e8
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .imgTemp img {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .imgTemp img {
   max-height: 48px;
   max-width: 86px
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .leftTitle {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .leftTitle {
   display: inline-block;
   width: 75px;
   text-align: right
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .editHostButton {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .editHostButton {
   margin-bottom: 20px
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .introduceBox {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .introduceBox {
   vertical-align: 138px
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .hostBtnUrlBox {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .hostBtnUrlBox {
   margin: 10px 0 0
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .hostBtnTitle {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .hostBtnTitle {
   display: inline-block;
   width: 169px;
   text-align: right
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit textarea {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit textarea {
   width: 468px;
   height: 145px;
   line-height: 18px;
@@ -956,12 +958,12 @@
   margin-left: 20px
 }
 
-#cav_container .cav_hostIntroduce .editContain .tmpEdit .comUploadImg {
+.cav_container .cav_hostIntroduce .editContain .tmpEdit .comUploadImg {
   background-color: #eee;
   border: 1px solid #dadada
 }
 
-#cav_container .cav_hostIntroduce .editContain .hostBtnName {
+.cav_container .cav_hostIntroduce .editContain .hostBtnName {
   width: 377px;
   padding: 0 8px;
   display: inline-block;
@@ -973,7 +975,7 @@
   cursor: auto
 }
 
-#cav_container .cav_hostIntroduce .editContain .hostBtnUrl {
+.cav_container .cav_hostIntroduce .editContain .hostBtnUrl {
   width: 377px;
   padding: 0 8px;
   display: inline-block;
@@ -985,11 +987,11 @@
   cursor: auto
 }
 
-#cav_container .cav_hostIntroduce .editContain .hostIntroduceItem .inputGroup {
+.cav_container .cav_hostIntroduce .editContain .hostIntroduceItem .inputGroup {
   margin-bottom: 0 !important
 }
 
-#cav_container .cav_hostIntroduce .icon {
+.cav_container .cav_hostIntroduce .icon {
   display: inline-block;
   width: 18px;
   height: 19px;
@@ -999,11 +1001,11 @@
   margin-left: 2px
 }
 
-#cav_container .cav_hostIntroduce .icon:hover {
+.cav_container .cav_hostIntroduce .icon:hover {
   background: url(../images/iconall4.png) -380px -696px no-repeat
 }
 
-#cav_container .cav_hostIntroduce .hostNameContain .icon {
+.cav_container .cav_hostIntroduce .hostNameContain .icon {
   display: inline-block;
   width: 18px;
   height: 23px;
@@ -1013,6 +1015,30 @@
   margin-left: 2px
 }
 
-#cav_container .cav_hostIntroduce .hostNameContain .icon:hover {
+.cav_container .cav_hostIntroduce .hostNameContain .icon:hover {
   background: url(../images/iconall4.png) -96px -224px no-repeat
+}
+.main-whiteBox {
+  background-color: #fff;
+  border: solid 1px #e7e7e7;
+}
+
+.dropDownBox_main {
+  position: relative;
+  text-align: left;
+  padding-left: 8px;
+  line-height: 30px;
+  cursor: pointer;
+  border: solid 1px #e7e7e7;
+}
+
+.dropDownBox_main .dropDownArrow {
+  position: absolute;
+  right: 8px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-position: -722px -622px;
+  width: 16px;
+  height: 10px;
 }

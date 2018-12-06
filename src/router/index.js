@@ -13,7 +13,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: "/", redirect: "/register" },
+    { path: "/", redirect: "/verification" },
     {
       path: "/login",
       name: "login",

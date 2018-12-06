@@ -1,5 +1,5 @@
 <template>
-<div id="poup_previewActive" class="poupBox confirmPoupBox previewActive poup-box-animate" style="width: 660px;height: 518px;">
+<div id="poup_previewActive" class="poupBox confirmPoupBox previewActive poup-box-animate" style="width: 660px;height: 518px;margin:0 auto;">
     <div class="poupContent" style="">
         <div class="showQrcodeBtn hide" style="display: block;">
             <div class="qrcodeIcon"></div>
@@ -58,9 +58,7 @@ export default {
 
 <style scoped >
 
-  @import '../assets/css/base.scss';
   @import '../assets/css/fai.scss';
-  @import '../assets/css/header.scss';
   @import '../assets/css/index.scss';
   @import '../assets/css/activePreView.scss';
 

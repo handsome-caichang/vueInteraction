@@ -39,7 +39,7 @@
 					</div>
 					<div class="u-input">
 						<label>短信验证码</label><div class="inputWrapper">
-							<input class="short" type="text" placeholder="请输入短信验证码" autocomplete="off" maxlength="4">
+							<input class="short" v-model="smsCode" type="text" placeholder="请输入短信验证码" autocomplete="off" maxlength="4">
 							<button class="button" @click="getSms" :disabled="sendMsg || (validateCode && !tool.telReg.test(mobile))">{{sendMsg?time+'s后重发':'获取验证码'}}</button>
 						</div><span class="msg hideImp">
 							<i></i><font></font>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div class="bottomBar">
-				<button class="u-bigBtn" id="regBtn">免费注册</button>
+				<button class="u-bigBtn" :disabled="bigFlag">免费注册</button>
 			</div>
 			<div class="toLogin">
 				已有帐号？<a hidefocus="true" href="javascript:;" @click="gotoLogin">直接登录</a>
@@ -73,6 +73,14 @@
 				timeout: null
 			}
 		},
+		computed: {
+			bigFlag() {
+				if (!tool.telReg.test(this.mobile) || this.password < 4 || !this.smsCode)  {
+					return true;
+				}
+				return false;
+			}
+		},
 		methods: {
 			gotoLogin(){
 				this.$router.push('/login')
@@ -84,6 +92,7 @@
 				this.sendMsg = true;
 				this.time = 60;
 				this._beginReCheck(this.time);
+				this.changeRegImage();
 			},
 			_phoneValidate(){ //验证手机号码
 				if (!this.mobile) {
@@ -121,20 +130,5 @@
 </script>
 <style scoped>
   	@import './register.scss';
-	.m-mobiVerify {
-		margin-top: 20px;
-	}
-	.picbox {
-		position: relative;
-	}
-    .pic {
-		position: absolute;
-		right: 0;
-		top: 50%;
-		transform: translateY(-50%);
-		width: 80px;
-		height: 40px;
-		background-size: 100% 100%;
-		display: inline-block;
-	}
+	
 </style>

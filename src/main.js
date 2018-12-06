@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import vueFilters from "./assets/js/filter.js";
 
 Vue.config.productionTip = false
 
@@ -10,6 +11,10 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   ...allStore
+});
+
+Vue.mixin({
+  filters: vueFilters
 });
 
 /* eslint-disable no-new */

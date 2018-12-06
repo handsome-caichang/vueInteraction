@@ -2,10 +2,8 @@
     <div class="headBar">
         <a href=http://hd.fkw.com target='_blank'><img class='logo' src='//g-hd.faisys.com/version2/image/version3/HDlogo.png?v=666' /></a>
         <div class="headerRight">
-            <div id="savePubButon" class="headBtn mbtn main-Button">预览<div id="newSavePubButon" class="headBtn mbtn main-Button"
-                    ng-hide="!isSave"><span class="view">预览</span><span class="viewSave hide">预览并保存</span></div>
-            </div>
-            <div id="saveButon" class="headBtn mbtn main-Button" ng-class="{'disabled':!isSave}">保存</div>
+            <div id="savePubButon" class="headBtn mbtn main-Button">预览并保存</div>
+            <div id="saveButon" class="headBtn mbtn main-Button disabled">保存</div>
             <div id="cancelButton" class="headBtn mbtn main-Button" title="退出编辑"><span class="cancelIcon"></span></div>
         </div>
     </div>
@@ -25,8 +23,42 @@ export default {
 
 <style scoped >
   @import '../../../assets/css/edit.scss';
-@import '../../../assets/css/version.scss';
-
+.headBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    width: 100%;
+    min-width: 1270px;
+    border-bottom: solid 1px #dadada;
+    z-index: 200;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+}
+ .headBar .headerRight {
+    position: absolute;
+    top: 0;
+    right: 16px;
+    height: 100%;
+    font-size: 0;
+}
+.version3 .main-Button {
+    background: #4381fd;
+    border: 1px solid #4381fd;
+    color: #fff;
+        border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.version3 .main-Button.disabled{
+    transition: none;
+    cursor: not-allowed;
+    background: #acc8ff;
+    border-color: #acc8ff;
+    color: #fff;
+}
 </style>
 
 

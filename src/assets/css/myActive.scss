@@ -5,7 +5,7 @@ body {
   height: 100%
 }
 
-#myActContainer .gameVerIcon {
+.container .gameVerIcon {
   position: absolute;
   top: -3px;
   right: -3px;
@@ -14,57 +14,57 @@ body {
   background-size: 25px 25px
 }
 
-#myActContainer #showActiveTable .faiTableWrap .column1,
-#myActContainer #showRecycleTable .faiTableWrap .column1 {
+.container #showActiveTable .faiTableWrap .column1,
+.container #showRecycleTable .faiTableWrap .column1 {
   box-sizing: border-box;
   padding-left: 98px;
   width: 255px
 }
 
-#myActContainer #showActiveTable .faiTableWrap .column3 {
+.container #showActiveTable .faiTableWrap .column3 {
   min-width: 150px
 }
 
-#myActContainer #showActiveTable .faiTableWrap .column7 {
+.container #showActiveTable .faiTableWrap .column7 {
   width: 250px
 }
 
-#myActContainer #showActiveTable .faiTableWrap .column9 {
+.container #showActiveTable .faiTableWrap .column9 {
   width: 110px
 }
 
-#myActContainer #showActiveTable .faiTableWrap .active_activeName {
+.container #showActiveTable .faiTableWrap .active_activeName {
   min-width: 247px
 }
 
 .faiTableWrap .center table.faiTable {
-  table-layout: auto
+  table-layout: auto;
 }
 
-#myActContainer #showActiveTable .faiTableWrap .active_activeName .textBox:hover {
+.container #showActiveTable .faiTableWrap .active_activeName .textBox:hover {
   color: #329fea;
   text-decoration: underline;
   cursor: pointer
 }
 
-#myActContainer #showActiveTable .innerNewStyle:hover {
+.container #showActiveTable .innerNewStyle:hover {
   color: #329fea;
   text-decoration: underline;
   cursor: pointer
 }
 
-#myActContainer #showActiveTable .innerNewStyle {
+.container #showActiveTable .innerNewStyle {
   margin-top: -16px;
   cursor: pointer
 }
 
-#myActContainer .tableContent {
+.container .tableContent {
   background: #fff;
   border: solid 1px #e7e7e7;
   margin-bottom: 28px
 }
 
-#myActContainer .tableContent .qrcodeIcon {
+.container .tableContent .qrcodeIcon {
   display: inline-block;
   vertical-align: middle;
   width: 22px;
@@ -76,7 +76,7 @@ body {
   margin-left: 10px
 }
 
-#myActContainer .tableContent .qrcodeBox {
+.container .tableContent .qrcodeBox {
   border: 1px solid #ccc;
   width: 160px;
   position: absolute;
@@ -87,14 +87,14 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15)
 }
 
-#myActContainer .tableContent .qrcodeBox img {
+.container .tableContent .qrcodeBox img {
   width: 144px;
   height: 144px;
   display: block;
   padding: 8px
 }
 
-#myActContainer .tableContent .qrcodeBox .inIcon.down {
+.container .tableContent .qrcodeBox .inIcon.down {
   left: 22px;
   position: absolute;
   bottom: -12px;
@@ -104,7 +104,7 @@ body {
   border-right: solid 6px transparent
 }
 
-#myActContainer .tableContent .qrcodeBox .inIcon.up {
+.container .tableContent .qrcodeBox .inIcon.up {
   left: 22px;
   position: absolute;
   top: -6px;
@@ -120,7 +120,7 @@ body {
   background: #fff
 }
 
-#myActContainer .tableContent .qrcodeBox .weixinerweima {
+.container .tableContent .qrcodeBox .weixinerweima {
   text-align: center;
   color: #fff;
   height: 44px;
@@ -128,14 +128,14 @@ body {
   background: #329fea
 }
 
-#myActContainer .tableContent .transition {
+.container .tableContent .transition {
   animation: fadeIn .4s ease 1;
   -moz-animation: fadeIn .4s ease 1;
   -webkit-animation: fadeIn .4s ease 1;
   -o-animation: fadeIn .4s ease 1
 }
 
-#myActContainer .tableContent .imgBox {
+.container .tableContent .imgBox {
   width: 80px;
   height: 45px;
   background: #e6e6e6;
@@ -145,7 +145,7 @@ body {
   margin: 3px 0
 }
 
-#myActContainer .tableContent .textBox {
+.container .tableContent .textBox {
   display: inline-block;
   margin-left: 8px;
   margin-top: 1px;
@@ -157,7 +157,7 @@ body {
   overflow: hidden
 }
 
-#myActContainer .linkBox {
+.container .linkBox {
   width: 480px;
   box-sizing: border-box;
   border: 1px solid #e7e7e7;
@@ -170,7 +170,7 @@ body {
   padding: 12px 12px 0 16px
 }
 
-#myActContainer .linkBox #tabs .tab {
+.container .linkBox #tabs .tab {
   width: 50%;
   display: inline-block;
   font-size: 12px;
@@ -182,17 +182,17 @@ body {
   cursor: pointer
 }
 
-#myActContainer .linkBox .headLine {
+.container .linkBox .headLine {
   height: 32px;
   line-height: 26px;
   border-bottom: 1px solid #e7e7e7
 }
 
-#myActContainer .linkBox .headLine .title {
+.container .linkBox .headLine .title {
   text-align: left
 }
 
-#myActContainer .linkBox .colseIcon {
+.container .linkBox .colseIcon {
   width: 24px;
   height: 24px;
   cursor: pointer;
@@ -202,29 +202,29 @@ body {
   top: 12px
 }
 
-#myActContainer .linkBox .colseIcon:hover {
+.container .linkBox .colseIcon:hover {
   background-position: -306px -906px
 }
 
-#myActContainer .linkBox #tabs .checked {
+.container .linkBox #tabs .checked {
   background: #fff;
   border-bottom: 0
 }
 
-#myActContainer .linkBox .tipsBoxArrow {
+.container .linkBox .tipsBoxArrow {
   right: 76px
 }
 
-#myActContainer .linkBox .tabContent .linkPicBox .wxFont {
+.container .linkBox .tabContent .linkPicBox .wxFont {
   background: #329fea
 }
 
-#myActContainer .linkBox .tabContent .linkPicBox .downCode {
+.container .linkBox .tabContent .linkPicBox .downCode {
   cursor: pointer;
   text-decoration: underline
 }
 
-#myActContainer .linkBox #spreadLink .linkInfo {
+.container .linkBox #spreadLink .linkInfo {
   display: inline-block;
   vertical-align: top;
   height: 175px;
@@ -233,16 +233,16 @@ body {
   text-align: left
 }
 
-#myActContainer .linkBox #spreadLink .linkInfo .linkTitle {
+.container .linkBox #spreadLink .linkInfo .linkTitle {
   margin: 16px 0
 }
 
-#myActContainer .linkBox #spreadLink .downWxPicLine {
+.container .linkBox #spreadLink .downWxPicLine {
   margin-top: 20px;
   margin-left: 6px
 }
 
-#myActContainer .linkBox #spreadLink .downWxPicLine a {
+.container .linkBox #spreadLink .downWxPicLine a {
   text-decoration: underline;
   color: #666
 }
@@ -257,7 +257,7 @@ body {
   display: none
 }
 
-#myActContainer .hideActBar {
+.container .hideActBar {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -270,12 +270,12 @@ body {
   overflow: hidden
 }
 
-#myActContainer .hotSaleBox {
+.container .hotSaleBox {
   margin-left: 30px;
   font-weight: bold
 }
 
-#myActContainer .hotSaleBox .hotSaleImg {
+.container .hotSaleBox .hotSaleImg {
   width: 15px;
   height: 20px;
   background: url(/images/hot_1.png?v=201607281150) no-repeat;
@@ -408,23 +408,23 @@ body {
   background-color: #fff
 }
 
-#myActContainer .activityTitle {
+.container .activityTitle {
   font-weight: bold
 }
 
-#myActContainer .lineStyle {
+.container .lineStyle {
   margin-top: 10px;
   border-top: #e1e1e1 1px solid
 }
 
-#myActContainer .recycleBox {
+.container .recycleBox {
   float: right;
   width: 100px;
   height: 32px;
   margin: 15px auto
 }
 
-#myActContainer .myActContainTitle {
+.container .myActContainTitle {
   position: relative;
   height: 56px;
   padding-left: 16px;
@@ -433,8 +433,8 @@ body {
   border-bottom: solid 1px #e7e7e7
 }
 
-#myActContainer #recycleBinTitle,
-#myActContainer #clearRecycleBox {
+.container #recycleBinTitle,
+.container #clearRecycleBox {
   position: absolute;
   height: 36px;
   top: 0;
@@ -447,13 +447,13 @@ body {
   color: #fff
 }
 
-#myActContainer #clearRecycleBox .icon {
+.container #clearRecycleBox .icon {
   background-position: -864px -907px;
   width: 21px;
   height: 22px
 }
 
-#myActContainer #recycleBinTitle .icon {
+.container #recycleBinTitle .icon {
   background-position: -47px -908px;
   width: 22px;
   height: 22px

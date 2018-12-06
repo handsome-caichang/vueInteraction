@@ -4,17 +4,17 @@
   overflow-y: scroll !important
 }
 
-#verifContBox {
+.verifContBox {
   width: 1002px;
   margin: 28px auto 28px;
   position: relative
 }
 
-#verifContBox .faiTable {
+.verifContBox .faiTable {
   width: auto
 }
 
-#verifContBox .changeToPhoneBox {
+.verifContBox .changeToPhoneBox {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -25,39 +25,39 @@
   z-index: 1
 }
 
-#verifContBox .changeToPhone {
+.verifContBox .changeToPhone {
   height: 51px;
   line-height: 51px;
   color: #949494;
   padding: 0 16px
 }
 
-#verifContBox .phoneTiPsImg {
+.verifContBox .phoneTiPsImg {
   width: 337px;
   height: 216px;
   margin: 18px 0 0 13px
 }
 
-#verifContBox .phoneTiPsImg.reminder {
+.verifContBox .phoneTiPsImg.reminder {
   background: url('../images/dj.jpg') no-repeat
 }
 
-#verifContBox .phoneTiPsImg.oemReminder {
+.verifContBox .phoneTiPsImg.oemReminder {
   background: url('../images/fxerm.jpg') no-repeat
 }
 
-#verifContBox .changeToPhone .icon {
+.verifContBox .changeToPhone .icon {
   width: 24px;
   height: 42px;
   background-position: -370px -978px;
   margin-right: 3px
 }
 
-#verifContBox .columnTitle:before {
+.verifContBox .columnTitle:before {
   display: none
 }
 
-#verifContBox .batchCodes {
+.verifContBox .batchCodes {
   float: right;
   margin-right: 16px;
   font-size: 14px;
@@ -65,11 +65,11 @@
   text-decoration: underline
 }
 
-#verifPanel {
+.verifPanel {
   margin: 40px 92px 66px 92px
 }
 
-#verifPanel .searchBoxCont input.input {
+.verifPanel .searchBoxCont input.input {
   padding-right: 10px;
   border-right: solid 1px #e7e7e7;
   margin-right: 44px;
@@ -77,7 +77,7 @@
   width: 770px
 }
 
-#verifPanel .searchBoxCont .searchBtn {
+.verifPanel .searchBoxCont .searchBtn {
   width: 46px;
   height: 100%;
   top: 0;
@@ -85,15 +85,15 @@
   background: url('../images/iconall.png') no-repeat -96px -478px
 }
 
-#verifPanel .searchBoxCont .searchBtn:hover {
+.verifPanel .searchBoxCont .searchBtn:hover {
   background-position: -140px -478px !important
 }
 
-#verifPanel .searchTips {
+.verifPanel .searchTips {
   margin-top: 32px
 }
 
-#verifPanel .searchTips .imgTips {
+.verifPanel .searchTips .imgTips {
   background: url('../images/cav_pchx.jpg') no-repeat;
   width: 388px;
   height: 320px;
@@ -102,24 +102,24 @@
   margin-right: 4px
 }
 
-#verifPanel .searchTips .txtTips {
+.verifPanel .searchTips .txtTips {
   display: inline-block;
   vertical-align: top;
   padding-top: 28px
 }
 
-#verifPanel .searchTips .txtTips .item {
+.verifPanel .searchTips .txtTips .item {
   color: #949494;
   line-height: 14px;
   margin: 0 0 65px
 }
 
-#verifPanel .searchTips .txtTips .item .title {
+.verifPanel .searchTips .txtTips .item .title {
   color: #585858;
   padding-bottom: 12px
 }
 
-#verifPanel .searchResult {
+.verifPanel .searchResult {
   margin-top: 32px
 }
 
@@ -135,63 +135,63 @@
   border: 0
 }
 
-#cavBtnBox {
+.cavBtnBox {
   height: 150px;
   text-align: center
 }
 
-#cavBtnBox input,
-#cavBtnBox .cavBtn,
-#cavBtnBox .batchCavBtn {
+.cavBtnBox input,
+.cavBtnBox .cavBtn,
+.cavBtnBox .batchCavBtn {
   width: 222px;
   height: 44px;
   padding: 0 10px
 }
 
-#cavBtnBox input {
+.cavBtnBox input {
   margin-left: 6px
 }
 
-#cavBtnBox input:focus {
+.cavBtnBox input:focus {
   border-color: #ccc
 }
 
-#cavBtnBox .batchCav {
+.cavBtnBox .batchCav {
   margin-top: 24px
 }
 
-#cavBtnBox .cavBtn,
-#cavBtnBox .batchCavBtn {
+.cavBtnBox .cavBtn,
+.cavBtnBox .batchCavBtn {
   line-height: 44px;
   margin-left: 325px
 }
 
-#cavBtnBox .cavTips {
+.cavBtnBox .cavTips {
   color: #74b7e6;
   line-height: 14px;
   padding-top: 8px;
   margin-left: -68px
 }
 
-#cavBtnBox .cavBtn.disabled {
+.cavBtnBox .cavBtn.disabled {
   cursor: default
 }
 
-#cavBtnBox .cavBtn.disabled:hover {
+.cavBtnBox .cavBtn.disabled:hover {
   border-color: #74b7e6;
   color: #74b7e6;
   transition: none;
   background: #fff
 }
 
-#cavBtnBox .cavRemark {
+.cavBtnBox .cavRemark {
   width: 330px;
   margin-bottom: 20px;
   margin-top: 24px;
   float: left
 }
 
-#cavBtnBox .revokeBtn {
+.cavBtnBox .revokeBtn {
   width: 135px;
   height: 100px;
   margin-bottom: 20px;
@@ -200,7 +200,7 @@
   float: right
 }
 
-#cavBtnBox .revokeCav {
+.cavBtnBox .revokeCav {
   width: 132px;
   height: 44px;
   background: #fe896a;
@@ -209,12 +209,12 @@
   line-height: 44px
 }
 
-#cavBtnBox .revokeCav:hover {
+.cavBtnBox .revokeCav:hover {
   cursor: pointer;
   background: #ff4e1f
 }
 
-#cavBtnBox .revokeTip {
+.cavBtnBox .revokeTip {
   font-size: 14px;
   text-align: left;
   color: #fe896a;
@@ -291,6 +291,6 @@
   margin-left: 6px
 }
 
-#verifPanel .faiTableWrap .bottom {
+.verifPanel .faiTableWrap .bottom {
   border-top: solid 1px #e7e7e7
 }

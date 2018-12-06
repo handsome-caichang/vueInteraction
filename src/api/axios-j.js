@@ -66,7 +66,8 @@ axios.ajax = function(url, args) {
         }
       }
       return res.data;
-    })
+    }   
+  )
     .catch(res => {
       // http请求本身出错时
       if (res == "Error: Network Error") {

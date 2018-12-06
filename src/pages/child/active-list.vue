@@ -1,19 +1,17 @@
 <template>
-<div id="myActContainer" class="container" style="padding:15px 28px 0 28px;">
-    <div id="tableContent" class="tableContent">
+<div class="container">
+    <div class="tableContent">
         <div class="myActContainTitle">
-            <div class="tableTitleName">我的活动</div>
-            <div id="recycleBinTitle" class="main-Button"><span class="icon"></span>活动回收站(<span class="actNum">0</span>)</div>
-            <div id="clearRecycleBox" class="main-Button hide"><span class="icon"></span>清空回收站</div>
+            <div>我的活动</div>
         </div>
-        <div id="showActiveTable" class="showActiveTable" style="min-width: 880px;">
+        <div class="showActiveTable" style="min-width: 1000px;">
             <div class="faiTableWrap">
                 <div class="center">
                     <table class="faiTable" cellpadding="0" cellspacing="0">
                         <thead>
-                            <tr class="scrollFixedTr">
+                            <tr>
                                 <th v-for="(item, index) in thList" :key="index" :class="['column'+(index+1), item.text]">
-                                    <div class="padding">{{item.name}}</div>
+                                    <div>{{item.name}}</div>
                                 </th>
                             </tr>
                         </thead>
@@ -105,8 +103,6 @@
                 </div>
             </div>
         </div>
-        <!-- 活动回收站div-->
-        <div id="showRecycleTable" class="showRecycleTable" style="min-width: 880px;"></div>
     </div>
 </div>
 </template>
@@ -142,12 +138,6 @@ export default {
 </script>
 
 <style scoped>
-@import '../../assets/css/base.scss';
-@import '../../assets/css/myActive.scss';
+@import '../../assets/css/activeList.scss';
 
-.faiTableWrap .center table.faiTable tbody tr td .tdWrap>div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 </style>

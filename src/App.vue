@@ -27,4 +27,15 @@ body {
 #app{ 
   height: 100%;
 }
+.container {
+  position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: none repeat scroll 0 0 #f5f5f5;
+    overflow-x: hidden;
+}
 </style>

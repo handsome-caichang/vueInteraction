@@ -1,5 +1,5 @@
 <template>
-<div id="poup_previewCanal" class="poupBox confirmPoupBox previewCanal poup-box-animate loadFinish" style="width: 870px;">
+<div id="poup_previewCanal" class="poupBox confirmPoupBox previewCanal poup-box-animate loadFinish" style="width: 870px;margin: 0 auto;">
     <div class="poupTitle">
         <div class="tabContent"><span class="tab tab-item check" data-tab="preview"><i class="icon icon-preview"></i>预览</span><span class="tab tab-item" data-tab="poster"><i class="icon icon-poster"></i>宣传海报</span><span class="tab tab-item dropdown"><i class="icon icon-generallize"></i>推广<span class="subTab tab-item" data-tab="canal">渠道管理</span><a class="subTab tab-item" onclick="HdPortal.logDog(1000187, 20);" target="_blank" href="http://i.mp.fkw.com/?openSourceId=301">微信群发推广</a><a class="subTab tab-item" onclick="HdPortal.logDog(1000187, 19);" target="_blank" href="http://i.fkw.com/message/default.jsp?biz=hd">短信群发推广</a><a class="subTab tab-item" onclick="HdPortal.logDog(1000187, 21);" target="_blank" href="//www.fkw.com/wxPro.jsp">公众号推广</a></span></div>
         <div class="closeBtn" @click="closePoup"></div>
@@ -63,9 +63,5 @@ export default {
 </script>
 
 <style scoped>
-@import '../assets/css/base.scss';
-@import '../assets/css/fai.scss';
-@import '../assets/css/header.scss';
-@import '../assets/css/index.scss';
-@import '../assets/css/previewCanal.scss';
+    @import '../assets/css/previewCanal.scss';
 </style>
