@@ -20,7 +20,6 @@
                                 <td class="textLeft active_activeName ellipsis">
                                     <div class="padding ellipsis tdWrap">
                                         <div>
-                                            <div class="qrcodeIcon" _index="56"></div>
                                             <div class="imgBox"><img :src="item.img" style="width:100%;"></div>
                                                 <div class="textBox">
                                                     <div @click="toEdit(item.id)">{{item.name}}</div>
@@ -28,11 +27,11 @@
                                             </div>
                                         </div>
                                 </td>
-                                <td class="textCenter ellipsis tmpShowHoverTips">
+                                <!-- <td class="textCenter ellipsis tmpShowHoverTips">
                                     <div class="padding ellipsis tdWrap">
                                         <div class="textCenter">{{item.id}}</div>
                                     </div>
-                                </td>
+                                </td> -->
                                 <td class="textCenter ellipsis tmpShowHoverTips">
                                     <div class="padding ellipsis tdWrap">{{item.startTime}}<br>{{item.endTime}}</div>
                                 </td>
@@ -44,31 +43,15 @@
                                 <td class="textCenter ellipsis tmpShowHoverTips">
                                     <div class="padding ellipsis tdWrap">{{item.maxNumber}}</div>
                                 </td>
-                                <td class="textCenter ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap"></div>
-                                </td>
                                 <td class="textRight ellipsis">
                                     <div class="padding ellipsis tdWrap">
                                         <div class="textRight">
-                                            <span style="">
-                                                <a href="#" class="publishStyle" id="publishBtn">发布</a>
-                                            </span>
-                                            <span style="display:none">
-                                                <a href="#" >结束</a>
-                                            </span>
-                                            <a href="#" >编辑</a>
-                                            <a href="#" class="actLink" @click="preClick">预览</a>
-                                            <a class="moreMenuBtn" @click="item.moreFlag = !item.moreFlag">更多<span class="icon"></span></a>
-                                            <div class="moreOptionBox" :class="{'hide':item.moreFlag}">
-                                                <div class="tipsBoxArrow">
-                                                </div>
-                                                <a href="#" class="copyActiveBtn" rstyle="66" >复制</a>
-                                                <a href="#" >渠道管理</a>
-                                                <a href="#" >删除</a>
-                                                <a href="#" >传播数据</a>
-                                                <a href="#" >获奖名单</a>
-                                                <a href="#" class="hd_set_vertifiers">配置核销员</a>
-                                            </div>
+                                            <a href="javascript:;" class="publishStyle" >发布</a>
+                                            <a href="javascript:;" class="actLink" @click="preClick">预览</a>
+                                            <a href="javascript:;" @click="goGamedata">传播数据</a>
+                                            <a href="javascript:;" >编辑</a>
+                                            <a href="javascript:;" >结束</a>
+                                             <a href="javascript:;" >删除</a>
                                         </div>
                                     </div>
                                 </td>
@@ -131,7 +114,11 @@ export default {
             this.set_globalMaskFlag = true;
         },
         toEdit(id) {
-            this.$router.replace(`/edit/${id}`)
+            this.$router.push(`/edit/${id}`)
+        },
+        goGamedata() {
+            this.$emit('toBackGameData', 1);
+            // this.$router.push(`/edit/${id}`)
         }
     },
 }

@@ -4,7 +4,7 @@
     <div class="bg-mask bg-mask-animate" :style="globalMaskFlag ? 'display: block' : 'display: none'">
     </div>
     <!-- <poup-preview v-if="globalMaskFlag"></poup-preview> -->
-    <!-- <poup-preview-cancal v-if="globalMaskFlag"></poup-preview-cancal> -->
+    <poup-preview-cancal v-if="globalMaskFlag"></poup-preview-cancal>
 </div>
 </template>
 
@@ -16,6 +16,7 @@ import {
 } from 'vuex'
 import PoupPreview from '../components/poup_preview'
 import PoupPreviewCancal from '../components/poup_preview_canal'
+import {getUser} from 'api/jie'
 export default {
     name: 'home',
     data() {
@@ -23,16 +24,24 @@ export default {
     },
     computed: {
         ...mapState([
-            'globalMaskFlag'
+            'globalMaskFlag',
+            'userInfo'
         ])
     },
     methods: {
         ...mapMutations([
-            'set_headerType'
+            'set_headerType',
+            'set_userInfo'
         ]),
     },
     created() {
-        this.set_headerType('1')
+        this.set_headerType('1');
+        getUser().then(res => {
+            console.log(res);
+            if (res.errorCode == 0) {
+                this.set_userInfo(res.data);
+            }
+        })
     },
     components: {
         Bar,

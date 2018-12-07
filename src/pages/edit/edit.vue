@@ -316,7 +316,6 @@ export default {
 
 <style scoped>
 @import '../../assets/css/edit.scss';
-/* @import '../../assets/css/version.scss'; */
 .version3 {
     height: 100%;
 }

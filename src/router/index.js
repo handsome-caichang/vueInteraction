@@ -13,11 +13,16 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: "/", redirect: "/verification" },
+    { path: "/", redirect: "/login" },
     {
       path: "/login",
       name: "login",
       component: Login
+    },
+    {
+      path: "/verification",
+      name: "verification",
+      component: Verification
     },
     {
       path: "/register",
@@ -33,11 +38,6 @@ export default new Router({
       path: "/edit/:id",
       name: "edit",
       component: Edit
-    },
-    {
-      path: "/verification",
-      name: "verification",
-      component: Verification
     }
   ]
 });

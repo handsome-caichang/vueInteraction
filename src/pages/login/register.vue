@@ -32,14 +32,14 @@
 					<div class="u-input">
 						<label>图片验证码</label><div class="inputWrapper picbox">
 							<input  class="short" v-model="validateCode" type="text" placeholder="请输入手机号进行验证" maxlength="11">
-							<div class="pic" :style="'background-image: url(https://mall.xiaogj.com/test/html/api/register/GetValidationImage?'+timeStamp+')'" @click="changeRegImage"></div>
+							<div class="pic" :style="'background-image: url(api/user/validationCode?'+timeStamp+')'" @click="changeRegImage"></div>
 						</div><span class="msg hideImp">
 							<i></i><font></font>
 						</span>
 					</div>
 					<div class="u-input">
 						<label>短信验证码</label><div class="inputWrapper">
-							<input class="short" v-model="smsCode" type="text" placeholder="请输入短信验证码" autocomplete="off" maxlength="4">
+							<input class="short" v-model="smsCode" type="text" placeholder="请输入短信验证码" autocomplete="off" maxlength="6">
 							<button class="button" @click="getSms" :disabled="sendMsg || (validateCode && !tool.telReg.test(mobile))">{{sendMsg?time+'s后重发':'获取验证码'}}</button>
 						</div><span class="msg hideImp">
 							<i></i><font></font>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div class="bottomBar">
-				<button class="u-bigBtn" :disabled="bigFlag">免费注册</button>
+				<button class="u-bigBtn" :disabled="bigFlag" @click="registerClick">免费注册</button>
 			</div>
 			<div class="toLogin">
 				已有帐号？<a hidefocus="true" href="javascript:;" @click="gotoLogin">直接登录</a>
@@ -58,6 +58,7 @@
 </template>
 <script>
 	import tool from 'assets/js/tool';
+	import {sendsms,register} from 'api/jie.js'
     export default {
         name: 'register',
 		data() {
@@ -89,10 +90,27 @@
 				this.timeStamp = new Date().getTime();
 			},
 			getSms() {
-				this.sendMsg = true;
-				this.time = 60;
-				this._beginReCheck(this.time);
-				this.changeRegImage();
+				sendsms({mobile: this.mobile, validateCode: this.validateCode}).then(res => {
+					console.log(res);
+					if (res.errorCode == 0) {
+						this.sendMsg = true;
+						this.time = 60;
+						this._beginReCheck(this.time);
+						// this.changeRegImage();
+					}
+				})
+			},
+			registerClick() {
+				register({
+					mobile:this.mobile,
+					smsCode: this.smsCode,
+					password: this.password
+				}).then(res => {
+					console.log(res);
+					if (res.errorCode == 0) {
+						this.$router.push('/login')
+					}
+				})
 			},
 			_phoneValidate(){ //验证手机号码
 				if (!this.mobile) {

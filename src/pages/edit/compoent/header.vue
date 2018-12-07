@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped >
-  @import '../../../assets/css/edit.scss';
+@import '../../../assets/css/edit.scss';
 .headBar {
     position: absolute;
     top: 0;

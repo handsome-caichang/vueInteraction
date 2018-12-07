@@ -34,6 +34,8 @@
 
 <script>
 import {mapMutations} from 'vuex'
+import activeImg from '../../assets/images/active.jpg'
+import activeHover from '../../assets/images/activeHover.gif'
 export default {
     name: 'bar-list',
     data() {
@@ -44,18 +46,18 @@ export default {
                     name: '抽奖活动',
                     id: '2',
                 },
-                {
-                    name: '游戏营销',
-                    id: '3',
-                    type: 1,
-                }
+                // {
+                //     name: '游戏营销',
+                //     id: '3',
+                //     type: 1,
+                // }
             ],
-            currentIndex: 1,
+            currentIndex: 0,
             imgList: [
                 {
-                    name: '幸运大转盘',
-                    bgcImg: '//d1.faiusr.com/2/AAEIABACGAAgjJnK1wUogNjluQQwwgM4_gE.jpg',
-                    src: '//d1.faiusr.com/3/AAEIABADGAAgj5nK1wUosMG9-gEw4QE4fQ.gif?v=12',
+                    name: '幸运扭蛋机',
+                    bgcImg: activeImg,
+                    src: activeHover,
                     isHot: true,
                     id: '1'
                 },
@@ -72,7 +74,7 @@ export default {
         add(item){
             console.log(item)
             this.set_globalMaskFlag(true)
-        }
+        },
     },
 }
 </script>

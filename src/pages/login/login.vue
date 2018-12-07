@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import {login} from 'api/jie'
 	export default {
 		name: 'login',
 		data() {
@@ -61,9 +62,17 @@
 					this.errFlag = true;
 					this.errMsg = '请输入密码'
 				}else {
-					this.$router.replace('/home')
+					login({
+						loginName:this.loginName,
+						password: this.loginPassword
+					}).then(res => {
+						console.log(res);
+						if (res.errorCode == 0) {
+							this.$router.replace('/home')
+						}
+					})
 				}
-			}
+			},
 		}
 	}
 </script>

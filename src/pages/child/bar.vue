@@ -10,7 +10,7 @@
         <div class="manageFrame scrollBox">
             <div class="manageFrameWarp checked">
                 <!-- <bar-list></bar-list> -->
-                <component class="component" :is="currentTabComponent">
+                <component class="component" :is="currentTabComponent" @toBackGameData="toBackGameData">
                 </component>
             </div>
         </div>
@@ -22,6 +22,7 @@
 import BarList from './bar-list'
 import ActiveList from './active-list'
 import Destruction from './destruction'
+import GameData from './barChild/gameData.vue'
 export default {
     name: 'bar',
     data() {
@@ -47,8 +48,8 @@ export default {
                 //     path: ''
                 // }
             ],
-            currentIndex: 2,
-            currentTab: 'destruction'
+            currentIndex: 0,
+            currentTab: 'BarList',
         }
     },
     computed: {
@@ -60,12 +61,24 @@ export default {
         tabClick(item, index) {
             this.currentIndex = index;
             this.currentTab = item.component;
+        },
+        toBackGameData(data) {
+            console.log(data);
+            if (data == -1) {
+                this.currentTab = "ActiveList";
+            }else {
+                this.currentTab = 'gameData';
+            }
         }
+    },
+    created() {
+        console.log(GameData);
     },
     components: {
         BarList,
         ActiveList,
-        Destruction
+        Destruction,
+        GameData
     }
 }
 </script>

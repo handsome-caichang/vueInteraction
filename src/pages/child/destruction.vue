@@ -153,7 +153,7 @@ export default {
     computed: {},
     methods: {
         toVer() {
-            this.$router.push('/venification')
+            this.$router.push('/verification')
         }
     },
     components: {}

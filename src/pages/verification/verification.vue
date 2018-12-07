@@ -1,7 +1,7 @@
 <template>
 <div class="main-whiteBox verifContBox">
     <div class="columnTitle">
-        核销奖券<div class="batchCodes pointer">批量核销</div>
+        核销奖券<div class="batchCodes pointer"></div>
     </div>
     <div class="verifPanel">
         <div class="searchBoxCont" style="width: 816px; height: 44px"><input type="text" class="searchInput input" placeholder="请输入需要核销的券码">
@@ -71,7 +71,10 @@
                                     </td>
                                     <td class="textCenter ellipsis">
                                         <div class="padding ellipsis tdWrap">
-                                            <div class="userPlayer ellipsis" style="width:auto;"><img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eribQm1CY0QQvjLGyk6ic8Jb0kesAORhxXyiadT93atoicdQnzNHgX9HweXTZ1w1atTquhZ3IVNJQoVOA/132"><span title=""></span></div>
+                                            <div class="userPlayer ellipsis" style="width:auto;">
+                                                <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eribQm1CY0QQvjLGyk6ic8Jb0kesAORhxXyiadT93atoicdQnzNHgX9HweXTZ1w1atTquhZ3IVNJQoVOA/132">
+                                                <span title=""></span>
+                                            </div>
                                         </div>
                                     </td>
                                     <td class="textCenter awardTime ellipsis tmpShowHoverTips">
@@ -122,7 +125,10 @@ export default {
     },
     computed: {},
     methods: {},
-    components: {}
+    components: {},
+    created() {
+        console.log(21111);
+    }
 };
 </script>
 
