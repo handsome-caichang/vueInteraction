@@ -8,12 +8,18 @@ import Vuex from "vuex";
 import allStore from "./store";
 Vue.use(Vuex);
 
+import { DatePicker, TimePicker } from "element-ui"; 
+import "element-ui/lib/theme-chalk/index.css";
+Vue.use(DatePicker);
+Vue.use(TimePicker);
+
 const store = new Vuex.Store({
   ...allStore
 });
+
 var app = {};
 Vue.prototype.app = window.app = app;
-  Vue.use(JDialog, {root: app });
+Vue.use(JDialog, {root: app });
 
 Vue.mixin({
   filters: vueFilters

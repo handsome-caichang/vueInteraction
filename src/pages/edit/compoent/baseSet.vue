@@ -20,9 +20,19 @@
         </div>
         <div class="content flex-1">
             <div class="main flex">
-                <input class="input flex-1" type="text" name="beginTime" readonly style="cursor:pointer" value="2018-11-21 09:38" />
+                <el-date-picker
+                    class="input flex-1"
+                    v-model="startTime"
+                    type="datetime"
+                    placeholder="开始时间">
+                </el-date-picker>
                 <span class="mid">至</span>
-                <input class="input flex-1" type="text" name="endTime" readonly style="cursor:pointer" value="2018-11-28 09:38" />
+                <el-date-picker
+                    class="input flex-1"
+                    v-model="endTime"
+                    type="datetime"
+                    placeholder="结束时间">
+                </el-date-picker>
             </div>
         </div>
         <div class="flag">*</div>
@@ -63,7 +73,13 @@
 </template>
 <script>
     export default {
-        name: 'baseSet'
+        name: 'baseSet',
+        data() {
+            return {
+                startTime: '',
+                endTime: ''
+            }
+        }
     }
 </script>
 <style scoped>

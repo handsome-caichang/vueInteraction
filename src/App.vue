@@ -5,6 +5,7 @@
 
       <router-view></router-view>
     </div>
+
   </div>
 </template>
 
@@ -12,6 +13,10 @@
 import HeaderContainer from './components/header-container'
 export default {
   name: 'App',
+   data() {
+      return {
+      };
+  },
   components: {
     HeaderContainer
   }
