@@ -68,10 +68,4 @@
 </script>
 <style scoped>
 @import '../../../assets/css/edit.scss';
-.version3 {
-    height: 100%;
-}
-.flex-1 {
-    flex: 1;
-}
 </style>

@@ -334,33 +334,57 @@ textarea {
 
 .editActive .topBarWarp {
   position: relative;
-  width: 130px;
+  width: 120px;
   height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
   background: #fff;
-  border-right: 1px solid #dadada
+  border-right: 1px solid #dadada;
+  box-sizing: border-box;
+  padding: 14px 0;
+  z-index: 100;
 }
 
 .editActive .topBarSrollBox {
-  padding: 20px 15px
+  height: 100%;
+  width: 116px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .editActive .topBar {
-  position: relative
+  width: 116px;
 }
 
 .editActive .topBar .column {
-  width: 100%;
-  height: 24px;
-  line-height: 24px;
-  cursor: pointer;
-  margin-bottom: 14px;
-  text-align: center
+    width: 100%;
+    height: 58px;
+    line-height: 58px;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    color: #7d7d7d;
+}
+.editActive .topBar .column:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%,0);
+  width: 30px;
+  height: 1px;
+  background: #ebebeb;
+}
+
+.editActive .topBar .column:last-child:after {
+	display: none
+}
+
+.editActive .topBar .column:hover {
+	color: #535353
 }
 
 .editActive .topBar .column.checked {
-  color: #4381fd
+   color: #4381fd;
 }
 
 .editActive .phoneWarp {
@@ -2102,4 +2126,25 @@ textarea {
       height: 10px;
       background-color: #4381fd;
       left: 4px;
+}
+
+.version3 input[type='checkbox']:checked+label:after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  left: 1px;
+  background: url(../images/icon.png) no-repeat -218px -19px;
+}
+.version3 input[type='checkbox']+label:before {
+  width: 14px;
+  height: 14px;
+  border-color: #dadada;
+  border-radius: 4px;
+}
+.version3 {
+  height: 100%;
+}
+
+.flex-1 {
+  flex: 1;
 }

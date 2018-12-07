@@ -4,27 +4,19 @@ exports.leftList = [
         type: 'home',
     },
     {
-        name: '订单',
-        type: 'order'
+        name: '奖品详情',
+        type: 'prize'
     },
     {
-        name: '商品一',
-        type: 'product'
-    },
-    {
-        name: '好友进入',
+        name: '中奖页面',
         type: "in",
     },
     {
-        name: '确认订单',
+        name: '没中奖页',
         type: 'confirm'
-    },
-    {
-        name: '活动说明',
-        type: 'activeInfo'
     },
     {
         name: '分享效果',
         type: 'share'
-    }
+    },
 ]

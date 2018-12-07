@@ -60,6 +60,9 @@
 import { leftList } from './edit.js'
 import editHeader from './compoent/header'
 import baseSet from './compoent/baseSet'
+import prizeSet from './compoent/prizeSet'
+import sendSet from './compoent/sendSet'
+import templateSet from './compoent/templateSet'
 import {mapMutations} from 'vuex'
 export default {
     name: 'editHaeder',
@@ -73,16 +76,16 @@ export default {
                     component: 'baseSet'
                 },
                 {
-                    name: '拼团设置',
-                    component: 'ActiveList'
+                    name: '派件方式',
+                    component: 'sendSet'
                 },
                 {
-                    name: '商品设置',
-                    component: 'destruction'
+                    name: '奖项设置',
+                    component: 'prizeSet'
                 },
                 {
-                    name: '高级设置',
-                    component: '1'
+                    name: '模板设置',
+                    component: 'templateSet'
                 },
             ],
             currentTab: 'baseSet',
@@ -106,7 +109,10 @@ export default {
     },
     components: {
         editHeader,
-        baseSet
+        baseSet,
+        templateSet,
+        sendSet,
+        prizeSet,
     },
     created() {
         this.set_headerType('2')
@@ -116,10 +122,5 @@ export default {
 
 <style scoped>
 @import '../../assets/css/edit.scss';
-.version3 {
-    height: 100%;
-}
-.flex-1 {
-    flex: 1;
-}
+
 </style>
