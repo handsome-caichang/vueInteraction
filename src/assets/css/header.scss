@@ -14,12 +14,14 @@
   justify-content: center;
   align-items: center;
 }
+
 .manageTop .manageInfo:hover {
   background: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   border-top: 4px solid #1184d3;
   height: 63px;
 }
+
 .manageTop .myInfoIcon {
   width: 63px;
   height: 47px;
@@ -80,4 +82,72 @@
 
 .manageTop .mangeTopLeftPart .product a:hover {
   border-color: #999;
+}
+
+.manageTop .manageInfo:hover > .topBarMyInfoContent {
+  display: block;
+}
+
+.topBarMyInfoContent {
+  position: absolute;
+  right: -1px;
+  width: 220px;
+  top: 64px;
+  height: auto;
+  background-color: #fff;
+  border: 1px solid #e7e7e7;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  padding: 0;
+  border-top: 0;
+  color: #535353;
+  font-size: 14px;
+  overflow: hidden;
+  display: none;
+}
+
+.topBarMyInfoContent .top {
+  height: 46px;
+  line-height: 46px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: solid 1px #e7e7e7;
+  padding: 0 10px;
+  text-align: left;
+}
+
+
+.topBarMyInfoContent .bottom {
+  height: 46px;
+  display: flex;
+}
+
+.topBarMyInfoContent .bottom .leftB {
+  flex: 1;
+  padding: 0 10px;
+  height: 46px;
+  line-height: 46px;
+  border-right: solid 1px #e7e7e7;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.topBarMyInfoContent .bottom .rightB {
+  flex: 1;
+  text-align: center;
+  height: 46px;
+  line-height: 46px;
+  color: #898989;
+  cursor: pointer;
+}
+
+.topBarMyInfoContent .bottom .rightB .icon {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  margin-right: 2px;
+  background: url(../images/iconall.png) no-repeat -462px -92px;
 }

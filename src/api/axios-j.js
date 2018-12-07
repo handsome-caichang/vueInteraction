@@ -20,12 +20,12 @@ axios.ajaxGet = function(url, args) {
     .then(res => {
       let errorcode = res.data.ErrorCode || res.data.errcode,
         errormsg = res.data.ErrorMsg || res.data.errmsg;
-      if (errorcode !== 200) {
+      // if (errorcode !== 200) {
         //服务端返回的状态码不是200时
-        console.error(
-          `ErrorCode: ${errorcode}, ErrorMsg: ${errormsg}, Api:${url}`
-        );
-      }
+        // console.error(
+        //   `ErrorCode: ${errorcode}, ErrorMsg: ${errormsg}, Api:${url}`
+        // );
+      // }
       return res.data;
     })
     .catch(res => {
@@ -56,15 +56,15 @@ axios.ajax = function(url, args) {
     .then(res => {
       let errorcode = res.data.ErrorCode || res.data.errcode,
         errormsg = res.data.ErrorMsg || res.data.errmsg;
-      if (errorcode !== 200) {
+      // if (errorcode !== 200) {
         //服务端返回的状态码不是200时
-        console.error(
-          `ErrorCode: ${errorcode}, ErrorMsg: ${errormsg}, Api:${url}`
-        );
-        if (errorcode == 407) {
+        // console.error(
+        //   `ErrorCode: ${errorcode}, ErrorMsg: ${errormsg}, Api:${url}`
+        // );
+        // if (errorcode == 407) {
           // window.location.href = "//weixin.xiaogj.com/home.aspx";
-        }
-      }
+        // }
+      // }
       return res.data;
     }   
   )

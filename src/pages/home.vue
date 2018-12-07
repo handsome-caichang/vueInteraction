@@ -17,6 +17,7 @@ import {
 import PoupPreview from '../components/poup_preview'
 import PoupPreviewCancal from '../components/poup_preview_canal'
 import {getUser} from 'api/jie'
+import JDialog from "../components/popup/dialog.vue";
 export default {
     name: 'home',
     data() {
@@ -39,7 +40,7 @@ export default {
         getUser().then(res => {
             console.log(res);
             if (res.errorCode == 0) {
-                this.set_userInfo(res.data);
+                this.set_userInfo(res.data.userInfo);
             }
         })
     },

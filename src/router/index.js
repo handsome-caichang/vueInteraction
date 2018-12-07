@@ -8,7 +8,6 @@ import Verification from "@/pages/verification/verification.vue";
 
 // const HelloWorld = () => import("@/components/HelloWorld");
 // const Edit = () => import("@/pages/edit/edit");
-console.log(Verification);
 Vue.use(Router)
 
 export default new Router({
