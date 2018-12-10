@@ -20,7 +20,7 @@
                                 <td class="textLeft active_activeName ellipsis">
                                     <div class="padding ellipsis tdWrap">
                                         <div>
-                                            <div class="imgBox"><img :src="item.img" style="width:100%;"></div>
+                                            <div class="imgBox"><img :src="item.image" style="width:100%;"></div>
                                                 <div class="textBox">
                                                     <div @click="toEdit(item.id)">{{item.name}}</div>
                                                 </div>
@@ -37,11 +37,11 @@
                                 </td>
                                 <td class="textCenter ellipsis tmpShowHoverTips">
                                     <div class="padding ellipsis tdWrap">
-                                        <div style="color:#999;">{{item.state}}</div>
+                                        <div style="color:#999;">{{item.isPublished}}</div>
                                     </div>
                                 </td>
                                 <td class="textCenter ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">{{item.maxNumber}}</div>
+                                    <div class="padding ellipsis tdWrap">{{item.joinUserCount}}/{{item.limitCount}}</div>
                                 </td>
                                 <td class="textRight ellipsis">
                                     <div class="padding ellipsis tdWrap">
@@ -61,28 +61,15 @@
                     </table>
                 </div>
                 <div class="bottom">
-                    <div class="total"><span class="allTotal">共有 46 条记录 ，每页显示</span>
-                        <div class="dropDownBox">
-                            <div class="dropDownArea">10</div>
-                            <div class="faiTable_poupBox optionsBox hide" style="display: none;">
-                                <div class="options">10</div>
-                                <div class="options">50</div>
-                                <div class="options">100</div>
-                                <div class="options">500</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pageBox">
-                        <div class="page">
-                            <a href="javascript:;" hidefocus="true" class="prevPage disabledBtn"></a>
-                            <span class="currentPage">1 / 5</span>
-                            <a href="javascript:;" hidefocus="true" class="nextPage pointer"></a>
-                        </div>
-                        <span class="pageJump">
-                            <input maxlength="1" class="jumpInput" type="text">
-                            <div class="jumpSubmit pointer">跳转</div>
-                        </span>
-                    </div>
+                     <el-pagination
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="pageIndex"
+                        :page-sizes="[10, 20, 30, 40]"
+                        :page-size="totalCount"
+                        layout="total, sizes, prev, pager, next, jumper"
+                        :total="totalCount">
+                    </el-pagination>
                 </div>
             </div>
         </div>
@@ -98,18 +85,28 @@ import {
     tdList,
     thList
 } from './activeList.js'
+import {getList} from 'api/jie.js'
 export default {
     name: 'active-list',
     data() {
         return {
             tdList,
             thList: thList,
+            pageIndex: 1,
+            pageSize: 10,
+            totalCount: 59,
         }
     },
     methods: {
         ...mapMutations([
             'set_globalMaskFlag'
         ]),
+         handleSizeChange(val) {
+            console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+            console.log(`当前页: ${val}`);
+        },
         preClick() {
             this.set_globalMaskFlag = true;
         },
@@ -119,12 +116,33 @@ export default {
         goGamedata() {
             this.$emit('toBackGameData', 1);
             // this.$router.push(`/edit/${id}`)
+        },
+        initList() {
+            getList({
+                pageIndex: this.pageIndex,
+                pageSize: this.pageSize,
+            }).then(res => {
+                if (res.errorCode == 0) {
+
+                }else {
+
+                }
+            })
         }
     },
+    created() {
+        this.initList();
+    }
 }
 </script>
 
 <style scoped>
 @import '../../assets/css/activeList.scss';
-
+.dropDownBox {
+    width: 70px;
+}
+.faiTableWrap .bottom {
+    display: flex;
+    align-items: center;
+}
 </style>

@@ -36,6 +36,7 @@
 import {mapMutations} from 'vuex'
 import activeImg from '../../assets/images/active.jpg'
 import activeHover from '../../assets/images/activeHover.gif'
+import {getList} from 'api/jie.js'
 export default {
     name: 'bar-list',
     data() {
@@ -55,13 +56,16 @@ export default {
             currentIndex: 0,
             imgList: [
                 {
-                    name: '幸运扭蛋机',
+                    name: '幸运大转盘',
                     bgcImg: activeImg,
                     src: activeHover,
                     isHot: true,
                     id: '1'
                 },
-            ]
+            ],
+            pageIndex: 0,
+            pageSize: 10,
+            totalCount: 40,
         }
     },
     methods: {
@@ -76,6 +80,8 @@ export default {
             this.set_globalMaskFlag(true)
         },
     },
+    created() {
+    }
 }
 </script>
 

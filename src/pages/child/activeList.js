@@ -5,11 +5,6 @@ exports.thList = [
     type: 1,
     text: "textLeft"
   },
-  // {
-  //   name: "活动编号",
-  //   type: 1,
-  //   text: "textCenter"
-  // },
   {
     name: "活动时间",
     type: 1,
@@ -33,22 +28,15 @@ exports.thList = [
 ];
 exports.tdList = [
   {
-    name: "参与活动赢大奖",
-    img: "//d1.faiusr.com/2/AAEIABACGAAg7MjM0gUozMSx4gMwwgM4_gE.jpg?v=1",
     id: "HD46",
+    name: "参与活动赢大奖",
+    image: "//d1.faiusr.com/2/AAEIABACGAAgjJnK1wUogNjluQQwwgM4_gE.jpg?v=1",
+    url: "",
     startTime: "2018-11-23 18:39:46",
     endTime: "2018-11-23 18:39:46",
-    state: "未发布",
-    maxNumber: "0/10000",
-  },
-  {
-    name: "参与活动赢大奖",
-    img: "//d1.faiusr.com/2/AAEIABACGAAg7MjM0gUozMSx4gMwwgM4_gE.jpg?v=1",
-    id: "HD46",
-    startTime: "2018-11-23 18:39:46",
-    endTime: "2018-11-23 18:39:46",
-    state: "未发布",
-    maxNumber: "0/10000",
+    isPublished: "未发布",
+    joinUserCount: "12",
+    limitCount: '100',
   }
 ];
 exports.destructionList = [
