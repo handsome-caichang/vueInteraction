@@ -8,34 +8,41 @@
     </p>
     <div id="drawSetBox" class="subTabsettingBox">
         <div id="drawInfoBox">
-           <div id="drawTimesSettingBox" ed-if="!hasChooseAccessOnce()" class="ng-scope">
+           <div id="drawTimesSettingBox" class="ng-scope">
                 <div class="settingLine" id="totalDrawTimes">
                     <div class="leftTitle">
                         <span class="name ng-binding">总抽奖机会：</span>
                     </div>
                     <div class="content flex-1">
-                        <div class="main"><input type="radio" ng-model="game._flag.f268435456" ng-value="false" id="noLimitDrawTimes" name="isLimitDrawTimes" class="ng-pristine ng-untouched ng-valid" value="false"><label for="noLimitDrawTimes">不限</label><input type="radio" ng-model="game._flag.f268435456" ng-value="true" id="limitDrawTimes" name="isLimitDrawTimes" class="ng-pristine ng-untouched ng-valid" value="true"><label for="limitDrawTimes">限制</label></div>
+                        <div class="main">
+                            <input type="radio" id="noLimitDrawTimes" v-model="editData.bizData.lotteryInfo.totalLimit" :value="'-1'" name="isLimitDrawTimes">
+                            <label for="noLimitDrawTimes">不限</label>
+                            <input type="radio" :class="{'idChecked': test}" id="limitDrawTimes" v-model="editData.bizData.lotteryInfo.totalLimit" name="isLimitDrawTimes">
+                            <label for="limitDrawTimes">限制</label>
+                            <span class="afterRadio" v-if="editData.bizData.lotteryInfo.totalLimit != -1">每人最多有
+                                <input max="99" min="1" v-model="editData.bizData.lotteryInfo.totalLimit" class="input onlyNum minInput" type="number">次</span>
+                        </div>
                     </div>
                 </div>
-               <div class="settingLine ng-scope" ng-if="!game.$$drawTimes.none" id="dayDrawTimes">
+               <div class="settingLine ng-scope" id="dayDrawTimes">
                     <div class="leftTitle">
                         <span class="name ng-binding">每日抽奖机会：</span>
                     </div>
                     <div class="content flex-1">
-                        <div class="main ng-binding">每人每日有<input id="drawTimesLimit" ng-model="game._setting.dtl" model-format="int" maxlength="2" class="input onlyNum minInput ng-pristine ng-untouched ng-valid ng-valid-maxlength" type="text">次抽奖机会</div>
+                        <div class="main ng-binding">每人每日有<input id="drawTimesLimit" v-model="editData.bizData.lotteryInfo.dailyLimit" maxlength="2" class="input onlyNum minInput" type="number">次抽奖机会</div>
                     </div>
                 </div>
             </div>
-            <p class="underLineWay ng-scope" ng-if="true ">
+            <p class="underLineWay ng-scope">
                 <span class="fontWeight">中奖率</span>
             </p>
-            <div id="prizedTotalBox" ed-if="game.gameType == 0 || game.gameType == 4" class="ng-scope">
+            <div id="prizedTotalBox" class="ng-scope">
                 <div class="settingLine">
                     <div class="leftTitle">
                         <span class="name">每人中奖次数：</span>
                     </div>
                     <div class="content flex-1">
-                        <div class="main">每人最多可中奖<input id="awardTimesLimit" ng-model="game._setting.awardTimesLimit" model-format="int" maxlength="2" class="input onlyNum minInput ng-pristine ng-untouched ng-valid ng-valid-maxlength" type="text">次</div>
+                        <div class="main">每人最多可中奖<input v-model="editData.bizData.lotteryInfo.winLimit" maxlength="2" class="input onlyNum minInput" type="number">次</div>
                     </div>
                 </div>
             </div>
@@ -46,7 +53,7 @@
                     </div>
                     <div class="content flex-1">
                         <div class="main">
-                            <input id="winningRate" model-format="float" class="input onlyNum minInput ng-pristine ng-untouched ng-valid" type="text">%
+                            <input v-model="editData.bizData.lotteryInfo.totalWinLimit" class="input onlyNum minInput" type="number">%
                         </div>
                     </div>
                 </div>
@@ -58,18 +65,37 @@
             </div>
             <div class="content flex-1">
                 <div class="main">
-                    <input type="radio" id="closeNoAwardTips" name="awardTips" class="ng-pristine ng-untouched ng-valid" value="false">
-                    <label for="closeNoAwardTips">显示没中奖</label>
-                    <input type="radio" id="openNoAwardTips" name="awardTips" class="ng-pristine ng-untouched ng-valid" value="true">
-                    <label for="openNoAwardTips">提示已派完</label></div>
+                    <input v-model="editData.bizData.lotteryInfo.nogiftNotify" class="activeName input mainInput name" type="text"/>
+                </div>
             </div>
+            <div class="flag">*</div>
         </div>
     </div>
 </div>
 </template>
 <script>
+    import { mapState } from 'vuex'
     export default {
-        name: 'sendSet'
+        name: 'sendSet',
+        data() {
+            return {
+            }
+        },
+        computed: {
+            ...mapState([
+                'editData',
+            ]),
+            test() {
+                if (this.editData.bizData.lotteryInfo.totalLimit == -1) {
+                    return false;
+                }else {
+                    return true;
+                }
+            }
+        },
+        methods: {
+           
+        }
     }
 </script>
 <style scoped>

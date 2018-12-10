@@ -1,7 +1,7 @@
 <template>
 <div class="version3">
     <div class="container editActContainer">
-        <edit-header></edit-header>
+        <edit-header @saveView="saveView"></edit-header>
         <div class="editActiveWarp">
             <div id="editActive" class="editActive editActBox flex">
                 <div class="topBarWarp">
@@ -25,17 +25,6 @@
                             </div>
                             <div class="moduleLayer moduleLayerBox"></div>
                         </div>
-                        <div class="rightBar">
-                            <div class="changePageBox">
-                                <div class="changePage prev">
-                                    <div class="img"></div>
-                                </div>
-                                <div class="currentPage">1/1</div>
-                                <div class="changePage next">
-                                    <div class="img"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="editContent isOpenActiveABTest flex-1" ng-class="game.$newEditSet">
@@ -57,18 +46,18 @@
 </template>
 
 <script>
-import { leftList } from './edit.js'
+import {editMixin} from './edit.js'
 import editHeader from './compoent/header'
 import baseSet from './compoent/baseSet'
 import prizeSet from './compoent/prizeSet'
 import sendSet from './compoent/sendSet'
 import templateSet from './compoent/templateSet'
-import {mapMutations} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 export default {
     name: 'editHaeder',
+    mixins: [editMixin],
     data() {
         return {
-            leftList,
             checked: 'home',
             list: [
                 {
@@ -94,7 +83,10 @@ export default {
     computed: {
         currentTabComponent() {
             return this.currentTab
-        }
+        },
+        ...mapState([
+            'editData',
+        ]),
     },
     methods: {
         ...mapMutations([
@@ -105,6 +97,9 @@ export default {
         },
         tabClick(item) {
             this.currentTab = item.component;
+        },
+        saveView() {
+            console.log(this.editData);
         }
     },
     components: {

@@ -1,33 +1,32 @@
 <template>
-    <div id="awardsSetting" class="settingBox ng-scope" style="display: block;">
-        <div id="awardBoxTitleWarp">
-            <div id="awardBoxTitle">                     
+    <div class="settingBox awardsSetting" style="display: block;">
+        <div class="awardBoxTitleWarp">
+            <div class="awardBoxTitle">                     
                 <div class="awardNums commBg">
                     <span class="topAwardExplain text">请设置活动需要派发的奖项</span>
                     <div class="comfortCheckbox">
-                        <input type="checkbox" id="comfortSetting" class="ng-untouched ng-valid ng-dirty ng-valid-parse">
+                        <input type="checkbox" id="comfortSetting" :disabled="editData.bizData.giftInfo.length >= 5" v-model="isConsolation" class="ng-untouched ng-valid ng-dirty ng-valid-parse">
                         <label for="comfortSetting" style="margin: 0px;">设置安慰奖</label>
                     </div>
                 </div>
                 <div class="awardLevelBox">
                     <div class="commTabBox">
-                        <div class="commTab awardLevelItem norLevelItem ng-scope checked">
-                            <span class="commTabName awardItemName ng-binding">奖项一</span>
-                            <div class="awardErrDot"></div>
+                        <div class="commTab awardLevelItem norLevelItem" v-for="(item, index) in editData.bizData.giftInfo" :key="index" :class="{'checked': index == currentIndex}" @click="currentIndex = index">
+                            <span class="commTabName awardItemName">{{tabName(item, index)}}</span>
                         </div>
+                        
                     </div>
                     <div class="awardNumOptBox">
-                        <div id="delAwardNum" class="awardNumOpt pointer delAwardNum disabled"></div>
-                        <div id="addAwardNum" class="awardNumOpt pointer addAwardNum"></div>
+                        <button  class="awardNumOpt pointer delAwardNum" :class="{'disabled': isConsolation ? (editData.bizData.giftInfo.length < 3) : (editData.bizData.giftInfo.length < 2)}" :disabled="isConsolation ? editData.bizData.giftInfo.length < 3 : editData.bizData.giftInfo.length < 2"  @click="del(false)"></button>
+                        <button  class="awardNumOpt pointer addAwardNum" :class="{'disabled': editData.bizData.giftInfo.length >= 5}"  :disabled="editData.bizData.giftInfo.length >= 5" @click="add(false)" ></button>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- 奖项 -->
-        <div id="awardBox" class="scrollBox awardBox relative">
-            <div id="awardBoxTitle_holder"></div>
-             <div id="awardDetail" class="awardDetail" style="overflow: visible;">
+        <div class="scrollBox awardBox relative">
+            <div class="awardBoxTitle_holder"></div>
+             <div class="awardDetail" style="overflow: visible;">
                  <!-- 奖项一 -->
                 <div class="awardSettingBox ng-scope" style="left: 0px; display: block;">
                     <p class="underLineWay">
@@ -40,7 +39,7 @@
                         </div>
                         <div class="content flex-1">
                             <div class="main">
-                                <input class="awardStyle input mainInput ng-pristine ng-untouched ng-valid" type="text">
+                                <input v-model="editData.bizData.giftInfo[currentIndex].leveName" class="awardStyle input mainInput ng-pristine ng-untouched ng-valid" type="text">
                             </div>
                         </div>
                         <div class="flag">*</div>
@@ -52,7 +51,7 @@
                         </div>
                         <div class="content flex-1">
                            <div class="main ng-scope">
-                               <input class="awardDescribe input mainInput ng-pristine ng-untouched ng-valid" type="text">
+                               <input v-model="editData.bizData.giftInfo[currentIndex].name" class="awardDescribe input mainInput ng-pristine ng-untouched ng-valid" type="text">
                                <div class="tipsColor ERR_lock ERR_lock_strict" style="display: block;">
                                    已生成订单的商品名称不会受修改的影响
                                 </div>
@@ -67,7 +66,7 @@
                         </div>
                         <div class="content flex-1">
                            <div class="main ng-scope">
-                               <input class="awardDescribe input mainInput ng-pristine ng-untouched ng-valid" type="text">
+                               <input v-model.number="editData.bizData.giftInfo[currentIndex].count" class="awardDescribe input mainInput ng-pristine ng-untouched ng-valid" type="text">
                             </div>
                         </div>
                         <div class="flag">*</div>
@@ -85,7 +84,7 @@
                         </div>
                         <div class="content flex-1">
                             <div class="main">
-                                <input class="awardOptInfo input mainInput" type="text">
+                                <input  v-model="editData.bizData.giftInfo[currentIndex].operationNotify" class="awardOptInfo input mainInput" type="text">
                             </div>
                         </div>
                         <div class="flag">*</div>
@@ -97,7 +96,7 @@
                         </div>
                         <div class="content flex-1">
                             <div class="main">
-                                <input class="awardOptInfo input mainInput" type="text">
+                                <input v-model="editData.bizData.giftInfo[currentIndex].address" class="awardOptInfo input mainInput" type="text">
                             </div>
                         </div>
                         <div class="flag">*</div>
@@ -109,7 +108,7 @@
                         </div>
                         <div class="content flex-1">
                             <div class="main">
-                                <input class="awardOptInfo input mainInput" type="text">
+                                <input  v-model.number="editData.bizData.giftInfo[currentIndex].telphone" class="awardOptInfo input mainInput" type="text">
                             </div>
                         </div>
                         <div class="flag">*</div>
@@ -122,10 +121,20 @@
 
                     <div class="content flex-1">
                         <div class="codeTimeBox">
-                            <div id="timeRangeBox0" class="timeRangeBox flex">
-                                <input class="flex-1 useCodeBeginTime input pointer wxCardInput hasDatepicker" readonly="" type="text" value="2018-12-07 00:00:00" >
+                            <div class="timeRangeBox flex">
+                                <el-date-picker
+                                    class="input flex-1"
+                                    v-model="editData.bizData.giftInfo[currentIndex].cashStartTime"
+                                    type="datetime"
+                                    placeholder="开始时间">
+                                </el-date-picker>
                                 <span class="mid">至</span>
-                                <input class="flex-1 useCodeEndTime input pointer wxCardInput hasDatepicker" readonly="" type="text" value="2018-12-14 23:59:59" >
+                                <el-date-picker
+                                    class="input flex-1"
+                                    v-model="editData.bizData.giftInfo[currentIndex].cashEndTime"
+                                    type="datetime"
+                                    placeholder="结束时间">
+                                </el-date-picker>
                             </div>
                         </div>
                         </div>
@@ -136,8 +145,147 @@
     </div>
 </template>
 <script>
+    import tool from 'assets/js/tool.js'
+    import {mapMutations,mapState } from 'vuex'
     export default {
-        name: 'prizeSet'
+        name: 'prizeSet',
+        data() {
+            return {
+                currentIndex: 0,
+                isConsolation: false,
+            }
+        },
+         computed: {
+            ...mapState([
+                'editData',
+            ]),
+        },
+        methods: {
+            tabName(item, index) {
+                if (item.isConsolation) {
+                    return '安慰奖'
+                }else {
+                    index += 1;
+                    switch (index) {
+                        case 1:
+                            return '奖项一';
+                            break;
+                        case 2:
+                            return '奖项二';
+                            break;
+                        case 3:
+                            return '奖项三';
+                            break;
+                        case 4:
+                            return '奖项四';
+                            break;
+                        case 5:
+                            return '奖项五';
+                            break;
+                        default: return '奖项一'
+                    }
+                }
+            },
+            ...mapMutations([
+                'set_editData'
+            ]),
+            cloneEdit() {
+                return tool.clone(this.editData);
+            },
+            initInfoBase(flag) { // true 代表安慰奖 
+                let giftInfoBase = {
+                    id: '',  // id 
+                    leveName: "", // 奖品等级名称
+                    name: '', // 奖品名称
+                    count: 0, // 奖品数量
+                    operationNotify: '凭券联系现场工作人员兑奖', // 操作提示
+                    address: '请填写您的兑奖地址或者门店地址', // 兑换地址
+                    telphone: '', // 联系电话
+                    cashStartTime: '', // 兑换开始时间
+                    cashEndTime: '', // 兑换结束时间
+                    isConsolation: false // 是否是安慰奖
+                };
+                giftInfoBase.isConsolation = flag;
+                if (flag) {
+                    giftInfoBase.leveName = '安慰奖'
+                }else {     
+                    giftInfoBase.leveName = '奖项' + this.transNumber(this.editData.bizData.giftInfo.length + 1);
+                }
+                console.log(giftInfoBase);
+                return giftInfoBase;
+            },
+            add(flag = false) {
+                let edit = this.cloneEdit();
+                let lastList = edit.bizData.giftInfo.pop();  // 记录最后一个安慰奖
+                if (lastList.isConsolation) {
+                    edit.bizData.giftInfo.push(this.initInfoBase(flag));
+                    edit.bizData.giftInfo.push(lastList);
+                }else {
+                    edit.bizData.giftInfo.push(lastList);
+                    edit.bizData.giftInfo.push(this.initInfoBase(flag));
+                }
+                this.set_editData(edit);
+                if (flag) {
+                    this.currentIndex = edit.bizData.giftInfo.length - 1;
+                }else if (lastList.isConsolation) {
+                    this.currentIndex = edit.bizData.giftInfo.length - 2;
+                }else {
+                    this.currentIndex = edit.bizData.giftInfo.length - 1;
+                }
+            },
+            del(flag = false) {
+                let edit = this.cloneEdit();
+                let lastList = edit.bizData.giftInfo.pop();  // 记录最后一个安慰奖
+                if(lastList.isConsolation) {
+                    if (!flag) { // 如果有安慰奖
+                        edit.bizData.giftInfo.pop();
+                        edit.bizData.giftInfo.push(lastList)
+                    }
+                }
+                this.set_editData(edit);
+                if (lastList.isConsolation && !flag) {
+                    this.currentIndex = edit.bizData.giftInfo.length - 2;
+                }else {
+                    this.currentIndex = edit.bizData.giftInfo.length - 1;
+                }
+            }, 
+            transNumber(num) {
+                switch (num) {
+                    case 1:
+                        return '一';
+                        break;
+                    case 2:
+                        return '二';
+                        break;
+                    case 3:
+                        return '三';
+                        break;
+                    case 4:
+                        return '四';
+                        break;
+                    case 5:
+                        return '五';
+                        break;
+                    default: return '一'
+                }
+            }
+        },
+        created() {
+            this.$nextTick(()=> {
+                // this.giftInfo = tool.clone(this.editData.bizData.giftInfo);
+                // console.log(this.giftInfo);
+            })
+        },
+        watch: {
+            isConsolation(newVal) {
+                if (newVal) {
+                    // if (edit.bizData.giftInfo.length  == 5) {return;};
+                    this.add(true);
+                }else {
+                    this.del(true);
+                }
+            }
+        }
     }
 </script>
 <style scoped>

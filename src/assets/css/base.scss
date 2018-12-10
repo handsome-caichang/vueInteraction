@@ -3589,3 +3589,11 @@ input[type='checkbox']:checked+label:after {
   color: #585858;
   border-color: rgb(231, 231, 231);
 }
+.theSpecialDesigan {
+  width: 0;
+  height: 0;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  z-index: -1;
+}

@@ -18,7 +18,9 @@ const store = new Vuex.Store({
 });
 
 var app = {};
+
 Vue.prototype.app = window.app = app;
+
 Vue.use(JDialog, {root: app });
 
 Vue.mixin({

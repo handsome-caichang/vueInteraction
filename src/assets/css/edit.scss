@@ -636,18 +636,18 @@ textarea {
   height: 20px
 }
 
-.editActive #awardsSetting {
+.editActive .awardsSetting {
   position: relative;
   height: 100%;
   overflow: hidden;
   padding: 0
 }
 
-.editActive #awardsSetting:after {
+.editActive .awardsSetting:after {
   display: none
 }
 
-#awardsSetting #awardBox {
+.awardsSetting .awardBox {
   position: relative;
   box-sizing: border-box;
   height: 100%;
@@ -656,13 +656,13 @@ textarea {
   padding: 0 36px
 }
 
-#awardsSetting #awardBox:after {
+.awardsSetting .awardBox:after {
   content: '';
   display: block;
   height: 50px
 }
 
-#awardsSetting #awardBoxTitleWarp {
+.awardsSetting .awardBoxTitleWarp {
   position: absolute;
   z-index: 1000;
   top: 0;
@@ -673,12 +673,12 @@ textarea {
   box-sizing: border-box
 }
 
-#awardsSetting #awardBoxTitle {
+.awardsSetting .awardBoxTitle {
   border: 1px solid #dadada;
   position: relative
 }
 
-#awardsSetting #awardBoxTitle_holder {
+.awardsSetting .awardBoxTitle_holder {
   height: 112px
 }
 
@@ -858,34 +858,34 @@ textarea {
   margin: 0
 }
 
-#awardsSetting .contactBox.inputErr,
+.awardsSetting .contactBox.inputErr,
 #contactBoxNoDraw.inputErr,
 .editActive .noBorderImp {
   border: none !important
 }
 
-#awardsSetting .tipsColor {
+.awardsSetting .tipsColor {
   line-height: 20px;
   margin: 10px 0
 }
 
-#awardsSetting .awardNums {
+.awardsSetting .awardNums {
   height: 36px;
   line-height: 36px;
   padding: 10px 20px 0
 }
 
-#awardsSetting .topAwardExplain {
+.awardsSetting .topAwardExplain {
   color: #000
 }
 
-#awardsSetting .comfortCheckbox {
+.awardsSetting .comfortCheckbox {
   position: absolute;
   right: 20px;
   top: 12px
 }
 
-#awardsSetting .awardLevelBox {
+.awardsSetting .awardLevelBox {
   height: 44px;
   line-height: 44px;
   background: #f6f6f6;
@@ -893,44 +893,44 @@ textarea {
   padding: 0 88px 0 20px
 }
 
-#awardsSetting .awardLevelBox .awardNumOptBox {
+.awardsSetting .awardLevelBox .awardNumOptBox {
   position: absolute;
   height: 21px;
   line-height: 21px;
   right: 20px;
   top: 10px
 }
-
-#awardsSetting .awardLevelBox .awardNumOpt {
+.awardsSetting .awardLevelBox .awardNumOpt {
   width: 21px;
   height: 21px;
-  display: inline-block
+  display: inline-block;
+  border: none;
 }
 
-#awardsSetting .awardLevelBox #delAwardNum {
+.awardsSetting .awardLevelBox .delAwardNum {
   background: url('../images/icon.png') -480px -91px no-repeat
 }
 
-#awardsSetting .awardLevelBox #delAwardNum.disabled {
+.awardsSetting .awardLevelBox .delAwardNum.disabled {
   background-position: -441px -91px
 }
 
-#awardsSetting .awardLevelBox #addAwardNum {
+.awardsSetting .awardLevelBox .addAwardNum {
   margin-left: 6px;
   background: url('../images/icon.png') -480px -126px no-repeat
 }
 
-#awardsSetting .awardLevelBox #addAwardNum.disabled {
+.awardsSetting .awardLevelBox .addAwardNum.disabled {
   background-position: -441px -126px
 }
 
-#awardsSetting .awardLevelBox .awardLevelItem {
+.awardsSetting .awardLevelBox .awardLevelItem {
   width: 11.11%;
   display: inline-block;
   box-sizing: border-box
 }
 
-#awardsSetting .awardLevelBox .awardLevelItem .awardErrDot {
+.awardsSetting .awardLevelBox .awardLevelItem .awardErrDot {
   position: absolute;
   width: 6px;
   height: 6px;
@@ -941,20 +941,20 @@ textarea {
   display: none
 }
 
-#awardsSetting .awardLevelBox .awardLevelItem.hasErr .awardErrDot {
+.awardsSetting .awardLevelBox .awardLevelItem.hasErr .awardErrDot {
   display: block
 }
 
-#awardsSetting .awardLevelBox .awardLevelItem.checked .awardErrDot {
+.awardsSetting .awardLevelBox .awardLevelItem.checked .awardErrDot {
   display: none
 }
 
-#awardsSetting .awardLevelBox .awardLevelItem .awardItemName {
+.awardsSetting .awardLevelBox .awardLevelItem .awardItemName {
   height: 12px;
   line-height: 12px
 }
 
-#awardsSetting .divBeInput {
+.awardsSetting .divBeInput {
   border: 1px solid #dadada;
   padding-left: 8px;
   background-color: #fff;
@@ -962,7 +962,7 @@ textarea {
   border-radius: 4px
 }
 
-#awardsSetting .awardTypeBox {
+.awardsSetting .awardTypeBox {
   position: absolute;
   width: 100%;
   border: 1px solid #dadada;
@@ -973,33 +973,33 @@ textarea {
   border-radius: 4px
 }
 
-#awardsSetting .awardTypeBox.hdGiftTypeBox {
+.awardsSetting .awardTypeBox.hdGiftTypeBox {
   height: auto;
   max-height: 220px;
   overflow-y: scroll
 }
 
-#awardsSetting .awardTypeValue .detailIcon {
+.awardsSetting .awardTypeValue .detailIcon {
   margin: 15px 12px 0 0
 }
 
-#awardsSetting .awardTypeSetBox:hover .awardTypeValue .detailIcon {
+.awardsSetting .awardTypeSetBox:hover .awardTypeValue .detailIcon {
   background-position: -757px -622px
 }
 
-#awardsSetting .awardTypeBox .option {
+.awardsSetting .awardTypeBox .option {
   cursor: default;
   padding-left: 8px;
   line-height: 40px
 }
 
-#awardsSetting .awardTypeBox .option:hover,
-#awardsSetting .awardTypeBox .option.checked {
+.awardsSetting .awardTypeBox .option:hover,
+.awardsSetting .awardTypeBox .option.checked {
   background: #3896dc;
   color: #fff
 }
 
-#awardsSetting .awardTypeSetBox .hot {
+.awardsSetting .awardTypeSetBox .hot {
   width: 46px;
   height: 20px;
   display: inline-block;
@@ -1008,7 +1008,7 @@ textarea {
   margin-left: 6px
 }
 
-#awardsSetting .setAwardAmountBox {
+.awardsSetting .setAwardAmountBox {
   position: absolute;
   border: 1px solid #dadada;
   background-color: #fff;
@@ -1020,28 +1020,28 @@ textarea {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.2)
 }
 
-#awardsSetting .setAwardAmountBox .addCuscode {
+.awardsSetting .setAwardAmountBox .addCuscode {
   width: 100%
 }
 
-#awardsSetting .setAwardAmountBox .tipsBoxArrow {
+.awardsSetting .setAwardAmountBox .tipsBoxArrow {
   left: 50px
 }
 
-#awardsSetting .setAwardAmountBox .buttonBox {
+.awardsSetting .setAwardAmountBox .buttonBox {
   margin-bottom: 0;
   text-align: left
 }
 
-#awardsSetting .setAwardAmountBox .amountModifyBtn {
+.awardsSetting .setAwardAmountBox .amountModifyBtn {
   width: 125px
 }
 
-#awardsSetting .setAwardAmountBox .amountCancelBtn {
+.awardsSetting .setAwardAmountBox .amountCancelBtn {
   width: 95px
 }
 
-#awardsSetting .awardAmountBox .amountIcon {
+.awardsSetting .awardAmountBox .amountIcon {
   width: 16px;
   height: 16px;
   padding: 12px 10px;
@@ -1052,7 +1052,7 @@ textarea {
   cursor: pointer
 }
 
-#awardsSetting .exitCuscodeTips {
+.awardsSetting .exitCuscodeTips {
   position: absolute;
   color: #333;
   border: 1px solid #dadada;
@@ -1069,7 +1069,7 @@ textarea {
   min-height: 55px
 }
 
-#awardsSetting .exitCuscodeCloseBtn {
+.awardsSetting .exitCuscodeCloseBtn {
   bottom: 31px;
   position: absolute;
   width: 370px;
@@ -1081,11 +1081,11 @@ textarea {
   padding-bottom: 8px
 }
 
-#awardsSetting .cusCodeInputBox {
+.awardsSetting .cusCodeInputBox {
   position: relative
 }
 
-#awardsSetting .tipsArrow {
+.awardsSetting .tipsArrow {
   position: absolute;
   bottom: 13px;
   right: 5px;
@@ -1093,7 +1093,7 @@ textarea {
   border-top: solid 9px #c8c8c8
 }
 
-#awardsSetting .tipsArrow:after {
+.awardsSetting .tipsArrow:after {
   content: '';
   position: absolute;
   bottom: -5px;
@@ -1102,7 +1102,7 @@ textarea {
   border-top: solid 7px #fff
 }
 
-#awardsSetting .awardTextArea {
+.awardsSetting .awardTextArea {
   width: 100%;
   height: 120px;
   padding: 5px;
@@ -1111,44 +1111,44 @@ textarea {
   display: block
 }
 
-#awardsSetting .checkCuscodeBtn,
-#awardsSetting .uploadCuscodeBtn {
+.awardsSetting .checkCuscodeBtn,
+.awardsSetting .uploadCuscodeBtn {
   width: 90px;
   height: 34px;
   line-height: 34px;
   margin-top: 10px
 }
 
-#awardsSetting #awardDetail {
+.awardsSetting .awardDetail {
   position: relative
 }
 
-#awardsSetting #awardDetail.overflowHide {
+.awardsSetting .awardDetail.overflowHide {
   overflow-x: hidden
 }
 
-#awardsSetting .awardSettingBox {
+.awardsSetting .awardSettingBox {
   position: relative;
   top: 0;
   width: 100%
 }
 
-#awardsSetting .timeLimitSelBox .timeLimitDayLabel {
+.awardsSetting .timeLimitSelBox .timeLimitDayLabel {
   display: inline-block;
   height: 30px;
   vertical-align: middle
 }
 
-#awardsSetting .showImgBox {
+.awardsSetting .showImgBox {
   background: rgba(0, 0, 0, 0.2);
   position: relative
 }
 
-#awardsSetting .uploadCusCode {
+.awardsSetting .uploadCusCode {
   position: relative
 }
 
-#awardsSetting .uploadCusCode .getCodeBtn {
+.awardsSetting .uploadCusCode .getCodeBtn {
   width: 70px;
   height: 25px;
   line-height: 25px;
@@ -1159,7 +1159,7 @@ textarea {
   display: inline-block
 }
 
-#awardsSetting .uploadCusCode .upload {
+.awardsSetting .uploadCusCode .upload {
   width: 80px;
   height: 34px;
   line-height: 34px;
@@ -1167,31 +1167,31 @@ textarea {
   position: relative
 }
 
-#awardsSetting .uploadCusCode .upload a {
+.awardsSetting .uploadCusCode .upload a {
   color: #fff
 }
 
-#awardsSetting .uploadCusCode .getCodeBtn:hover {
+.awardsSetting .uploadCusCode .getCodeBtn:hover {
   cursor: pointer;
   background: #fff
 }
 
-#awardsSetting .uploadCusCode .cusCodeFile {
+.awardsSetting .uploadCusCode .cusCodeFile {
   position: absolute;
   top: 0;
   left: 90px
 }
 
-#awardsSetting .uploadCusCode .inputErr {
+.awardsSetting .uploadCusCode .inputErr {
   border: 0 !important
 }
 
-#awardsSetting .uploadCusCode .cusCodeFile a {
+.awardsSetting .uploadCusCode .cusCodeFile a {
   font-family: "微软雅黑";
   text-decoration: underline
 }
 
-#awardsSetting .uploadCusCode .downloadBtn {
+.awardsSetting .uploadCusCode .downloadBtn {
   width: 70px;
   height: 30px;
   line-height: 30px;
@@ -1200,38 +1200,38 @@ textarea {
   top: 0
 }
 
-#awardsSetting .uploadCusCode .uploadTip {
+.awardsSetting .uploadCusCode .uploadTip {
   line-height: 16px
 }
 
-#awardsSetting .detailTip {
+.awardsSetting .detailTip {
   position: absolute;
   right: 2px
 }
 
-#awardsSetting .storeWrap table {
+.awardsSetting .storeWrap table {
   width: 436px;
   text-align: center;
   border: solid #dadada;
   border-width: 1px 0 0 1px
 }
 
-#awardsSetting .storeWrap table .storeName {
+.awardsSetting .storeWrap table .storeName {
   width: 178px
 }
 
-#awardsSetting .storeWrap table .storeAddr {
+.awardsSetting .storeWrap table .storeAddr {
   width: 258px
 }
 
-#awardsSetting .storeWrap table th {
+.awardsSetting .storeWrap table th {
   height: 40px;
   line-height: 40px;
   border: solid #dadada;
   border-width: 0 1px 1px 0
 }
 
-#awardsSetting .storeWrap table td {
+.awardsSetting .storeWrap table td {
   border: solid #dadada;
   border-width: 0 1px 1px 0;
   padding: 10px 0 10px 16px;
@@ -1239,43 +1239,43 @@ textarea {
   text-align: left
 }
 
-#awardsSetting .storeWrap.inputErr {
+.awardsSetting .storeWrap.inputErr {
   border: none !important
 }
 
-#awardsSetting .storeWrap.inputErr .restore {
+.awardsSetting .storeWrap.inputErr .restore {
   color: #ff4d4d
 }
 
-#awardsSetting .storeWrap.inputErr .restore:hover {
+.awardsSetting .storeWrap.inputErr .restore:hover {
   color: #e41919
 }
 
-#awardsSetting .sellMoneyBox {
+.awardsSetting .sellMoneyBox {
   padding: 20px;
   background-color: #f9f9f9;
   border: 1px solid #dadada;
   border-radius: 4px
 }
 
-#awardsSetting .sellMoneyBox .sellMoneyTip {
+.awardsSetting .sellMoneyBox .sellMoneyTip {
   color: #898989;
   line-height: 20px
 }
 
-#awardsSetting .sellMoneyBox .price {
+.awardsSetting .sellMoneyBox .price {
   padding: 10px 0
 }
 
-#awardsSetting .sellMoneyBox .price:last-of-type {
+.awardsSetting .sellMoneyBox .price:last-of-type {
   padding-bottom: 0
 }
 
-#awardsSetting .sellMoneyBox .aTips.disabled {
+.awardsSetting .sellMoneyBox .aTips.disabled {
   color: #b2b2b2
 }
 
-#awardsSetting .sellMoneyBox .aTips .addPriceIcon {
+.awardsSetting .sellMoneyBox .aTips .addPriceIcon {
   display: inline-block;
   width: 13px;
   height: 13px;
@@ -1285,15 +1285,15 @@ textarea {
   background: url(../images/addpriceicon.png) no-repeat -18px -1px
 }
 
-#awardsSetting .sellMoneyBox .aTips:hover .addPriceIcon {
+.awardsSetting .sellMoneyBox .aTips:hover .addPriceIcon {
   background-position: -36px -1px
 }
 
-#awardsSetting .sellMoneyBox .aTips.disabled .addPriceIcon {
+.awardsSetting .sellMoneyBox .aTips.disabled .addPriceIcon {
   background-position: -1px -1px
 }
 
-#awardsSetting .scene {
+.awardsSetting .scene {
   position: relative;
   display: inline-block;
   width: 90px;
@@ -1306,11 +1306,11 @@ textarea {
   box-sizing: border-box
 }
 
-#awardsSetting .scene.selected {
+.awardsSetting .scene.selected {
   border-color: #4381fd
 }
 
-#awardsSetting .scene.selected:after {
+.awardsSetting .scene.selected:after {
   position: absolute;
   content: "";
   width: 13px;
@@ -2108,11 +2108,33 @@ textarea {
   box-sizing: border-box;
   margin: 0 8px;
 }
-.version3 input[type='radio']+label {
+.version3 input[type='number'] {
+  height: 40px;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+  color: #535353;
+}
+
+.version3 input[type='number']:hover,
+.version3 select:hover,
+.version3 textarea:hover {
+  border: 1px solid #4381fd !important;
+}
+
+.version3 input[type='number'].minInput,
+.minInput {
+  height: 26px;
+  line-height: 26px;
+  width: 80px;
+  padding-left: 8px;
+  box-sizing: border-box;
+  margin: 0 8px;
+}
+input[type='radio']+label {
   padding-left: 22px;
 }
-.version3 input[type='radio']+label,
-.version3 input[type='checkbox']+label {
+input[type='radio']+label,
+input[type='checkbox']+label {
   color: #535353;
   margin-right: 30px;
 }
@@ -2121,11 +2143,25 @@ textarea {
   height: 16px;
   border-color: #dadada;
 }
-.version3 input[type='radio']:checked+label:after {
-      width: 10px;
-      height: 10px;
-      background-color: #4381fd;
-      left: 4px;
+input[type='radio']:checked+label:after {
+  width: 10px;
+  height: 10px;
+  background-color: #4381fd;
+  left: 4px;
+}
+
+.version3 input.idChecked+label:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 100%;
+  background-color: #329fea;
+  width: 10px;
+  height: 10px;
+  background-color: #4381fd;
+  left: 4px;
 }
 
 .version3 input[type='checkbox']:checked+label:after {
@@ -2147,4 +2183,34 @@ textarea {
 
 .flex-1 {
   flex: 1;
+}
+
+.version3 .uploadify-button.main-Button {
+  height: 34px;
+  line-height: 34px;
+  width: auto;
+  padding: 0 10px;
+  min-width: 70px;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  position: static;
+  border-radius: 4px;
+}
+.version3 .main-Button {
+  background: #4381fd;
+  border: 1px solid #4381fd;
+  color: #fff;
+}
+.version3 .main-Button:hover {
+  background: #2566e9;
+}
+.version3 .uploadify-button .addIcon {
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+  margin-right: 4px;
+  background: url(../images/icon.png) -321px -204px no-repeat;
+  vertical-align: middle;
 }
