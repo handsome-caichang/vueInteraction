@@ -56,7 +56,7 @@ export default {
             return {
                 top: btnTop
             }
-        }
+        },
     },
     methods: {
         tralg(type = '') {

@@ -98,19 +98,13 @@ export default {
             if (this.checked != item.type)  {
                 this.checked = item.type;
                 if (item.type == 'awardYes' || item.type == 'awardNo') {
-                    this.iframeConentObj.pcFunctionPop({
-                        type: 'maskPop',
-                    })
+                    this.iframeConentObj.$router.replace('/luckDraw')
                     this.h5Store.commit('set_luckDrawPopupAwardFalg', true);
                     this.h5Store.commit('set_luckDrawPopupAwardType', item.data);
                 }else {
                     this.h5Store.commit('set_luckDrawPopupAwardFalg', false);
-                    this.iframeConentObj.pcFunctionPop({
-                        type: 'rout',
-                        data: item.data
-                    })
+                    this.iframeConentObj.$router.replace(`/${item.data}`)
                 }
-                
             }
         },
         tabClick(item) {
@@ -132,7 +126,7 @@ export default {
         this.$nextTick(()=> {
             let that = this;
             this.$refs.iframeConent.onload = function () {
-                that.iframeConentObj = this.contentWindow.luckDraw;
+                that.iframeConentObj = this.contentWindow.iframeH5Vue;
                 that.h5Store = this.contentWindow.h5Store;
                 console.log(that);
             }

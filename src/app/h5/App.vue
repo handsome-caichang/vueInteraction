@@ -35,6 +35,9 @@
 export default {
   name: 'App',
   created() {
+    if (!window.iframeH5Vue) {
+        window.iframeH5Vue = this;
+    }
   }
 }
 </script>

@@ -94,7 +94,7 @@
             <p class="weui-toast__content">数据加载中</p>
         </div>
     </div>
-    <resule-box v-show="luckDrawPopupAwardFalg" @tralg="tralg" :awardDetail="awardDetail" :type="luckDrawPopupAwardType"></resule-box>
+    <resule-box v-show="luckDrawPopupAwardFalg" @tralg="tralg" :awardDetail="luckDrawPopupAwarddDetail" :type="luckDrawPopupAwardType"></resule-box>
 </div>
 </template>
 
@@ -106,6 +106,8 @@ import zp0 from './image/zp0.png'
 import zp1 from './image/zp1.png'
 import zp2 from './image/zp2.png'
 import zp3 from './image/zp3.png'
+import zp4 from './image/zp4.png'
+import zp5 from './image/zp5.png'
 import startBtn from './image/startBtn.png'
 import title from './image/title.png'
 import myAwardImg from './image/myAwardImg.png'
@@ -121,78 +123,80 @@ export default {
             title,
             myAwardImg,
             activeRule,
-            currentAward: '', // 定义最终旋转的位置 0 谢谢参与 ， 1 一等奖，2 二等奖， 3 三等奖， 4 四等奖，5 五等奖， 99 安慰奖
             awardList: [ // 当前奖品
                 {
                     levelName: '一等奖',
-                    id: '1',
-                    isConsolation: false,
-                    rotateNum: '330'
+                    giftsId: '1',
                 },
                 {
                     levelName: '二等奖',
-                    id: '2',
-                    isConsolation: false,
-                    rotateNum: '210'
+                    giftsId: '2',
                 },
                 {
                     levelName: '三等奖',
-                    id: '3',
-                    isConsolation: false,
-                    rotateNum: '90'
+                    giftsId: '3',
                 },
             ],
-            loadinData: false, // 加载抽奖
-            zhuanpanData: [
-                {
-                    img: zp0
-                },
-                {
-                    img: zp2
-                },
-                {
-                    img: zp0
-                },
-                {
-                    img: zp3
-                },
-                {
-                    img: zp0
-                },
-                {
-                    img: zp1
-                },
-            ],
-            awardDetail: { // 当前中奖的详情
-                name: '一等奖', // 奖品名称
-                levelName: '价值100元礼品', // 奖品等级名称
-                id: '123', // id
+            awardDetail: {  // 当前中奖的详情
+                levelName: '一等奖',
+                name: '价值300元的礼品',
+                giftsId: '1',
+                id: '45235'
             },
+            loadinData: false, // 加载抽奖
+            zhuanpanData: [  // 转盘的数组
+                {
+                    img: zp0,
+                    giftsId: '0'
+                },
+                {
+                    img: zp0,
+                    giftsId: '0'
+                },
+                {
+                    img: zp2,
+                    giftsId: '2'
+                },
+                {
+                    img: zp0,
+                    giftsId: '0'
+                },
+                {
+                    img: zp3,
+                    giftsId: '3'
+                },
+                {
+                    img: zp4,
+                    giftsId: '4'
+                },
+            ],
+            listCurrentIndex: -1, // 当前中奖的在转盘列表的索引
         }
     },
     computed: {
-        rotateClass() {
-            let className = 'rotate', anweiNum = 30;
-            switch (this.currentAward) {
-                case '0':
-                    return className + anweiNum;
-                    break;
-                case '1':
-                    return className + 330;
-                    break;
-                case '2':
-                    return className + 210;
-                    break;
-                case '3':
-                    return className + 90;
-                    break;
-                default:
-                    break;
+        rotateClass() { // 最后旋转到哪个位置，要根据奖品数量，然后当前奖项
+            let className = 'rotate', anweiNum = 0,num = 0;
+            if (this.listCurrentIndex == -1){
+                return '';
+            } 
+            if (this.zhuanpanData.length == 4) {
+                anweiNum = 90;
+                num = this.listCurrentIndex * anweiNum + 45;
             }
+            if (this.zhuanpanData.length == 6) {
+                anweiNum = 60;
+                num = this.listCurrentIndex * anweiNum + 30;
+            }
+            if (this.zhuanpanData.length == 8) {
+                anweiNum = 45;
+                num = this.listCurrentIndex * anweiNum + 22;
+            }
+            return className + num;
         },
         ...mapState([
            'luckDrawPopupAwardFalg',
            'luckDrawPopupAwardType',
+           'luckDrawPopupAwarddDetail',
        ])
     },
     components: {
@@ -202,24 +206,44 @@ export default {
         ...mapMutations([
             'set_luckDrawPopupAwardFalg',
             'set_luckDrawPopupAwardType',
+            'set_luckDrawPopupAwarddDetail',
         ]),
         zhuanStyle(item,index) {
-            let rota = index * 60 + 30;
-            let heightNum = Math.round( document.documentElement.clientWidth * 0.95 / 2 *100)/100;  // 宽度高度值的一半
-            let widthNum = Math.round( document.documentElement.clientWidth / 2 *100)/100;  // 宽度高度值的一半
-            let currWidth = Math.round( document.documentElement.clientWidth * 0.2 / 2  *100)/100; // 自身高度宽度一半
+            let widthProp = 0.2; // 图片宽度比例
+            let rota = index * 60  + 30; // 图片旋转角度
+            if (this.zhuanpanData.length == 4) {
+                rota = index * 90  + 48;
+                widthProp = 0.25;
+            }else if(this.zhuanpanData.length == 6) {
+                rota = index * 60  + 30;
+                widthProp = 0.2;
+            }else if(this.zhuanpanData.length == 8) {
+                rota = index * 45  + 23;
+                widthProp = 0.18;
+            }
+            let heightNum = Math.round( document.documentElement.clientWidth * 0.95 / 2 *100)/100;  // 图片宽度高度值的一半
+            let widthNum = Math.round( document.documentElement.clientWidth / 2 *100)/100;  // 屏幕宽度高度值的一半
+            let currWidth = Math.round( document.documentElement.clientWidth * widthProp / 2  *100)/100; // 图片自身高度宽度一半
             let trasNum =  widthNum / 2; // y 轴移动距离
             let tops = heightNum - currWidth  + 'px'; // 高度一半 - 自身高度一半
             let lefts = widthNum - currWidth  + 'px'; // 宽度一半 - 自身宽度一半
+            let widths = widthProp * 100 + '%';
             return {
-                width: '20%',
+                width: widths,
                 top: tops,
                 left: lefts,
                 transform: `rotate(${rota}deg)`+ `translateY(-${trasNum}px)`
             }
         },
         devicStyle(item,index) {
-            let rota = index * 60 - 1;
+            let rota = 0; // line 旋转角度
+            if (this.zhuanpanData.length == 4) {
+                rota = index * 90 - 1;
+            }else if(this.zhuanpanData.length == 6) {
+                rota = index * 60 - 1;
+            }else if(this.zhuanpanData.length == 8) {
+                rota = index * 45 - 1;
+            }
             let heightNum = Math.round( document.documentElement.clientWidth * 0.95 / 2 *100)/100;  // 宽度高度值的一半
             let widthNum = Math.round( document.documentElement.clientWidth / 2 *100)/100;  // 宽度高度值的一半
             let a = heightNum - 26 / 152 * heightNum ;
@@ -233,45 +257,57 @@ export default {
                 transform: `rotate(${rota}deg)`
             }
         },
-        gotoDetail() {
-            this.$router.push('awardDetail/123');
-        },
         startAward() {
             this.loadinData = true;
-            setTimeout(() => {
-                this.loadinData = false;
-                this.currentAward = '1';
-                setTimeout( ()=> {
-                    this.currentAward = '';
+            setTimeout(() => { // 模拟调用接口
+                let res = {
+                    errorCode: 0,
+                    data: {
+                        levelName: '一等奖',
+                        name: '价值300元的礼品',
+                        giftsId: '3',
+                        id: '45235' 
+                    }
+                };
+                // let res = {
+                //     errorCode: 1,
+                //     data: {
+                //         giftsId: '0',
+                //     }
+                // };
+                this.loadinData = false; 
+                for (let index = 0; index < this.zhuanpanData.length; index++) {
+                   const element = this.zhuanpanData[index];
+                   if (res.data.giftsId == element.giftsId) {
+                       this.listCurrentIndex = index;
+                       break;
+                   }
+                }
+                if (res.errorCode == 0) {
+                    this.awardDetail = res.data;
+                    this.set_luckDrawPopupAwarddDetail(this.awardDetail);
+                    this.set_luckDrawPopupAwardType('2');
+                }else {
                     this.set_luckDrawPopupAwardType('1');
+                }
+                setTimeout( ()=> { // 转盘
                     this.set_luckDrawPopupAwardFalg(true);
                 }, 5000)
             }, 3000)
         },
         tralg(type) {
+            this.listCurrentIndex = -1;
             this.set_luckDrawPopupAwardFalg(false);
             if (type == 'detail') {
-                this.$router.push(`awardDetail/${this.awardDetail.id}`);
+                this.$router.push(`awardDetail/${this.luckDrawPopupAwarddDetail.giftsId}`);
             }
         },
-        pcFunctionPop(obj) {
-            if (obj.type == 'rout') {
-                this.$router.replace(`/${obj.data}`)
-            }else {
-                this.$router.replace("/luckDraw");
-                // if (obj.data == 'awardYes') {
-                //     this.luckDrawPopupAwardType == '2';
-                // }else {
-                //     this.luckDrawPopupAwardType == '1';
-                // }
-                // this.luckDrawPopupAwardFalg = true;
-            }
-        }
+        gotoDetail() {
+            this.$router.push('awardDetail/123');
+        },
     },
     created() {
-        if (!window.luckDraw) {
-            window.luckDraw = this;
-        }
+       
     }
 };
 

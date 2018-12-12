@@ -18,7 +18,11 @@
     6个奖项，0,6,5,4,3,2,0,1
 */ 
 
-/* 如果奖品为5个或者6个的旋转角度  .5角度舍去-------------------*/
+/* 当转盘个数为8的时候  .5角度舍去-------------------*/
+
+/* 
+  22 为第一个，67 为第二个 112 为第三个，每次递增 45°
+ */
 
  /* 旋转20°   */
 @keyframes rotate22 {
@@ -143,8 +147,11 @@
 
 
 
-/* 奖品为4或者3时候旋转角度------------------------------------- */
-
+/* 当转盘个数为6时候旋转角度------------------------------------- */
+/* 
+  30 为第一个，
+  90 为第二个，每次递增60°
+ */
 /* 旋转30*/
 @keyframes rotate30 {
   from {
@@ -234,4 +241,72 @@
 
 .rotate330 {
   animation: rotate330 5s ease forwards;
+}
+
+
+
+/* 当转盘个数为4时候旋转角度------------------------------------- */
+/* 
+  60 为第一个，
+  150 为第二个，每次递增90°
+ */
+/* 旋转60*/
+@keyframes rotate45 {
+  from {
+    transform: rotateZ(0deg)
+  }
+
+  to {
+    transform: rotateZ(-1845deg)
+  }
+}
+.rotate45 {
+    animation: rotate45 3s ease forwards;
+}
+
+
+/* 旋转150°  */
+@keyframes rotate135 {
+  from {
+    transform: rotateZ(0deg)
+  }
+
+  to {
+    transform: rotateZ(-1935deg)
+  }
+}
+
+.rotate135 {
+  animation: rotate135 5s ease forwards;
+}
+
+
+ /* 旋转240°  */
+@keyframes rotate225 {
+  from {
+    transform: rotateZ(0deg)
+  }
+
+  to {
+    transform: rotateZ(-2025deg)
+  }
+}
+
+.rotate225 {
+  animation: rotate225 5s ease forwards;
+}
+
+ /* 旋转330°  */
+@keyframes rotate315 {
+  from {
+    transform: rotateZ(0deg)
+  }
+
+  to {
+    transform: rotateZ(-2115deg)
+  }
+}
+
+.rotate315 {
+  animation: rotate315 5s ease forwards;
 }

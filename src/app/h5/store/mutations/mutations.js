@@ -10,7 +10,12 @@ export default {
   set_luckDrawPopupAwardType: function(state, params) {
     state.luckDrawPopupAwardType = params;
   },
+  set_luckDrawPopupAwarddDetail: function(state, params) {
+    state.luckDrawPopupAwarddDetail = params;
+  },
   set_h5Data: function(state, params) {
     state.h5Data = params;
   }
+
+
 };
