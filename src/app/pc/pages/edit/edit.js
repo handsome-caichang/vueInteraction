@@ -5,18 +5,22 @@ export const editMixin = {
                 {
                     name: '首页',
                     type: 'home',
+                    data: 'luckDraw'
                 },
                 {
                     name: '奖品详情',
-                    type: 'prize'
+                    type: 'detail',
+                    data: 'awardDetail/123',
                 },
                 {
                     name: '中奖页面',
-                    type: "in",
+                    type: "awardYes",
+                    data: "1",
                 },
                 {
                     name: '没中奖页',
-                    type: 'confirm'
+                    type: 'awardNo',
+                    data: '2'
                 },
             ],
         }

@@ -149,6 +149,16 @@
     import {mapMutations,mapState } from 'vuex'
     export default {
         name: 'prizeSet',
+        props: {
+            iframeConentObj: {
+                type: Object,
+                default() {
+                    return {
+                        
+                    }
+                }
+            }
+        },
         data() {
             return {
                 currentIndex: 0,

@@ -11,6 +11,8 @@ const store = new Vuex.Store({
 
 Vue.config.productionTip = false
 
+window.h5Store = store;
+
 /* eslint-disable no-new */
 new Vue({
   el: "#app",

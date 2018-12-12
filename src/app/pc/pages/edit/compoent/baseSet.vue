@@ -130,6 +130,16 @@
     import { mapState } from 'vuex'
     export default {
         name: 'baseSet',
+        props: {
+            iframeConentObj: {
+                type: Object,
+                default() {
+                    return {
+                        
+                    }
+                }
+            }
+        },
         data() {
             return {
             }

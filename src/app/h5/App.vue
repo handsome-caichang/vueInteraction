@@ -35,7 +35,6 @@
 export default {
   name: 'App',
   created() {
-      window.H5That = this;
   }
 }
 </script>

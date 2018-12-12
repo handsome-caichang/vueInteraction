@@ -12,7 +12,7 @@ export default {
   set_editData: function (state, params) {
     state.editData = params;
   },
-  // set_editDataGiftInfo: function (state, params) {
-  //   state.editData.giftInfo = params;
-  // },
+  set_h5Data: function (state, params) {
+    state.h5Data = params;
+  },
 };

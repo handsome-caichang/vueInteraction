@@ -94,8 +94,7 @@
             <p class="weui-toast__content">数据加载中</p>
         </div>
     </div>
-
-    <resule-box v-if="noAward" @tralg="tralg" :awardDetail="awardDetail" :type="popType"></resule-box>
+    <resule-box v-show="luckDrawPopupAwardFalg" @tralg="tralg" :awardDetail="awardDetail" :type="luckDrawPopupAwardType"></resule-box>
 </div>
 </template>
 
@@ -111,7 +110,7 @@ import startBtn from './image/startBtn.png'
 import title from './image/title.png'
 import myAwardImg from './image/myAwardImg.png'
 import activeRule from './image/activeRuleImg.png'
-
+import {mapState,mapMutations} from 'vuex'
 export default {
     name: "luckDraw",
     data() {
@@ -122,7 +121,7 @@ export default {
             title,
             myAwardImg,
             activeRule,
-            currentAward: '0', // 0 谢谢参与 ， 1 一等奖，2 二等奖， 3 三等奖， 4 四等奖，5 五等奖， 99 安慰奖
+            currentAward: '', // 定义最终旋转的位置 0 谢谢参与 ， 1 一等奖，2 二等奖， 3 三等奖， 4 四等奖，5 五等奖， 99 安慰奖
             awardList: [ // 当前奖品
                 {
                     levelName: '一等奖',
@@ -143,9 +142,7 @@ export default {
                     rotateNum: '90'
                 },
             ],
-            noAward: false, // 抽奖弹窗
             loadinData: false, // 加载抽奖
-            endChoujian: true, // 第一次刚进来的时候，不用旋转,
             zhuanpanData: [
                 {
                     img: zp0
@@ -171,20 +168,11 @@ export default {
                 levelName: '价值100元礼品', // 奖品等级名称
                 id: '123', // id
             },
-            popType: '2'
         }
     },
     computed: {
         rotateClass() {
             let className = 'rotate', anweiNum = 30;
-            // if (this.awardList.length == 3 || this.awardList.length == 4) {
-            //     anweiNum = 30;
-            // }else if (this.awardList.length == 1 || this.awardList.length == 2) {
-            //     anweiNum = 45;
-            // }else if(this.awardList.length == 5 || this.awardList.length == 6) {
-            //     anweiNum = 22;
-            // }
-            if (this.endChoujian) return '';
             switch (this.currentAward) {
                 case '0':
                     return className + anweiNum;
@@ -201,12 +189,20 @@ export default {
                 default:
                     break;
             }
-        }
+        },
+        ...mapState([
+           'luckDrawPopupAwardFalg',
+           'luckDrawPopupAwardType',
+       ])
     },
     components: {
         resuleBox
     },
     methods: {
+        ...mapMutations([
+            'set_luckDrawPopupAwardFalg',
+            'set_luckDrawPopupAwardType',
+        ]),
         zhuanStyle(item,index) {
             let rota = index * 60 + 30;
             let heightNum = Math.round( document.documentElement.clientWidth * 0.95 / 2 *100)/100;  // 宽度高度值的一半
@@ -244,20 +240,37 @@ export default {
             this.loadinData = true;
             setTimeout(() => {
                 this.loadinData = false;
-                this.endChoujian = false;
                 this.currentAward = '1';
                 setTimeout( ()=> {
-                    this.endChoujian = true;
-                    this.noAward = true;
+                    this.currentAward = '';
+                    this.set_luckDrawPopupAwardType('1');
+                    this.set_luckDrawPopupAwardFalg(true);
                 }, 5000)
             }, 3000)
         },
         tralg(type) {
-            this.noAward = false;
-            this.endChoujian = true;
+            this.set_luckDrawPopupAwardFalg(false);
             if (type == 'detail') {
                 this.$router.push(`awardDetail/${this.awardDetail.id}`);
             }
+        },
+        pcFunctionPop(obj) {
+            if (obj.type == 'rout') {
+                this.$router.replace(`/${obj.data}`)
+            }else {
+                this.$router.replace("/luckDraw");
+                // if (obj.data == 'awardYes') {
+                //     this.luckDrawPopupAwardType == '2';
+                // }else {
+                //     this.luckDrawPopupAwardType == '1';
+                // }
+                // this.luckDrawPopupAwardFalg = true;
+            }
+        }
+    },
+    created() {
+        if (!window.luckDraw) {
+            window.luckDraw = this;
         }
     }
 };

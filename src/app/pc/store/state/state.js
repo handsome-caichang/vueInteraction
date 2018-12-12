@@ -46,5 +46,8 @@ export default {
         shareNowinContent: "​我已经在活动中抽到了奖品，你也快来抽大奖吧！" //    没中奖分享文案
       }
     }
+  },
+  h5Data: {
+    awardDetailName: "长沙市校管家教育科技有限公司"
   }
 };

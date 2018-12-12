@@ -20,7 +20,7 @@
                                 <div class="actName" ng-bind="game.name">{{editData.bizData.baseInfo.name}}</div>
                             </div>
                             <div class="gameContent">
-                                <iframe ref="iframeConent" src="http://localhost:8080"
+                                <iframe ref="iframeConent" src="http://localhost:8080/h5"
                                         frameborder="0" scrolling="no" style="width:100%;height:100%;"></iframe>
                             </div>
                             <div class="moduleLayer moduleLayerBox"></div>
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="editDetail">
-                        <component class="component" :is="currentTabComponent">
+                        <component class="component" :is="currentTabComponent" :iframeConentObj="iframeConentObj" :h5Store="h5Store">
                         </component>
                     </div>
                 </div>
@@ -78,6 +78,8 @@ export default {
                 },
             ],
             currentTab: 'baseSet',
+            iframeConentObj: {},
+            h5Store: {},
         }
     },
     computed: {
@@ -93,7 +95,23 @@ export default {
             'set_headerType'
         ]),
         checkLeft(item) {
-            this.checked = item.type;
+            if (this.checked != item.type)  {
+                this.checked = item.type;
+                if (item.type == 'awardYes' || item.type == 'awardNo') {
+                    this.iframeConentObj.pcFunctionPop({
+                        type: 'maskPop',
+                    })
+                    this.h5Store.commit('set_luckDrawPopupAwardFalg', true);
+                    this.h5Store.commit('set_luckDrawPopupAwardType', item.data);
+                }else {
+                    this.h5Store.commit('set_luckDrawPopupAwardFalg', false);
+                    this.iframeConentObj.pcFunctionPop({
+                        type: 'rout',
+                        data: item.data
+                    })
+                }
+                
+            }
         },
         tabClick(item) {
             this.currentTab = item.component;
@@ -114,9 +132,9 @@ export default {
         this.$nextTick(()=> {
             let that = this;
             this.$refs.iframeConent.onload = function () {
-                console.log(this.contentWindow.H5That);
+                that.iframeConentObj = this.contentWindow.luckDraw;
+                that.h5Store = this.contentWindow.h5Store;
                 console.log(that);
-                // console.log(that.$refs.iframeConent.contentWindow.H5That);
             }
         })
     }

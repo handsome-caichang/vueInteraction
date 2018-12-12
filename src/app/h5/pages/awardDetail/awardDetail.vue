@@ -3,7 +3,7 @@
     <div id="awardDetailScrollBox">
         <div class="awardCloseIcon" @click="closeDetail"></div>
         <div class="awardDetail">
-            <div class="hostName">{{awardDetailName}}</div>
+            <div class="hostName">{{h5Data.awardDetailName}}</div>
             <div class="awardName layerId-26 defBgColor" style="cursor: pointer; position: relative;">价值100元礼品</div>
             <div class="awardCodeTime codeTimeFixedRange"><em>兑换期限</em>：<span class="codeBgTime">2018.12.03</span> - <span class="codeEndTime">2018.12.10</span></div>
             <div class="awardDetailWarp"></div>
@@ -48,12 +48,17 @@
 </template>
 
 <script>
+import {mapState,mapMutations} from 'vuex'
 export default {
     name: 'awardDetail',
     data() {
         return {
-            awardDetailName: '长沙市校管家教育科技有限公司'
         }
+    },
+    computed: {
+        ...mapState([
+            'h5Data'
+        ])
     },
     methods: {
         closeDetail() {
@@ -61,8 +66,6 @@ export default {
         }
     },
     created() {
-        window.awardDetailThat = this;
-        console.log(awardDetailThat);
     }
 }
 </script>

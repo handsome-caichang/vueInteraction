@@ -18,7 +18,11 @@ const store = new Vuex.Store({
   ...allStore
 });
 
-var app = {};
+import tool from 'pcAssets/js/tool.js'
+
+var app = {
+  tool
+};
 
 Vue.prototype.app = window.app = app;
 

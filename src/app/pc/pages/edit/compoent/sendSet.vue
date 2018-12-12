@@ -77,6 +77,16 @@
     import { mapState } from 'vuex'
     export default {
         name: 'sendSet',
+        props: {
+            iframeConentObj: {
+                type: Object,
+                default() {
+                    return {
+                        
+                    }
+                }
+            }
+        },
         data() {
             return {
             }
