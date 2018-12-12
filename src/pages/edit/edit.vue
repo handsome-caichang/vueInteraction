@@ -17,10 +17,10 @@
                     <div class="phoneBox">
                         <div class="phone">
                             <div class="wxTitle">
-                                <div class="actName" ng-bind="game.name">参与活动赢大奖</div>
+                                <div class="actName" ng-bind="game.name">{{editData.bizData.baseInfo.name}}</div>
                             </div>
                             <div class="gameContent">
-                                <iframe src="http://localhost:8081"
+                                <iframe ref="iframeConent" src="http://localhost:8080"
                                         frameborder="0" scrolling="no" style="width:100%;height:100%;"></iframe>
                             </div>
                             <div class="moduleLayer moduleLayerBox"></div>
@@ -110,7 +110,15 @@ export default {
         prizeSet,
     },
     created() {
-        this.set_headerType('2')
+        this.set_headerType('2');
+        this.$nextTick(()=> {
+            let that = this;
+            this.$refs.iframeConent.onload = function () {
+                console.log(this.contentWindow.H5That);
+                console.log(that);
+                // console.log(that.$refs.iframeConent.contentWindow.H5That);
+            }
+        })
     }
 }
 </script>
