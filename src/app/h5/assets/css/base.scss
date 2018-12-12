@@ -1,0 +1,243 @@
+body {
+  overflow-x: hidden;
+  background-color: #fff !important;
+  -webkit-user-select: none
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0
+}
+
+pre {
+  font-family: "微软雅黑"
+}
+
+.selectText {
+  -webkit-user-select: text;
+  word-wrap: break-word;
+  max-width: 10rem;
+  display: inline-block
+}
+
+.hide {
+  display: none
+}
+
+.hideImp {
+  display: none !important
+}
+
+.showImp {
+  display: block !important
+}
+
+.initHide {
+  display: none !important
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden;
+  height: 100%
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis
+}
+
+.alignCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.alignCenter_t {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%)
+}
+
+.alignCenter_l {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+::-webkit-scrollbar {
+  display: none
+}
+
+.body,
+.home {
+  overflow-x: hidden
+}
+
+.home {
+  position: relative
+}
+
+.abs {
+  position: absolute
+}
+
+.defBgColor {
+  background-color: rgba(0, 0, 0, 0)
+}
+
+.gameTopBar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: .4rem 0;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 100
+}
+
+.grade {
+  font-size: 1rem
+}
+
+.timeBox {
+  font-size: .8rem
+}
+
+.time {
+  font-size: 1.5rem
+}
+
+.userInfoBox {
+  margin-left: .6rem
+}
+
+.statusTip {
+  width: 9rem;
+  height: 3.5rem;
+  position: fixed;
+  color: #fff;
+  font-size: .9rem;
+  border-radius: .5rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 2000;
+  border: .15rem #888 solid;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%)
+}
+
+.statusTip .content {
+  padding: .6rem .25rem;
+  line-height: 1.2rem
+}
+
+.statusTip .sTime {
+  font-size: .6rem;
+  margin-top: .25rem;
+  line-height: 1rem
+}
+
+#limitRange,
+#limitRange2 {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  bottom: 1.2rem
+}
+
+#homeBgBox {
+  width: 100%;
+  height: 25.2rem;
+  overflow: hidden
+}
+
+#homeBgBox img {
+  width: 100%;
+  height: auto
+}
+
+.home .startBtn {
+  top: 0
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0
+}
+
+.bgfix {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0
+}
+.hd-Special-bgImgInfo {
+  background-size: 100% auto !important;
+  background-position: 0 0 !important
+}
+.titleDown {
+  animation: bounceInDown 1s ease 1;
+}
+@keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px)
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(30px)
+  }
+
+  80% {
+    -webkit-transform: translateY(-10px)
+  }
+
+  100% {
+    -webkit-transform: translateY(0)
+  }
+}
+.resuleBox {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, .85);
+  color: #FFF;
+  z-index: 999
+}
+
+.awardCloseIcon {
+    width: 2.25rem;
+    height: 2.25rem;
+    background: url(../images/close.png) no-repeat;
+    background-size: 70%;
+    background-position: center;
+    position: absolute;
+    right: .25rem;
+    top: .25rem;
+    z-index: 202;
+}
+#awardDetailBox .awardDetail .awardDetailWarp {
+    height: 4px;
+    width: 100%;
+    background: url(../images/kqbd.png);
+    position: absolute;
+    bottom: 0;
+}
+.codeImgBox .codeLine {
+    margin-bottom: 4px;
+    padding-top: 8px;
+    color: #333;
+}
