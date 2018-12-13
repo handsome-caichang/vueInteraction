@@ -35,7 +35,7 @@
                     <div class="myAwardInfo rowSpacing"  v-if="giftInfo.length != 0">
                         <div class="award-box" v-for="(item, index) in giftInfo" :key="index">
                             <div class="awardLimitBox">
-                                <span class="awardText awardNameDef">{{item.leveName}}：{{item.name}}</span>
+                                <span class="awardText awardNameDef">{{item.levelName}}：{{item.name}}</span>
                             </div>
                             <span class="awardInfoDetail" @click="gotoDetail">查看详情</span>
                         </div>
@@ -55,7 +55,7 @@
                                     <div class="awardTitleText" style="font-size: 0.75rem; color: rgb(255, 255, 255);">活动奖品</div>
                                 </div>
                                 <div id="awardLineBox" class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);">
-                                    <div class="awardItem" v-for="(item, index) in giftInfo" :key="index"><span class="awardStyle">{{item.leveName}}</span>: <span class="award">{{item.name}}</span></div>
+                                    <div class="awardItem" v-for="(item, index) in giftInfo" :key="index"><span class="awardStyle">{{item.levelName}}</span>: <span class="award">{{item.name}}</span></div>
                                 </div>
                                 <div class="infoDeviceLine ruleBoxLine"></div>
                             </div>
@@ -63,7 +63,7 @@
                                 <div class="titleTextBox">
                                     <div class="awardTitleText" style="font-size: 0.75rem; color: rgb(255, 255, 255);">活动时间</div>
                                 </div>
-                                <div class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);"><span id="startDate">{{luckDraw.bizData.baseInfo.startTime}}</span> — <span id="endDate">{{luckDraw.bizData.baseInfo.endTime}}</span></div>
+                                <div class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);"><span id="startDate">{{luckDraw.bizData.baseInfo.startTime}}</span>-<span id="endDate">{{luckDraw.bizData.baseInfo.endTime}}</span></div>
                                 <div class="infoDeviceLine ruleBoxLine"></div>
                             </div>
                             <div id="explainBox" class="rowSpacing poupLine" data-sortkey="e">
@@ -86,7 +86,7 @@
             <p class="weui-toast__content">数据加载中</p>
         </div>
     </div>
-    <resule-box v-show="luckDrawPopupAwardFalg" @tralg="tralg" :awardDetail="luckDrawPopupAwarddDetail" :type="luckDrawPopupAwardType"></resule-box>
+    <resule-box v-show="luckDrawPopupAwardFalg" @tralg="tralg" :awardDetail="h5AllData.awardDetail" :type="luckDrawPopupAwardType"></resule-box>
 </div>
 </template>
 
@@ -117,19 +117,13 @@ export default {
             titleImg,
             myAwardImg,
             activeRule,
-            // awardDetail: {  // 当前中奖的详情
-            //     levelName: '一等奖',
-            //     name: '价值300元的礼品',
-            //     giftsId: '1',
-            //     id: '45235'
-            // },
-            awardDetail: null,
             loadinData: false, // 加载抽奖
             zhuanpanData: [  // 转盘的数组
             ],
             listCurrentIndex: -1, // 当前中奖的在转盘列表的索引
             luckDraw: window.h5AllData.luckDraw,
-            giftInfo: window.h5AllData.luckDraw.bizData.giftInfo
+            h5AllData: window.h5AllData,
+            giftInfo: window.h5AllData.luckDraw.bizData.giftInfo,
         }
     },
     computed: {
@@ -155,7 +149,6 @@ export default {
         ...mapState([
            'luckDrawPopupAwardFalg',
            'luckDrawPopupAwardType',
-           'luckDrawPopupAwarddDetail',
        ])
     },
     components: {
@@ -165,7 +158,6 @@ export default {
         ...mapMutations([
             'set_luckDrawPopupAwardFalg',
             'set_luckDrawPopupAwardType',
-            'set_luckDrawPopupAwarddDetail',
         ]),
         zhuanStyle(item,index) {
             let widthProp = 0.2; // 图片宽度比例
@@ -243,8 +235,7 @@ export default {
                    }
                 }
                 if (res.errorCode == 0) {
-                    this.awardDetail = res.data;
-                    this.set_luckDrawPopupAwarddDetail(this.awardDetail);
+                    this.h5AllData.awardDetail = res.data;
                     this.set_luckDrawPopupAwardType('2');
                 }else {
                     this.set_luckDrawPopupAwardType('1');
@@ -258,7 +249,7 @@ export default {
             this.listCurrentIndex = -1;
             this.set_luckDrawPopupAwardFalg(false);
             if (type == 'detail') {
-                this.$router.push(`awardDetail/${this.luckDrawPopupAwarddDetail.giftsId}`);
+                this.$router.push(`awardDetail/${this.h5AllData.awardDetail.giftsId}`);
             }
         },
         gotoDetail() {

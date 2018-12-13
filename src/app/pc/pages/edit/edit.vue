@@ -99,7 +99,7 @@ export default {
                 this.checked = item.type;
                 if (item.type == 'awardYes' || item.type == 'awardNo') {
                     if (item.type == 'awardYes') {
-                        this.h5Store.commit('set_luckDrawPopupAwarddDetail', this.editData.bizData.giftInfo[0]);
+                        window.h5AllData.awardDetail =  this.editData.bizData.giftInfo[0];
                     }
                     this.iframeConentObj.$router.replace('/luckDraw')
                     this.h5Store.commit('set_luckDrawPopupAwardFalg', true);

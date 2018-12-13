@@ -126,6 +126,7 @@
                                     class="input flex-1"
                                     v-model="editData.bizData.giftInfo[currentIndex].cashStartTime"
                                     type="datetime"
+                                     value-format="yyyy-MM-dd HH:mm:ss"
                                     placeholder="开始时间">
                                 </el-date-picker>
                                 <span class="mid">至</span>
@@ -133,6 +134,7 @@
                                     class="input flex-1"
                                     v-model="editData.bizData.giftInfo[currentIndex].cashEndTime"
                                     type="datetime"
+                                     value-format="yyyy-MM-dd HH:mm:ss"
                                     placeholder="结束时间">
                                 </el-date-picker>
                             </div>
@@ -170,6 +172,7 @@
         data() {
             return {
                 editData: window.h5AllData.luckDraw,
+                h5AllData: window.h5AllData,
                 currentIndex: 0,
                 isConsolation: false,
             }
@@ -287,9 +290,7 @@
         },
         created() {
             this.$nextTick(()=> {
-                // this.giftInfo = tool.clone(this.editData.bizData.giftInfo);
-                // console.log(this.giftInfo);
-                this.h5Store.commit('set_luckDrawPopupAwarddDetail', this.editData.bizData.giftInfo[this.currentIndex]);
+                this.h5AllData.awardDetail = this.editData.bizData.giftInfo[this.currentIndex];
             })
         },
         watch: {
@@ -302,9 +303,7 @@
                 }
             },
             currentIndex(newVal) {
-                if (this.h5Store) {
-                    this.h5Store.commit('set_luckDrawPopupAwarddDetail', this.editData.bizData.giftInfo[newVal]);
-                }
+                this.h5AllData.awardDetail = this.editData.bizData.giftInfo[this.currentIndex];
             }
         }
     }

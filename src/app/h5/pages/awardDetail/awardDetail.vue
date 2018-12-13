@@ -5,7 +5,7 @@
         <div class="awardDetail">
             <div class="hostName">{{luckDraw.h5Data.awardDetailName}}</div>
             <div class="awardName layerId-26 defBgColor" style="cursor: pointer; position: relative;">{{awardDetail.name}}</div>
-            <div class="awardCodeTime codeTimeFixedRange"><em>兑换期限</em>：<span class="codeBgTime">{{awardDetail.cashStartTime | formatDatetime("yyyy-MM-dd")}}</span> - <span class="codeEndTime">{{awardDetail.cashEndTime | formatDatetime("yyyy-MM-dd")}}</span></div>
+            <div class="awardCodeTime codeTimeFixedRange"><em>兑换期限</em>：<span class="codeBgTime">{{awardDetail.cashStartTime}}</span> - <span class="codeEndTime">{{awardDetail.cashEndTime}}</span></div>
             <div class="awardDetailWarp"></div>
         </div>
         <div class="codeImgBox">
@@ -23,7 +23,7 @@
                     <div class="itemList dateLine codeTimeFixedRange">
                         <div class="title">有效日期</div>
                         <div class="box">
-                            <span class="beginTime">{{awardDetail.cashStartTime | formatDatetime("yyyy-MM-dd")}}</span> 至 <span class="endTime">{{awardDetail.cashStartTime | formatDatetime("yyyy-MM-dd")}}</span>
+                            <span class="beginTime">{{awardDetail.cashStartTime}}</span> 至 <span class="endTime">{{awardDetail.cashStartTime}}</span>
                         </div>
                     </div>
                     <div class="itemList addressLine">

@@ -24,6 +24,7 @@
                     class="input flex-1"
                     v-model="editData.bizData.baseInfo.startTime"
                     type="datetime"
+                    value-format="yyyy-MM-dd HH:mm:ss"
                     placeholder="开始时间">
                 </el-date-picker>
                 <span class="mid">至</span>
@@ -31,6 +32,7 @@
                     class="input flex-1"
                     v-model="editData.bizData.baseInfo.endTime"
                     type="datetime"
+                    value-format="yyyy-MM-dd HH:mm:ss"
                     placeholder="结束时间">
                 </el-date-picker>
             </div>

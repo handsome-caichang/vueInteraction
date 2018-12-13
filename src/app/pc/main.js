@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import vueFilters from "./assets/js/filter.js";
+import filters from "./assets/js/filter.js";
 import JDialog from "./components/popup/dialog.js";
 Vue.config.productionTip = false
 import Vuex from "vuex";
@@ -21,7 +21,8 @@ const store = new Vuex.Store({
 import tool from 'pcAssets/js/tool.js'
 
 var app = {
-  tool
+  tool,
+  filters
 };
 
 Vue.prototype.app = window.app = app;
@@ -29,7 +30,7 @@ Vue.prototype.app = window.app = app;
 Vue.use(JDialog, {root: app });
 
 Vue.mixin({
-  filters: vueFilters
+  filters: filters
 });
 
 /* eslint-disable no-new */

@@ -1,16 +1,15 @@
-
-import Vue from 'vue'
-import App from './App'
-import router from './router'
+import Vue from "vue";
+import App from "./App";
+import router from "./router";
 import Vuex from "vuex";
-import allStore from "./store"
+import allStore from "./store";
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   ...allStore
 });
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 window.h5Store = store;
 
@@ -22,7 +21,7 @@ var app = {
 };
 Vue.prototype.app = window.app = app;
 
-import shardImg from './assets/images/l_xydzp.jpg';
+import shardImg from "./assets/images/l_xydzp.jpg";
 window.h5AllData = {
   luckDraw: {
     h5Data: {
@@ -40,9 +39,12 @@ window.h5AllData = {
           count: 0, // 奖品数量
           operationNotify: "凭券联系现场工作人员兑奖", // 操作提示
           address: "请填写您的兑奖地址或者门店地址", // 兑换地址
-          telphone: "", // 联系电话
+          telphone: "88888888", // 联系电话
           cashStartTime: tool.getNowFormatDate(), // 兑换开始时间
-          cashEndTime: new Date().getTime() + 3600 * 1000 * 24 * 7, // 兑换结束时间
+          cashEndTime: app.filters.formatDatetime(
+            new Date().getTime() + 3600 * 1000 * 24 * 7,
+            "yyyy-MM-dd hh:mm:ss"
+          ), // 兑换结束时间
           isConsolation: false // 是否是安慰奖
         },
         {
@@ -53,9 +55,12 @@ window.h5AllData = {
           count: 0, // 奖品数量
           operationNotify: "凭券联系现场工作人员兑奖", // 操作提示
           address: "请填写您的兑奖地址或者门店地址", // 兑换地址
-          telphone: "", // 联系电话
+          telphone: "88888888", // 联系电话
           cashStartTime: tool.getNowFormatDate(), // 兑换开始时间
-          cashEndTime: new Date().getTime() + 3600 * 1000 * 24 * 7, // 兑换结束时间
+          cashEndTime: app.filters.formatDatetime(
+            new Date().getTime() + 3600 * 1000 * 24 * 7,
+            "yyyy-MM-dd hh:mm:ss"
+          ), // 兑换结束时间
           isConsolation: false // 是否是安慰奖
         },
         {
@@ -66,9 +71,12 @@ window.h5AllData = {
           count: 0, // 奖品数量
           operationNotify: "凭券联系现场工作人员兑奖", // 操作提示
           address: "请填写您的兑奖地址或者门店地址", // 兑换地址
-          telphone: "", // 联系电话
+          telphone: "88888888", // 联系电话
           cashStartTime: tool.getNowFormatDate(), // 兑换开始时间
-          cashEndTime: new Date().getTime() + 3600 * 1000 * 24 * 7, // 兑换结束时间
+          cashEndTime: app.filters.formatDatetime(
+            new Date().getTime() + 3600 * 1000 * 24 * 7,
+            "yyyy-MM-dd hh:mm:ss"
+          ), // 兑换结束时间
           isConsolation: false // 是否是安慰奖
         }
       ],
@@ -76,7 +84,10 @@ window.h5AllData = {
         activeInfo: "点击“开始”转盘开始转动，最终指针指着的即为您所中的奖品。",
         name: "参与活动赢大奖", // 活动名称
         startTime: tool.getNowFormatDate(), // 开始时间
-        endTime: new Date().getTime() + 3600 * 1000 * 24 * 7, // 结束时间
+        endTime: app.filters.formatDatetime(
+          new Date().getTime() + 3600 * 1000 * 24 * 7,
+          "yyyy-MM-dd hh:mm:ss"
+        ), // 结束时间
         limitCount: 10000, // 限制人数，-1表示不限制
         isShowUserCount: true, // 是否显示参与人数
         visualUserCount: 0, // 虚拟参与人数
@@ -92,25 +103,32 @@ window.h5AllData = {
       advancedSetting: {
         isCanShare: true, // 是否能够分享
         shareImage: shardImg, //  必须
-        shareWinContent: "​轻轻松松就能抽到大奖，积攒多年的人品终于有用了，你也赶紧来抽奖吧！！", //   中奖分享文案
+        shareWinContent:
+          "​轻轻松松就能抽到大奖，积攒多年的人品终于有用了，你也赶紧来抽奖吧！！", //   中奖分享文案
         shareNowinContent: "​我已经在活动中抽到了奖品，你也快来抽大奖吧！" //    没中奖分享文案
       }
     }
   },
   awardDetail: {
-    name: "ffsg",
-    id: "32523324",
-    cashStartTime: 1543996827000,
-    cashEndTime: 1543996827000,
-    telphone: "535",
-    address: "23523",
-    operationNotify: "凭券联系现场工作人员兑奖"
+    giftId: "1",
+    id: "", // id
+    levelName: "一等奖", // 奖品等级名称
+    name: "价值100元礼品", // 奖品名称
+    count: 0, // 奖品数量
+    operationNotify: "凭券联系现场工作人员兑奖", // 操作提示
+    address: "请填写您的兑奖地址或者门店地址", // 兑换地址
+    telphone: "88888888", // 联系电话
+    cashStartTime: tool.getNowFormatDate(), // 兑换开始时间
+    cashEndTime: app.filters.formatDatetime(
+      new Date().getTime() + 3600 * 1000 * 24 * 7,
+      "yyyy-MM-dd hh:mm:ss"
+    ), // 兑换结束时间
+    isConsolation: false // 是否是安慰奖
   }
 };
 
-
 Vue.mixin({
-    filters: filters
+  filters: filters
 });
 
 /* eslint-disable no-new */
