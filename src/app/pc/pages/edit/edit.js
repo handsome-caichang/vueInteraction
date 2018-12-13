@@ -4,23 +4,23 @@ export const editMixin = {
             leftList: [
                 {
                     name: '首页',
-                    type: 'home',
+                    type: 'baseSet',
                     data: 'luckDraw'
                 },
                 {
                     name: '奖品详情',
-                    type: 'detail',
-                    data: 'awardDetail/123',
+                    type: 'prizeSet',
+                    data: 'awardDetail/test',
                 },
                 {
                     name: '中奖页面',
                     type: "awardYes",
-                    data: "1",
+                    data: "2",
                 },
                 {
                     name: '没中奖页',
                     type: 'awardNo',
-                    data: '2'
+                    data: '1'
                 },
             ],
         }

@@ -9,7 +9,18 @@
             </div>
             <div class="content flex-1">
                 <div class="main">
-                    <input v-model="cloneH5Data.awardDetailName" @input="awardDetailChange" class="activeName input mainInput name" type="text"/>
+                    <input v-model="luckDraw.h5Data.awardDetailName" class="activeName input mainInput name" type="text"/>
+                </div>
+            </div>
+            <div class="flag">*</div>
+        </div>
+        <div class="settingLine actNameSetting">
+            <div class="leftTitle">
+                <span class="name">详情显示：</span>
+            </div>
+            <div class="content flex-1">
+                <div class="main">
+                    <input v-model="luckDraw.h5Data.awardDetaiInfo" class="activeName input mainInput name" type="text"/>
                 </div>
             </div>
             <div class="flag">*</div>
@@ -21,46 +32,21 @@ import {mapState, mapMutations} from 'vuex'
     export default {
         name: 'templateSet',
         props: {
-            iframeConentObj: {
-                type: Object,
-                default() {
-                    return {
-                        
-                    }
-                }
-            },
-            h5Store: {
-                type: Object,
-                default() {
-                    return {
-                        
-                    }
-                }
-            }
         },
         computed: {
-            ...mapState([
-                'h5Data'
-            ])
+            // ...mapState([
+            //     'h5Data'
+            // ])
         },
         data() {
-            return {
-                cloneH5Data: null,
-            }
+            return window.h5AllData
         },
         methods: {
-            ...mapMutations([
-                'set_h5Data'
-            ]),
-            awardDetailChange() {
-                this.h5Store.commit('set_h5Data', this.cloneH5Data);
-            }
+            
         },
         created() {
-            this.cloneH5Data = app.tool.clone(this.h5Data);
         },
         beforeDestroy() {
-            this.set_h5Data(this.cloneH5Data);
         },
     }
 </script>

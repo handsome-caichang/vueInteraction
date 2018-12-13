@@ -10,7 +10,7 @@ export default {
       giftInfo: [
         {
           id: "", // id
-          leveName: "一等奖", // 奖品等级名称
+          levelName: "一等奖", // 奖品等级名称
           name: "", // 奖品名称
           count: 0, // 奖品数量
           operationNotify: "凭券联系现场工作人员兑奖", // 操作提示
@@ -22,6 +22,7 @@ export default {
         }
       ],
       baseInfo: {
+        activeInfo: "点击“开始”转盘开始转动，最终指针指着的即为您所中的奖品。", // 活动说明
         name: "参与活动赢大奖", // 活动名称
         startTime: "", // 开始时间
         endTime: "", // 结束时间

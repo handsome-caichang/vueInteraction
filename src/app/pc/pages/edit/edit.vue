@@ -58,7 +58,7 @@ export default {
     mixins: [editMixin],
     data() {
         return {
-            checked: 'home',
+            checked: 'baseSet',
             list: [
                 {
                     name: '基础设置',
@@ -98,10 +98,14 @@ export default {
             if (this.checked != item.type)  {
                 this.checked = item.type;
                 if (item.type == 'awardYes' || item.type == 'awardNo') {
+                    if (item.type == 'awardYes') {
+                        this.h5Store.commit('set_luckDrawPopupAwarddDetail', this.editData.bizData.giftInfo[0]);
+                    }
                     this.iframeConentObj.$router.replace('/luckDraw')
                     this.h5Store.commit('set_luckDrawPopupAwardFalg', true);
                     this.h5Store.commit('set_luckDrawPopupAwardType', item.data);
                 }else {
+                    this.currentTab = this.checked;
                     this.h5Store.commit('set_luckDrawPopupAwardFalg', false);
                     this.iframeConentObj.$router.replace(`/${item.data}`)
                 }
@@ -128,7 +132,7 @@ export default {
             this.$refs.iframeConent.onload = function () {
                 that.iframeConentObj = this.contentWindow.iframeH5Vue;
                 that.h5Store = this.contentWindow.h5Store;
-                console.log(that);
+                window.h5AllData = this.contentWindow.h5AllData;
             }
         })
     }

@@ -5,7 +5,7 @@
                 <div class="awardNums commBg">
                     <span class="topAwardExplain text">请设置活动需要派发的奖项</span>
                     <div class="comfortCheckbox">
-                        <input type="checkbox" id="comfortSetting" :disabled="editData.bizData.giftInfo.length >= 5" v-model="isConsolation" class="ng-untouched ng-valid ng-dirty ng-valid-parse">
+                        <input type="checkbox" id="comfortSetting" :disabled="editData.bizData.giftInfo.length >= 6" v-model="isConsolation" class="ng-untouched ng-valid ng-dirty ng-valid-parse">
                         <label for="comfortSetting" style="margin: 0px;">设置安慰奖</label>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="awardNumOptBox">
                         <button  class="awardNumOpt pointer delAwardNum" :class="{'disabled': isConsolation ? (editData.bizData.giftInfo.length < 3) : (editData.bizData.giftInfo.length < 2)}" :disabled="isConsolation ? editData.bizData.giftInfo.length < 3 : editData.bizData.giftInfo.length < 2"  @click="del(false)"></button>
-                        <button  class="awardNumOpt pointer addAwardNum" :class="{'disabled': editData.bizData.giftInfo.length >= 5}"  :disabled="editData.bizData.giftInfo.length >= 5" @click="add(false)" ></button>
+                        <button  class="awardNumOpt pointer addAwardNum" :class="{'disabled': editData.bizData.giftInfo.length >= 6}"  :disabled="editData.bizData.giftInfo.length >= 6" @click="add(false)" ></button>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="content flex-1">
                             <div class="main">
-                                <input v-model="editData.bizData.giftInfo[currentIndex].leveName" class="awardStyle input mainInput ng-pristine ng-untouched ng-valid" type="text">
+                                <input v-model="editData.bizData.giftInfo[currentIndex].levelName" class="awardStyle input mainInput ng-pristine ng-untouched ng-valid" type="text">
                             </div>
                         </div>
                         <div class="flag">*</div>
@@ -157,18 +157,27 @@
                         
                     }
                 }
+            },
+            h5Store: {
+                type: Object,
+                default() {
+                    return {
+                        
+                    }
+                }
             }
         },
         data() {
             return {
+                editData: window.h5AllData.luckDraw,
                 currentIndex: 0,
                 isConsolation: false,
             }
         },
          computed: {
-            ...mapState([
-                'editData',
-            ]),
+            // ...mapState([
+            //     'editData',
+            // ]),
         },
         methods: {
             tabName(item, index) {
@@ -192,20 +201,23 @@
                         case 5:
                             return '奖项五';
                             break;
+                        case 6:
+                            return '奖项六';
+                            break;
                         default: return '奖项一'
                     }
                 }
             },
-            ...mapMutations([
-                'set_editData'
-            ]),
+            // ...mapMutations([
+            //     'set_editData'
+            // ]),
             cloneEdit() {
-                return tool.clone(this.editData);
+                // return tool.clone(this.editData);
             },
             initInfoBase(flag) { // true 代表安慰奖 
                 let giftInfoBase = {
                     id: '',  // id 
-                    leveName: "", // 奖品等级名称
+                    levelName: "", // 奖品等级名称
                     name: '', // 奖品名称
                     count: 0, // 奖品数量
                     operationNotify: '凭券联系现场工作人员兑奖', // 操作提示
@@ -217,46 +229,46 @@
                 };
                 giftInfoBase.isConsolation = flag;
                 if (flag) {
-                    giftInfoBase.leveName = '安慰奖'
+                    giftInfoBase.levelName = '安慰奖'
                 }else {     
-                    giftInfoBase.leveName = '奖项' + this.transNumber(this.editData.bizData.giftInfo.length + 1);
+                    giftInfoBase.levelName = '奖项' + this.transNumber(this.editData.bizData.giftInfo.length + 1);
                 }
                 console.log(giftInfoBase);
                 return giftInfoBase;
             },
             add(flag = false) {
-                let edit = this.cloneEdit();
-                let lastList = edit.bizData.giftInfo.pop();  // 记录最后一个安慰奖
+                // let edit = this.cloneEdit();
+                let lastList = this.editData.bizData.giftInfo.pop();  // 记录最后一个安慰奖
                 if (lastList.isConsolation) {
-                    edit.bizData.giftInfo.push(this.initInfoBase(flag));
-                    edit.bizData.giftInfo.push(lastList);
+                     this.editData.bizData.giftInfo.push(this.initInfoBase(flag));
+                     this.editData.bizData.giftInfo.push(lastList);
                 }else {
-                    edit.bizData.giftInfo.push(lastList);
-                    edit.bizData.giftInfo.push(this.initInfoBase(flag));
+                     this.editData.bizData.giftInfo.push(lastList);
+                     this.editData.bizData.giftInfo.push(this.initInfoBase(flag));
                 }
-                this.set_editData(edit);
+                // this.set_editData(edit);
                 if (flag) {
-                    this.currentIndex = edit.bizData.giftInfo.length - 1;
+                    this.currentIndex =  this.editData.bizData.giftInfo.length - 1;
                 }else if (lastList.isConsolation) {
-                    this.currentIndex = edit.bizData.giftInfo.length - 2;
+                    this.currentIndex =  this.editData.bizData.giftInfo.length - 2;
                 }else {
-                    this.currentIndex = edit.bizData.giftInfo.length - 1;
+                    this.currentIndex =  this.editData.bizData.giftInfo.length - 1;
                 }
             },
             del(flag = false) {
-                let edit = this.cloneEdit();
-                let lastList = edit.bizData.giftInfo.pop();  // 记录最后一个安慰奖
+                // let edit = this.cloneEdit();
+                let lastList =  this.editData.bizData.giftInfo.pop();  // 记录最后一个安慰奖
                 if(lastList.isConsolation) {
                     if (!flag) { // 如果有安慰奖
-                        edit.bizData.giftInfo.pop();
-                        edit.bizData.giftInfo.push(lastList)
+                         this.editData.bizData.giftInfo.pop();
+                         this.editData.bizData.giftInfo.push(lastList)
                     }
                 }
-                this.set_editData(edit);
+                // this.set_editData(edit);
                 if (lastList.isConsolation && !flag) {
-                    this.currentIndex = edit.bizData.giftInfo.length - 2;
+                    this.currentIndex =  this.editData.bizData.giftInfo.length - 2;
                 }else {
-                    this.currentIndex = edit.bizData.giftInfo.length - 1;
+                    this.currentIndex =  this.editData.bizData.giftInfo.length - 1;
                 }
             }, 
             transNumber(num) {
@@ -284,6 +296,7 @@
             this.$nextTick(()=> {
                 // this.giftInfo = tool.clone(this.editData.bizData.giftInfo);
                 // console.log(this.giftInfo);
+                this.h5Store.commit('set_luckDrawPopupAwarddDetail', this.editData.bizData.giftInfo[this.currentIndex]);
             })
         },
         watch: {
@@ -293,6 +306,11 @@
                     this.add(true);
                 }else {
                     this.del(true);
+                }
+            },
+            currentIndex(newVal) {
+                if (this.h5Store) {
+                    this.h5Store.commit('set_luckDrawPopupAwarddDetail', this.editData.bizData.giftInfo[newVal]);
                 }
             }
         }

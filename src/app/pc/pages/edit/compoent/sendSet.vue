@@ -15,9 +15,9 @@
                     </div>
                     <div class="content flex-1">
                         <div class="main">
-                            <input type="radio" id="noLimitDrawTimes" v-model="editData.bizData.lotteryInfo.totalLimit" :value="'-1'" name="isLimitDrawTimes">
+                            <input type="radio" id="noLimitDrawTimes" v-model="editData.bizData.lotteryInfo.totalLimit" :value="-1" name="isLimitDrawTimes">
                             <label for="noLimitDrawTimes">不限</label>
-                            <input type="radio" :class="{'idChecked': test}" id="limitDrawTimes" v-model="editData.bizData.lotteryInfo.totalLimit" name="isLimitDrawTimes">
+                            <input type="radio" :class="{'idChecked': test}" id="limitDrawTimes" v-model="editData.bizData.lotteryInfo.totalLimit" :value="1" name="isLimitDrawTimes">
                             <label for="limitDrawTimes">限制</label>
                             <span class="afterRadio" v-if="editData.bizData.lotteryInfo.totalLimit != -1">每人最多有
                                 <input max="99" min="1" v-model="editData.bizData.lotteryInfo.totalLimit" class="input onlyNum minInput" type="number">次</span>
@@ -85,18 +85,21 @@
                         
                     }
                 }
-            }
+            },
         },
         data() {
             return {
+                editData: window.h5AllData.luckDraw,
+                lotteryInfo: window.h5AllData.luckDraw.bizData.lotteryInfo
             }
         },
         computed: {
-            ...mapState([
-                'editData',
-            ]),
+            // ...mapState([
+            //     'editData',
+            // ]),
             test() {
-                if (this.editData.bizData.lotteryInfo.totalLimit == -1) {
+                console.log(this.lotteryInfo)
+                if (this.lotteryInfo.totalLimit == -1) {
                     return false;
                 }else {
                     return true;
@@ -105,6 +108,9 @@
         },
         methods: {
            
+        },
+        created() {
+            // this.$set(this.editData.bizData.lotteryInfo, 'totalLimit');
         }
     }
 </script>

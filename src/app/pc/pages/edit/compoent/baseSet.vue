@@ -67,6 +67,16 @@
             </div>
         </div>
     </div>
+    <div class="settingLine">
+        <div class="leftTitle">
+            <span class="name">活动说明：</span>
+        </div>
+        <div class="content flex-1">
+            <div class="main">
+                <textarea v-model="editData.bizData.baseInfo.activeInfo" class="input scrollBox commTextarea"></textarea>
+            </div>
+        </div>
+    </div>
     <p class="underLineWay">
         <span class="fontWeight">高级选项</span>
     </p>
@@ -141,8 +151,7 @@
             }
         },
         data() {
-            return {
-            }
+            return {}
         },
         computed: {
             ...mapState([

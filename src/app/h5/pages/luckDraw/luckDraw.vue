@@ -3,7 +3,7 @@
     <div class="main home" style="height: 100%;">
         <div class="editTarget-homeBoxBg hd-Special-bgImgInfo">
             <div class="titleImg titleDown">
-                <img id="titleBox" class="editTarget-titleBox" :src="title"/>
+                <img id="titleBox" class="editTarget-titleBox" :src="titleImg"/>
             </div>
             <div class="outercont">
                 <div class="outer-cont defBgColor" style="cursor: pointer; z-index: 4;" :class="rotateClass"> 
@@ -20,11 +20,11 @@
             <div class="content">
                 <div style="margin-bottom:70px;margin-top:20px;">
                     <div class="center_txt">
-                        <div class="txt_style_1 joinNumLine ">已有<span class="ipt_num joinNumLineText">62614</span>人参与</div>
+                        <div class="txt_style_1 joinNumLine " v-if="luckDraw.bizData.baseInfo.isShowUserCount">已有<span class="ipt_num joinNumLineText">{{luckDraw.bizData.baseInfo.userCount + luckDraw.bizData.baseInfo.visualUserCount}}</span>人参与</div>
                         <div class="txt_style_1 ">
                             <div class="dayDraw" style="font-size: 0.6rem; color: rgb(250, 82, 8);">
                                 您今天还有
-                                <span class="ipt_num specil dayDrawCount" style="font-size: 0.6rem; color: rgb(250, 82, 8);">3</span>
+                                <span class="ipt_num specil dayDrawCount" style="font-size: 0.6rem; color: rgb(250, 82, 8);">{{luckDraw.bizData.lotteryInfo.dailyLimit}}</span>
                                 次抽奖机会
                             </div>
                         </div>
@@ -32,18 +32,18 @@
                 </div>
                 <div id="myAwardBox" class="poupMainBox" style="background-color: rgb(254, 103, 95); border-color: rgb(255, 255, 255);">
                     <img class="titleImgBox" :src="myAwardImg"/>
-                    <div class="myAwardInfo rowSpacing">
-                        <div class="award-box">
+                    <div class="myAwardInfo rowSpacing"  v-if="giftInfo.length != 0">
+                        <div class="award-box" v-for="(item, index) in giftInfo" :key="index">
                             <div class="awardLimitBox">
-                                <span class="awardText awardNameDef">一等奖：价值100元礼品</span>
+                                <span class="awardText awardNameDef">{{item.leveName}}：{{item.name}}</span>
                             </div>
                             <span class="awardInfoDetail" @click="gotoDetail">查看详情</span>
                         </div>
                         <div class="infoDeviceLine"></div>
                     </div>
-                    <!-- <div class="myAwardInfo rowSpacing">
+                    <div class="myAwardInfo rowSpacing" v-if="giftInfo.length == 0">
                         <div style="line-height: 2.6rem; padding-left: 0.05rem;font-size: 0.75rem;">暂无中奖记录</div>
-                    </div> -->
+                    </div>
                 </div>
                 <div id="actExplain" class="poupMainBox " style="background-color: rgb(254, 103, 95); border-color: rgb(255, 255, 255);">
                     <img class="titleImgBox" :src="activeRule"/>
@@ -55,15 +55,7 @@
                                     <div class="awardTitleText" style="font-size: 0.75rem; color: rgb(255, 255, 255);">活动奖品</div>
                                 </div>
                                 <div id="awardLineBox" class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);">
-                                    <div class="unComfortLine awardItem "><span class="awardStyle">一等奖</span>: <span class="award">价值100元礼品</span></div>
-                                    <div class="unComfortLine awardItem "><span class="awardStyle">二等奖</span>: <span class="award">价值50元礼品</span></div>
-                                    <div class="unComfortLine awardItem "><span class="awardStyle">三等奖</span>: <span class="award">价值10元礼品</span></div>
-                                    <div class="unComfortLine awardItem "><span class="awardStyle">四等奖</span>: <span class="award">价值5元小礼品</span></div>
-                                    <div class="unComfortLine awardItem "><span class="awardStyle">五等奖</span>: <span class="award">价值5元小礼品</span></div>
-                                    <div class="unComfortLine awardItem "><span class="awardStyle">六等奖</span>: <span class="award">价值5元小礼品</span></div>
-                                    <div class="unComfortLine awardItem "><span class="awardStyle">七等奖</span>: <span class="award">价值5元小礼品</span></div>
-                                    <div class="unComfortLine awardItem "><span class="awardStyle">八等奖</span>: <span class="award">价值5元小礼品</span></div>
-                                    <div class="awardItem anwei "><span class="awardStyle">安慰奖</span>: <span class="award">价值5元小礼品</span></div>
+                                    <div class="awardItem" v-for="(item, index) in giftInfo" :key="index"><span class="awardStyle">{{item.leveName}}</span>: <span class="award">{{item.name}}</span></div>
                                 </div>
                                 <div class="infoDeviceLine ruleBoxLine"></div>
                             </div>
@@ -71,14 +63,14 @@
                                 <div class="titleTextBox">
                                     <div class="awardTitleText" style="font-size: 0.75rem; color: rgb(255, 255, 255);">活动时间</div>
                                 </div>
-                                <div class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);"><span id="startDate">2018年5月9日 13:48</span>-<span id="endDate">2018年5月16日 13:48</span></div>
+                                <div class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);"><span id="startDate">{{luckDraw.bizData.baseInfo.startTime}}</span> — <span id="endDate">{{luckDraw.bizData.baseInfo.endTime}}</span></div>
                                 <div class="infoDeviceLine ruleBoxLine"></div>
                             </div>
                             <div id="explainBox" class="rowSpacing poupLine" data-sortkey="e">
                                 <div class="titleTextBox">
                                     <div class="awardTitleText" style="font-size: 0.75rem; color: rgb(255, 255, 255);">活动说明</div>
                                 </div>
-                                <div id="exlainInfo" class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);">点击“开始”转盘开始转动，最终指针指着的即为您所中的奖品。</div>
+                                <div class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);"> {{luckDraw.bizData.baseInfo.activeInfo}}</div>
                                 <div class="infoDeviceLine ruleBoxLine"></div>
                             </div>
                         </div>
@@ -108,8 +100,10 @@ import zp2 from './image/zp2.png'
 import zp3 from './image/zp3.png'
 import zp4 from './image/zp4.png'
 import zp5 from './image/zp5.png'
+import zp6 from './image/zp6.png'
+import zp900 from './image/zp900.png'
 import startBtn from './image/startBtn.png'
-import title from './image/title.png'
+import titleImg from './image/title.png'
 import myAwardImg from './image/myAwardImg.png'
 import activeRule from './image/activeRuleImg.png'
 import {mapState,mapMutations} from 'vuex'
@@ -120,57 +114,22 @@ export default {
             device,
             rotatePan,
             startBtn,
-            title,
+            titleImg,
             myAwardImg,
             activeRule,
-            awardList: [ // 当前奖品
-                {
-                    levelName: '一等奖',
-                    giftsId: '1',
-                },
-                {
-                    levelName: '二等奖',
-                    giftsId: '2',
-                },
-                {
-                    levelName: '三等奖',
-                    giftsId: '3',
-                },
-            ],
-            awardDetail: {  // 当前中奖的详情
-                levelName: '一等奖',
-                name: '价值300元的礼品',
-                giftsId: '1',
-                id: '45235'
-            },
+            // awardDetail: {  // 当前中奖的详情
+            //     levelName: '一等奖',
+            //     name: '价值300元的礼品',
+            //     giftsId: '1',
+            //     id: '45235'
+            // },
+            awardDetail: null,
             loadinData: false, // 加载抽奖
             zhuanpanData: [  // 转盘的数组
-                {
-                    img: zp0,
-                    giftsId: '0'
-                },
-                {
-                    img: zp0,
-                    giftsId: '0'
-                },
-                {
-                    img: zp2,
-                    giftsId: '2'
-                },
-                {
-                    img: zp0,
-                    giftsId: '0'
-                },
-                {
-                    img: zp3,
-                    giftsId: '3'
-                },
-                {
-                    img: zp4,
-                    giftsId: '4'
-                },
             ],
             listCurrentIndex: -1, // 当前中奖的在转盘列表的索引
+            luckDraw: window.h5AllData.luckDraw,
+            giftInfo: window.h5AllData.luckDraw.bizData.giftInfo
         }
     },
     computed: {
@@ -305,9 +264,74 @@ export default {
         gotoDetail() {
             this.$router.push('awardDetail/123');
         },
+        zhuanpanPush(index, img, isNothing = true) {
+            if (isNothing) {
+                this.zhuanpanData.push({
+                    img: zp0,
+                    giftsId: '-1'
+                });
+            }
+            if (this.giftInfo[index].isConsolation) { // 是否是安慰奖
+                this.giftInfo[index].img = zp900;
+            }else {
+                this.giftInfo[index].img = img;
+            }
+            this.zhuanpanData.push(this.giftInfo[index]);
+        },
+        resetZhuanpanData() {
+            let lengs = this.giftInfo.length;
+            if (lengs == 0) return;
+            this.zhuanpanData = [];
+            this.zhuanpanData.push({
+                img: zp0,
+                giftsId: '-1'
+            });
+            this.giftInfo[0].img = zp1;
+            this.zhuanpanData.push(this.giftInfo[0]); // 2 个了
+            if (lengs == 1) {
+                 this.zhuanpanData.push({
+                    img: zp0,
+                    giftsId: '-1'
+                });
+                this.zhuanpanData.push({
+                    img: zp0,
+                    giftsId: '-1'
+                });
+            }
+            if (lengs == 2) {
+                this.zhuanpanPush(1, zp2);
+            }
+            if (lengs == 3) {
+                this.zhuanpanPush(1, zp2);
+                this.zhuanpanPush(2, zp3);
+            }
+            if (lengs == 4) {
+                this.zhuanpanPush(1, zp2, false);
+                this.zhuanpanPush(2, zp3, false);
+                this.zhuanpanPush(3, zp4);
+            }
+            if (lengs == 5) {
+                this.zhuanpanPush(1, zp2);
+                this.zhuanpanPush(2, zp3, false);
+                this.zhuanpanPush(3, zp4);
+                this.zhuanpanPush(4, zp5, false);
+            }
+            if (lengs == 6) {
+                this.zhuanpanPush(1, zp2, false);
+                this.zhuanpanPush(2, zp3, false);
+                this.zhuanpanPush(3, zp4);
+                this.zhuanpanPush(4, zp5, false);
+                this.zhuanpanPush(5, zp6, false);
+            }
+        }
     },
     created() {
-       
+        this.resetZhuanpanData();
+    },
+    watch: {
+        giftInfo(newVal) {
+            this.resetZhuanpanData();
+        }
     }
 };
 

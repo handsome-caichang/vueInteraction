@@ -8,8 +8,8 @@
     <div v-if="type == '2'" class="resule-gift-box" style="opacity: 1;">
         <img class=" abs slaveImg" :src="successBg">
         <img class="abs awardImg" :style="resultStyle('2')" :src="theGift">
-        <p class="abs resuleText" :style="resultStyle('3')">{{awardDetail.name}}</p>
-        <p class="abs resuleText" :style="resultStyle('4')">{{awardDetail.levelName}}</p>
+        <p class="abs resuleText" :style="resultStyle('3')">{{awardDetail.levelName}}</p>
+        <p class="abs resuleText" :style="resultStyle('4')">{{awardDetail.name}}</p>
         <img class="abs btnImg" :style="resultStyle('5')" :src="seeAward" @click="tralg('detail')">
     </div>
 </div>
