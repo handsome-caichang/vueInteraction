@@ -59,8 +59,8 @@
         </div>
         <div class="content flex-1">
             <div class="main" >
-                <input type="radio" id="noLimitNum" v-model="editData.bizData.baseInfo.limitCount" :value="'-1'" name="isLimitNum"/><label for="noLimitNum">不限</label>
-                <input type="radio" :class="{'idChecked': test}" id="LimitNum" v-model="editData.bizData.baseInfo.limitCount" name="isLimitNum" /><label for="LimitNum">限制</label>
+                <input type="radio" id="noLimitNum" v-model="editData.bizData.baseInfo.limitCount" :value="-1" name="isLimitNum"/><label for="noLimitNum">不限</label>
+                <input type="radio" :class="{'idChecked': test}" id="LimitNum" v-model="editData.bizData.baseInfo.limitCount" :value="10000" name="isLimitNum" /><label for="LimitNum">限制</label>
                 <span class="afterRadio" v-if="editData.bizData.baseInfo.limitCount != -1">
                     <input type="number" min='0' max="999999" v-model.number="editData.bizData.baseInfo.limitCount" class="input onlyNum minInput" />人参与
                 </span>
@@ -78,7 +78,7 @@
         </div>
     </div>
     <p class="underLineWay">
-        <span class="fontWeight">高级选项</span>
+        <span class="fontWeight">分享设置</span>
     </p>
     <div class="settingLine verTipsBox">
         <div class="leftTitle">
@@ -137,9 +137,11 @@
 </div>
 </template>
 <script>
+    import {editMixin} from '../edit.js';
     import { mapState } from 'vuex'
     export default {
         name: 'baseSet',
+        mixins: [editMixin],
         props: {
             iframeConentObj: {
                 type: Object,
@@ -154,9 +156,6 @@
             return {}
         },
         computed: {
-            ...mapState([
-                'editData',
-            ]),
             test() {
                 if (this.editData.bizData.baseInfo.limitCount != -1) {
                     return true;
@@ -168,6 +167,12 @@
         methods: {
             selectSpecImg() {
                 this.$refs.theSpecialDesigan.click();
+            }
+        },
+        watch: {
+            iframeConentObj(newVal) {
+                this.editData = window.h5AllData.luckDraw;
+                console.log(this.editData);
             }
         }
     }

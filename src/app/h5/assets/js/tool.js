@@ -17,7 +17,6 @@ tool.getNowFormatDate = function() {
         + seperator2 + date.getSeconds();
     return currentdate;
 }
-
 tool.parseQuery = function (str = location.search) {
     let qs = str.indexOf("?") === -1 ? str : str.split('?')[1];
     if (qs.length > 0) {

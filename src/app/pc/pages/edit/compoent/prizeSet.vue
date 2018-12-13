@@ -175,9 +175,6 @@
             }
         },
          computed: {
-            // ...mapState([
-            //     'editData',
-            // ]),
         },
         methods: {
             tabName(item, index) {
@@ -208,23 +205,19 @@
                     }
                 }
             },
-            // ...mapMutations([
-            //     'set_editData'
-            // ]),
             cloneEdit() {
-                // return tool.clone(this.editData);
             },
             initInfoBase(flag) { // true 代表安慰奖 
                 let giftInfoBase = {
                     id: '',  // id 
                     levelName: "", // 奖品等级名称
-                    name: '', // 奖品名称
+                    name: '价值5元小礼品', // 奖品名称
                     count: 0, // 奖品数量
                     operationNotify: '凭券联系现场工作人员兑奖', // 操作提示
                     address: '请填写您的兑奖地址或者门店地址', // 兑换地址
                     telphone: '', // 联系电话
-                    cashStartTime: '', // 兑换开始时间
-                    cashEndTime: '', // 兑换结束时间
+                    cashStartTime: app.tool.getNowFormatDate(), // 兑换开始时间
+                     cashEndTime: new Date().getTime() + 3600 * 1000 * 24 * 7, // 兑换结束时间
                     isConsolation: false // 是否是安慰奖
                 };
                 giftInfoBase.isConsolation = flag;

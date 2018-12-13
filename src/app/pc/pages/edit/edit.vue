@@ -17,7 +17,7 @@
                     <div class="phoneBox">
                         <div class="phone">
                             <div class="wxTitle">
-                                <div class="actName" ng-bind="game.name">{{editData.bizData.baseInfo.name}}</div>
+                                <div class="actName" >{{baseInfo.name}}</div>
                             </div>
                             <div class="gameContent">
                                 <iframe ref="iframeConent" src="http://localhost:8080/h5"
@@ -80,15 +80,15 @@ export default {
             currentTab: 'baseSet',
             iframeConentObj: {},
             h5Store: {},
+            baseInfo: {
+                name: ''
+            }
         }
     },
     computed: {
         currentTabComponent() {
             return this.currentTab
         },
-        ...mapState([
-            'editData',
-        ]),
     },
     methods: {
         ...mapMutations([
@@ -133,6 +133,9 @@ export default {
                 that.iframeConentObj = this.contentWindow.iframeH5Vue;
                 that.h5Store = this.contentWindow.h5Store;
                 window.h5AllData = this.contentWindow.h5AllData;
+                that.editData = this.contentWindow.h5AllData.luckDraw;
+                that.baseInfo = that.editData.bizData.baseInfo;
+                console.log(that.editData)
             }
         })
     }
