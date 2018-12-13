@@ -21,6 +21,8 @@ var app = {
 };
 Vue.prototype.app = window.app = app;
 
+
+
 import shardImg from "./assets/images/l_xydzp.jpg";
 window.h5AllData = {
   luckDraw: {
