@@ -1,13 +1,13 @@
 <template>
 <div class="manageTop" style="min-width: 384px;" v-if="headerType == '1'">
     <div class="mangeTopLeftPart">
-        <a class="logoParent" href="http://hd.fkw.com" target="_blank">
+        <a class="logoParent" href="http://www.xiaogj.com" target="_blank">
                 <div class="logo">
-                    <img class="logo_style4" src="//g-hd.faisys.com/version2/image/hdLogoNew.png?v=555">
+                    <img class="logo_style4" :src="logonImg">
                 </div>
             </a>
         <div class="product">
-            <a href="http://i.fkw.com" target="_blank">凡科网旗下产品</a>
+            <a href="http://www.xiaogj.com" target="_blank">校管家旗下产品</a>
         </div>
     </div>
     <div class="manageInfoBox">
@@ -28,8 +28,14 @@
 import {
     mapState
 } from 'vuex';
+import logonImg from '../assets/images/logo.png'
 export default {
     name: 'headerContainer',
+    data() {
+        return {
+            logonImg
+        }
+    },
     computed: {
         ...mapState([
             'headerType',

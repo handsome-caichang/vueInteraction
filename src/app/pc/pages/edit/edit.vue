@@ -1,7 +1,7 @@
 <template>
 <div class="version3">
     <div class="container editActContainer">
-        <edit-header @saveView="saveView"></edit-header>
+        <edit-header @saveView="saveView" @close="close"></edit-header>
         <div class="editActiveWarp">
             <div id="editActive" class="editActive editActBox flex">
                 <div class="topBarWarp">
@@ -115,7 +115,13 @@ export default {
             this.currentTab = item.component;
         },
         saveView() {
-            console.log(this.editData);
+            console.log(window.h5AllData);
+        },
+        close() {
+            let flag = window.confirm('系统可能不会保存您所做的更改。');
+            if (flag) {
+                this.$router.replace('/home')
+            }
         }
     },
     components: {

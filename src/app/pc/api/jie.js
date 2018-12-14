@@ -24,3 +24,9 @@ export function getUser(params) {
 export function getList(params) {
     return axios.ajaxGet("api/activity", params);
 }
+
+
+// 获取我的活动列表
+export function getTemplateList(params) {
+    return axios.ajaxGet("api/activity/getTemplate", params);
+}

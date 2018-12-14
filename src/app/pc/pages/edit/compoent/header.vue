@@ -4,7 +4,7 @@
         <div class="headerRight">
             <div id="savePubButon" class="headBtn mbtn main-Button" @click="$emit('saveView')">预览并保存</div>
             <div id="saveButon" class="headBtn mbtn main-Button disabled">保存</div>
-            <div id="cancelButton" class="headBtn mbtn main-Button" title="退出编辑"><span class="cancelIcon"></span></div>
+            <div id="cancelButton" class="headBtn mbtn main-Button" title="退出编辑" @click="$emit('close')"><span class="cancelIcon"></span></div>
         </div>
     </div>
 </template>

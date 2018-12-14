@@ -35,18 +35,20 @@
         					</div>
                             <div class="" style="float: right;">
             					<div class="selectButtonList">
-            						<div class="J_selectButton selectButton" _selectType=2>今日</div>
-            						<div class="J_selectButton selectButton" _selectType=3>昨日</div>
-            						<div class="J_selectButton selectButton" _selectType=4>最近七日</div>
-            						<div class="J_selectButton selectButton" _selectType=5>最近30日</div>
-            						<div class="J_selectButton selectButton" _selectType=6>本月</div>
-            						<div class="J_selectButton J_activeSelectButton selectButton" _selectType=7>活动期间</div>
+            						<div class="J_selectButton J_activeSelectButton selectButton" _selectType=7>时间</div>
             					</div>
             					<div class="cusSelect">
-            						<input id="startTime" class="timeInput" type="text" placeholder="开始时间" readonly />
-            						<input id="endTime" class="timeInput" type="text" placeholder="结束时间" readonly />
-            						<div class="J_selectButton left cusSelectButton" _selectType=1><span class="icon"></span>查询</div>
-            						<div id="exportButton" class="left cusSelectButton" onclick="exportList()"><span class="icon"></span>导出</div>						
+									 <el-date-picker
+										v-model="timeValue"
+										type="daterange"
+										align="right"
+										unlink-panels
+										range-separator="至"
+										start-placeholder="开始日期"
+										end-placeholder="结束日期"
+										:picker-options="pickerOptions2">
+									</el-date-picker>
+            						<div class="J_selectButton cusSelectButton"><span class="icon"></span>查询</div>
             					</div>
                             </div>
         				</div>
@@ -91,16 +93,16 @@
         						</span>
         					</div>-->
         					<div class="statDiagramPanel">
-                                <span id="ztqs" class="right J_statDesc mainColor statDesc ztqsTips">注释？</span>
-        						<div class='statDiagramContent' style="padding-left: 30px; padding-right: 5px;">
-        							<div class='statDiagramToolBar'>
+                                <!-- <span id="ztqs" class="right J_statDesc mainColor statDesc ztqsTips">注释？</span> -->
+        						<div class='statDiagramContent' style="padding:50px 20px;">
+        							<!-- <div class='statDiagramToolBar'>
         								<div class='J_statType item' _statType='1'><span class='icon bros'></span>浏览人数</div>
         								<div class='J_statType item' _statType='2'><span class='icon part'></span>参与人数</div>
         																			
         								<div class='J_statType item' _statType='3'><span class='icon price'></span>获奖人数</div>
         								<div class='J_statType item' _statType='4'><span class='icon share'></span>分享人数</div>
-        							</div>
-        							<div id="statDagram"></div>
+        							</div> -->
+        							<div id="statDagram" style="width: 100%;min-height: 300px"></div>
         						</div>
                                 <div class="statDiagramTips" style="padding-top: 30px;">注：趋势图数据并非实时更新，5分钟统计一次，会有一定误差，以活动累计数据为准</div>
         					</div>
@@ -177,14 +179,57 @@
     </div>
 </template>
 <script>
-import Highcharts from "highcharts";
+// import Highcharts from "highcharts";
 // Load the exporting module.
-import Exporting from "highcharts/modules/exporting";
+// import Exporting from "highcharts/modules/exporting";
 // Initialize exporting module.
-Exporting(Highcharts);
-import {options} from './gameData.js'
+// Exporting(Highcharts);
+var echarts = require('echarts');
+import {options,chartDemo,option} from './gameData.js'
 export default {
   name: "gameData",
+  data() {
+	  return {
+		  statDagram: null,
+		  timeValue: '',
+		   pickerOptions2: {
+          shortcuts: [
+			  {
+					text: '今天',
+					onClick(picker) {
+						const start = new Date();
+						picker.$emit('pick', [start, start]);
+					}
+				},
+				{
+					text: '昨天',
+					onClick(picker) {
+						const end = new Date();
+						const start = new Date();
+						start.setTime(start.getTime() - 3600 * 1000 * 24);
+						picker.$emit('pick', [start, end]);
+					}
+				},
+			   {
+					text: '最近一周',
+					onClick(picker) {
+						const end = new Date();
+						const start = new Date();
+						start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+						picker.$emit('pick', [start, end]);
+					}
+				}, {
+					text: '最近一个月',
+					onClick(picker) {
+						const end = new Date();
+						const start = new Date();
+						start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+						picker.$emit('pick', [start, end]);
+					}
+				}]
+			},
+	  }
+  },
   methods: {
 	  goBack() {
 		  this.$emit('toBackGameData', -1)
@@ -192,7 +237,10 @@ export default {
   },
   created() {
       this.$nextTick(() => {
-           Highcharts.chart("statDagram", options)
+		  this.statDagram = echarts.init(document.getElementById('statDagram'));
+		  console.log(this.statDagram)
+		  this.statDagram.setOption(option);
+        //    Highcharts.chart("statDagram", chartDemo)
       })
   }
 };

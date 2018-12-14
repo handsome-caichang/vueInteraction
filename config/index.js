@@ -10,10 +10,6 @@ module.exports = {
       target: "http://192.168.0.240:4200",
       changeOrigin: true
     },
-    "/workwx.do": {
-      target: "https://smarttest.xiaogj.com",
-      changeOrigin: true
-    }
   },
   dev: {
     // Paths

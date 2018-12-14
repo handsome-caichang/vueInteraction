@@ -23,6 +23,7 @@ import BarList from './bar-list'
 import ActiveList from './active-list'
 import Destruction from './destruction'
 import GameData from './barChild/gameData.vue'
+import {getTemplateList} from 'pcApi/jie.js'
 export default {
     name: 'bar',
     data() {
@@ -50,6 +51,8 @@ export default {
             ],
             currentIndex: 0,
             currentTab: 'BarList',
+            pageIndex: 0,
+            pageSize: 10
         }
     },
     computed: {
@@ -72,6 +75,14 @@ export default {
         }
     },
     created() {
+        getTemplateList({
+            pageIndex: this.pageIndex,
+            pageSize: this.pageSize
+        }).then(res => {
+            console.log(res);
+            if (res.errorCode == 0) {
+            }
+        })
     },
     components: {
         BarList,

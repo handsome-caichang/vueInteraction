@@ -210,32 +210,44 @@ export default {
         },
         startAward() {
             this.loadinData = true;
-            setTimeout(() => { // 模拟调用接口
+            // setTimeout(() => { // 模拟调用接口
                 let res = {
                     errorCode: 0,
                     data: {
-                        levelName: '一等奖',
-                        name: '价值300元的礼品',
-                        giftsId: '3',
-                        id: '45235' 
+                        giftId: "2",
+                        id: "", // id
+                        levelName: "一等奖", // 奖品等级名称
+                        name: "价值100元礼品", // 奖品名称
+                        count: 0, // 奖品数量
+                        operationNotify: "凭券联系现场工作人员兑奖", // 操作提示
+                        address: "请填写您的兑奖地址或者门店地址", // 兑换地址
+                        telphone: "88888888", // 联系电话
+                        cashStartTime: app.tool.getNowFormatDate(), // 兑换开始时间
+                        cashEndTime: app.filters.formatDatetime(
+                            new Date().getTime() + 3600 * 1000 * 24 * 7,
+                            "yyyy-MM-dd hh:mm:ss"
+                        ), // 兑换结束时间
+                        isConsolation: false // 是否是安慰奖
                     }
                 };
                 // let res = {
                 //     errorCode: 1,
                 //     data: {
-                //         giftsId: '0',
+                //         giftId: '0',
                 //     }
                 // };
                 this.loadinData = false; 
+                console.log(this.listCurrentIndex);
                 for (let index = 0; index < this.zhuanpanData.length; index++) {
                    const element = this.zhuanpanData[index];
-                   if (res.data.giftsId == element.giftsId) {
+                   if (res.data.giftId == element.giftId) {
+                       console.log(this.listCurrentIndex);
                        this.listCurrentIndex = index;
                        break;
                    }
                 }
                 if (res.errorCode == 0) {
-                    this.h5AllData.awardDetail = res.data;
+                    window.h5AllData.awardDetail = res.data;
                     this.set_luckDrawPopupAwardType('2');
                 }else {
                     this.set_luckDrawPopupAwardType('1');
@@ -243,7 +255,7 @@ export default {
                 setTimeout( ()=> { // 转盘
                     this.set_luckDrawPopupAwardFalg(true);
                 }, 5000)
-            }, 3000)
+            // }, 3000)
         },
         tralg(type) {
             this.listCurrentIndex = -1;

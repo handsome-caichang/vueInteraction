@@ -220,7 +220,10 @@
                     address: '请填写您的兑奖地址或者门店地址', // 兑换地址
                     telphone: '', // 联系电话
                     cashStartTime: app.tool.getNowFormatDate(), // 兑换开始时间
-                     cashEndTime: new Date().getTime() + 3600 * 1000 * 24 * 7, // 兑换结束时间
+                    cashEndTime: app.filters.formatDatetime(
+                        new Date().getTime() + 3600 * 1000 * 24 * 7,
+                        "yyyy-MM-dd hh:mm:ss"
+                    ), // 兑换结束时间
                     isConsolation: false // 是否是安慰奖
                 };
                 giftInfoBase.isConsolation = flag;
