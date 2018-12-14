@@ -40,6 +40,7 @@
 
 <script>
 import {login} from 'pcApi/jie'
+import { mapMutations } from 'vuex';
 	export default {
 		name: 'login',
 		data() {
@@ -51,6 +52,9 @@ import {login} from 'pcApi/jie'
 			}
 		},
 		methods: {
+			...mapMutations([
+				'set_userInfo'
+			]),
 			togoRegister() {
 				this.$router.push('/register')
 			},
@@ -68,6 +72,7 @@ import {login} from 'pcApi/jie'
 					}).then(res => {
 						console.log(res);
 						if (res.errorCode == 0) {
+							this.set_userInfo(res.data);
 							this.$router.replace('/home')
 						}
 					})

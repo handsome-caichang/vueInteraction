@@ -76,39 +76,4 @@ axios.ajax = function(url, args) {
   });
 };
 
-
-// 给axios扩展一个'ajax'方法,用于代理'post'请求;
-axios.ajaxPut = function (url, args) {
-  // 用于解决后端NodeJS识别代理哪个后端；
-  let serverQuery = tool.parseQuery();
-  let qUrl = serverQuery.ip
-    ? url.startsWith("/")
-      ? `${serverQuery.ip}${url}`
-      : `${serverQuery.ip}/${url}`
-    : url;
-  return axios
-    .put(qUrl, qs.stringify({ ...args, UsePlatform: 1 }))
-    .then(res => {
-      let errorcode = res.data.errorCode,
-        errormsg = res.data.errorMessage;
-      if (errorcode !== 0) {
-        // 服务端返回的状态码不是200时
-        console.error(`ErrorCode: ${errorcode}, ErrorMsg: ${errormsg}, Api:${url}`);
-      }
-      return res.data;
-    }
-    ).catch(res => {
-      // http请求本身出错时
-      if (res == "Error: Network Error") {
-        alert("网络错误，请检查网络连接。");
-      } else {
-        // console.error(`http请求出错: Api:${url}  ${res}`);
-        return {
-          errorCode: 1000,
-          errorMessag: res
-        };
-      }
-    });
-};
-
 export default axios;

@@ -23,6 +23,7 @@ import BarList from './bar-list'
 import ActiveList from './active-list'
 import Destruction from './destruction'
 import GameData from './barChild/gameData.vue'
+import UserList from './barChild/userList.vue'
 import {getTemplateList} from 'pcApi/jie.js'
 export default {
     name: 'bar',
@@ -69,26 +70,29 @@ export default {
             console.log(data);
             if (data == -1) {
                 this.currentTab = "ActiveList";
-            }else {
+            }else if(data == 1){
                 this.currentTab = 'gameData';
+            }else if(data == 2) {
+                this.currentTab = 'userList';
             }
         }
     },
     created() {
-        getTemplateList({
-            pageIndex: this.pageIndex,
-            pageSize: this.pageSize
-        }).then(res => {
-            console.log(res);
-            if (res.errorCode == 0) {
-            }
-        })
+        // getTemplateList({
+        //     pageIndex: this.pageIndex,
+        //     pageSize: this.pageSize
+        // }).then(res => {
+        //     console.log(res);
+        //     if (res.errorCode == 0) {
+        //     }
+        // })
     },
     components: {
         BarList,
         ActiveList,
         Destruction,
-        GameData
+        GameData,
+        UserList
     }
 }
 </script>

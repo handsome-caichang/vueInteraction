@@ -29,6 +29,9 @@ import {
     mapState
 } from 'vuex';
 import logonImg from '../assets/images/logo.png'
+import {
+    logout
+} from 'pcApi/jie.js'
 export default {
     name: 'headerContainer',
     data() {
@@ -44,9 +47,15 @@ export default {
     },
     methods: {
         outIn() {
-            app.confirm({title: '确定要退出系统吗？'}).then( res => {
+            app.confirm({
+                title: '确定要退出系统吗？'
+            }).then(res => {
                 if (res) {
-                    this.$router.replace('login')
+                    logout().then(res => {
+                        if (res.errorCode == 0) {
+                            this.$router.replace('login')
+                        }
+                    })
                 }
             })
         }

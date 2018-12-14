@@ -19,9 +19,8 @@
                             <div class="wxTitle">
                                 <div class="actName" >{{baseInfo.name}}</div>
                             </div>
-                            <div class="gameContent">
-                                <iframe ref="iframeConent" src="http://localhost:8080/h5"
-                                        frameborder="0" scrolling="no" style="width:100%;height:100%;"></iframe>
+                            <div class="gameContent" ref="iframeBox">
+                                <!-- <iframe ref="iframeConent" :src='iframeSrc' frameborder="0" scrolling="no" style="width:100%;height:100%;"></iframe> -->
                             </div>
                             <div class="moduleLayer moduleLayerBox"></div>
                         </div>
@@ -52,6 +51,7 @@ import prizeSet from './compoent/prizeSet'
 import sendSet from './compoent/sendSet'
 import templateSet from './compoent/templateSet'
 import {mapMutations, mapState} from 'vuex'
+import {getTemplateDetail, createTemplate} from 'pcApi/jie.js'
 export default {
     name: 'editHaeder',
     data() {
@@ -104,14 +104,28 @@ export default {
                 data: "1"
                 }
             ],
-            iframeLodingEnd: false
-            
+            iframeLodingEnd: false,
+            iframeSrc: '',
+            iframeHtml: '',
+            resData: {},
+            isEdit: true,
         }
     },
     computed: {
         currentTabComponent() {
             return this.currentTab
         },
+    },
+    beforeRouteEnter (to, from, next) {
+         getTemplateDetail({
+            id: to.params.id
+        }).then(res => {
+            if (res.errorCode == 0) {
+                next(vm => vm.setData(res.data));
+            }else {
+                alert(res.errorMessage)
+            }
+        })
     },
     methods: {
         ...mapMutations([
@@ -138,14 +152,58 @@ export default {
             this.currentTab = item.component;
         },
         saveView() {
-            cosnole.log(JSON.stringify())
             console.log(window.h5AllData);
+            console.log(this.resData);
+            let createdData = app.tool.clone(window.h5AllData.luckDraw);
+            createdData.h5Data = JSON.stringify(createdData.h5Data);
+            if (!this.isEdit) {
+                console.log(createdData);
+                createTemplate(createdData).then(res => {
+                    console.log(res)
+                    if (res.errorCode == 0) {
+                        this.$router.replace('/home');
+                    }
+                })
+            }
         },
         close() {
             let flag = window.confirm('系统可能不会保存您所做的更改。');
             if (flag) {
                 this.$router.replace('/home')
             }
+        },
+        setData(res) {
+            res.lotteryActivityInfo.baseInfo.url = res.lotteryActivityInfo.baseInfo.url.replace(/^\s+|\s+$/gm,'');
+            this.iframeSrc = res.lotteryActivityInfo.baseInfo.url+'?edit=1&templateId='+this.$route.params.id;
+            this.resData = res.lotteryActivityInfo;
+            this.editData = res.lotteryActivityInfo;
+            this.baseInfo = this.editData.baseInfo;
+            this.resData.h5Data = JSON.parse(this.resData.h5Data);
+            let iframe = document.createElement('iframe'); 
+            iframe.src = this.iframeSrc;
+            iframe.scrolling="no";
+            iframe.style.width="100%";
+            iframe.style.height="100%";
+            iframe.style.border="none";
+            this.$refs.iframeBox.append(iframe);
+            this.$nextTick(()=> {
+                let that = this;
+                iframe.onload = function () {
+                    that.iframeConentObj = this.contentWindow.iframeH5Vue;
+                    that.h5Store = this.contentWindow.h5Store;
+                    window.h5AllData = this.contentWindow.h5AllData;
+                    for (const key in that.resData) {
+                        if (that.resData.hasOwnProperty(key)) {
+                            if (key !== 'gifts') {
+                                window.h5AllData.luckDraw[key] = that.resData[key];
+                            }else {
+                                window.h5AllData.luckDraw[key].splice(0, window.h5AllData.luckDraw[key].length, ...that.resData[key]);
+                            }
+                        }
+                    }
+                    that.iframeLodingEnd = true;
+                }
+            })
         }
     },
     components: {
@@ -157,18 +215,11 @@ export default {
     },
     created() {
         this.set_headerType('2');
-        this.$nextTick(()=> {
-            let that = this;
-            this.$refs.iframeConent.onload = function () {
-                that.iframeConentObj = this.contentWindow.iframeH5Vue;
-                that.h5Store = this.contentWindow.h5Store;
-                window.h5AllData = this.contentWindow.h5AllData;
-                that.editData = this.contentWindow.h5AllData.luckDraw;
-                that.baseInfo = that.editData.bizData.baseInfo;
-                that.iframeLodingEnd = true;
-                console.log(that.editData)
-            }
-        })
+        if (this.$route.query.name == 'add') {
+            this.isEdit = false;
+        }else {
+            this.isEdit = true;
+        }
     }
 }
 </script>

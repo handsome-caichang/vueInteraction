@@ -9,7 +9,7 @@
         </div>
         <div class="content flex-1">
             <div class="main">
-                <input v-model="editData.bizData.baseInfo.name" class="activeName input mainInput name" type="text"/>
+                <input v-model="editData.baseInfo.name" class="activeName input mainInput name" type="text"/>
             </div>
         </div>
         <div class="flag">*</div>
@@ -22,7 +22,7 @@
             <div class="main flex">
                 <el-date-picker
                     class="input flex-1"
-                    v-model="editData.bizData.baseInfo.startTime"
+                    v-model="editData.baseInfo.startTime"
                     type="datetime"
                     value-format="yyyy-MM-dd HH:mm:ss"
                     placeholder="开始时间">
@@ -30,7 +30,7 @@
                 <span class="mid">至</span>
                 <el-date-picker
                     class="input flex-1"
-                    v-model="editData.bizData.baseInfo.endTime"
+                    v-model="editData.baseInfo.endTime"
                     type="datetime"
                     value-format="yyyy-MM-dd HH:mm:ss"
                     placeholder="结束时间">
@@ -46,10 +46,10 @@
             </div>
             <div class="content flex-1">
                 <div class="main">
-                    <input id="hideJoinNum" type="radio" name="isShowJoinNum" v-model="editData.bizData.baseInfo.isShowUserCount" :value="false" /><label for="hideJoinNum">隐藏</label>
-                    <input id="showJoinNum" type="radio" name="isShowJoinNum" v-model="editData.bizData.baseInfo.isShowUserCount" :value="true" /><label for="showJoinNum">展示</label>
+                    <input id="hideJoinNum" type="radio" name="isShowJoinNum" v-model="editData.baseInfo.isShowUserCount" :value="false" /><label for="hideJoinNum">隐藏</label>
+                    <input id="showJoinNum" type="radio" name="isShowJoinNum" v-model="editData.baseInfo.isShowUserCount" :value="true" /><label for="showJoinNum">展示</label>
                     <span class="afterRadio">
-                        <span>并在实际人数上增加 <input type="number" min='0' max="999999" v-model.number="editData.bizData.baseInfo.visualUserCount" class="input onlyNum minInput"> 人</span>
+                        <span>并在实际人数上增加 <input type="number" min='0' max="999999" v-model.number="editData.baseInfo.visualUserCount" class="input onlyNum minInput"> 人</span>
                     </span>
                 </div>
             </div>
@@ -61,10 +61,10 @@
         </div>
         <div class="content flex-1">
             <div class="main" >
-                <input type="radio" id="noLimitNum" v-model="editData.bizData.baseInfo.limitCount" :value="-1" name="isLimitNum"/><label for="noLimitNum">不限</label>
-                <input type="radio" :class="{'idChecked': test}" id="LimitNum" v-model="editData.bizData.baseInfo.limitCount" :value="10000" name="isLimitNum" /><label for="LimitNum">限制</label>
-                <span class="afterRadio" v-if="editData.bizData.baseInfo.limitCount != -1">
-                    <input type="number" min='0' max="999999" v-model.number="editData.bizData.baseInfo.limitCount" class="input onlyNum minInput" />人参与
+                <input type="radio" id="noLimitNum" v-model="editData.baseInfo.limitCount" :value="-1" name="isLimitNum"/><label for="noLimitNum">不限</label>
+                <input type="radio" :class="{'idChecked': test}" id="LimitNum" v-model="editData.baseInfo.limitCount" :value="10000" name="isLimitNum" /><label for="LimitNum">限制</label>
+                <span class="afterRadio" v-if="editData.baseInfo.limitCount != -1">
+                    <input type="number" min='0' max="999999" v-model.number="editData.baseInfo.limitCount" class="input onlyNum minInput" />人参与
                 </span>
             </div>
         </div>
@@ -75,7 +75,7 @@
         </div>
         <div class="content flex-1">
             <div class="main">
-                <textarea v-model="editData.bizData.baseInfo.activeInfo" class="input scrollBox commTextarea"></textarea>
+                <textarea v-model="editData.baseInfo.activityInfo" class="input scrollBox commTextarea"></textarea>
             </div>
         </div>
     </div>
@@ -88,8 +88,8 @@
         </div>
         <div class="content flex-1">
             <div class="main" >
-                <input id="openShard" :checked="editData.bizData.advancedSetting.isCanShare" type="radio" name="shar"/><label for="openShard">开启分享</label>
-                <input id="offShard" :checked="!editData.bizData.advancedSetting.isCanShare" type="radio" name="shar" /><label for="offShard">关闭分享</label>
+                <input id="openShard" :checked="editData.advancedSetting.isCanShare" type="radio" name="shar"/><label for="openShard">开启分享</label>
+                <input id="offShard" :checked="!editData.advancedSetting.isCanShare" type="radio" name="shar" /><label for="offShard">关闭分享</label>
             </div>
         </div>
     </div>
@@ -99,7 +99,7 @@
         </div>
         <div class="content flex-1">
             <div class="main">
-                <input v-model="editData.bizData.advancedSetting.shareWinContent" class="activeName input mainInput name" type="text"/>
+                <input v-model="editData.advancedSetting.shareWinContent" class="activeName input mainInput name" type="text"/>
             </div>
         </div>
         <div class="flag">*</div>
@@ -110,7 +110,7 @@
         </div>
         <div class="content flex-1">
             <div class="main">
-                <input v-model="editData.bizData.advancedSetting.shareNowinContent" class="activeName input mainInput name" type="text"/>
+                <input v-model="editData.advancedSetting.shareNowinContent" class="activeName input mainInput name" type="text"/>
             </div>
         </div>
         <div class="flag">*</div>
@@ -122,7 +122,7 @@
         <div class="content flex-1">
            <div class="comUploadWarp menuBox">
                 <div class="wxShareImg comUploadImg" style="overflow:hidden;">
-                    <img :src="editData.bizData.advancedSetting.shareImage" width="60" height="60" style="display: block;">
+                    <img :src="editData.advancedSetting.shareImage" width="60" height="60" style="display: block;">
                 </div>
                 <div class="comUploadBox">
                     <span class="btn">
@@ -149,7 +149,7 @@
         },
         computed: {
             test() {
-                if (this.editData.bizData.baseInfo.limitCount != -1) {
+                if (this.editData.baseInfo.limitCount != -1) {
                     return true;
                 }else {
                     return false;

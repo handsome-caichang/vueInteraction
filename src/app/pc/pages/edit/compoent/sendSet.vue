@@ -15,12 +15,12 @@
                     </div>
                     <div class="content flex-1">
                         <div class="main">
-                            <input type="radio" id="noLimitDrawTimes" v-model="editData.bizData.lotteryInfo.totalLimit" :value="-1" name="isLimitDrawTimes">
+                            <input type="radio" id="noLimitDrawTimes" v-model="editData.lotteryInfo.totalLimit" :value="-1" name="isLimitDrawTimes">
                             <label for="noLimitDrawTimes">不限</label>
-                            <input type="radio" :class="{'idChecked': test}" id="limitDrawTimes" v-model="editData.bizData.lotteryInfo.totalLimit" :value="1" name="isLimitDrawTimes">
+                            <input type="radio" :class="{'idChecked': test}" id="limitDrawTimes" v-model="editData.lotteryInfo.totalLimit" :value="1" name="isLimitDrawTimes">
                             <label for="limitDrawTimes">限制</label>
-                            <span class="afterRadio" v-if="editData.bizData.lotteryInfo.totalLimit != -1">每人最多有
-                                <input max="99" min="1" v-model="editData.bizData.lotteryInfo.totalLimit" class="input onlyNum minInput" type="number">次</span>
+                            <span class="afterRadio" v-if="editData.lotteryInfo.totalLimit != -1">每人最多有
+                                <input max="99" min="1" v-model="editData.lotteryInfo.totalLimit" class="input onlyNum minInput" type="number">次</span>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <span class="name ng-binding">每日抽奖机会：</span>
                     </div>
                     <div class="content flex-1">
-                        <div class="main ng-binding">每人每日有<input id="drawTimesLimit" v-model="editData.bizData.lotteryInfo.dailyLimit" maxlength="2" class="input onlyNum minInput" type="number">次抽奖机会</div>
+                        <div class="main ng-binding">每人每日有<input id="drawTimesLimit" v-model="editData.lotteryInfo.dailyLimit" maxlength="2" class="input onlyNum minInput" type="number">次抽奖机会</div>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         <span class="name">每人中奖次数：</span>
                     </div>
                     <div class="content flex-1">
-                        <div class="main">每人最多可中奖<input v-model="editData.bizData.lotteryInfo.winLimit" maxlength="2" class="input onlyNum minInput" type="number">次</div>
+                        <div class="main">每人最多可中奖<input v-model="editData.lotteryInfo.winLimit" maxlength="2" class="input onlyNum minInput" type="number">次</div>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="content flex-1">
                         <div class="main">
-                            <input v-model="editData.bizData.lotteryInfo.totalWinLimit" class="input onlyNum minInput" type="number">%
+                            <input v-model="editData.lotteryInfo.totalWinLimit" class="input onlyNum minInput" type="number">%
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="content flex-1">
                 <div class="main">
-                    <input v-model="editData.bizData.lotteryInfo.nogiftNotify" class="activeName input mainInput name" type="text"/>
+                    <input v-model="editData.lotteryInfo.nogiftNotify" class="activeName input mainInput name" type="text"/>
                 </div>
             </div>
             <div class="flag">*</div>
@@ -82,7 +82,7 @@
         data() {
             return {
                 editData: window.h5AllData.luckDraw,
-                lotteryInfo: window.h5AllData.luckDraw.bizData.lotteryInfo
+                lotteryInfo: window.h5AllData.luckDraw.lotteryInfo
             }
         },
         computed: {

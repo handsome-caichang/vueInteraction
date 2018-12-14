@@ -5,20 +5,20 @@
                 <div class="awardNums commBg">
                     <span class="topAwardExplain text">请设置活动需要派发的奖项</span>
                     <div class="comfortCheckbox">
-                        <input type="checkbox" id="comfortSetting" :disabled="editData.bizData.giftInfo.length >= 6" v-model="isConsolation" class="ng-untouched ng-valid ng-dirty ng-valid-parse">
+                        <input type="checkbox" id="comfortSetting" :disabled="editData.gifts.length >= 6" v-model="isConsolation" class="ng-untouched ng-valid ng-dirty ng-valid-parse">
                         <label for="comfortSetting" style="margin: 0px;">设置安慰奖</label>
                     </div>
                 </div>
                 <div class="awardLevelBox">
                     <div class="commTabBox">
-                        <div class="commTab awardLevelItem norLevelItem" v-for="(item, index) in editData.bizData.giftInfo" :key="index" :class="{'checked': index == currentIndex}" @click="currentIndex = index">
+                        <div class="commTab awardLevelItem norLevelItem" v-for="(item, index) in editData.gifts" :key="index" :class="{'checked': index == currentIndex}" @click="currentIndex = index">
                             <span class="commTabName awardItemName">{{tabName(item, index)}}</span>
                         </div>
                         
                     </div>
                     <div class="awardNumOptBox">
-                        <button  class="awardNumOpt pointer delAwardNum" :class="{'disabled': isConsolation ? (editData.bizData.giftInfo.length < 3) : (editData.bizData.giftInfo.length < 2)}" :disabled="isConsolation ? editData.bizData.giftInfo.length < 3 : editData.bizData.giftInfo.length < 2"  @click="del(false)"></button>
-                        <button  class="awardNumOpt pointer addAwardNum" :class="{'disabled': editData.bizData.giftInfo.length >= 6}"  :disabled="editData.bizData.giftInfo.length >= 6" @click="add(false)" ></button>
+                        <button  class="awardNumOpt pointer delAwardNum" :class="{'disabled': isConsolation ? (editData.gifts.length < 3) : (editData.gifts.length < 2)}" :disabled="isConsolation ? editData.gifts.length < 3 : editData.gifts.length < 2"  @click="del(false)"></button>
+                        <button  class="awardNumOpt pointer addAwardNum" :class="{'disabled': editData.gifts.length >= 6}"  :disabled="editData.gifts.length >= 6" @click="add(false)" ></button>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="content flex-1">
                             <div class="main">
-                                <input v-model="editData.bizData.giftInfo[currentIndex].levelName" class="awardStyle input mainInput ng-pristine ng-untouched ng-valid" type="text">
+                                <input v-model="editData.gifts[currentIndex].levelName" class="awardStyle input mainInput ng-pristine ng-untouched ng-valid" type="text">
                             </div>
                         </div>
                         <div class="flag">*</div>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="content flex-1">
                            <div class="main ng-scope">
-                               <input v-model="editData.bizData.giftInfo[currentIndex].name" class="awardDescribe input mainInput ng-pristine ng-untouched ng-valid" type="text">
+                               <input v-model="editData.gifts[currentIndex].name" class="awardDescribe input mainInput ng-pristine ng-untouched ng-valid" type="text">
                                <div class="tipsColor ERR_lock ERR_lock_strict" style="display: block;">
                                    已生成订单的商品名称不会受修改的影响
                                 </div>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="content flex-1">
                            <div class="main ng-scope">
-                               <input v-model.number="editData.bizData.giftInfo[currentIndex].count" class="awardDescribe input mainInput ng-pristine ng-untouched ng-valid" type="text">
+                               <input v-model.number="editData.gifts[currentIndex].count" class="awardDescribe input mainInput ng-pristine ng-untouched ng-valid" type="text">
                             </div>
                         </div>
                         <div class="flag">*</div>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="content flex-1">
                             <div class="main">
-                                <input  v-model="editData.bizData.giftInfo[currentIndex].operationNotify" class="awardOptInfo input mainInput" type="text">
+                                <input  v-model="editData.gifts[currentIndex].operationNotify" class="awardOptInfo input mainInput" type="text">
                             </div>
                         </div>
                         <div class="flag">*</div>
@@ -96,7 +96,7 @@
                         </div>
                         <div class="content flex-1">
                             <div class="main">
-                                <input v-model="editData.bizData.giftInfo[currentIndex].address" class="awardOptInfo input mainInput" type="text">
+                                <input v-model="editData.gifts[currentIndex].address" class="awardOptInfo input mainInput" type="text">
                             </div>
                         </div>
                         <div class="flag">*</div>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="content flex-1">
                             <div class="main">
-                                <input  v-model.number="editData.bizData.giftInfo[currentIndex].telphone" class="awardOptInfo input mainInput" type="text">
+                                <input  v-model.number="editData.gifts[currentIndex].telphone" class="awardOptInfo input mainInput" type="text">
                             </div>
                         </div>
                         <div class="flag">*</div>
@@ -124,7 +124,7 @@
                             <div class="timeRangeBox flex">
                                 <el-date-picker
                                     class="input flex-1"
-                                    v-model="editData.bizData.giftInfo[currentIndex].cashStartTime"
+                                    v-model="editData.gifts[currentIndex].cashStartTime"
                                     type="datetime"
                                      value-format="yyyy-MM-dd HH:mm:ss"
                                     placeholder="开始时间">
@@ -132,7 +132,7 @@
                                 <span class="mid">至</span>
                                 <el-date-picker
                                     class="input flex-1"
-                                    v-model="editData.bizData.giftInfo[currentIndex].cashEndTime"
+                                    v-model="editData.gifts[currentIndex].cashEndTime"
                                     type="datetime"
                                      value-format="yyyy-MM-dd HH:mm:ss"
                                     placeholder="结束时间">
@@ -194,7 +194,7 @@
             cloneEdit() {
             },
             initInfoBase(flag) { // true 代表安慰奖 
-                let giftInfoBase = {
+                let giftsBase = {
                     id: '',  // id 
                     levelName: "", // 奖品等级名称
                     name: '价值5元小礼品', // 奖品名称
@@ -209,48 +209,48 @@
                     ), // 兑换结束时间
                     isConsolation: false // 是否是安慰奖
                 };
-                giftInfoBase.isConsolation = flag;
+                giftsBase.isConsolation = flag;
                 if (flag) {
-                    giftInfoBase.levelName = '安慰奖'
+                    giftsBase.levelName = '安慰奖'
                 }else {     
-                    giftInfoBase.levelName = '奖项' + this.transNumber(this.editData.bizData.giftInfo.length + 1);
+                    giftsBase.levelName = '奖项' + this.transNumber(this.editData.gifts.length + 1);
                 }
-                console.log(giftInfoBase);
-                return giftInfoBase;
+                console.log(giftsBase);
+                return giftsBase;
             },
             add(flag = false) {
                 // let edit = this.cloneEdit();
-                let lastList = this.editData.bizData.giftInfo.pop();  // 记录最后一个安慰奖
+                let lastList = this.editData.gifts.pop();  // 记录最后一个安慰奖
                 if (lastList.isConsolation) {
-                     this.editData.bizData.giftInfo.push(this.initInfoBase(flag));
-                     this.editData.bizData.giftInfo.push(lastList);
+                     this.editData.gifts.push(this.initInfoBase(flag));
+                     this.editData.gifts.push(lastList);
                 }else {
-                     this.editData.bizData.giftInfo.push(lastList);
-                     this.editData.bizData.giftInfo.push(this.initInfoBase(flag));
+                     this.editData.gifts.push(lastList);
+                     this.editData.gifts.push(this.initInfoBase(flag));
                 }
                 // this.set_editData(edit);
                 if (flag) {
-                    this.currentIndex =  this.editData.bizData.giftInfo.length - 1;
+                    this.currentIndex =  this.editData.gifts.length - 1;
                 }else if (lastList.isConsolation) {
-                    this.currentIndex =  this.editData.bizData.giftInfo.length - 2;
+                    this.currentIndex =  this.editData.gifts.length - 2;
                 }else {
-                    this.currentIndex =  this.editData.bizData.giftInfo.length - 1;
+                    this.currentIndex =  this.editData.gifts.length - 1;
                 }
             },
             del(flag = false) {
                 // let edit = this.cloneEdit();
-                let lastList =  this.editData.bizData.giftInfo.pop();  // 记录最后一个安慰奖
+                let lastList =  this.editData.gifts.pop();  // 记录最后一个安慰奖
                 if(lastList.isConsolation) {
                     if (!flag) { // 如果有安慰奖
-                         this.editData.bizData.giftInfo.pop();
-                         this.editData.bizData.giftInfo.push(lastList)
+                         this.editData.gifts.pop();
+                         this.editData.gifts.push(lastList)
                     }
                 }
                 // this.set_editData(edit);
                 if (lastList.isConsolation && !flag) {
-                    this.currentIndex =  this.editData.bizData.giftInfo.length - 2;
+                    this.currentIndex =  this.editData.gifts.length - 2;
                 }else {
-                    this.currentIndex =  this.editData.bizData.giftInfo.length - 1;
+                    this.currentIndex =  this.editData.gifts.length - 1;
                 }
             }, 
             transNumber(num) {
@@ -276,20 +276,20 @@
         },
         created() {
             this.$nextTick(()=> {
-                this.h5AllData.awardDetail = this.editData.bizData.giftInfo[this.currentIndex];
+                this.h5AllData.awardDetail = this.editData.gifts[this.currentIndex];
             })
         },
         watch: {
             isConsolation(newVal) {
                 if (newVal) {
-                    // if (edit.bizData.giftInfo.length  == 5) {return;};
+                    // if (edit.gifts.length  == 5) {return;};
                     this.add(true);
                 }else {
                     this.del(true);
                 }
             },
             currentIndex(newVal) {
-                this.h5AllData.awardDetail = this.editData.bizData.giftInfo[this.currentIndex];
+                this.h5AllData.awardDetail = this.editData.gifts[this.currentIndex];
             }
         }
     }

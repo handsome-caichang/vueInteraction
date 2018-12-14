@@ -11,14 +11,36 @@
 
 <script>
 import HeaderContainer from './components/header-container'
+import { mapState, mapMutations } from 'vuex';
+import {getUser} from 'pcApi/jie.js'
 export default {
   name: 'App',
    data() {
       return {
       };
   },
+  computed: {
+  },
   components: {
     HeaderContainer
+  },
+  methods: {
+    ...mapMutations([
+      'set_userInfo'
+    ])
+  },
+  created() {
+    // if (!this.userInfo) {
+    //   this.$router.replace('/login')
+    // }
+    getUser().then(res => {
+        // console.log(res);
+        if (res.errorCode == 0) {
+          this.set_userInfo(res.data);
+        }else {
+          this.$router.replace('/login')
+        }
+    })
   }
 }
 </script>

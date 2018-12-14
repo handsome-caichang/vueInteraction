@@ -14,10 +14,10 @@
                 <div class="activeContent new_activeContent not_hd_newActive">
                     <div class="active modActive isRecom" v-for="(hdModel, index) in imgList" :key="index" @click="add(hdModel)" >
                         <div class="actPic">
-                            <img class="hide showPic" :src="hdModel.bgcImg" style="display: inline;">
-                            <img class="previewGif" :src="hdModel.src" >
+                            <img class="hide showPic" :src="hdModel.image" style="display: inline;">
+                            <img class="previewGif" :src="hdModel.hoverImage" >
                         </div>
-                        <div v-if="hdModel.isHot" class="hotScorePic"></div>
+                        <div class="hotScorePic"></div>
                         <div class="actDescripe">
                             <div class="actName">
                                 <span class="ng-binding">{{hdModel.name}}</span>
@@ -36,7 +36,7 @@
 import {mapMutations} from 'vuex'
 import activeImg from '../../assets/images/active.jpg'
 import activeHover from '../../assets/images/activeHover.gif'
-import {getList} from 'pcApi/jie.js'
+import {getTemplateList} from 'pcApi/jie.js'
 export default {
     name: 'bar-list',
     data() {
@@ -47,23 +47,11 @@ export default {
                     name: '抽奖活动',
                     id: '2',
                 },
-                // {
-                //     name: '游戏营销',
-                //     id: '3',
-                //     type: 1,
-                // }
             ],
             currentIndex: 0,
             imgList: [
-                {
-                    name: '幸运大转盘',
-                    bgcImg: activeImg,
-                    src: activeHover,
-                    isHot: true,
-                    id: '1'
-                },
             ],
-            pageIndex: 0,
+            pageIndex: 1,
             pageSize: 10,
             totalCount: 40,
         }
@@ -76,11 +64,29 @@ export default {
             this.currentIndex = index;
         },
         add(item){
-            console.log(item)
-            this.set_globalMaskFlag(true)
+            // this.set_globalMaskFlag(true)
+             this.$router.push({
+                 path: `/edit/${item.id}`,
+                 query: {
+                     name: 'add',
+                 }
+             })
         },
+        initList() {
+            getTemplateList({
+                pageIndex: this.pageIndex,
+                pageSize: this.pageSize,
+            }).then(res => {
+                console.log(res);
+                if (res.errorCode == 0) {
+                    this.totalCount = res.totalCount;
+                    this.imgList = res.data;
+                }
+            })
+        }
     },
     created() {
+        this.initList();
     }
 }
 </script>

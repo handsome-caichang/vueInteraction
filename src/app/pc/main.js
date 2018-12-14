@@ -25,6 +25,8 @@ var app = {
   filters
 };
 
+
+
 Vue.prototype.app = window.app = app;
 
 Vue.use(JDialog, {root: app });

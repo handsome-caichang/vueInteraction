@@ -48,7 +48,8 @@
                                         <div class="textRight">
                                             <a href="javascript:;" class="publishStyle" >发布</a>
                                             <a href="javascript:;" class="actLink" @click="preClick">预览</a>
-                                            <a href="javascript:;" @click="goGamedata">传播数据</a>
+                                            <a href="javascript:;" @click="goGamedata(1)">传播数据</a>
+                                            <a href="javascript:;" @click="goGamedata(2)">获奖名单</a>
                                             <a href="javascript:;" >编辑</a>
                                             <a href="javascript:;" >结束</a>
                                              <a href="javascript:;" >删除</a>
@@ -91,10 +92,10 @@ export default {
     data() {
         return {
             tdList,
-            thList: thList,
+            thList,
             pageIndex: 1,
             pageSize: 10,
-            totalCount: 59,
+            totalCount: 10,
         }
     },
     methods: {
@@ -113,8 +114,8 @@ export default {
         toEdit(id) {
             this.$router.push(`/edit/${id}`)
         },
-        goGamedata() {
-            this.$emit('toBackGameData', 1);
+        goGamedata(val) {
+            this.$emit('toBackGameData', val);
             // this.$router.push(`/edit/${id}`)
         },
         initList() {
@@ -122,10 +123,12 @@ export default {
                 pageIndex: this.pageIndex,
                 pageSize: this.pageSize,
             }).then(res => {
+                console.log(res);
                 if (res.errorCode == 0) {
-
-                }else {
-
+                    if (res.data.length > 0) {
+                        this.totalCount = res.totalCount;
+                        this.tdList = res.data;
+                    }
                 }
             })
         }

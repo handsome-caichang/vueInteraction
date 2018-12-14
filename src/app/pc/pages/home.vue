@@ -37,12 +37,6 @@ export default {
     },
     created() {
         this.set_headerType('1');
-        getUser().then(res => {
-            console.log(res);
-            if (res.errorCode == 0) {
-                this.set_userInfo(res.data.userInfo);
-            }
-        })
     },
     components: {
         Bar,

@@ -20,11 +20,11 @@
             <div class="content">
                 <div style="margin-bottom:70px;margin-top:20px;">
                     <div class="center_txt">
-                        <div class="txt_style_1 joinNumLine " v-if="luckDraw.bizData.baseInfo.isShowUserCount">已有<span class="ipt_num joinNumLineText">{{luckDraw.bizData.baseInfo.userCount + luckDraw.bizData.baseInfo.visualUserCount}}</span>人参与</div>
+                        <div class="txt_style_1 joinNumLine " v-if="luckDraw.baseInfo.isShowUserCount">已有<span class="ipt_num joinNumLineText">{{luckDraw.baseInfo.userCount + luckDraw.baseInfo.visualUserCount}}</span>人参与</div>
                         <div class="txt_style_1 ">
                             <div class="dayDraw" style="font-size: 0.6rem; color: rgb(250, 82, 8);">
                                 您今天还有
-                                <span class="ipt_num specil dayDrawCount" style="font-size: 0.6rem; color: rgb(250, 82, 8);">{{luckDraw.bizData.lotteryInfo.dailyLimit}}</span>
+                                <span class="ipt_num specil dayDrawCount" style="font-size: 0.6rem; color: rgb(250, 82, 8);">{{luckDraw.lotteryInfo.dailyLimit}}</span>
                                 次抽奖机会
                             </div>
                         </div>
@@ -32,8 +32,8 @@
                 </div>
                 <div id="myAwardBox" class="poupMainBox" style="background-color: rgb(254, 103, 95); border-color: rgb(255, 255, 255);">
                     <img class="titleImgBox" :src="myAwardImg"/>
-                    <div class="myAwardInfo rowSpacing"  v-if="giftInfo.length != 0">
-                        <div class="award-box" v-for="(item, index) in giftInfo" :key="index">
+                    <div class="myAwardInfo rowSpacing"  v-if="gifts.length != 0">
+                        <div class="award-box" v-for="(item, index) in gifts" :key="index">
                             <div class="awardLimitBox">
                                 <span class="awardText awardNameDef">{{item.levelName}}：{{item.name}}</span>
                             </div>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="infoDeviceLine"></div>
                     </div>
-                    <div class="myAwardInfo rowSpacing" v-if="giftInfo.length == 0">
+                    <div class="myAwardInfo rowSpacing" v-if="gifts.length == 0">
                         <div style="line-height: 2.6rem; padding-left: 0.05rem;font-size: 0.75rem;">暂无中奖记录</div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                                     <div class="awardTitleText" style="font-size: 0.75rem; color: rgb(255, 255, 255);">活动奖品</div>
                                 </div>
                                 <div id="awardLineBox" class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);">
-                                    <div class="awardItem" v-for="(item, index) in giftInfo" :key="index"><span class="awardStyle">{{item.levelName}}</span>: <span class="award">{{item.name}}</span></div>
+                                    <div class="awardItem" v-for="(item, index) in gifts" :key="index"><span class="awardStyle">{{item.levelName}}</span>: <span class="award">{{item.name}}</span></div>
                                 </div>
                                 <div class="infoDeviceLine ruleBoxLine"></div>
                             </div>
@@ -63,14 +63,14 @@
                                 <div class="titleTextBox">
                                     <div class="awardTitleText" style="font-size: 0.75rem; color: rgb(255, 255, 255);">活动时间</div>
                                 </div>
-                                <div class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);"><span id="startDate">{{luckDraw.bizData.baseInfo.startTime}}</span>-<span id="endDate">{{luckDraw.bizData.baseInfo.endTime}}</span></div>
+                                <div class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);"><span id="startDate">{{luckDraw.baseInfo.startTime}}</span>-<span id="endDate">{{luckDraw.baseInfo.endTime}}</span></div>
                                 <div class="infoDeviceLine ruleBoxLine"></div>
                             </div>
                             <div id="explainBox" class="rowSpacing poupLine" data-sortkey="e">
                                 <div class="titleTextBox">
                                     <div class="awardTitleText" style="font-size: 0.75rem; color: rgb(255, 255, 255);">活动说明</div>
                                 </div>
-                                <div class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);"> {{luckDraw.bizData.baseInfo.activeInfo}}</div>
+                                <div class="awardDetailText" style="font-size: 0.7rem; color: rgb(255, 255, 255);"> {{luckDraw.baseInfo.activityInfo}}</div>
                                 <div class="infoDeviceLine ruleBoxLine"></div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@ export default {
             listCurrentIndex: -1, // 当前中奖的在转盘列表的索引
             luckDraw: window.h5AllData.luckDraw,
             h5AllData: window.h5AllData,
-            giftInfo: window.h5AllData.luckDraw.bizData.giftInfo,
+            gifts: window.h5AllData.luckDraw.gifts,
         }
     },
     computed: {
@@ -214,8 +214,7 @@ export default {
                 let res = {
                     errorCode: 0,
                     data: {
-                        giftId: "2",
-                        id: "", // id
+                        id: "4f8674907d594b9fa8595ca1477cd7e0", // id
                         levelName: "一等奖", // 奖品等级名称
                         name: "价值100元礼品", // 奖品名称
                         count: 0, // 奖品数量
@@ -240,7 +239,7 @@ export default {
                 console.log(this.listCurrentIndex);
                 for (let index = 0; index < this.zhuanpanData.length; index++) {
                    const element = this.zhuanpanData[index];
-                   if (res.data.giftId == element.giftId) {
+                   if (res.data.id == element.id) {
                        console.log(this.listCurrentIndex);
                        this.listCurrentIndex = index;
                        break;
@@ -274,23 +273,23 @@ export default {
                     giftsId: '-1'
                 });
             }
-            if (this.giftInfo[index].isConsolation) { // 是否是安慰奖
-                this.giftInfo[index].img = zp900;
+            if (this.gifts[index].isConsolation) { // 是否是安慰奖
+                this.gifts[index].img = zp900;
             }else {
-                this.giftInfo[index].img = img;
+                this.gifts[index].img = img;
             }
-            this.zhuanpanData.push(this.giftInfo[index]);
+            this.zhuanpanData.push(this.gifts[index]);
         },
         resetZhuanpanData() {
-            let lengs = this.giftInfo.length;
+            let lengs = this.gifts.length;
             if (lengs == 0) return;
             this.zhuanpanData = [];
             this.zhuanpanData.push({
                 img: zp0,
                 giftsId: '-1'
             });
-            this.giftInfo[0].img = zp1;
-            this.zhuanpanData.push(this.giftInfo[0]); // 2 个了
+            this.gifts[0].img = zp1;
+            this.zhuanpanData.push(this.gifts[0]); // 2 个了
             if (lengs == 1) {
                  this.zhuanpanData.push({
                     img: zp0,
@@ -332,7 +331,7 @@ export default {
         this.resetZhuanpanData();
     },
     watch: {
-        giftInfo(newVal) {
+        gifts(newVal) {
             this.resetZhuanpanData();
         }
     }

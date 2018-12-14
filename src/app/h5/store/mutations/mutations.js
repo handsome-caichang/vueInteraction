@@ -15,7 +15,9 @@ export default {
   },
   set_h5Data: function(state, params) {
     state.h5Data = params;
+  },
+  set_isEdit: function (state, params) {
+    state.isEdit = params;
   }
-
 
 };
