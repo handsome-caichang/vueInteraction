@@ -78,14 +78,6 @@
     export default {
         name: 'sendSet',
         props: {
-            iframeConentObj: {
-                type: Object,
-                default() {
-                    return {
-                        
-                    }
-                }
-            },
         },
         data() {
             return {
@@ -94,11 +86,7 @@
             }
         },
         computed: {
-            // ...mapState([
-            //     'editData',
-            // ]),
             test() {
-                console.log(this.lotteryInfo)
                 if (this.lotteryInfo.totalLimit == -1) {
                     return false;
                 }else {
@@ -110,7 +98,6 @@
            
         },
         created() {
-            // this.$set(this.editData.bizData.lotteryInfo, 'totalLimit');
         }
     }
 </script>

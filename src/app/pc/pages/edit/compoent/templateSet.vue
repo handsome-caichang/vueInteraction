@@ -28,21 +28,16 @@
     </div>
 </template>
 <script>
-import {mapState, mapMutations} from 'vuex'
     export default {
         name: 'templateSet',
         props: {
         },
         computed: {
-            // ...mapState([
-            //     'h5Data'
-            // ])
         },
         data() {
             return window.h5AllData
         },
         methods: {
-            
         },
         created() {
         },

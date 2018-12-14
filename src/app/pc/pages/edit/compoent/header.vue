@@ -1,6 +1,6 @@
 <template>
     <div class="headBar">
-        <a href=http://hd.fkw.com target='_blank'><img class='logo' src='//g-hd.faisys.com/version2/image/version3/HDlogo.png?v=666' /></a>
+        <a href=http://www.xiaogj.com target='_blank'><img class='logo' :src='logonImg' /></a>
         <div class="headerRight">
             <div id="savePubButon" class="headBtn mbtn main-Button" @click="$emit('saveView')">预览并保存</div>
             <div id="saveButon" class="headBtn mbtn main-Button disabled">保存</div>
@@ -9,10 +9,12 @@
     </div>
 </template>
 <script>
+import logonImg from 'pcAssets/images/logo.png'
 export default {
     name: 'editHaeder',
     data() {
         return {
+            logonImg
         }
     },
     methods: {

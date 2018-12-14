@@ -139,23 +139,13 @@
 </div>
 </template>
 <script>
-    import {editMixin} from '../edit.js';
     import { mapState } from 'vuex'
     export default {
         name: 'baseSet',
-        mixins: [editMixin],
-        props: {
-            iframeConentObj: {
-                type: Object,
-                default() {
-                    return {
-                        
-                    }
-                }
-            }
-        },
         data() {
-            return {}
+            return {
+                editData: window.h5AllData.luckDraw
+            }
         },
         computed: {
             test() {
@@ -172,10 +162,6 @@
             }
         },
         watch: {
-            iframeConentObj(newVal) {
-                this.editData = window.h5AllData.luckDraw;
-                console.log(this.editData);
-            }
         }
     }
 </script>

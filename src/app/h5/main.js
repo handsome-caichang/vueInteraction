@@ -104,7 +104,7 @@ window.h5AllData = {
       },
       advancedSetting: {
         isCanShare: true, // 是否能够分享
-        shareImage: shardImg, //  必须
+        shareImage: "http://192.168.0.228/cc/l_xydzp.jpg", //  必须
         shareWinContent:
           "​轻轻松松就能抽到大奖，积攒多年的人品终于有用了，你也赶紧来抽奖吧！！", //   中奖分享文案
         shareNowinContent: "​我已经在活动中抽到了奖品，你也快来抽大奖吧！" //    没中奖分享文案

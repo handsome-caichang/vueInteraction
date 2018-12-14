@@ -34,7 +34,7 @@
                             <div class="awardErrDot"></div>
                         </div>
                     </div>
-                    <div class="editDetail">
+                    <div class="editDetail" v-if="iframeLodingEnd">
                         <component class="component" :is="currentTabComponent" :iframeConentObj="iframeConentObj" :h5Store="h5Store">
                         </component>
                     </div>
@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import {editMixin} from './edit.js'
 import editHeader from './compoent/header'
 import baseSet from './compoent/baseSet'
 import prizeSet from './compoent/prizeSet'
@@ -55,7 +54,6 @@ import templateSet from './compoent/templateSet'
 import {mapMutations, mapState} from 'vuex'
 export default {
     name: 'editHaeder',
-    mixins: [editMixin],
     data() {
         return {
             checked: 'baseSet',
@@ -82,7 +80,32 @@ export default {
             h5Store: {},
             baseInfo: {
                 name: ''
-            }
+            },
+            editData: {},
+             leftList: [
+                {
+                name: "首页",
+                type: "baseSet",
+                data: "luckDraw"
+                },
+                {
+                name: "奖品详情",
+                type: "prizeSet",
+                data: "awardDetail/test"
+                },
+                {
+                name: "中奖页面",
+                type: "awardYes",
+                data: "2"
+                },
+                {
+                name: "没中奖页",
+                type: "awardNo",
+                data: "1"
+                }
+            ],
+            iframeLodingEnd: false
+            
         }
     },
     computed: {
@@ -115,6 +138,7 @@ export default {
             this.currentTab = item.component;
         },
         saveView() {
+            cosnole.log(JSON.stringify())
             console.log(window.h5AllData);
         },
         close() {
@@ -141,6 +165,7 @@ export default {
                 window.h5AllData = this.contentWindow.h5AllData;
                 that.editData = this.contentWindow.h5AllData.luckDraw;
                 that.baseInfo = that.editData.bizData.baseInfo;
+                that.iframeLodingEnd = true;
                 console.log(that.editData)
             }
         })

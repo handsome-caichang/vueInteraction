@@ -148,26 +148,9 @@
 </template>
 <script>
     import tool from 'pcAssets/js/tool.js'
-    import {mapMutations,mapState } from 'vuex'
     export default {
         name: 'prizeSet',
         props: {
-            iframeConentObj: {
-                type: Object,
-                default() {
-                    return {
-                        
-                    }
-                }
-            },
-            h5Store: {
-                type: Object,
-                default() {
-                    return {
-                        
-                    }
-                }
-            }
         },
         data() {
             return {
