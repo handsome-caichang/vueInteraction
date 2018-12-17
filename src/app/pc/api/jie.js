@@ -40,13 +40,48 @@ export function getTemplateDetail(params) {
     return axios.ajaxGet("api/activityTemplate/getLotteryActivityTemplate", params);
 }
 
+
+// 编辑的时候获取活动详情
+export function getEditTemplateDetail(params) {
+    return axios.ajaxGet("api/activity/getLotteryActivityByID", params);
+}
+
+// 保存编辑的活动
+export function updateLotteryActivity(params) {
+    return axios.ajaxPut("api/activity/updateLotteryActivity", params);
+}
+
+
 // 创建活动
 export function createTemplate(params) {
     return axios.ajax("api/activity/createLotteryActivity", params);
 }
 
+// 发布活动
+export function publish(params) {
+    return axios.ajaxPut("api/activity/publish", params);
+}
 
-// 更新活动
-export function updateLotteryActivity(params) {
-    return axios.ajax("api/activity/updateLotteryActivity", params);
+// 停止活动
+export function stop(params) {
+    return axios.ajaxPut("api/activity/stop", params);
+}
+
+// 停止活动
+export function delActiv(params) {
+    return axios.ajaxDel("api/activity", params);
+}
+
+
+// 查看活动统计数据
+export function getStatistic(params) {
+    return axios.ajaxGet("api/activity/getStatistic", params);
+}
+
+
+
+/*  oss */
+
+export function getUploadToken(params) {
+    return axios.ajaxGet("api/user/getUploadToken", params);
 }

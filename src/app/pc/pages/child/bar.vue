@@ -10,7 +10,7 @@
         <div class="manageFrame scrollBox">
             <div class="manageFrameWarp checked">
                 <!-- <bar-list></bar-list> -->
-                <component class="component" :is="currentTabComponent" @toBackGameData="toBackGameData">
+                <component class="component" :is="currentTabComponent" @toBackGameData="toBackGameData" :id="currentId">
                 </component>
             </div>
         </div>
@@ -53,7 +53,8 @@ export default {
             currentIndex: 0,
             currentTab: 'BarList',
             pageIndex: 0,
-            pageSize: 10
+            pageSize: 10,
+            currentId: ''
         }
     },
     computed: {
@@ -66,14 +67,15 @@ export default {
             this.currentIndex = index;
             this.currentTab = item.component;
         },
-        toBackGameData(data) {
-            console.log(data);
+        toBackGameData(data,id) {
             if (data == -1) {
                 this.currentTab = "ActiveList";
             }else if(data == 1){
                 this.currentTab = 'gameData';
+                this.currentId = id;
             }else if(data == 2) {
                 this.currentTab = 'userList';
+                this.currentId = id;
             }
         }
     },

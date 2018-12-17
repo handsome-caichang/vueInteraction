@@ -16,7 +16,7 @@ exports.thList = [
     text: "textCenter"
   },
   {
-    name: "参与人数/最大限制",
+    name: "最大限制",
     type: 1,
     text: "textCenter"
   },
@@ -28,15 +28,20 @@ exports.thList = [
 ];
 exports.tdList = [
   {
-    id: "HD46",
+    createTime: "2018-12-09 19:47:03",
+    createUserID: "45e302e9-5134-4f29-9968-34295e188b19",
+    endTime: "2018-12-27 18:58:21",
+    hoverImage: "http://192.168.0.228/cc/activeHover.gif",
+    id: "2f46443b46dd465480a7023296f87433",
+    image: "http://192.168.0.228/cc/active.jpg",
+    isPublish: false,
+    limitCount: 10000,
     name: "参与活动赢大奖",
-    image: "//d1.faiusr.com/2/AAEIABACGAAgjJnK1wUogNjluQQwwgM4_gE.jpg?v=1",
-    url: "",
-    startTime: "2018-11-23 18:39:46",
-    endTime: "2018-11-23 18:39:46",
-    isPublished: "未发布",
-    joinUserCount: "12",
-    limitCount: '100',
+    startTime: "2018-12-09 18:58:21",
+    templateID: "2f46443b46dd465480a7023296f87433",
+    type: 0,
+    updateTime: "2018-12-13 19:17:37",
+    url: "http://192.168.0.166:8080/h5",
   }
 ];
 exports.destructionList = [

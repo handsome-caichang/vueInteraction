@@ -19,13 +19,12 @@ const store = new Vuex.Store({
 });
 
 import tool from 'pcAssets/js/tool.js'
-
+import oss from "pcAssets/js/oss.js";
 var app = {
   tool,
-  filters
+  filters,
+  oss
 };
-
-
 
 Vue.prototype.app = window.app = app;
 

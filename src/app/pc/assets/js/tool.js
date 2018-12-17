@@ -1,5 +1,6 @@
 const tool = {
 };
+
 tool.getNowFormatDate = function() {
     var date = new Date();
     var seperator1 = "-";
@@ -93,6 +94,7 @@ tool.getUserIP = function (onNewIP) { //  onNewIp - your listener function for n
         ice.candidate.candidate.match(ipRegex).forEach(iterateIP);
     };
 }
+
 
 tool.telReg = /^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|147)\d{8}/;
 

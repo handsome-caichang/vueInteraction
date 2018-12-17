@@ -2,8 +2,6 @@
 <div class="main-whiteBox cav_container" style="min-width: 1115px;">
     <div class="cav_tabBox">
         <div class="cav_tab cav_t_record checked">核销记录</div>
-        <div class="cav_tab cav_t_hbRecord">红包记录</div>
-        <div class="cav_tab cav_t_gift">礼品记录</div>
         <div class="main-Button cav_gotoCavBtn" @click="toVer"><span class="icon"></span>前往核销</div>
     </div>
     <div>

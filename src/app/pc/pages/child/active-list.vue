@@ -16,43 +16,39 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr class="queryIngTr odd" v-if="tdList.lengt == 0"><td class="padding" colspan="10">没有数据</td></tr>
                             <tr v-for="(item, index) in tdList" :key="index">
                                 <td class="textLeft active_activeName ellipsis">
                                     <div class="padding ellipsis tdWrap">
                                         <div>
                                             <div class="imgBox"><img :src="item.image" style="width:100%;"></div>
-                                                <div class="textBox">
-                                                    <div @click="toEdit(item.id)">{{item.name}}</div>
-                                                </div>
+                                            <div class="textBox">
+                                                <div @click="toEdit(item.id)">{{item.name}}</div>
                                             </div>
                                         </div>
-                                </td>
-                                <!-- <td class="textCenter ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">
-                                        <div class="textCenter">{{item.id}}</div>
                                     </div>
-                                </td> -->
+                                </td>
                                 <td class="textCenter ellipsis tmpShowHoverTips">
                                     <div class="padding ellipsis tdWrap">{{item.startTime}}<br>{{item.endTime}}</div>
                                 </td>
                                 <td class="textCenter ellipsis tmpShowHoverTips">
                                     <div class="padding ellipsis tdWrap">
-                                        <div style="color:#999;">{{item.isPublished}}</div>
+                                        <div :style="{'color': item.isPublish ? (item.isEnd ? '#fe896a' : '#64cea6'): '#999' }">{{item.isPublish ? (item.isEnd ? '已结束' : '进行中'): '未发布'}}</div>
                                     </div>
                                 </td>
                                 <td class="textCenter ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">{{item.joinUserCount}}/{{item.limitCount}}</div>
+                                    <div class="padding ellipsis tdWrap">{{item.limitCount}}</div>
                                 </td>
                                 <td class="textRight ellipsis">
                                     <div class="padding ellipsis tdWrap">
                                         <div class="textRight">
-                                            <a href="javascript:;" class="publishStyle" >发布</a>
+                                            <a href="javascript:;" class="publishStyle" @click="publi(item, 'pub')" v-if="!item.isPublish">发布</a>
+                                            <a href="javascript:;" class="publishStyle" @click="publi(item, 'pub')" v-if="item.isPublish && !item.isEnd"> 结束</a>
+                                            <a href="javascript:;" @click="toEdit(item.id)">编辑</a>
                                             <a href="javascript:;" class="actLink" @click="preClick">预览</a>
-                                            <a href="javascript:;" @click="goGamedata(1)">传播数据</a>
-                                            <a href="javascript:;" @click="goGamedata(2)">获奖名单</a>
-                                            <a href="javascript:;" >编辑</a>
-                                            <a href="javascript:;" >结束</a>
-                                             <a href="javascript:;" >删除</a>
+                                            <a href="javascript:;" @click="goGamedata(1,item.id)">传播数据</a>
+                                            <a href="javascript:;" @click="goGamedata(2,item.id)">获奖名单</a>
+                                             <a href="javascript:;" @click="publi(item, 'del')">删除</a>
                                         </div>
                                     </div>
                                 </td>
@@ -73,6 +69,9 @@
                     </el-pagination>
                 </div>
             </div>
+            <div>
+
+            </div>
         </div>
     </div>
 </div>
@@ -83,19 +82,18 @@ import {
     mapMutations
 } from 'vuex'
 import {
-    tdList,
     thList
 } from './activeList.js'
-import {getList} from 'pcApi/jie.js'
+import {getList,publish,stop,delActiv} from 'pcApi/jie.js'
 export default {
     name: 'active-list',
     data() {
         return {
-            tdList,
+            tdList: [],
             thList,
             pageIndex: 1,
             pageSize: 10,
-            totalCount: 10,
+            totalCount: 0,
         }
     },
     methods: {
@@ -103,22 +101,30 @@ export default {
             'set_globalMaskFlag'
         ]),
          handleSizeChange(val) {
-            console.log(`每页 ${val} 条`);
+            this.pageSize = val;
+            this.initList();
         },
         handleCurrentChange(val) {
-            console.log(`当前页: ${val}`);
+            this.pageIndex = val;
+            this.initList();
         },
         preClick() {
             this.set_globalMaskFlag = true;
         },
         toEdit(id) {
-            this.$router.push(`/edit/${id}`)
+            this.$router.push({
+                 path: `/edit/${id}`,
+                 query: {
+                     name: 'edit',
+                 }
+             })
         },
-        goGamedata(val) {
-            this.$emit('toBackGameData', val);
+        goGamedata(val,id) {
+            this.$emit('toBackGameData', val, id);
             // this.$router.push(`/edit/${id}`)
         },
         initList() {
+            this.tdList = [];
             getList({
                 pageIndex: this.pageIndex,
                 pageSize: this.pageSize,
@@ -128,6 +134,46 @@ export default {
                     if (res.data.length > 0) {
                         this.totalCount = res.totalCount;
                         this.tdList = res.data;
+                    }
+                }
+            })
+        },
+        publi(item, type) {
+            let title = type == 'del' ? '删除' : ( item.isPublish ? '结束' : '发布');
+            app.confirm({
+                title: `确认${title} ${item.name} 该活动？`
+            }).then(res => {
+                if (res) {
+                    if (type == 'del') {
+                        delActiv({
+                            id: item.id
+                        }).then(resp => {
+                            if(resp.errorCode == 0) {
+                                this.initList();
+                            }else {
+                                alert(resp.errorMessage)
+                            }
+                        })
+                    }else if (item.isPublish) {
+                        stop({
+                            id: item.id
+                        }).then(resp => {
+                            if(resp.errorCode == 0) {
+                                this.initList();
+                            }else {
+                                alert(resp.errorMessage)
+                            }
+                        })
+                    }else {
+                        publish({
+                            id: item.id
+                        }).then(resp => {
+                            if(resp.errorCode == 0) {
+                                this.initList();
+                            }else {
+                                alert(resp.errorMessage)
+                            }
+                        })
                     }
                 }
             })

@@ -304,7 +304,7 @@
   float: left;
   color: #666;
   cursor: pointer;
-  border:1px solid rgb(231,231,231);
+  border: 1px solid rgb(231, 231, 231);
 }
 
 .gameDataContainer .gameStatDataBox .gameStatDataPanel .toolBar .cusSelect .timeInput:first-child {
@@ -682,4 +682,88 @@ div.jqplot-custom-cursor-legend-title {
 
 .faiTableWrap .center table.faiTable {
   table-layout: auto
+}
+
+.gameDataContainer .statBox {
+  background: #fff;
+  box-sizing: border-box;
+  border: solid 1px #e7e7e7;
+  margin-right: -4px;
+  height: 382px;
+  width: 49.3%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.gameDataContainer .statBox:nth-child(odd) {
+  margin-right: 1%;
+}
+
+.gameDataContainer .playerStat {
+  margin-bottom: 28px;
+  margin-top: 12px;
+}
+.gameDataContainer .statDiagramTitleBar {
+    height: 17px;
+    padding: 16px 16px 22px 14px;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.gameDataContainer .deviceStat .sysTypeStat .statDiagramPanel .content .android {
+    width: 50%;
+    height: 50%;
+    box-sizing: border-box;
+    border-right: 1px solid #e7e7e7;
+    border-bottom: solid 1px #e7e7e7;
+}
+.gameDataContainer .deviceStat .sysTypeStat .statDiagramPanel .content .apple {
+    width: 50%;
+    height: 50%;
+    border-bottom: 1px solid #e7e7e7;
+}
+.gameDataContainer .deviceStat .sysTypeStat .statDiagramPanel .content .other {
+    width: 50%;
+    height: 50%;
+    box-sizing: border-box;
+    border-right: 1px solid #e8e8e8;
+}
+.gameDataContainer .deviceStat .sysTypeStat .statDiagramPanel .content .type {
+      height: 100%;
+}
+.gameDataContainer .deviceStat .sysTypeStat .statDiagramPanel .content .android .icon {
+      width: 79px;
+      height: 92px;
+      background: url(../../../assets/images/android.png) no-repeat left center;
+      margin: 15px 0 0 54px;
+}
+.gameDataContainer .deviceStat .sysTypeStat .statDiagramPanel .content .data {
+      font-size: 16px;
+      color: #cacaca;
+      margin: 10px 0 0 78px;
+}
+.gameDataContainer .deviceStat .sysTypeStat .statDiagramPanel .content .info {
+      width: 50px;
+      height: 160px;
+      color: #358ee2;
+      font-size: 20px;
+      line-height: 160px;
+      margin-left: 26px;
+}
+.gameDataContainer .deviceStat .sysTypeStat .statDiagramPanel .content .apple .icon {
+      width: 75px;
+      height: 92px;
+      background: url(../../../assets/images/apple.png) no-repeat left center;
+      margin: 15px 0 0 54px;
+}
+.gameDataContainer .deviceStat .sysTypeStat .statDiagramPanel .content .other .icon {
+  width: 79px;
+  height: 10px;
+  margin: 65px 0 0 54px;
+}
+.gameDataContainer .deviceStat .sysTypeStat .statDiagramPanel .content .other .icon .spot {
+      width: 10px;
+      height: 10px;
+      background: #cacaca;
+      display: inline-block;
+      margin-left: 5px;
 }

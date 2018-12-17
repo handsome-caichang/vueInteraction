@@ -2,8 +2,8 @@
     <div class="headBar">
         <a href=http://www.xiaogj.com target='_blank'><img class='logo' :src='logonImg' /></a>
         <div class="headerRight">
-            <div id="savePubButon" class="headBtn mbtn main-Button" @click="$emit('saveView')">预览并保存</div>
-            <div id="saveButon" class="headBtn mbtn main-Button disabled">保存</div>
+            <!-- <div id="savePubButon" class="headBtn mbtn main-Button disabled" >预览并保存</div> -->
+            <div id="saveButon" class="headBtn mbtn main-Button " @click="$emit('saveView')">保存</div>
             <div id="cancelButton" class="headBtn mbtn main-Button" title="退出编辑" @click="$emit('close')"><span class="cancelIcon"></span></div>
         </div>
     </div>

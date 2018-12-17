@@ -51,7 +51,7 @@ import prizeSet from './compoent/prizeSet'
 import sendSet from './compoent/sendSet'
 import templateSet from './compoent/templateSet'
 import {mapMutations, mapState} from 'vuex'
-import {getTemplateDetail, createTemplate} from 'pcApi/jie.js'
+import {getTemplateDetail, createTemplate,getEditTemplateDetail,updateLotteryActivity} from 'pcApi/jie.js'
 export default {
     name: 'editHaeder',
     data() {
@@ -117,15 +117,28 @@ export default {
         },
     },
     beforeRouteEnter (to, from, next) {
-         getTemplateDetail({
-            id: to.params.id
-        }).then(res => {
-            if (res.errorCode == 0) {
-                next(vm => vm.setData(res.data));
-            }else {
-                alert(res.errorMessage)
-            }
-        })
+        if (to.query.name == 'add') {
+             getTemplateDetail({
+                id: to.params.id
+            }).then(res => {
+                if (res.errorCode == 0) {
+                    next(vm => vm.setData(res.data));
+                }else {
+                    alert(res.errorMessage)
+                }
+            })
+        }else {
+            getEditTemplateDetail({
+                id: to.params.id
+            }).then(res => {
+                if (res.errorCode == 0) {
+                    next(vm => vm.setData(res.data));
+                }else {
+                    alert(res.errorMessage)
+                }
+            })
+        }
+        
     },
     methods: {
         ...mapMutations([
@@ -136,7 +149,7 @@ export default {
                 this.checked = item.type;
                 if (item.type == 'awardYes' || item.type == 'awardNo') {
                     if (item.type == 'awardYes') {
-                        window.h5AllData.awardDetail =  this.editData.bizData.giftInfo[0];
+                        window.h5AllData.awardDetail =  this.editData.gifts[0];
                     }
                     this.iframeConentObj.$router.replace('/luckDraw')
                     this.h5Store.commit('set_luckDrawPopupAwardFalg', true);
@@ -152,13 +165,18 @@ export default {
             this.currentTab = item.component;
         },
         saveView() {
-            console.log(window.h5AllData);
-            console.log(this.resData);
             let createdData = app.tool.clone(window.h5AllData.luckDraw);
             createdData.h5Data = JSON.stringify(createdData.h5Data);
             if (!this.isEdit) {
-                console.log(createdData);
+                createdData.templateID = this.$route.params.id;
                 createTemplate(createdData).then(res => {
+                    console.log(res)
+                    if (res.errorCode == 0) {
+                        this.$router.replace('/home');
+                    }
+                })
+            }else {
+                updateLotteryActivity(createdData).then(res => {
                     console.log(res)
                     if (res.errorCode == 0) {
                         this.$router.replace('/home');
@@ -174,7 +192,8 @@ export default {
         },
         setData(res) {
             res.lotteryActivityInfo.baseInfo.url = res.lotteryActivityInfo.baseInfo.url.replace(/^\s+|\s+$/gm,'');
-            this.iframeSrc = res.lotteryActivityInfo.baseInfo.url+'?edit=1&templateId='+this.$route.params.id;
+            // this.iframeSrc = res.lotteryActivityInfo.baseInfo.url+'?edit=1&templateId='+this.$route.params.id;
+            this.iframeSrc = 'http://192.168.0.185:8080/h5'+'?edit=1&templateId='+this.$route.params.id;
             this.resData = res.lotteryActivityInfo;
             this.editData = res.lotteryActivityInfo;
             this.baseInfo = this.editData.baseInfo;

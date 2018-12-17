@@ -126,7 +126,7 @@
                 </div>
                 <div class="comUploadBox">
                     <span class="btn">
-                        <input ref="theSpecialDesigan" class="selectbtn theSpecialDesigan" type="file" name="fileselect[]" accept="image/jpg,image/png,image/jpeg,image/bmp,image/gif">
+                        <input ref="theSpecialDesigan" @change="fileChange($event)" class="selectbtn theSpecialDesigan" type="file" name="fileselect[]" accept="image/jpg,image/png,image/jpeg,image/bmp,image/gif">
                         <a href="javascript:;" @click="selectSpecImg" class="uploadify-button main-Button">
                             <span class="addIcon"></span>选择图片
                         </a>
@@ -140,11 +140,16 @@
 </template>
 <script>
     import { mapState } from 'vuex'
+    import {getUploadToken} from 'pcApi/jie.js'
+    import UploadVideoClass from 'pcAssets/js/oss-upload.js'
+    import {fileUploadMixin} from 'pcAssets/js/uploadFile.js'
     export default {
         name: 'baseSet',
+        mixins: [fileUploadMixin],
         data() {
             return {
-                editData: window.h5AllData.luckDraw
+                editData: window.h5AllData.luckDraw,
+                currentfile: {}
             }
         },
         computed: {
@@ -157,7 +162,11 @@
             }
         },
         methods: {
-            selectSpecImg() {
+            fileChange(file) {
+                let vf = this.createFileObj(file.target.files[0]);
+                this.send(vf, this.editData.advancedSetting, 'shareImage');
+            },
+            selectSpecImg(files) {
                 this.$refs.theSpecialDesigan.click();
             }
         },
