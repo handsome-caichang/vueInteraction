@@ -20,7 +20,6 @@
                                 <div class="actName" >{{baseInfo.name}}</div>
                             </div>
                             <div class="gameContent" ref="iframeBox">
-                                <!-- <iframe ref="iframeConent" :src='iframeSrc' frameborder="0" scrolling="no" style="width:100%;height:100%;"></iframe> -->
                             </div>
                             <div class="moduleLayer moduleLayerBox"></div>
                         </div>
@@ -91,7 +90,7 @@ export default {
                 {
                 name: "奖品详情",
                 type: "prizeSet",
-                data: "awardDetail/test"
+                data: "awardDetail"
                 },
                 {
                 name: "中奖页面",
@@ -151,13 +150,13 @@ export default {
                     if (item.type == 'awardYes') {
                         window.h5AllData.awardDetail =  this.editData.gifts[0];
                     }
-                    this.iframeConentObj.$router.replace('/luckDraw')
+                    this.iframeConentObj.$router.replace(`/luckDraw?edit=1&id=${this.$route.params.id}`)
                     this.h5Store.commit('set_luckDrawPopupAwardFalg', true);
                     this.h5Store.commit('set_luckDrawPopupAwardType', item.data);
                 }else {
                     this.currentTab = this.checked;
                     this.h5Store.commit('set_luckDrawPopupAwardFalg', false);
-                    this.iframeConentObj.$router.replace(`/${item.data}`)
+                    this.iframeConentObj.$router.replace(`/${item.data}?edit=1&id=${this.$route.params.id}`)
                 }
             }
         },

@@ -14,6 +14,10 @@ module.exports = {
       target: "http://192.168.0.240:4201",
       changeOrigin: true,
       pathRewrite: { "^/h5api": "api" }
+    },
+    "/pages": {
+      target: "http://192.168.0.240:4201",
+      changeOrigin: true
     }
   },
   dev: {

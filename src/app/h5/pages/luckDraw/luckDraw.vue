@@ -58,11 +58,11 @@
                 <div id="myAwardBox" class="poupMainBox" style="background-color: rgb(254, 103, 95); border-color: rgb(255, 255, 255);" v-if="!isEdit">
                     <img class="titleImgBox" :src="myAwardImg"/>
                     <div class="myAwardInfo rowSpacing"  v-if="luckDraw.myDataGifts.length != 0">
-                        <div class="award-box" v-for="(item, index) in gifts" :key="index">
+                        <div class="award-box" v-for="(item, index) in luckDraw.myDataGifts" :key="index">
                             <div class="awardLimitBox">
                                 <span class="awardText awardNameDef">{{item.levelName}}：{{item.name}}</span>
                             </div>
-                            <span class="awardInfoDetail" @click="gotoDetail">查看详情</span>
+                            <span class="awardInfoDetail" @click="gotoDetail(item)">查看详情</span>
                         </div>
                         <div class="infoDeviceLine"></div>
                     </div>
@@ -72,7 +72,6 @@
                 </div>
                 <div id="actExplain" class="poupMainBox " style="background-color: rgb(254, 103, 95); border-color: rgb(255, 255, 255);">
                     <img class="titleImgBox" :src="activeRule"/>
-                    <div class="ruleBoxBg editTarget-ruleBox"></div>
                     <div id="ruleBox">
                         <div id="activeRuleInfoBox" class="poupMainInfo poupMain">
                             <div id="awardLine" class="rowSpacing poupLine" data-sortkey="a">
@@ -120,19 +119,19 @@ import resuleBox from './child/resuleBox'
 import device from './image/device.png'
 import rotatePan from './image/rotatePan.png'
 const zp0 = 'https://cdn01.xiaogj.com/file/ad32b7168ef04230b33eab04e9e69e0d/201812/31dd141fd56242dbb0f517fee66eed5e.png';
-const zp1 = 'http://cdn01.xiaogj.com/file/e62ccdaf86b9490db16b64f4181cd0c2/201812/1e26c05af8cb45d18d50b5fb28ed590a.png';
-const zp2 = 'http://cdn01.xiaogj.com/file/052debc47e7f4ccc881c5c6626dc45e3/201812/8b4e477ab2354e8f8ab23fca0e4861a8.png';
-const zp3 = 'http://cdn01.xiaogj.com/file/171dbdb9a180469aa97e85c7d7b36fe2/201812/33a4b69d0dbf4d6eace5de1206854804.png';
-const zp4 = 'http://cdn01.xiaogj.com/file/bddda22f9d2b4487aba3419336f37ac8/201812/a894d29ed6d94608a3d07e157a04cfdf.png';
-const zp5 = 'http://cdn01.xiaogj.com/file/d57007015df2415ab7da26626701e5ed/201812/09d53e795f4c4b849bafb8ad200fd8b7.png';
-const zp6 = 'http://cdn01.xiaogj.com/file/a8c3e75a46a54e2d89e6187db34474e1/201812/8e7b945836134c14a5e55c4e5dd2e321.png';
-const zp900 = 'http://cdn01.xiaogj.com/file/360a1cddfe3f450088ec06cc1e01662c/201812/8116ca4d9a454ea1bb3ef0c8c331fae9.png';
+const zp1 = 'https://cdn01.xiaogj.com/file/e62ccdaf86b9490db16b64f4181cd0c2/201812/1e26c05af8cb45d18d50b5fb28ed590a.png';
+const zp2 = 'https://cdn01.xiaogj.com/file/052debc47e7f4ccc881c5c6626dc45e3/201812/8b4e477ab2354e8f8ab23fca0e4861a8.png';
+const zp3 = 'https://cdn01.xiaogj.com/file/171dbdb9a180469aa97e85c7d7b36fe2/201812/33a4b69d0dbf4d6eace5de1206854804.png';
+const zp4 = 'https://cdn01.xiaogj.com/file/bddda22f9d2b4487aba3419336f37ac8/201812/a894d29ed6d94608a3d07e157a04cfdf.png';
+const zp5 = 'https://cdn01.xiaogj.com/file/d57007015df2415ab7da26626701e5ed/201812/09d53e795f4c4b849bafb8ad200fd8b7.png';
+const zp6 = 'https://cdn01.xiaogj.com/file/a8c3e75a46a54e2d89e6187db34474e1/201812/8e7b945836134c14a5e55c4e5dd2e321.png';
+const zp900 = 'https://cdn01.xiaogj.com/file/360a1cddfe3f450088ec06cc1e01662c/201812/8116ca4d9a454ea1bb3ef0c8c331fae9.png';
 import startBtn from './image/startBtn.png'
 import titleImg from './image/title.png'
 import myAwardImg from './image/myAwardImg.png'
 import activeRule from './image/activeRuleImg.png'
 import {mapState,mapMutations} from 'vuex'
-import { getLotteryData,executeLottery } from "h5Api/jie.js";
+import { getLotteryData,executeLottery,upPv ,upAction} from "h5Api/jie.js";
 
 export default {
     name: "luckDraw",
@@ -151,6 +150,8 @@ export default {
             luckDraw: window.h5AllData.luckDraw,
             h5AllData: window.h5AllData,
             gifts: window.h5AllData.luckDraw.gifts,
+            shareLevel: '',
+            activityID: '',
         }
     },
     computed: {
@@ -238,36 +239,27 @@ export default {
             }
         },
         startAward() {
+            if (this.isEdit) return;
             this.loadinData = true;
-            executeLottery().then(res => {
+            // shareLevel
+            let postData = {
+                activityID: this.$route.query.id
+            };
+            if (this.$route.query.shareLevel) {
+                postData.shareLevel = this.$route.query.shareLevel;
+            }
+            executeLottery(postData).then(res => {
+                this.loadinData = false; 
                 if (res.errorCode == 0) {
-                    //  let res = {
-                    //     errorCode: 0,
-                    //     data: {
-                    //         id: "4f8674907d594b9fa8595ca1477cd7e0", // id
-                    //         levelName: "一等奖", // 奖品等级名称
-                    //         name: "价值100元礼品", // 奖品名称
-                    //         count: 0, // 奖品数量
-                    //         operationNotify: "凭券联系现场工作人员兑奖", // 操作提示
-                    //         address: "请填写您的兑奖地址或者门店地址", // 兑换地址
-                    //         telphone: "88888888", // 联系电话
-                    //         cashStartTime: app.tool.getNowFormatDate(), // 兑换开始时间
-                    //         cashEndTime: app.filters.formatDatetime(
-                    //             new Date().getTime() + 3600 * 1000 * 24 * 7,
-                    //             "yyyy-MM-dd hh:mm:ss"
-                    //         ), // 兑换结束时间
-                    //         isConsolation: false // 是否是安慰奖
-                    //     }
-                    // };
-                    this.loadinData = false; 
-                    if (res.data.isWin) {
+                    if (res.data && res.data.isWin) {
                         window.h5AllData.awardDetail = res.data.gift;
                         this.set_luckDrawPopupAwardType('2');
                     }else {
+                        res.data.gift = {
+                            giftID: '-1'
+                        }
                         this.set_luckDrawPopupAwardType('1');
                     }
-                    this.luckDraw.lotteryInfo.totalLimit = res.data.totalLeftCount;
-                    this.luckDraw.lotteryInfo.dailyLimit = res.data.dailyLeftCount;
                     for (let index = 0; index < this.zhuanpanData.length; index++) {
                         const element = this.zhuanpanData[index];
                         if (res.data.gift.giftID == element.id) {
@@ -275,21 +267,30 @@ export default {
                             break;
                         }
                     }
+                    this.luckDraw.lotteryInfo.totalLimit = res.data.totalLeftCount;
+                    this.luckDraw.lotteryInfo.dailyLimit = res.data.dailyLeftCount;
+                   
                     setTimeout( ()=> { // 转盘
                         this.set_luckDrawPopupAwardFalg(true);
-                    }, 5000)
+                    }, 3500)
+                }else {
+                    alert(res.errorMessage)
                 }
             })
         },
         tralg(type) {
+            if (this.isEdit) return;
             this.listCurrentIndex = -1;
             this.set_luckDrawPopupAwardFalg(false);
             if (type == 'detail') {
                 this.$router.push(`awardDetail/${this.h5AllData.awardDetail.giftsId}`);
             }
         },
-        gotoDetail() {
-            this.$router.push('awardDetail/123');
+        gotoDetail(item) {
+            if (this.isEdit) return;
+            this.listCurrentIndex = -1;
+            window.h5AllData.awardDetail = item;
+            this.$router.push('awardDetail');
         },
         zhuanpanPush(index, img, isNothing = true) {
             if (isNothing) {
@@ -311,18 +312,18 @@ export default {
             this.zhuanpanData = [];
             this.zhuanpanData.push({
                 img: zp0,
-                giftsId: '-1'
+                id: '-1'
             });
             this.gifts[0].img = zp1;
             this.zhuanpanData.push(this.gifts[0]); // 2 个了
             if (lengs == 1) {
                  this.zhuanpanData.push({
                     img: zp0,
-                    giftsId: '-1'
+                    id: '-1'
                 });
                 this.zhuanpanData.push({
                     img: zp0,
-                    giftsId: '-1'
+                    id: '-1'
                 });
             }
             if (lengs == 2) {
@@ -350,11 +351,91 @@ export default {
                 this.zhuanpanPush(4, zp5, false);
                 this.zhuanpanPush(5, zp6, false);
             }
+        },
+        sharePage() {
+            let that = this;
+            let shareLevel = this.$route.query.shareLevel;
+            if (shareLevel) {
+                ++shareLevel;
+            }else {
+                shareLevel = 1;
+            }
+            let desc = this.luckDraw.myDataGifts.length > 0 ? this.luckDraw.advancedSetting.shareWinContent : this.luckDraw.advancedSetting.shareNowinContent;
+            alert(desc);
+            let pengyou = {
+                title: this.luckDraw.baseInfo.name,
+                desc: desc,
+                imgUrl: this.luckDraw.advancedSetting.shareImage,
+                link: `${this.luckDraw.advancedSetting.shareUrl}?id=${this.activityID}&sourceType=2&shareLevel=${shareLevel}`,
+                success: function() {
+                    // alert('pengy')
+                    upAction({
+                        type: '4',
+                        activityID: that.activityID,
+                        shareLevel: that.$route.query.shareLevel ? that.$route.query.shareLevel : ''
+                    }).then(res => {
+                        console.log(res);
+                    })
+                }
+            };
+            let penyouquan = {
+                title: this.luckDraw.baseInfo.name,
+                desc: desc,
+                imgUrl: this.luckDraw.advancedSetting.shareImage,
+                link: `${this.luckDraw.advancedSetting.shareUrl}?id=${this.activityID}&sourceType=1&shareLevel=${shareLevel}`,
+                success: function() {
+                    upAction({
+                        type: '4',
+                        activityID: that.activityID,
+                        shareLevel: that.$route.query.shareLevel ? that.$route.query.shareLevel : ''
+                    }).then(res => {
+                        console.log(res);
+                    })
+                }
+            };
+            wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
+                wx.onMenuShareTimeline(pengyou);
+                wx.onMenuShareAppMessage(penyouquan);
+                wx.hideAllNonBaseMenuItem();
+                wx.showMenuItems({ // 要显示的菜单项，所有menu项见附录3
+                    menuList: [
+                        "menuItem:share:appMessage",
+                        "menuItem:share:timeline"
+                    ]
+                });
+            })
         }
     },
     created() {
         this.set_loadingEnd(true);
         this.resetZhuanpanData();
+        this.activityID = this.$route.query.id
+        if (!this.isEdit) {
+            let that = this;
+            wx.getNetworkType({
+                success: function(res) {
+                    let pvData = {
+                        activityID: that.activityID,
+                    };
+                    if(res.networkType == 'wifi') {
+                        pvData.networkType = '1'
+                    }else {
+                        pvData.networkType = '2'
+                    }
+                    if (that.$route.query.sourceType) {
+                        pvData.sourceType = that.$route.query.sourceType;
+                    }
+                    if(that.$route.query.shareLevel) {
+                        pvData.shareLevel = that.$route.query.shareLevel;
+                    }
+                    // alert(JSON.stringify(pvData));
+                    upPv(pvData).then(res => {
+                        console.log(res);
+                    })
+                }
+            })
+            this.sharePage();
+        }
     },
     watch: {
         gifts(newVal) {
@@ -366,7 +447,6 @@ export default {
             getLotteryData({
                 id:to.query.id
             }).then(res => {
-                console.log(res);
                 if (res.errorCode == 0) {
                     let data = res.data;
                     window.h5AllData = { // 模拟数据
@@ -402,6 +482,7 @@ export default {
                         awardDetail: {
                         }
                     };
+                    app.tool.setDocTitle(data.bizData.name);
                     next();
                 }else {
                     alert(res.errorMessage);
@@ -493,7 +574,7 @@ export default {
                 operationNotify: "凭券联系现场工作人员兑奖", // 操作提示
                 address: "请填写您的兑奖地址或者门店地址", // 兑换地址
                 telphone: "88888888", // 联系电话
-                cashStartTime: tool.getNowFormatDate(), // 兑换开始时间
+                cashStartTime: app.tool.getNowFormatDate(), // 兑换开始时间
                 cashEndTime: app.filters.formatDatetime(
                     new Date().getTime() + 3600 * 1000 * 24 * 7,
                     "yyyy-MM-dd hh:mm:ss"
@@ -529,10 +610,8 @@ export default {
 }
 .hd-Special-bgImgInfo {
     background-image: url('./image/homeBg.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
+    background-size: cover;
     background-color: rgb(254, 103, 95);
-    height: 100%;
 }
 
 .activity-lottery-winning {

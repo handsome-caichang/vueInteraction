@@ -32,7 +32,7 @@
                             <div class="address">{{awardDetail.address}}</div>
                         </div>
                     </div>
-                    <div class="itemList addressLine">
+                    <div class="itemList addressLine" style="margin-bottom:10px;">
                         <div class="title titleAdress">客服电话</div>
                         <div class="box">
                             <div class="address">
@@ -48,15 +48,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
     name: 'awardDetail',
     data() {
         return window.h5AllData
     },
     computed: {
+        ...mapState([
+            'isEdit'
+        ])
     },
     methods: {
         closeDetail() {
+            if (this.isEdit) return;
             this.$router.back();
         }
     },

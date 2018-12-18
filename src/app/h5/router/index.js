@@ -29,7 +29,7 @@ export default new Router({
       component: LuckDraw
     },
     {
-      path: "/awardDetail/:id",
+      path: "/awardDetail",
       name: "awardDetail",
       component: AwardDetail
     }

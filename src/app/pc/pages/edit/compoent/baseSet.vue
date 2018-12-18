@@ -61,7 +61,7 @@
         </div>
         <div class="content flex-1">
             <div class="main" >
-                <input type="radio" id="noLimitNum" v-model="editData.baseInfo.次抽奖机会次抽奖机会次抽奖机会" :value="-1" name="isLimitNum"/><label for="noLimitNum">不限</label>
+                <input type="radio" id="noLimitNum" v-model="editData.baseInfo.limitCount" :value="-1" name="isLimitNum"/><label for="noLimitNum">不限</label>
                 <input type="radio" :class="{'idChecked': test}" id="LimitNum" v-model="editData.baseInfo.limitCount" :value="10000" name="isLimitNum" /><label for="LimitNum">限制</label>
                 <span class="afterRadio" v-if="editData.baseInfo.limitCount != -1">
                     <input type="number" min='0' max="999999" v-model.number="editData.baseInfo.limitCount" class="input onlyNum minInput" />人参与
@@ -88,8 +88,8 @@
         </div>
         <div class="content flex-1">
             <div class="main" >
-                <input id="openShard" v-model="editData.advancedSetting.isCanShare" :checked="editData.advancedSetting.isCanShare" value="true" type="radio" name="shar"/><label for="openShard">开启分享</label>
-                <input id="offShard" v-model="editData.advancedSetting.isCanShare" :checked="editData.advancedSetting.isCanShare" value="false" type="radio" name="shar" /><label for="offShard">关闭分享</label>
+                <input id="openShard" :class="{'idChecked': editData.advancedSetting.isCanShare}" v-model="editData.advancedSetting.isCanShare" :value="true" type="radio" name="shar"/><label for="openShard">开启分享</label>
+                <input id="offShard" :class="{'idChecked': !editData.advancedSetting.isCanShare}" v-model="editData.advancedSetting.isCanShare" :value="false" type="radio" name="shar" /><label for="offShard">关闭分享</label>
             </div>
         </div>
     </div>

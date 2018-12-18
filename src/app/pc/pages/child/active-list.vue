@@ -37,7 +37,7 @@
                                     </div>
                                 </td>
                                 <td class="textCenter ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">{{item.limitCount}}</div>
+                                    <div class="padding ellipsis tdWrap">{{item.limitCount == -1 ? "不限":item.limitCount}}</div>
                                 </td>
                                 <td class="textRight ellipsis">
                                     <div class="padding ellipsis tdWrap">
@@ -45,7 +45,7 @@
                                             <a href="javascript:;" class="publishStyle" @click="publi(item, 'pub')" v-if="!item.isPublish">发布</a>
                                             <a href="javascript:;" class="publishStyle" @click="publi(item, 'pub')" v-if="item.isPublish && !item.isEnd"> 结束</a>
                                             <a href="javascript:;" @click="toEdit(item.id)">编辑</a>
-                                            <a href="javascript:;" class="actLink" @click="preClick">预览</a>
+                                            <a href="javascript:;" class="actLink" @click="preClick(item)">预览</a>
                                             <a href="javascript:;" @click="goGamedata(1,item.id)">传播数据</a>
                                             <a href="javascript:;" @click="goGamedata(2,item.id)">获奖名单</a>
                                              <a href="javascript:;" @click="publi(item, 'del')">删除</a>
@@ -63,7 +63,7 @@
                         @current-change="handleCurrentChange"
                         :current-page="pageIndex"
                         :page-sizes="[10, 20, 30, 40]"
-                        :page-size="totalCount"
+                        :page-size="pageSize"
                         layout="total, sizes, prev, pager, next, jumper"
                         :total="totalCount">
                     </el-pagination>
@@ -73,6 +73,7 @@
 
             </div>
         </div>
+        <qr-codevue :opened="showCode"></qr-codevue>
     </div>
 </div>
 </template>
@@ -85,6 +86,7 @@ import {
     thList
 } from './activeList.js'
 import {getList,publish,stop,delActiv} from 'pcApi/jie.js'
+import QrCodevue from '../../components/popup/qrCode.vue'
 export default {
     name: 'active-list',
     data() {
@@ -94,6 +96,7 @@ export default {
             pageIndex: 1,
             pageSize: 10,
             totalCount: 0,
+            showCode: false
         }
     },
     methods: {
@@ -108,8 +111,9 @@ export default {
             this.pageIndex = val;
             this.initList();
         },
-        preClick() {
-            this.set_globalMaskFlag = true;
+        preClick(item) {
+            console.log(item);
+            this.showCode = true;
         },
         toEdit(id) {
             this.$router.push({
@@ -181,6 +185,9 @@ export default {
     },
     created() {
         this.initList();
+    },
+    components: {
+        QrCodevue
     }
 }
 </script>

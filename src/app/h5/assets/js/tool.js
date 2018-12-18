@@ -1,3 +1,4 @@
+import base from './base'
 const tool = {
 };
 tool.getNowFormatDate = function() {
@@ -17,6 +18,52 @@ tool.getNowFormatDate = function() {
         + seperator2 + date.getSeconds();
     return currentdate;
 }
+
+// 设置标题,设置微信web的title,主要为兼容IOS微信端
+tool.setDocTitle = (function () {
+    if (base.env === 'wx') {
+        // iOS微信6.5.3及其之后的版本 window.__wxjs_is_wkwebview 为true时是使用WKWebview，为 false或者 “undefine”时是 UIWebview 。
+        if ((base.isIDevice || base.isTouchPad) && !window.__wxjs_is_wkwebview) {
+            return setDocTitleToIOS;
+        } else {
+            return setDocTitleToOther;
+        }
+    } else if (base.env === 'dd') {
+        return setDocTitleToDingTalk
+    } else {
+        return setDocTitleToOther
+    }
+
+    //  微信环境下并且 'UIWebview'的苹果设备设置title
+    function setDocTitleToIOS(titleStr) {
+        var doc = document;
+        doc.title = titleStr;
+        var iframe = doc.createElement("iframe");
+        iframe.style.display = "none";
+        iframe.src = "/favicon1.ico";
+
+        // iframe.src = "http://www.xiaogj.com/favicon.ico";
+        // iframe.src = "/abc/abc";
+        iframe.addEventListener("load", function () {
+            setTimeout(function () {
+                doc.body.removeChild(iframe);
+            }, 0);
+        });
+        doc.body.appendChild(iframe);
+    }
+
+    // 其它设备设置title
+    function setDocTitleToOther(titleStr) {
+        document.title = titleStr;
+    }
+
+    // 钉钉环环境下设置title
+    function setDocTitleToDingTalk(titleStr) {
+        dd.biz.navigation.setTitle({
+            title: titleStr // 控制标题文本，空字符串表示显示默认文本
+        });
+    }
+})();
 
 tool.parseQuery = function (str = location.search) {
     let qs = str.indexOf("?") === -1 ? str : str.split('?')[1];

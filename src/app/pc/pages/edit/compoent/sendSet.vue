@@ -53,7 +53,7 @@
                     </div>
                     <div class="content flex-1">
                         <div class="main">
-                            <input v-model="editData.lotteryInfo.totalWinLimit" class="input onlyNum minInput" type="number">%
+                            <input v-model="editData.lotteryInfo.totalWinPrecent" class="input onlyNum minInput" type="number">%
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="content flex-1">
                 <div class="main">
-                    <input v-model="editData.lotteryInfo.nogiftNotify" class="activeName input mainInput name" type="text"/>
+                    <input v-model="editData.lotteryInfo.noGiftNotify" class="activeName input mainInput name" type="text"/>
                 </div>
             </div>
             <div class="flag">*</div>
