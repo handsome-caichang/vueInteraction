@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     
-    <div id="preloadPage" class="bg hideImp">
+    <div id="preloadPage" class="bg" :class="{'hideImp': loadingEnd}">
       <div class="spinner">
         <div class="spinner-container container1">
           <div class="circle1"></div>
@@ -22,7 +22,7 @@
           <div class="circle4"></div>
         </div>
       </div>
-      <div class="info"><span id="loadPercent">1</span>%</div>
+      <!-- <div class="info"><span id="loadPercent">1</span>%</div> -->
       <div id="userPreload"></div>
     </div>
     <transition name="slide-fade" transition>
@@ -31,8 +31,15 @@
   </div>
 </template>
 <script>
+
+import { mapState } from 'vuex';
 export default {
   name: 'App',
+  computed: {
+    ...mapState([
+      'loadingEnd'
+    ])
+  },
   created() {
     if (!window.iframeH5Vue) {
         window.iframeH5Vue = this;

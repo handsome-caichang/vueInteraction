@@ -10,7 +10,7 @@
         </div>
         <div class="codeImgBox">
             <div id="codeDetailInfoBox">
-                <div class="codeLine"><span>兑奖码</span>：<span class="code selectText">{{awardDetail.giftid ? awardDetail.giftid : 888888888}}</span></div>
+                <div class="codeLine"><span>兑奖码</span>：<span class="code selectText">{{awardDetail.code ? awardDetail.code : 888888888}}</span></div>
                 <div class="codeOptInfo_Gift">{{awardDetail.operationNotify}}</div>
             </div>
         </div>
@@ -57,7 +57,7 @@ export default {
     },
     methods: {
         closeDetail() {
-            this.$router.go(-1);
+            this.$router.back();
         }
     },
     created() {

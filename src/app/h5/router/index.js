@@ -6,9 +6,14 @@ import Router from 'vue-router'
 // import Order from "h5/pages/pingtuan/child/order";
 // import Detail from "h5/pages/pingtuan/child/detail";
 /* 抽奖大转盘 */
-import LuckDraw from "h5/pages/luckDraw/luckDraw";
+// import LuckDraw from "h5/pages/luckDraw/luckDraw";
 /* 奖品详情 */
-import AwardDetail from "h5/pages/awardDetail/awardDetail";
+// import AwardDetail from "h5/pages/awardDetail/awardDetail";
+const LuckDraw = () =>
+  import(/*webpackChunkName: "luckDraw"*/ "h5/pages/luckDraw/luckDraw.vue");
+const AwardDetail = () =>
+  import(/*webpackChunkName: "awardDetail"*/ "h5/pages/awardDetail/awardDetail");
+
 
 Vue.use(Router)
 
@@ -18,30 +23,10 @@ export default new Router({
       path: "/",
       redirect: "/luckDraw"
     },
-    // {
-    //   path: "/home",
-    //   name: "home",
-    //   component: Home,
-    //   redirect: "/home/product",
-    //   children: [
-    //     {
-    //       path: "product",
-    //       component: Product
-    //     },
-    //     {
-    //       path: "order",
-    //       component: Order
-    //     },
-    //     {
-    //       path: "product/:id",
-    //       component: Detail
-    //     }
-    //   ]
-    // },
     {
       path: "/luckDraw",
       name: "luckDraw",
-      component: LuckDraw,
+      component: LuckDraw
     },
     {
       path: "/awardDetail/:id",

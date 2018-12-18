@@ -18,6 +18,8 @@ export default {
   },
   set_isEdit: function (state, params) {
     state.isEdit = params;
+  },
+  set_loadingEnd: function (state, params) {
+    state.loadingEnd = params;
   }
-
 };

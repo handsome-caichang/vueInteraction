@@ -2,31 +2,45 @@
 <div class="main-whiteBox cav_container" style="min-width: 1115px;">
     <div class="cav_tabBox">
         <div class="cav_tab cav_t_record checked">核销记录</div>
-        <div class="main-Button cav_gotoCavBtn" @click="toVer"><span class="icon"></span>前往核销</div>
+        <router-link  class="main-Button cav_gotoCavBtn" target="_blank" :to="{path:'/verification'}"><span class="icon"></span>前往核销</router-link>
+        <!-- <div @click="toVer"></div> -->
     </div>
     <div>
         <div class="cav_centent cav_c_gift">
             <div class="recordBar">
                 <div class="searchGameId">
                     <div class="dropDownBox_main">
-                        <div class="txt">全部活动</div><span class="icon dropDownArrow"></span>
+                        <div class="txt">全部活动</div>
                     </div>
+                    <!-- <span class="icon dropDownArrow"></span>
                     <div class="dropDownBox_sub hide" style="display: none;">
                         <div class="options">全部活动</div>
                         <div class="options">HD3</div>
                         <div class="options">HD2</div>
                         <div class="options">HD1</div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="filter time3">今天</div>
+                <!-- <div class="filter time3">今天</div>
                 <div class="filter time3">昨天</div>
                 <div class="filter latelyStevenDay time3">最近七天</div>
                 <div class="filter time3">最近30天</div>
                 <div class="filter time3" style="margin-right:15px;">本月</div>
                 <input class="startTime" type="text" value="" placeholder="开始时间" readonly>
-                <input class="endTime" type="text" value="" placeholder="结束时间" readonly>
-                <div class="filter recordBtn" style="margin-right: 20px;"><span class="icon"></span>查询</div>
-                <div class="exportBtn"><span class="icon"></span>导出</div>
+                <input class="endTime" type="text" value="" placeholder="结束时间" readonly> -->
+                <!-- <div class="exportBtn"><span class="icon"></span>导出</div> -->
+                <div style="display: flex;align-items: center;">
+                    <el-date-picker
+                        v-model="timeValue"
+                        type="daterange"
+                        align="right"
+                        unlink-panels
+                        range-separator="至"
+                        start-placeholder="开始日期"
+                        end-placeholder="结束日期"
+                        :picker-options="pickerOptions2">
+                    </el-date-picker>
+                    <div class="filter recordBtn" style="margin:0 20px 0 20px;"><span class="icon"></span>查询</div>
+                </div>
             </div>
             <div class="recordTable">
                 <div class="faiTableWrap">
@@ -145,14 +159,48 @@ export default {
     name: "destruction",
     data() {
         return {
-            destructionList
+            destructionList,
+            timeValue: '',
+            pickerOptions2: {
+                shortcuts: [{
+                        text: '今天',
+                        onClick(picker) {
+                            const start = new Date();
+                            picker.$emit('pick', [start, start]);
+                        }
+                    },
+                    {
+                        text: '昨天',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    },
+                    {
+                        text: '最近一周',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }, {
+                        text: '最近一个月',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }
+                ]
+			},
         };
     },
     computed: {},
     methods: {
-        toVer() {
-            this.$router.push('/verification')
-        }
     },
     components: {}
 };

@@ -5,5 +5,6 @@ import luckDraw from './luckDraw.js'
 /* 数据状态 */
 export default {
   ...luckDraw,
-  isEdit: false
+  isEdit: false,
+  loadingEnd: false,
 };

@@ -193,7 +193,7 @@ export default {
         setData(res) {
             res.lotteryActivityInfo.baseInfo.url = res.lotteryActivityInfo.baseInfo.url.replace(/^\s+|\s+$/gm,'');
             // this.iframeSrc = res.lotteryActivityInfo.baseInfo.url+'?edit=1&templateId='+this.$route.params.id;
-            this.iframeSrc = 'http://192.168.0.185:8080/h5'+'?edit=1&templateId='+this.$route.params.id;
+            this.iframeSrc = 'http://192.168.0.185:8080/h5'+'/index.html#/luckDraw?edit=1&id='+this.$route.params.id;
             this.resData = res.lotteryActivityInfo;
             this.editData = res.lotteryActivityInfo;
             this.baseInfo = this.editData.baseInfo;

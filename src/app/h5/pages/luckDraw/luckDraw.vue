@@ -22,7 +22,17 @@
                     <div class="center_txt">
                         <div class="txt_style_1 joinNumLine " v-if="luckDraw.baseInfo.isShowUserCount">已有<span class="ipt_num joinNumLineText">{{luckDraw.baseInfo.userCount + luckDraw.baseInfo.visualUserCount}}</span>人参与</div>
                         <div class="txt_style_1 ">
-                            <div class="dayDraw" style="font-size: 0.6rem; color: rgb(250, 82, 8);">
+                            <div class="dayDraw" style="font-size: 0.6rem; color: rgb(250, 82, 8);" v-if="luckDraw.lotteryInfo.totalLimit != -1">
+                                今天可抽
+                                <span class="ipt_num specil dayDrawCount" style="font-size: 0.6rem; color: rgb(250, 82, 8);">{{luckDraw.lotteryInfo.dailyLimit}}</span>
+                                次
+                            </div>
+                            <div class="dayDraw" style="font-size: 0.6rem; color: rgb(250, 82, 8);" v-if="luckDraw.lotteryInfo.totalLimit != -1">
+                                您还有
+                                <span class="ipt_num specil dayDrawCount" style="font-size: 0.6rem; color: rgb(250, 82, 8);">{{luckDraw.lotteryInfo.totalLimit}}</span>
+                                次抽奖机会
+                            </div>
+                            <div class="dayDraw" style="font-size: 0.6rem; color: rgb(250, 82, 8);" v-if="luckDraw.lotteryInfo.totalLimit == -1">
                                 您今天还有
                                 <span class="ipt_num specil dayDrawCount" style="font-size: 0.6rem; color: rgb(250, 82, 8);">{{luckDraw.lotteryInfo.dailyLimit}}</span>
                                 次抽奖机会
@@ -30,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="myAwardBox" class="poupMainBox" style="background-color: rgb(254, 103, 95); border-color: rgb(255, 255, 255);">
+                <div id="myAwardBox" class="poupMainBox" style="background-color: rgb(254, 103, 95); border-color: rgb(255, 255, 255);" v-if="isEdit">
                     <img class="titleImgBox" :src="myAwardImg"/>
                     <div class="myAwardInfo rowSpacing"  v-if="gifts.length != 0">
                         <div class="award-box" v-for="(item, index) in gifts" :key="index">
@@ -42,6 +52,21 @@
                         <div class="infoDeviceLine"></div>
                     </div>
                     <div class="myAwardInfo rowSpacing" v-if="gifts.length == 0">
+                        <div style="line-height: 2.6rem; padding-left: 0.05rem;font-size: 0.75rem;">暂无中奖记录</div>
+                    </div>
+                </div>
+                <div id="myAwardBox" class="poupMainBox" style="background-color: rgb(254, 103, 95); border-color: rgb(255, 255, 255);" v-if="!isEdit">
+                    <img class="titleImgBox" :src="myAwardImg"/>
+                    <div class="myAwardInfo rowSpacing"  v-if="luckDraw.myDataGifts.length != 0">
+                        <div class="award-box" v-for="(item, index) in gifts" :key="index">
+                            <div class="awardLimitBox">
+                                <span class="awardText awardNameDef">{{item.levelName}}：{{item.name}}</span>
+                            </div>
+                            <span class="awardInfoDetail" @click="gotoDetail">查看详情</span>
+                        </div>
+                        <div class="infoDeviceLine"></div>
+                    </div>
+                    <div class="myAwardInfo rowSpacing" v-if="luckDraw.myDataGifts.length == 0">
                         <div style="line-height: 2.6rem; padding-left: 0.05rem;font-size: 0.75rem;">暂无中奖记录</div>
                     </div>
                 </div>
@@ -94,19 +119,21 @@
 import resuleBox from './child/resuleBox'
 import device from './image/device.png'
 import rotatePan from './image/rotatePan.png'
-const zp0 = 'http://192.168.0.228/cc/zp0.png';
-const zp1 = 'http://192.168.0.228/cc/zp1.png';
-const zp2 = 'http://192.168.0.228/cc/zp2.png';
-const zp3 = 'http://192.168.0.228/cc/zp3.png';
-const zp4 = 'http://192.168.0.228/cc/zp4.png';
-const zp5 = 'http://192.168.0.228/cc/zp5.png';
-const zp6 = 'http://192.168.0.228/cc/zp6.png';
-const zp900 = 'http://192.168.0.228/cc/zp900.png';
+const zp0 = 'https://cdn01.xiaogj.com/file/ad32b7168ef04230b33eab04e9e69e0d/201812/31dd141fd56242dbb0f517fee66eed5e.png';
+const zp1 = 'http://cdn01.xiaogj.com/file/e62ccdaf86b9490db16b64f4181cd0c2/201812/1e26c05af8cb45d18d50b5fb28ed590a.png';
+const zp2 = 'http://cdn01.xiaogj.com/file/052debc47e7f4ccc881c5c6626dc45e3/201812/8b4e477ab2354e8f8ab23fca0e4861a8.png';
+const zp3 = 'http://cdn01.xiaogj.com/file/171dbdb9a180469aa97e85c7d7b36fe2/201812/33a4b69d0dbf4d6eace5de1206854804.png';
+const zp4 = 'http://cdn01.xiaogj.com/file/bddda22f9d2b4487aba3419336f37ac8/201812/a894d29ed6d94608a3d07e157a04cfdf.png';
+const zp5 = 'http://cdn01.xiaogj.com/file/d57007015df2415ab7da26626701e5ed/201812/09d53e795f4c4b849bafb8ad200fd8b7.png';
+const zp6 = 'http://cdn01.xiaogj.com/file/a8c3e75a46a54e2d89e6187db34474e1/201812/8e7b945836134c14a5e55c4e5dd2e321.png';
+const zp900 = 'http://cdn01.xiaogj.com/file/360a1cddfe3f450088ec06cc1e01662c/201812/8116ca4d9a454ea1bb3ef0c8c331fae9.png';
 import startBtn from './image/startBtn.png'
 import titleImg from './image/title.png'
 import myAwardImg from './image/myAwardImg.png'
 import activeRule from './image/activeRuleImg.png'
 import {mapState,mapMutations} from 'vuex'
+import { getLotteryData,executeLottery } from "h5Api/jie.js";
+
 export default {
     name: "luckDraw",
     data() {
@@ -149,6 +176,7 @@ export default {
         ...mapState([
            'luckDrawPopupAwardFalg',
            'luckDrawPopupAwardType',
+           'isEdit',
        ])
     },
     components: {
@@ -158,6 +186,7 @@ export default {
         ...mapMutations([
             'set_luckDrawPopupAwardFalg',
             'set_luckDrawPopupAwardType',
+            'set_loadingEnd',
         ]),
         zhuanStyle(item,index) {
             let widthProp = 0.2; // 图片宽度比例
@@ -210,51 +239,47 @@ export default {
         },
         startAward() {
             this.loadinData = true;
-            // setTimeout(() => { // 模拟调用接口
-                let res = {
-                    errorCode: 0,
-                    data: {
-                        id: "4f8674907d594b9fa8595ca1477cd7e0", // id
-                        levelName: "一等奖", // 奖品等级名称
-                        name: "价值100元礼品", // 奖品名称
-                        count: 0, // 奖品数量
-                        operationNotify: "凭券联系现场工作人员兑奖", // 操作提示
-                        address: "请填写您的兑奖地址或者门店地址", // 兑换地址
-                        telphone: "88888888", // 联系电话
-                        cashStartTime: app.tool.getNowFormatDate(), // 兑换开始时间
-                        cashEndTime: app.filters.formatDatetime(
-                            new Date().getTime() + 3600 * 1000 * 24 * 7,
-                            "yyyy-MM-dd hh:mm:ss"
-                        ), // 兑换结束时间
-                        isConsolation: false // 是否是安慰奖
-                    }
-                };
-                // let res = {
-                //     errorCode: 1,
-                //     data: {
-                //         giftId: '0',
-                //     }
-                // };
-                this.loadinData = false; 
-                console.log(this.listCurrentIndex);
-                for (let index = 0; index < this.zhuanpanData.length; index++) {
-                   const element = this.zhuanpanData[index];
-                   if (res.data.id == element.id) {
-                       console.log(this.listCurrentIndex);
-                       this.listCurrentIndex = index;
-                       break;
-                   }
-                }
+            executeLottery().then(res => {
                 if (res.errorCode == 0) {
-                    window.h5AllData.awardDetail = res.data;
-                    this.set_luckDrawPopupAwardType('2');
-                }else {
-                    this.set_luckDrawPopupAwardType('1');
+                    //  let res = {
+                    //     errorCode: 0,
+                    //     data: {
+                    //         id: "4f8674907d594b9fa8595ca1477cd7e0", // id
+                    //         levelName: "一等奖", // 奖品等级名称
+                    //         name: "价值100元礼品", // 奖品名称
+                    //         count: 0, // 奖品数量
+                    //         operationNotify: "凭券联系现场工作人员兑奖", // 操作提示
+                    //         address: "请填写您的兑奖地址或者门店地址", // 兑换地址
+                    //         telphone: "88888888", // 联系电话
+                    //         cashStartTime: app.tool.getNowFormatDate(), // 兑换开始时间
+                    //         cashEndTime: app.filters.formatDatetime(
+                    //             new Date().getTime() + 3600 * 1000 * 24 * 7,
+                    //             "yyyy-MM-dd hh:mm:ss"
+                    //         ), // 兑换结束时间
+                    //         isConsolation: false // 是否是安慰奖
+                    //     }
+                    // };
+                    this.loadinData = false; 
+                    if (res.data.isWin) {
+                        window.h5AllData.awardDetail = res.data.gift;
+                        this.set_luckDrawPopupAwardType('2');
+                    }else {
+                        this.set_luckDrawPopupAwardType('1');
+                    }
+                    this.luckDraw.lotteryInfo.totalLimit = res.data.totalLeftCount;
+                    this.luckDraw.lotteryInfo.dailyLimit = res.data.dailyLeftCount;
+                    for (let index = 0; index < this.zhuanpanData.length; index++) {
+                        const element = this.zhuanpanData[index];
+                        if (res.data.gift.giftID == element.id) {
+                            this.listCurrentIndex = index;
+                            break;
+                        }
+                    }
+                    setTimeout( ()=> { // 转盘
+                        this.set_luckDrawPopupAwardFalg(true);
+                    }, 5000)
                 }
-                setTimeout( ()=> { // 转盘
-                    this.set_luckDrawPopupAwardFalg(true);
-                }, 5000)
-            // }, 3000)
+            })
         },
         tralg(type) {
             this.listCurrentIndex = -1;
@@ -328,11 +353,155 @@ export default {
         }
     },
     created() {
+        this.set_loadingEnd(true);
         this.resetZhuanpanData();
     },
     watch: {
         gifts(newVal) {
             this.resetZhuanpanData();
+        }
+    },
+    beforeRouteEnter (to, from, next) {
+        if (to.query.edit != 1) {
+            getLotteryData({
+                id:to.query.id
+            }).then(res => {
+                console.log(res);
+                if (res.errorCode == 0) {
+                    let data = res.data;
+                    window.h5AllData = { // 模拟数据
+                        luckDraw: {
+                            id: data.id,
+                            baseInfo: {
+                                name: data.bizData.name,
+                                startTime: data.bizData.startTime,
+                                endTime: data.bizData.endTime,
+                                // isPublish: false,
+                                // url: "",
+                                // limitCount: 10000,  //  参与人数限制，没用
+                                visualUserCount: 0,  // 抽奖的时候没用，
+                                isShowUserCount: data.bizData.isShowUserCount,
+                                userCount: data.statisticData.customerCount,
+                                activityInfo: data.bizData.activityInfo
+                            },
+                            advancedSetting: {
+                                isCanShare: data.bizData.isCanShare,
+                                shareImage: data.bizData.shareImage,
+                                shareWinContent: data.bizData.shareWinContent,
+                                shareNowinContent: data.bizData.shareNowinContent,
+                                shareUrl:data.bizData.shareNowinContent,  // 分享的url
+                            },
+                            lotteryInfo: {
+                                dailyLimit: data.myData.dailyLeftCount,
+                                totalLimit: data.myData.totalLeftCount,
+                            },
+                            gifts: data.bizData.gifts,
+                            h5Data: JSON.parse(data.h5Data),
+                            myDataGifts: data.myData.gifts,
+                        },
+                        awardDetail: {
+                        }
+                    };
+                    next();
+                }else {
+                    alert(res.errorMessage);
+                }
+            });
+        }else {
+            window.h5AllData = { // 模拟数据
+                luckDraw: {
+                id: "b5c3da18ccc74376b3492802e9c6d9f0",
+                templateID: null,
+                createTime: "2018-12-10T03:47:03.421Z",
+                updateTime: "2018-12-14T03:17:37.278Z",
+                createUserID: "00000000000000000000000000000000",
+                baseInfo: {
+                    name: "参与活动赢大奖",
+                    startTime: "2018-12-14T02:58:21Z",
+                    endTime: "2018-12-14T02:58:21Z",
+                    isPublish: false,
+                    url: "",
+                    limitCount: 10000,
+                    visualUserCount: 0,
+                    isShowUserCount: true,
+                    userCount: 0,
+                    activityInfo: "点击“开始”转盘开始转动，最终指针指着的即为您所中的奖品"
+                },
+                advancedSetting: {
+                    isCanShare: true,
+                    shareImage: "http://192.168.0.228/cc/l_xydzp.jpg",
+                    shareWinContent: "​我已经在活动中抽到了奖品，你也快来抽大奖吧！",
+                    shareNowinContent:
+                    "​轻轻松松就能抽到大奖，积攒多年的人品终于有用了，你也赶紧来抽奖吧！！"
+                },
+                lotteryInfo: {
+                    totalLimit: -1,
+                    dailyLimit: 3,
+                    winLimit: 1,
+                    totalWinPrecent: 10.0,
+                    noGiftNotify: "奖品已经派完"
+                },
+                gifts: [
+                    {
+                    id: "36fb60143991409283db8c6c942a2dab",
+                    levelName: "一等奖",
+                    name: "价值100元礼品",
+                    count: 0,
+                    operationNotify: "凭券联系现场工作人员兑奖",
+                    address: "请填写您的兑奖地址或者门店地址",
+                    telphone: "88888888",
+                    cashStartTime: "2018-12-14T02:58:21Z",
+                    cashEndTime: "2018-12-14T02:58:21Z",
+                    isConsolation: false
+                    },
+                    {
+                    id: "fca6d44bfdc940ee87a4242a0a145050",
+                    levelName: "二等奖",
+                    name: "价值50元礼品",
+                    count: 0,
+                    operationNotify: "凭券联系现场工作人员兑奖",
+                    address: "请填写您的兑奖地址或者门店地址",
+                    telphone: "88888888",
+                    cashStartTime: "2018-12-14T02:58:21Z",
+                    cashEndTime: "2018-12-14T02:58:21Z",
+                    isConsolation: false
+                    },
+                    {
+                    id: "4f8674907d594b9fa8595ca1477cd7e0",
+                    levelName: "三等奖",
+                    name: "价值10元礼品",
+                    count: 0,
+                    operationNotify: "凭券联系现场工作人员兑奖",
+                    address: "请填写您的兑奖地址或者门店地址",
+                    telphone: "",
+                    cashStartTime: "2018-12-14T02:58:21Z",
+                    cashEndTime: "2018-12-14T02:58:21Z",
+                    isConsolation: false
+                    }
+                ],
+                h5Data: {
+                    awardDetailName: "长沙市校管家教育科技有限公司",
+                    awardDetaiInfo: "兑换券详情"
+                }
+                },
+                awardDetail: {
+                giftId: "1",
+                id: "", // id
+                levelName: "一等奖", // 奖品等级名称
+                name: "价值100元礼品", // 奖品名称
+                count: 0, // 奖品数量
+                operationNotify: "凭券联系现场工作人员兑奖", // 操作提示
+                address: "请填写您的兑奖地址或者门店地址", // 兑换地址
+                telphone: "88888888", // 联系电话
+                cashStartTime: tool.getNowFormatDate(), // 兑换开始时间
+                cashEndTime: app.filters.formatDatetime(
+                    new Date().getTime() + 3600 * 1000 * 24 * 7,
+                    "yyyy-MM-dd hh:mm:ss"
+                ), // 兑换结束时间
+                isConsolation: false // 是否是安慰奖
+                }
+            };
+            next();
         }
     }
 };

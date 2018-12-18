@@ -6,9 +6,8 @@
     <div class="verifPanel">
         <div class="searchBoxCont" style="width: 816px; height: 44px"><input type="text" class="searchInput input" placeholder="请输入需要核销的券码">
             <div class="searchIcon searchBtn"></div>
-            <div class="clearBtn hide"></div>
         </div>
-        <div class="searchTips hide">
+        <div class="searchTips">
             <div class="imgTips"></div>
             <div class="txtTips">
                 <div class="item item1">
@@ -25,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="searchResult">
+        <div class="searchResult hide">
             <div class="searchTable">
                 <div class="faiTableWrap">
                     <div class="center">
@@ -134,4 +133,7 @@ export default {
 
 <style scoped>
 @import '../../assets/css/verification.scss';
+input[type="text"]{
+  border:1px solid #e7e7e7;
+}
 </style>
