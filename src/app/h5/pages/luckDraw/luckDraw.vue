@@ -275,7 +275,7 @@ export default {
                    
                     setTimeout( ()=> { // 转盘
                         this.set_luckDrawPopupAwardFalg(true);
-                    }, 4000)
+                    }, 5000)
                 }else {
                     alert(res.errorMessage)
                 }
@@ -286,13 +286,14 @@ export default {
             this.listCurrentIndex = -1;
             this.set_luckDrawPopupAwardFalg(false);
             if (type == 'detail') {
-                this.$router.push(`awardDetail/${this.h5AllData.awardDetail.giftsId}`);
+                this.$router.push("awardDetail");
             }
         },
         gotoDetail(item) {
             if (this.isEdit) return;
             this.listCurrentIndex = -1;
             window.h5AllData.awardDetail = item;
+            // window.h5AllData.awardDetail.isVerificated = true;
             this.$router.push('awardDetail');
         },
         zhuanpanPush(index, img, isNothing = true) {
@@ -304,6 +305,7 @@ export default {
             }
             if (this.gifts[index].isConsolation) { // 是否是安慰奖
                 this.gifts[index].img = zp900;
+                alert(this.gifts[index].isConsolation)
             }else {
                 this.gifts[index].img = img;
             }

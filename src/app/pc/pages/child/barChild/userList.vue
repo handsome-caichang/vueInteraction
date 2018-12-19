@@ -65,7 +65,7 @@
                                 </td>
                                 <td class="textCenter lineHeight ellipsis">
                                     <div class="padding ellipsis tdWrap">
-                                        <p v-if="!item.gift.isExpired && item.isVerificated">未核销</p>
+                                        <p v-if="!item.gift.isExpired && !item.isVerificated">未核销</p>
                                         <p v-if="item.isVerificated">已核销</p>
                                         <p v-if="item.gift.isExpired" >已过期</p>
                                     </div>

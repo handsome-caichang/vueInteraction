@@ -8,11 +8,11 @@ import Router from 'vue-router'
 /* 抽奖大转盘 */
 // import LuckDraw from "h5/pages/luckDraw/luckDraw";
 /* 奖品详情 */
-// import AwardDetail from "h5/pages/awardDetail/awardDetail";
+import AwardDetail from "h5/pages/awardDetail/awardDetail";
 const LuckDraw = () =>
   import(/*webpackChunkName: "luckDraw"*/ "h5/pages/luckDraw/luckDraw.vue");
-const AwardDetail = () =>
-  import(/*webpackChunkName: "awardDetail"*/ "h5/pages/awardDetail/awardDetail");
+// const AwardDetail = () =>
+//   import(/*webpackChunkName: "awardDetail"*/ "h5/pages/awardDetail/awardDetail");
 
 
 Vue.use(Router)

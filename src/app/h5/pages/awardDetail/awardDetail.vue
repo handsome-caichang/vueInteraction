@@ -9,9 +9,12 @@
             <div class="awardDetailWarp"></div>
         </div>
         <div class="codeImgBox">
-            <div id="codeDetailInfoBox">
+            <div id="codeDetailInfoBox" v-if="awardDetail && !awardDetail.isVerificated">
                 <div class="codeLine"><span>兑奖码</span>：<span class="code selectText">{{awardDetail.code ? awardDetail.code : 888888888}}</span></div>
                 <div class="codeOptInfo_Gift">{{awardDetail.operationNotify}}</div>
+            </div>
+            <div id="codeDetailInfoBox"  v-if="awardDetail && awardDetail.isVerificated">
+                <div class="codeOptInfo_Gift"><span>已核销</span></div>
             </div>
         </div>
         <div class="awardBtnList">
@@ -72,5 +75,11 @@ export default {
 </script>
 <style scoped>
 @import "./awardDetail.scss";
-
+.hexiao {
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #333;
+    border-radius: 4px;
+}
 </style>

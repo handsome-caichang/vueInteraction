@@ -269,14 +269,7 @@ export default {
 
 			],
 			activiyInfo: {
-				endTime: "2018-12-27 18:58:21",
-				isEnd: false,
-				isPublish: false,
-				name: "参与活动赢大奖222",
-				startTime: "2018-12-13 18:58:21",
-				templateID: "b5c3da18ccc74376b3492802e9c6d9f0",
-				templateName: "参与活动赢大奖",
-				type: 1,
+				
 			},
 			winLotteryItems: [],
 			terminalStatistic: {
@@ -305,6 +298,7 @@ export default {
 				if (res.errorCode == 0) {
 					this.resData = res.data;
 					this.other.visitStatistic = res.data.visitStatistic;
+					this.activiyInfo = res.data.activiyInfo;
 					this.winLotteryItems = res.data.winLotteryItems;
 					this.shareStatistic = res.data.shareStatistic;
 
@@ -385,76 +379,75 @@ export default {
 					];
 
 					/* 进入来源 */
-					let sourList = [];
-					res.data.sourceStatistic.forEach(el => {
-						let name = '';
-						if (el.type == '1') {
-							name = '朋友圈'
-						}else if(el.type == '2') {
-								name = '好友及群聊'
-						}else if(el.type == '3') {
-								name= '二维码'
+					let sourList = [
+						{
+							name:'朋友圈',
+							value: 0
+						},{
+							name:'好友及群聊',
+							value: 0
+						},{
+							name:'二维码',
+							value: 0
 						}
-						sourList.push({
-							value: el.count,
-							name: name
-						})
+					];
+					res.data.sourceStatistic.forEach(el => {
+						sourList[el.type+1].value = el.count
 					});
 					this.sourceStatDagramOption.series[0].data = sourList;
 
 
 					/* 分享去向 */
-					let tagList = [];
-					res.data.shareTargetStatistic.forEach(el => {
-						let name = '';
-						if (el.type == '1') {
-							name = '朋友圈'
-						}else if(el.type == '2') {
-								name = '好友及群聊'
+					let tagList = [
+						{
+							name:'朋友圈',
+							value: 0
+						},{
+							name:'好友及群聊',
+							value: 0
 						}
-						tagList.push({
-							value: el.count,
-							name: name
-						})
+					];
+					res.data.shareTargetStatistic.forEach(el => {
+						tagList[el.type+1].value = el.count
 					});	
-					this.shareEndDagramOption.series[0].data = sourList;
+					this.shareEndDagramOption.series[0].data = tagList;
 					
 					/* 性别比例 */
-					let sexStatisticList = [];
-					res.data.sexStatistic.forEach(el => {
-						let name = '';
-						if (el.type == '1') {
-							name = '男'
-						}else if(el.type == '2') {
-							name = '女'
-						}else if(el.type == '0') {
-							name = '未知'
+					let sexStatisticList = [
+						{
+							name:'未知',
+							value: 0
+						},{
+							name:'男',
+							value: 0
+						},{
+							name:'女',
+							value: 0
 						}
-						sexStatisticList.push({
-							value: el.count,
-							name: name
-						})
+					];
+					res.data.sexStatistic.forEach(el => {
+						sexStatisticList[el.type].value = el.count
 					});	
 					this.sexStatDiagramOption.series[0].data = sexStatisticList;
 
 					/* 网络类型 */
-					let networkTargetStatisticList = [];
-					res.data.networkTargetStatistic.forEach(el => {
-						let name = '';
-						if (el.type == '1') {
-							name = 'WIFI'
-						}else if(el.type == '2') {
-							name = '运营商'
+					let networkTargetStatisticList = [
+						{
+							name:'WIFI',
+							value: 0
+						},{
+							name:'运营商',
+							value: 0
 						}
-						networkTargetStatisticList.push({
-							value: el.count,
-							name: name
-						})
+					];
+					let allNum = 0;
+					res.data.networkTargetStatistic.forEach(el => {
+						networkTargetStatisticList[el.type].value = el.count;
+						allNum += el.count;
 					});	
 					this.backStatDiagramOption.series[0].data = networkTargetStatisticList;
 
 					if ( res.data.networkTargetStatistic.length > 0) {
-						let allNum = res.data.networkTargetStatistic.reduce((accumulator, currentValue) => accumulator.count + currentValue.count);/* 终端 */
 						res.data.networkTargetStatistic.forEach(el => {
 							if (el.type == '1') {
 								this.terminalStatistic.and = el.count / allNum * 100 + '%';
@@ -465,7 +458,6 @@ export default {
 							}
 						});	
 					}
-					
 					this.shareEndDagram.setOption(this.shareEndDagramOption);
             		this.sourceStatDagram.setOption(this.sourceStatDagramOption);
             		this.statSpreadDagram.setOption(this.shareStatisticOption);

@@ -16,7 +16,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="queryIngTr odd" v-if="tdList.lengt == 0"><td class="padding" colspan="10">没有数据</td></tr>
+                            <tr class="queryIngTr odd" v-if="tdList.length == 0"><td class="padding" colspan="10">没有数据</td></tr>
                             <tr v-for="(item, index) in tdList" :key="index">
                                 <td class="textLeft active_activeName ellipsis">
                                     <div class="padding ellipsis tdWrap">
