@@ -133,7 +133,6 @@ export default {
                 pageIndex: this.pageIndex,
                 pageSize: this.pageSize,
             }).then(res => {
-                console.log(res);
                 if (res.errorCode == 0) {
                     if (res.data.length > 0) {
                         this.totalCount = res.totalCount;

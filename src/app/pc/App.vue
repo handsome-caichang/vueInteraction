@@ -2,7 +2,9 @@
   <div id="app">
     <div id="hdContainer">
       <header-container></header-container>
-
+      <div class="server-block" v-show="loadingFlag">
+             <loading :bgType='1'></loading>
+        </div>
       <router-view></router-view>
     </div>
 
@@ -11,6 +13,7 @@
 
 <script>
 import HeaderContainer from './components/header-container'
+import loading from './components/loading/loading'
 import { mapState, mapMutations } from 'vuex';
 import {getUser} from 'pcApi/jie.js'
 export default {
@@ -20,9 +23,13 @@ export default {
       };
   },
   computed: {
+    ...mapState([
+      'loadingFlag'
+    ])
   },
   components: {
-    HeaderContainer
+    HeaderContainer,
+    loading
   },
   methods: {
     ...mapMutations([
@@ -47,6 +54,14 @@ export default {
 
 <style>
 @import "./assets/css/base.scss";
+.server-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 9999999;
+}
 html,
 body {
     height: 100%

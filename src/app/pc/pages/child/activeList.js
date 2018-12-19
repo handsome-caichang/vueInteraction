@@ -72,3 +72,4 @@ exports.destructionList = [
     storeName: "总部"
   }
 ];
+

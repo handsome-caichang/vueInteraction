@@ -152,6 +152,7 @@ export default {
             gifts: window.h5AllData.luckDraw.gifts,
             shareLevel: '',
             activityID: '',
+            desc: '',
         }
     },
     computed: {
@@ -253,6 +254,8 @@ export default {
                 if (res.errorCode == 0) {
                     if (res.data && res.data.isWin) {
                         window.h5AllData.awardDetail = res.data.gift;
+                        this.luckDraw.myDataGifts.push(res.data.gift);
+                        this.desc = this.luckDraw.myDataGifts.length > 0 ? this.luckDraw.advancedSetting.shareWinContent : this.luckDraw.advancedSetting.shareNowinContent;
                         this.set_luckDrawPopupAwardType('2');
                     }else {
                         res.data.gift = {
@@ -272,7 +275,7 @@ export default {
                    
                     setTimeout( ()=> { // 转盘
                         this.set_luckDrawPopupAwardFalg(true);
-                    }, 3500)
+                    }, 4000)
                 }else {
                     alert(res.errorMessage)
                 }
@@ -354,19 +357,21 @@ export default {
         },
         sharePage() {
             let that = this;
-            let shareLevel = this.$route.query.shareLevel;
+            let shareLevel = this.shareLevel;
+            let desc = this.desc;
+            let name = this.luckDraw.baseInfo.name;
+            let shareImage = this.luckDraw.advancedSetting.shareImage;
             if (shareLevel) {
                 ++shareLevel;
             }else {
                 shareLevel = 1;
             }
-            let desc = this.luckDraw.myDataGifts.length > 0 ? this.luckDraw.advancedSetting.shareWinContent : this.luckDraw.advancedSetting.shareNowinContent;
-            alert(desc);
+            let link = `${this.luckDraw.advancedSetting.shareUrl}?sourceType=1&shareLevel=${shareLevel}`;
             let pengyou = {
-                title: this.luckDraw.baseInfo.name,
+                title: name,
                 desc: desc,
-                imgUrl: this.luckDraw.advancedSetting.shareImage,
-                link: `${this.luckDraw.advancedSetting.shareUrl}?id=${this.activityID}&sourceType=2&shareLevel=${shareLevel}`,
+                imgUrl: shareImage,
+                link: encodeURIComponent(link),
                 success: function() {
                     // alert('pengy')
                     upAction({
@@ -379,23 +384,21 @@ export default {
                 }
             };
             let penyouquan = {
-                title: this.luckDraw.baseInfo.name,
+                title: name,
                 desc: desc,
-                imgUrl: this.luckDraw.advancedSetting.shareImage,
-                link: `${this.luckDraw.advancedSetting.shareUrl}?id=${this.activityID}&sourceType=1&shareLevel=${shareLevel}`,
+                imgUrl: shareImage,
+                link: encodeURIComponent(link),
                 success: function() {
                     upAction({
                         type: '4',
                         activityID: that.activityID,
-                        shareLevel: that.$route.query.shareLevel ? that.$route.query.shareLevel : ''
+                        shareLevel: that.shareLevel
                     }).then(res => {
                         console.log(res);
                     })
                 }
             };
             wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
-                wx.onMenuShareTimeline(pengyou);
-                wx.onMenuShareAppMessage(penyouquan);
                 wx.hideAllNonBaseMenuItem();
                 wx.showMenuItems({ // 要显示的菜单项，所有menu项见附录3
                     menuList: [
@@ -403,37 +406,38 @@ export default {
                         "menuItem:share:timeline"
                     ]
                 });
+                wx.onMenuShareAppMessage(penyouquan);
+                wx.onMenuShareTimeline(pengyou);
+                wx.getNetworkType({
+                    success: function(res) {
+                        let pvData = {
+                            activityID: that.activityID,
+                        };
+                        if(res.networkType == 'wifi') {
+                            pvData.networkType = '1'
+                        }else {
+                            pvData.networkType = '2'
+                        }
+                        if (that.$route.query.sourceType) {
+                            pvData.sourceType = that.$route.query.sourceType;
+                        }
+                        if(that.$route.query.shareLevel) {
+                            pvData.shareLevel = that.$route.query.shareLevel;
+                        }
+                        upPv(pvData).then(res => {
+                        })
+                    }
+                })
             })
         }
     },
     created() {
         this.set_loadingEnd(true);
         this.resetZhuanpanData();
-        this.activityID = this.$route.query.id
+        this.activityID = this.$route.query.id;
+        this.shareLevel = this.$route.query.shareLevel ? this.$route.query.shareLevel : '';
         if (!this.isEdit) {
-            let that = this;
-            wx.getNetworkType({
-                success: function(res) {
-                    let pvData = {
-                        activityID: that.activityID,
-                    };
-                    if(res.networkType == 'wifi') {
-                        pvData.networkType = '1'
-                    }else {
-                        pvData.networkType = '2'
-                    }
-                    if (that.$route.query.sourceType) {
-                        pvData.sourceType = that.$route.query.sourceType;
-                    }
-                    if(that.$route.query.shareLevel) {
-                        pvData.shareLevel = that.$route.query.shareLevel;
-                    }
-                    // alert(JSON.stringify(pvData));
-                    upPv(pvData).then(res => {
-                        console.log(res);
-                    })
-                }
-            })
+            this.desc = this.luckDraw.myDataGifts.length > 0 ? this.luckDraw.advancedSetting.shareWinContent : this.luckDraw.advancedSetting.shareNowinContent;
             this.sharePage();
         }
     },
@@ -469,7 +473,7 @@ export default {
                                 shareImage: data.bizData.shareImage,
                                 shareWinContent: data.bizData.shareWinContent,
                                 shareNowinContent: data.bizData.shareNowinContent,
-                                shareUrl:data.bizData.shareNowinContent,  // 分享的url
+                                shareUrl:data.bizData.shareUrl,  // 分享的url
                             },
                             lotteryInfo: {
                                 dailyLimit: data.myData.dailyLeftCount,

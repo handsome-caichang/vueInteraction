@@ -12,22 +12,7 @@
                     <div class="dropDownBox_main">
                         <div class="txt">全部活动</div>
                     </div>
-                    <!-- <span class="icon dropDownArrow"></span>
-                    <div class="dropDownBox_sub hide" style="display: none;">
-                        <div class="options">全部活动</div>
-                        <div class="options">HD3</div>
-                        <div class="options">HD2</div>
-                        <div class="options">HD1</div>
-                    </div> -->
                 </div>
-                <!-- <div class="filter time3">今天</div>
-                <div class="filter time3">昨天</div>
-                <div class="filter latelyStevenDay time3">最近七天</div>
-                <div class="filter time3">最近30天</div>
-                <div class="filter time3" style="margin-right:15px;">本月</div>
-                <input class="startTime" type="text" value="" placeholder="开始时间" readonly>
-                <input class="endTime" type="text" value="" placeholder="结束时间" readonly> -->
-                <!-- <div class="exportBtn"><span class="icon"></span>导出</div> -->
                 <div style="display: flex;align-items: center;">
                     <el-date-picker
                         v-model="timeValue"
@@ -124,20 +109,15 @@
                         </table>
                     </div>
                     <div class="bottom">
-                        <div class="total"><span class="allTotal">共有 0 条记录 ，每页显示</span>
-                            <div class="dropDownBox">
-                                <div class="dropDownArea">10</div>
-                                <div class="faiTable_poupBox optionsBox hide">
-                                    <div class="options">10</div>
-                                    <div class="options">50</div>
-                                    <div class="options">100</div>
-                                    <div class="options">500</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pageBox">
-                            <div class="page"><a href="javascript:;" hidefocus="true" class="prevPage disabledBtn"></a><span class="currentPage">1 / 0</span><a href="javascript:;" hidefocus="true" class="nextPage disabledBtn"></a></div><span class="pageJump"><input maxlength="1" class="jumpInput" type="text"><div class="jumpSubmit pointer">跳转</div></span>
-                        </div>
+                        <el-pagination
+                            @size-change="handleSizeChange"
+                            @current-change="handleCurrentChange"
+                            :current-page="pageIndex"
+                            :page-sizes="[10, 20, 30, 40]"
+                            :page-size="pageSize"
+                            layout="total, sizes, prev, pager, next, jumper"
+                            :total="totalCount">
+                        </el-pagination>
                     </div>
                 </div>
             </div>
@@ -196,11 +176,22 @@ export default {
                         }
                     }
                 ]
-			},
+            },
+            pageIndex: 1,
+            pageSize: 10,
+            totalCount: 0,
         };
     },
     computed: {},
-    methods: {
+    methods: { 
+        handleSizeChange(val) {
+            this.pageSize = val;
+            // this.initList();
+        },
+        handleCurrentChange(val) {
+            this.pageIndex = val;
+            // this.initList();
+        },
     },
     components: {}
 };
@@ -208,4 +199,8 @@ export default {
 
 <style scoped>
 @import "../../assets/css/destruction.scss";
+.faiTableWrap .bottom {
+    display: flex;
+    align-items: center;
+}
 </style>

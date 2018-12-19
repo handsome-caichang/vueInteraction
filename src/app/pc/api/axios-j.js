@@ -12,12 +12,13 @@ axios.ajaxGet = function(url, args) {
       ? `${serverQuery.ip}${url}`
       : `${serverQuery.ip}/${url}`
     : url;
-
+  app.store.commit("set_loadingFlag", true);
   return axios
     .get(qUrl, {
       params: { _t_: new Date().getTime(), ...args, UsePlatform: 1 }
     })
     .then(res => {
+      app.store.commit("set_loadingFlag", false);
       let errorcode = res.data.errorCode,
         errormsg = res.data.errorMessage;
       if (errorcode !== 0) {
@@ -29,6 +30,7 @@ axios.ajaxGet = function(url, args) {
       return res.data;
     })
     .catch(res => {
+      app.store.commit("set_loadingFlag", false);
       // http请求本身出错时
       if (res == "Error: Network Error") {
         alert("网络错误，请检查网络连接。");
@@ -51,9 +53,11 @@ axios.ajax = function(url, args) {
       ? `${serverQuery.ip}${url}`
       : `${serverQuery.ip}/${url}`
     : url;
+  app.store.commit("set_loadingFlag", true);
   return axios
     .post(qUrl, qs.stringify({ ...args, UsePlatform: 1 }))
     .then(res => {
+      app.store.commit("set_loadingFlag", false);
       let errorcode = res.data.errorCode,
         errormsg = res.data.errorMessage;
       if (errorcode !== 0) {
@@ -63,6 +67,7 @@ axios.ajax = function(url, args) {
       return res.data;
     }   
   ).catch(res => {
+    app.store.commit("set_loadingFlag", false);
       // http请求本身出错时
     if (res == "Error: Network Error") {
       alert("网络错误，请检查网络连接。");
@@ -86,9 +91,11 @@ axios.ajaxPut = function (url, args) {
       ? `${serverQuery.ip}${url}`
       : `${serverQuery.ip}/${url}`
     : url;
+  app.store.commit("set_loadingFlag", true);
   return axios
     .put(qUrl, qs.stringify({ ...args, UsePlatform: 1 }))
     .then(res => {
+      app.store.commit("set_loadingFlag", false);
       let errorcode = res.data.errorCode,
         errormsg = res.data.errorMessage;
       if (errorcode !== 0) {
@@ -98,6 +105,7 @@ axios.ajaxPut = function (url, args) {
       return res.data;
     }
     ).catch(res => {
+      app.store.commit("set_loadingFlag", false);
       // http请求本身出错时
       if (res == "Error: Network Error") {
         alert("网络错误，请检查网络连接。");
@@ -123,11 +131,13 @@ axios.ajaxDel = function(url, args) {
       : `${serverQuery.ip}/${url}`
     : url;
 
+  app.store.commit("set_loadingFlag", true);
   return axios
     .delete(qUrl, {
       params: { _t_: new Date().getTime(), ...args, UsePlatform: 1 }
     })
     .then(res => {
+      app.store.commit("set_loadingFlag", false);
       let errorcode = res.data.errorCode,
         errormsg = res.data.errorMessage;
       if (errorcode !== 0) {
@@ -137,6 +147,7 @@ axios.ajaxDel = function(url, args) {
       return res.data;
     })
     .catch(res => {
+      app.store.commit("set_loadingFlag", false);
       // http请求本身出错时
       if (res == "Error: Network Error") {
         alert("网络错误，请检查网络连接。");

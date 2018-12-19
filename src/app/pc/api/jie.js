@@ -81,7 +81,30 @@ export function getStatistic(params) {
 
 
 /*  oss */
-
 export function getUploadToken(params) {
     return axios.ajaxGet("api/user/getUploadToken", params);
+}
+
+
+
+/*  根据code获取中奖记录 */
+export function getWinLotteryRecordByCode(params) {
+    return axios.ajaxGet("api/activity/getWinLotteryRecordByCode", params);
+}
+
+/*  根据code获取中奖记录 */
+export function verificate(params) {
+    return axios.ajax("api/activity/verificate", params);
+}
+
+
+/*  获取中奖名单 */
+export function getWinLotteryRecord(params) {
+    return axios.ajaxGet("api/activity/getWinLotteryRecord", params);
+}
+
+
+/*  获取中奖名单 */
+export function getCustomer(params) {
+    return axios.ajaxGet("/api/activity/getCustomer", params);
 }

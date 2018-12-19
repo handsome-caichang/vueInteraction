@@ -23,7 +23,8 @@ import oss from "pcAssets/js/oss.js";
 var app = {
   tool,
   filters,
-  oss
+  oss,
+  store
 };
 
 Vue.prototype.app = window.app = app;
@@ -31,7 +32,7 @@ Vue.prototype.app = window.app = app;
 Vue.use(JDialog, {root: app });
 
 Vue.mixin({
-  filters: filters
+  filters: filters,
 });
 
 /* eslint-disable no-new */

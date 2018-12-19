@@ -77,7 +77,6 @@ export default {
                 pageIndex: this.pageIndex,
                 pageSize: this.pageSize,
             }).then(res => {
-                console.log(res);
                 if (res.errorCode == 0) {
                     this.totalCount = res.totalCount;
                     this.imgList = res.data;

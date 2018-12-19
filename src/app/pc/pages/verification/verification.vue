@@ -4,10 +4,10 @@
         核销奖券<div class="batchCodes pointer"></div>
     </div>
     <div class="verifPanel">
-        <div class="searchBoxCont" style="width: 816px; height: 44px"><input type="text" class="searchInput input" placeholder="请输入需要核销的券码">
-            <div class="searchIcon searchBtn"></div>
+        <div class="searchBoxCont" style="width: 816px; height: 44px"><input type="text" v-model="code" class="searchInput input" placeholder="请输入需要核销的券码">
+            <div class="searchIcon searchBtn" @click="searchClick"></div>
         </div>
-        <div class="searchTips">
+        <div class="searchTips" v-if="!isClick">
             <div class="imgTips"></div>
             <div class="txtTips">
                 <div class="item item1">
@@ -24,63 +24,66 @@
                 </div>
             </div>
         </div>
-        <div class="searchResult hide">
+        <div class="searchResult" v-if="isClick">
             <div class="searchTable">
                 <div class="faiTableWrap">
                     <div class="center">
                         <table class="faiTable" cellpadding="0" cellspacing="0">
                             <thead>
                                 <tr class="scrollFixedTr">
-                                    <th data-key="code1" class="column1 textCenter codeNum sep">
+                                    <th class="textCenter codeNum sep">
                                         <div class="padding">券码</div>
                                     </th>
-                                    <th data-key="gameId" class="column1 textCenter activeNum sep">
-                                        <div class="padding">活动编号</div>
+                                    <th  class="textCenter activeNum sep">
+                                        <div class="padding">活动名称</div>
                                     </th>
-                                    <th data-key="awardStyle" class="column textCenter awardLevel sep">
+                                    <th  class="textCenter awardLevel sep">
                                         <div class="padding">奖项等级</div>
                                     </th>
-                                    <th data-key="award" class="column textCenter awardName sep">
+                                    <th class="textCenter awardName sep">
                                         <div class="padding">奖品名称</div>
                                     </th>
-                                    <th data-key="awardinfo" class="column2 textCenter user sep">
+                                    <th  class="textCenter user sep">
                                         <div class="padding">中奖者</div>
                                     </th>
-                                    <th data-key="awardTime" class="column3 textCenter awardTime  sep">
+                                    <th  class="textCenter awardTime  sep">
                                         <div class="padding">中奖时间</div>
                                     </th>
-                                    <th data-key="codeStatus" class="column4  textCenter">
+                                    <th  class=" textCenter" style="width: 96px;">
                                         <div class="padding">券码状态</div>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr _index="0" class="odd">
+                                <tr class="queryIngTr odd" v-if="!gift"><td class="padding" colspan="8">没有数据</td></tr>
+                                <tr _index="0" class="odd" v-if="gift">
                                     <td class="textCenter ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">229733047</div>
+                                        <div class="padding ellipsis tdWrap">{{gift.code}}</div>
                                     </td>
                                     <td class="textCenter ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">HD47</div>
+                                        <div class="padding ellipsis tdWrap">{{gift.activityName}}</div>
                                     </td>
                                     <td class="textCenter ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">安慰奖</div>
+                                        <div class="padding ellipsis tdWrap">{{gift.gift.levelName}}</div>
                                     </td>
                                     <td class="textCenter ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">价值5元小礼品</div>
+                                        <div class="padding ellipsis tdWrap">{{gift.gift.name}}</div>
                                     </td>
                                     <td class="textCenter ellipsis">
                                         <div class="padding ellipsis tdWrap">
                                             <div class="userPlayer ellipsis" style="width:auto;">
-                                                <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eribQm1CY0QQvjLGyk6ic8Jb0kesAORhxXyiadT93atoicdQnzNHgX9HweXTZ1w1atTquhZ3IVNJQoVOA/132">
-                                                <span title=""></span>
+                                                <img :src="gift.headImageUrl">
+                                                <span>{{gift.nickName}}</span>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="textCenter awardTime ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">2018-12-05 15:58:17</div>
+                                        <div class="padding ellipsis tdWrap">{{gift.createTime}}</div>
                                     </td>
                                     <td class="textCenter codeStatus ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">未核销</div>
+                                        <div class="padding ellipsis tdWrap" v-if="!gift.isVerificated && !gift.gift.isExpired">未核销</div>
+                                        <div class="padding ellipsis tdWrap"  v-if="gift.isVerificated" style="color: #ff4e1f;">已核销</div>
+                                        <div class="padding ellipsis tdWrap"  v-if="!gift.isVerificated && gift.gift.isExpired" style="color: #ff4e1f;">已过期</div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -89,21 +92,21 @@
                     </div>
                 </div>
             </div>
-            <div class="cavBtnBox hide" style="display:block">
-                <!-- <div class="revoke hide">
+            <div class="cavBtnBox" style="display:block" v-if="gift">
+                <div class="revoke" v-if="gift.isVerificated">
                     <div class="cavRemark">
-                        核销备注：<input class="cavNote" type="text" value="" disabled="disabled" maxlength="9" >
+                        核销备注：<input class="cavNote" v-model="gift.remark" type="text" value="" disabled="disabled" maxlength="9" >
                     </div>
-                    <div class="revokeBtn">
+                    <!-- <div class="revokeBtn">
                         <div class="revokeCav">撤回核销</div>
                         <div class="revokeTip">撤回核销为敏感操作请慎重考虑</div>
-                    </div>
-                </div> -->
-                <div class="cav">
+                    </div> -->
+                </div>
+                <div class="cav" v-if="!gift.isVerificated">
                     <div style="margin-bottom: 20px; margin-top: 24px;">
-                        核销备注：<input class="cavNote" type="text" value="" maxlength="9" >
+                        核销备注：<input v-model="remark" class="cavNote" :disabled="gift.gift.isExpired" type="text" value="" maxlength="9" >
                     </div>
-                        <div class="cavBtn main-Button-blue">核销</div>
+                        <div class="cavBtn main-Button-blue" @click="verificate">核销</div>
                         <p class="cavTips"></p>
                 </div>
             </div>
@@ -111,22 +114,49 @@
     </div>
     <div class="changeToPhoneBox">
         <div class="phoneTiPsImg hide reminder"></div>
-        <div class="changeToPhone"><span class="icon"></span>使用手机随时随地核销卡券</div>
+        <!-- <div class="changeToPhone"><span class="icon"></span>使用手机随时随地核销卡券</div> -->
     </div>
 </div>
 </template>
 
 <script>
+import {getWinLotteryRecordByCode,verificate} from 'pcApi/jie.js'
 export default {
     name: "verification",
     data() {
-        return {};
+        return {
+            code: '',
+            remark: '',
+            gift: null,
+            isClick: false,
+        };
     },
     computed: {},
-    methods: {},
+    methods: {
+        searchClick() {
+            if(this.code) {
+                this.isClick = true;
+                getWinLotteryRecordByCode({
+                    code: this.code
+                }).then(res => {
+                    this.gift = res.data;
+                })
+            }
+        },
+        verificate() {
+            if (!this.gift&&this.gift.isExpired) return;
+            verificate({
+                remark: this.remark,
+                id: this.gift.id
+            }).then(res => {
+                if (res.errorCode == 0) {
+                    this.searchClick();
+                }
+            })
+        }
+    },
     components: {},
     created() {
-        console.log(21111);
     }
 };
 </script>
@@ -136,4 +166,12 @@ export default {
 input[type="text"]{
   border:1px solid #e7e7e7;
 }
+/* .scrollFixedTr {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.flex1 {
+    flex: 1
+} */
 </style>

@@ -1,6 +1,7 @@
 /* 数据状态 */
 export default {
   globalMaskFlag: false,
+  loadingFlag: false,
   headerType: "1",
   userInfo: null,
   editData: {

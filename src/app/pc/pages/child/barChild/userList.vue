@@ -17,6 +17,9 @@
                                 <th data-key="awardinfo" class="textCenter columnPer10 sep">
                                     <div class="padding">中奖玩家</div>
                                 </th>
+                                <th data-key="awardinfo" class="textCenter columnPer10 sep">
+                                    <div class="padding">活动名称</div>
+                                </th>
                                 <th data-key="awardLevel" class="column textCenter columnPer10 sep">
                                     <div class="padding">奖项等级</div>
                                 </th>
@@ -28,119 +31,43 @@
                                 </th>
                                 <th data-key="codeStatus" class="column7 textCenter columnPer10 sep dropDown pointer">
                                     <div class="padding">卡券状态</div>
-									<!-- <span class="icon"></span> -->
-                                    <!-- <div class="faiTable_poupBox dropDownBox_sub hide" style="display: none;">
-                                        <div class="optionsWarp">
-                                            <div class="options primary" _index="0">卡券状态</div>
-                                            <div class="options" _index="1">未核销</div>
-                                            <div class="options" _index="2">已核销</div>
-                                            <div class="options" _index="3">无需核销</div>
-                                            <div class="options" _index="4">已过期</div>
-                                            <div class="options" _index="5">已失效</div>
-                                            <div class="options" _index="6">已作废</div>
-                                        </div>
-                                    </div> -->
-                                </th>
-                                <th data-key="ausername" class="textCenter columnPer10 sep">
-                                    <div class="padding">姓名</div>
-                                </th>
-                                <th data-key="aphone" class="textCenter columnPer10 sep">
-                                    <div class="padding">联系电话</div>
-                                </th>
-                                <th data-key="aadress" class="textCenter columnPer15 sep hide">
-                                    <div class="padding">联系地址</div>
-                                </th>
-                                <th data-key="canalName" class="textCenter columnPer15 userAddress sep">
-                                    <div class="padding">渠道</div>
-                                </th>
-                            </tr>
-                            <tr class="trClone hide">
-                                <th class="checkBoxWidth textCenter sep"><input id="checkboxItem_all" class="checkbox all" type="checkbox" name="checkboxItem_all"><label for="checkboxItem_all"></label></th>
-                                <th data-key="awardinfo" class="textCenter columnPer10 sep">
-                                    <div class="padding">中奖玩家</div>
-                                </th>
-                                <th data-key="awardLevel" class="column textCenter columnPer10 sep">
-                                    <div class="padding">奖项等级</div>
-                                </th>
-                                <th data-key="award" class="textCenter columnPer10 sep">
-                                    <div class="padding">奖品</div>
-                                </th>
-                                <th data-key="awardTime" class="column7 textCenter columnPer15 awardTime sep">
-                                    <div class="padding">中奖时间</div>
-                                </th>
-                                <th data-key="codeStatus" class="column7 textCenter columnPer10 sep dropDown pointer">
-                                    <div class="padding">卡券状态<span class="icon"></span></div>
-                                    <div class="faiTable_poupBox dropDownBox_sub hide" style="display: none;">
-                                        <div class="optionsWarp">
-                                            <div class="options primary" _index="0">卡券状态</div>
-                                            <div class="options" _index="1">未核销</div>
-                                            <div class="options" _index="2">已核销</div>
-                                            <div class="options" _index="3">无需核销</div>
-                                            <div class="options" _index="4">已过期</div>
-                                            <div class="options" _index="5">已失效</div>
-                                            <div class="options" _index="6">已作废</div>
-                                        </div>
-                                    </div>
-                                </th>
-                                <th data-key="ausername" class="textCenter columnPer10 sep">
-                                    <div class="padding">姓名</div>
-                                </th>
-                                <th data-key="aphone" class="textCenter columnPer10 sep">
-                                    <div class="padding">联系电话</div>
-                                </th>
-                                <th data-key="aadress" class="textCenter columnPer15 sep hide">
-                                    <div class="padding">联系地址</div>
-                                </th>
-                                <th data-key="canalName" class="textCenter columnPer15 userAddress sep">
-                                    <div class="padding">渠道</div>
                                 </th>
                             </tr>
                         </thead>
                         <tbody style="">
-                            <tr _index="0" class="odd">
+                            <tr class="queryIngTr odd"  v-if="tdList.length == 0"><td class="padding" colspan="10">没有数据</td></tr>
+                            <tr _index="0" class="odd" v-for="(item, index) in tdList" :key="index">
                                 <td class="textCenter player awardPlayer ellipsis">
                                     <div class="padding ellipsis tdWrap">
-                                        <div class="userPlayer" data-openid="oosnVwlU7XYn-S5VMT1PUt6-SnEY"><img src="http://thirdwx.qlogo.cn/mmopen/vi_32/ic1crFCeE7OGDr5cWOEnItVAhcL8oOeuFp5MSaxepwDFGrziaEIXA3UEqias6Su8FRjTsLX6ehqCb4yvBf8PnY2MA/132"></div>
-                                            <p class="wxname">No zuo no die</p>
+                                        <div class="userPlayer"><img :src="item.customer.headImageUrl"></div>
+                                            <p class="wxname">{{item.customer.nickName}}</p>
                                         </div>
                                 </td>
                                 <td class="textCenter lineHeight ellipsis">
                                     <div class="padding ellipsis tdWrap">
-                                        <p>二等奖</p>
-                                        <p>一等奖333333</p>
+                                        <p>{{item.activityName}}</p>
                                     </div>
                                 </td>
                                 <td class="textCenter lineHeight ellipsis">
                                     <div class="padding ellipsis tdWrap">
-                                        <p>价值50元礼品</p>
-                                        <p>价值100元礼品</p>
+                                        <p>{{item.gift.levelName}}</p>
+                                    </div>
+                                </td>
+                                <td class="textCenter lineHeight ellipsis">
+                                    <div class="padding ellipsis tdWrap">
+                                        <p>{{item.gift.name}}</p>
                                     </div>
                                 </td>
                                 <td class="textCenter awardTime lineHeight ellipsis">
                                     <div class="padding ellipsis tdWrap">
-                                        <p>2018-12-12 17:11:52</p>
-                                        <p>2018-12-12 17:10:19</p>
+                                        <p>{{item.createTime}}</p>
                                     </div>
                                 </td>
                                 <td class="textCenter lineHeight ellipsis">
                                     <div class="padding ellipsis tdWrap">
-                                        <p data-code="358612062">未核销</p>
-                                        <p data-code="552315062">已过期</p>
-                                    </div>
-                                </td>
-                                <td class="textCenter ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">
-                                        <div class=""><span>陈旺</span></div>
-                                    </div>
-                                </td>
-                                <td class="textCenter ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">
-                                        <div class=""><span>18374977980</span></div>
-                                    </div>
-                                </td>
-                                <td class="textCenter userAddress ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">
-                                        <div class="userAdress">无&nbsp;</div>
+                                        <p v-if="!item.gift.isExpired && item.isVerificated">未核销</p>
+                                        <p v-if="item.isVerificated">已核销</p>
+                                        <p v-if="item.gift.isExpired" >已过期</p>
                                     </div>
                                 </td>
                             </tr>
@@ -149,7 +76,7 @@
                     </table>
                 </div>
                 <div class="bottom">
-                    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pageIndex" :page-sizes="[10, 20, 30, 40]" :page-size="totalCount" layout="total, sizes, prev, pager, next, jumper" :total="totalCount">
+                    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pageIndex" :page-sizes="[10, 20, 30, 40]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="totalCount">
                     </el-pagination>
                 </div>
             </div>
@@ -165,98 +92,44 @@
                     <table class="faiTable" cellpadding="0" cellspacing="0">
                         <thead>
                             <tr class="scrollFixedTr">
-                                <th data-key="headImg" class="columnPer5 textCenter sprizeCol sep">
+                                <th class="columnPer5 textCenter sprizeCol sep">
                                     <div class="padding">玩家头像</div>
                                 </th>
-                                <th data-key="name" class="columnPer10 textCenter sprizeCol sep">
+                                <th class="columnPer10 textCenter sprizeCol sep">
                                     <div class="padding">玩家昵称</div>
                                 </th>
-                                <th data-key="awardinfo" class="columnPer10 textCenter prizeLevelName sep">
-                                    <div class="padding">获得奖项</div>
+                                <th  class="textCenter columnPer10 sep">
+                                    <div class="padding">性别</div>
                                 </th>
-                                <th data-key="ausername" class="textCenter columnPer10 sep">
-                                    <div class="padding">姓名</div>
+                                <th  class="textCenter columnPer10 sep">
+                                    <div class="padding">城市</div>
                                 </th>
-                                <th data-key="aphone" class="textCenter columnPer10 sep">
-                                    <div class="padding">联系电话</div>
-                                </th>
-                                <th data-key="aadress" class="textCenter columnPer15 sep hide">
-                                    <div class="padding">联系地址</div>
-                                </th>
-                                <th data-key="firstJoinTime" class="columnPer15 textCenter sprizeCol sep">
+                                <th class="columnPer15 textCenter sprizeCol sep">
                                     <div class="padding">首次参与时间</div>
-                                </th>
-                                <th data-key="jointime" class="columnPer15 textCenter sprizeCol sep hide">
-                                    <div class="padding">最近参与时间</div>
-                                </th>
-                                <th data-key="canalName" class="columnPer10 textCenter sep">
-                                    <div class="padding">渠道</div>
-                                </th>
-                            </tr>
-                            <tr class="trClone hide">
-                                <th class="checkBoxWidth textCenter sep"><input id="checkboxItem_all" class="checkbox all" type="checkbox" name="checkboxItem_all"><label for="checkboxItem_all"></label></th>
-                                <th data-key="headImg" class="columnPer5 textCenter sprizeCol sep">
-                                    <div class="padding">玩家头像</div>
-                                </th>
-                                <th data-key="name" class="columnPer10 textCenter sprizeCol sep">
-                                    <div class="padding">玩家昵称</div>
-                                </th>
-                                <th data-key="awardinfo" class="columnPer10 textCenter prizeLevelName sep">
-                                    <div class="padding">获得奖项</div>
-                                </th>
-                                <th data-key="ausername" class="textCenter columnPer10 sep">
-                                    <div class="padding">姓名</div>
-                                </th>
-                                <th data-key="aphone" class="textCenter columnPer10 sep">
-                                    <div class="padding">联系电话</div>
-                                </th>
-                                <th data-key="aadress" class="textCenter columnPer15 sep hide">
-                                    <div class="padding">联系地址</div>
-                                </th>
-                                <th data-key="firstJoinTime" class="columnPer15 textCenter sprizeCol sep">
-                                    <div class="padding">首次参与时间</div>
-                                </th>
-                                <th data-key="jointime" class="columnPer15 textCenter sprizeCol sep hide">
-                                    <div class="padding">最近参与时间</div>
-                                </th>
-                                <th data-key="canalName" class="columnPer10 textCenter sep">
-                                    <div class="padding">渠道</div>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr id="88" class="odd">
+                            <tr class="queryIngTr odd"  v-if="userList.length == 0"><td class="padding" colspan="10">没有数据</td></tr>
+                            <tr class="odd" v-for="(item,index) in userList" :key="index">
                                 <td class="textCenter defaultWidth headImg ellipsis tmpShowHoverTips">
                                     <div class="padding ellipsis tdWrap">
-                                        <div class="userPlayer" _openid="oosnVwlU7XYn-S5VMT1PUt6-SnEY" _ischeat="false"><img src="http://thirdwx.qlogo.cn/mmopen/vi_32/ic1crFCeE7OGDr5cWOEnItVAhcL8oOeuFp5MSaxepwDFGrziaEIXA3UEqias6Su8FRjTsLX6ehqCb4yvBf8PnY2MA/132"></div>
+                                        <div class="userPlayer">
+                                            <img :src="item.customer.headImageUrl">
+                                            </div>
                                         </div>
                                 </td>
                                 <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">No zuo no die</div>
-                                </td>
-                                <td class="textCenter lineHeight ellipsis">
-                                    <div class="padding ellipsis tdWrap">
-                                        <p>一等奖333333</p>
-                                        <p>二等奖</p>
-                                    </div>
-                                </td>
-                                <td class="textCenter ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">
-                                        <div class=""><span>陈旺</span></div>
-                                    </div>
-                                </td>
-                                <td class="textCenter ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">
-                                        <div class=""><span>18374977980</span></div>
-                                    </div>
+                                    <div class="padding ellipsis tdWrap">{{item.customer.nickName}}</div>
                                 </td>
                                 <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">2018-12-12 17:10:19</div>
+                                    <div class="padding ellipsis tdWrap">{{item.customer.sex == '1' ? '男' : (item.customer.sex == '2' ? '女': '未知')}}</div>
                                 </td>
-                                <td class="textCenter defaultWidth userAddress ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">
-                                        <div class="userAddress"><span>无</span></div>
-                                    </div>
+                                <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
+                                    <div class="padding ellipsis tdWrap">{{item.customer.city}}</div>
+                                </td>
+                                <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
+                                    <div class="padding ellipsis tdWrap">{{item.createTime}}</div>
                                 </td>
                             </tr>
                         </tbody>
@@ -264,12 +137,11 @@
                     </table>
                 </div>
                 <div class="bottom">
-                    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pageIndex" :page-sizes="[10, 20, 30, 40]" :page-size="totalCount" layout="total, sizes, prev, pager, next, jumper" :total="totalCount">
+                    <el-pagination @size-change="userhandleSizeChange" @current-change="userhandleCurrentChange" :current-page="userPageIndex" :page-sizes="[10, 20, 30, 40]" :page-size="userPageSize" layout="total, sizes, prev, pager, next, jumper" :total="userTotalCount">
                     </el-pagination>
                 </div>
             </div>
             <div>
-
             </div>
         </div>
     </div>
@@ -279,8 +151,8 @@
 <script>
 import {
     thList,
-    tdList
 } from '../activeList.js'
+import {getWinLotteryRecord,getCustomer} from 'pcApi/jie.js'
 export default {
     name: "userLIst",
     props: {
@@ -291,11 +163,16 @@ export default {
     data() {
         return {
             currTab: true,
-            tdList,
+            tdList: [],
             thList,
             pageIndex: 1,
             pageSize: 10,
             totalCount: 0,
+            userList: [
+            ],
+            userPageIndex: 1,
+            userPageSize: 10,
+            userTotalCount: 0
         }
     },
     methods: {
@@ -304,15 +181,54 @@ export default {
         },
         handleSizeChange(val) {
             this.pageSize = val;
-            // this.initList();
+            this.initList();
         },
         handleCurrentChange(val) {
             this.pageIndex = val;
-            // this.initList();
+            this.initList();
         },
+        userhandleSizeChange(val) {
+            this.userPageSize = val;
+            this.initUserList();
+        },
+        userhandleCurrentChange(val) {
+            this.userPageIndex = val;
+            this.initUserList();
+        },
+        initList() {
+             getWinLotteryRecord({
+                activityID:this.id,
+                pageIndex:this.pageIndex,
+                pageSize:this.pageSize
+            }).then(res => {
+                console.log(res);
+                if (res.errorCode == 0) {
+                    this.totalCount = res.totalCount;
+                    this.tdList = res.data;
+                }else {
+                    console.log(res.errorMessage);;
+                }
+            })
+        },
+        initUserList() {
+            getCustomer({
+                activityID:this.id,
+                pageIndex:this.userPageIndex,
+                pageSize:this.userPageSize
+            }).then(res => {
+                console.log(res);
+                if (res.errorCode == 0) {
+                    this.userTotalCount = res.totalCount;
+                    this.userList = res.data;
+                }else {
+                    console.log(res.errorMessage);;
+                }
+            })
+        }
     },
     created() {
-
+        this.initList();
+        this.initUserList();
     },
     watch: {
         currTab(newVal) {

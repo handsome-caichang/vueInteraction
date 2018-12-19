@@ -453,19 +453,19 @@ export default {
 					});	
 					this.backStatDiagramOption.series[0].data = networkTargetStatisticList;
 
-					let allNum = res.data.networkTargetStatistic.reduce((accumulator, currentValue) => accumulator.count + currentValue.count);
-				console.log(allNum);
-					/* 终端 */
-					res.data.networkTargetStatistic.forEach(el => {
-						if (el.type == '1') {
-							this.terminalStatistic.and = el.count / allNum * 100 + '%';
-						}else if (el.type == '2') {
-							this.terminalStatistic.ios = el.count / allNum * 100 + '%';
-						}else if (el.type == '0') {
-							this.terminalStatistic.other = el.count / allNum * 100+ '%';
-						}
-					});	
-
+					if ( res.data.networkTargetStatistic.length > 0) {
+						let allNum = res.data.networkTargetStatistic.reduce((accumulator, currentValue) => accumulator.count + currentValue.count);/* 终端 */
+						res.data.networkTargetStatistic.forEach(el => {
+							if (el.type == '1') {
+								this.terminalStatistic.and = el.count / allNum * 100 + '%';
+							}else if (el.type == '2') {
+								this.terminalStatistic.ios = el.count / allNum * 100 + '%';
+							}else if (el.type == '0') {
+								this.terminalStatistic.other = el.count / allNum * 100+ '%';
+							}
+						});	
+					}
+					
 					this.shareEndDagram.setOption(this.shareEndDagramOption);
             		this.sourceStatDagram.setOption(this.sourceStatDagramOption);
             		this.statSpreadDagram.setOption(this.shareStatisticOption);
