@@ -70,7 +70,6 @@ import { mapMutations } from 'vuex';
 						loginName:this.loginName,
 						password: this.loginPassword
 					}).then(res => {
-						console.log(res);
 						if (res.errorCode == 0) {
 							this.set_userInfo(res.data);
 							this.$router.replace('/home')

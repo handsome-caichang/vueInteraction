@@ -40,7 +40,7 @@ export default {
     // if (!this.userInfo) {
     //   this.$router.replace('/login')
     // }
-    getUser().then(res => {
+    getUser({},false).then(res => {
         // console.log(res);
         if (res.errorCode == 0) {
           this.set_userInfo(res.data);

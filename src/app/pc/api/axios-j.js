@@ -1,8 +1,8 @@
 import qs from "qs";
-import tool from '../assets/js/tool'
+import tool from '../assets/js/tool';
 import axios from "axios";
 // 给axios扩展一个'ajaxGet'方法,用于代理'get'请求;
-axios.ajaxGet = function(url, args) {
+axios.ajaxGet = function(url, args, notifyFlag = true) {
   // 用于解决后端NodeJS识别代理哪个后端；
   // const URL =  'http://wone.xiaogj.com/'
   let serverQuery = tool.parseQuery();
@@ -22,6 +22,9 @@ axios.ajaxGet = function(url, args) {
       let errorcode = res.data.errorCode,
         errormsg = res.data.errorMessage;
       if (errorcode !== 0) {
+        if (notifyFlag) {
+          _vue.$notify.info({ title: "提示", message: res.data.errorMessage });
+        }
         // 服务端返回的状态码不是200时
         console.error(
           `ErrorCode: ${errorcode}, ErrorMsg: ${errormsg}, Api:${url}`
@@ -30,6 +33,7 @@ axios.ajaxGet = function(url, args) {
       return res.data;
     })
     .catch(res => {
+      // _vue.$notify.error({ title: "错误", message: res });
       app.store.commit("set_loadingFlag", false);
       // http请求本身出错时
       if (res == "Error: Network Error") {
@@ -45,7 +49,7 @@ axios.ajaxGet = function(url, args) {
 };
 
 // 给axios扩展一个'ajax'方法,用于代理'post'请求;
-axios.ajax = function(url, args) {
+axios.ajax = function (url, args, notifyFlag = true) {
   // 用于解决后端NodeJS识别代理哪个后端；
   let serverQuery = tool.parseQuery();
   let qUrl = serverQuery.ip
@@ -62,11 +66,15 @@ axios.ajax = function(url, args) {
         errormsg = res.data.errorMessage;
       if (errorcode !== 0) {
         // 服务端返回的状态码不是200时
+        if (notifyFlag) {
+          _vue.$notify.info({ title: "提示", message: res.data.errorMessage });
+        }
         console.error(`ErrorCode: ${errorcode}, ErrorMsg: ${errormsg}, Api:${url}`);
       }
       return res.data;
     }   
   ).catch(res => {
+    // _vue.$notify.error({ title: "错误", message: res });
     app.store.commit("set_loadingFlag", false);
       // http请求本身出错时
     if (res == "Error: Network Error") {
@@ -83,7 +91,7 @@ axios.ajax = function(url, args) {
 
 
 // 给axios扩展一个'ajax'方法,用于代理'put'请求;
-axios.ajaxPut = function (url, args) {
+axios.ajaxPut = function(url, args, notifyFlag = true) {
   // 用于解决后端NodeJS识别代理哪个后端；
   let serverQuery = tool.parseQuery();
   let qUrl = serverQuery.ip
@@ -100,11 +108,17 @@ axios.ajaxPut = function (url, args) {
         errormsg = res.data.errorMessage;
       if (errorcode !== 0) {
         // 服务端返回的状态码不是200时
-        console.error(`ErrorCode: ${errorcode}, ErrorMsg: ${errormsg}, Api:${url}`);
+        if (notifyFlag) {
+          _vue.$notify.info({ title: "提示", message: res.data.errorMessage });
+        }
+        console.error(
+          `ErrorCode: ${errorcode}, ErrorMsg: ${errormsg}, Api:${url}`
+        );
       }
       return res.data;
-    }
-    ).catch(res => {
+    })
+    .catch(res => {
+      // _vue.$notify.error({ title: "错误", message: res });
       app.store.commit("set_loadingFlag", false);
       // http请求本身出错时
       if (res == "Error: Network Error") {
@@ -120,7 +134,7 @@ axios.ajaxPut = function (url, args) {
 };
 
 // 给axios扩展一个'ajax'方法,用于代理'delete'请求;
-axios.ajaxDel = function(url, args) {
+axios.ajaxDel = function (url, args, notifyFlag = true) {
   // 用于解决后端NodeJS识别代理哪个后端；
   // const URL =  'http://wone.xiaogj.com/'
   let serverQuery = tool.parseQuery();
@@ -142,11 +156,15 @@ axios.ajaxDel = function(url, args) {
         errormsg = res.data.errorMessage;
       if (errorcode !== 0) {
         // 服务端返回的状态码不是200时
+        if (notifyFlag) {
+          _vue.$notify.info({ title: "提示", message: res.data.errorMessage });
+        }
         console.error(`ErrorCode: ${errorcode}, ErrorMsg: ${errormsg}, Api:${url}`);
       }
       return res.data;
     })
     .catch(res => {
+      // _vue.$notify.error({ title: "错误", message: res });
       app.store.commit("set_loadingFlag", false);
       // http请求本身出错时
       if (res == "Error: Network Error") {

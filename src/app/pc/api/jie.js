@@ -16,8 +16,8 @@ export function login(params) {
     return axios.ajax("api/user/login", params);
 }
 // 获取用户信息
-export function getUser(params) {
-    return axios.ajaxGet("api/user/whoami", params);
+export function getUser(params, flag) {
+    return axios.ajaxGet("api/user/whoami", params, flag);
 }
 // 获取我的活动列表
 export function logout(params) {

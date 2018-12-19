@@ -14,7 +14,8 @@ import {
   Pagination,
   DropdownMenu,
   dropdownItem,
-  Dropdown
+  Dropdown,
+  Notification
 } from "element-ui"; 
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(DatePicker);
@@ -23,6 +24,8 @@ Vue.use(Pagination);
 Vue.use(DropdownMenu);
 Vue.use(Dropdown);
 Vue.use(dropdownItem);
+
+Vue.prototype.$notify = Notification;
 
 const store = new Vuex.Store({
   ...allStore
@@ -46,7 +49,7 @@ Vue.mixin({
 });
 
 /* eslint-disable no-new */
-new Vue({
+window._vue = new Vue({
   el: '#app',
   router,
   store,
