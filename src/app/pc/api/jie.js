@@ -106,5 +106,10 @@ export function getWinLotteryRecord(params) {
 
 /*  获取中奖名单 */
 export function getCustomer(params) {
-    return axios.ajaxGet("/api/activity/getCustomer", params);
+    return axios.ajaxGet("api/activity/getCustomer", params);
+}
+
+/*  获取中奖名单 */
+export function getQrCode(params) {
+    return axios.ajaxGet("api/activity/qrCode ", params);
 }

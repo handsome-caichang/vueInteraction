@@ -73,7 +73,7 @@
 
             </div>
         </div>
-        <qr-codevue :opened="showCode"></qr-codevue>
+        <qr-codevue :opened="showCode" :code="currentUrl" @close="close"></qr-codevue>
     </div>
 </div>
 </template>
@@ -85,7 +85,7 @@ import {
 import {
     thList
 } from './activeList.js'
-import {getList,publish,stop,delActiv} from 'pcApi/jie.js'
+import {getList,publish,stop,delActiv,getQrCode} from 'pcApi/jie.js'
 import QrCodevue from '../../components/popup/qrCode.vue'
 export default {
     name: 'active-list',
@@ -96,7 +96,8 @@ export default {
             pageIndex: 1,
             pageSize: 10,
             totalCount: 0,
-            showCode: false
+            showCode: false,
+            currentUrl: '',
         }
     },
     methods: {
@@ -112,8 +113,18 @@ export default {
             this.initList();
         },
         preClick(item) {
-            console.log(item);
+            let url = '';
+            if (item.url.indexOf('?') != -1) {
+                 url = item.url + '&sourceType=3';
+            }else {
+                 url = item.url + '?sourceType=3';
+            }
+            this.currentUrl = encodeURIComponent(url);
+            console.log(this.currentUrl);
             this.showCode = true;
+        },
+        close() {
+            this.showCode = false;
         },
         toEdit(id) {
             this.$router.push({

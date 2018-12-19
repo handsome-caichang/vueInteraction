@@ -126,7 +126,7 @@
                                     <div class="padding ellipsis tdWrap">{{item.customer.sex == '1' ? '男' : (item.customer.sex == '2' ? '女': '未知')}}</div>
                                 </td>
                                 <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">{{item.customer.city}}</div>
+                                    <div class="padding ellipsis tdWrap">{{item.customer.province}}{{item.customer.city}}</div>
                                 </td>
                                 <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
                                     <div class="padding ellipsis tdWrap">{{item.createTime}}</div>

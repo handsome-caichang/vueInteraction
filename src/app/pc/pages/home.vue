@@ -3,8 +3,6 @@
     <bar></bar>
     <div class="bg-mask bg-mask-animate" :style="globalMaskFlag ? 'display: block' : 'display: none'">
     </div>
-    <!-- <poup-preview v-if="globalMaskFlag"></poup-preview> -->
-    <poup-preview-cancal v-if="globalMaskFlag"></poup-preview-cancal>
 </div>
 </template>
 
@@ -14,8 +12,6 @@ import {
     mapState,
     mapMutations
 } from 'vuex'
-import PoupPreview from '../components/poup_preview'
-import PoupPreviewCancal from '../components/poup_preview_canal'
 import {getUser} from 'pcApi/jie'
 import JDialog from "../components/popup/dialog.vue";
 export default {
@@ -40,8 +36,6 @@ export default {
     },
     components: {
         Bar,
-        PoupPreviewCancal,
-        PoupPreview,
     }
 }
 </script>

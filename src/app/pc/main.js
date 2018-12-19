@@ -8,11 +8,21 @@ import Vuex from "vuex";
 import allStore from "./store";
 Vue.use(Vuex);
 
-import { DatePicker, TimePicker, Pagination} from "element-ui"; 
+import {
+  DatePicker,
+  TimePicker,
+  Pagination,
+  DropdownMenu,
+  dropdownItem,
+  Dropdown
+} from "element-ui"; 
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(DatePicker);
 Vue.use(TimePicker);
 Vue.use(Pagination);
+Vue.use(DropdownMenu);
+Vue.use(Dropdown);
+Vue.use(dropdownItem);
 
 const store = new Vuex.Store({
   ...allStore

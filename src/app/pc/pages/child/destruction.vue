@@ -10,11 +10,19 @@
             <div class="recordBar">
                 <div class="searchGameId">
                     <div class="dropDownBox_main">
-                        <div class="txt">全部活动</div>
+                        <!-- <div class="txt">全部活动</div> -->
+                        <el-dropdown trigger="click" @command="command">
+                            <span class="el-dropdown-link">
+                                {{currentItem.name ? currentItem.name : '请选择活动'}}<i class="el-icon-arrow-down el-icon--right"></i>
+                            </span>
+                            <el-dropdown-menu slot="dropdown" style="max-height: 300px;overflow: scroll;">
+                                <el-dropdown-item v-for="(item,index) in activeList" :key="index" :command="item">{{item.name}}</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
                     </div>
                 </div>
                 <div style="display: flex;align-items: center;">
-                    <el-date-picker
+                    <!-- <el-date-picker
                         v-model="timeValue"
                         type="daterange"
                         align="right"
@@ -23,8 +31,8 @@
                         start-placeholder="开始日期"
                         end-placeholder="结束日期"
                         :picker-options="pickerOptions2">
-                    </el-date-picker>
-                    <div class="filter recordBtn" style="margin:0 20px 0 20px;"><span class="icon"></span>查询</div>
+                    </el-date-picker> -->
+                    <div class="filter recordBtn" style="margin:0 20px 0 20px;" @click="initList"><span class="icon"></span>查询</div>
                 </div>
             </div>
             <div class="recordTable">
@@ -36,20 +44,14 @@
                                     <th data-key="consumeTime" class="column1 pad16 textCenter sep">
                                         <div class="padding">核销时间</div>
                                     </th>
-                                    <th data-key="consummer" class="column4 textCenter sep">
-                                        <div class="padding">核销员</div>
-                                    </th>
                                     <th data-key="code1" class="column3 textCenter sep">
                                         <div class="padding">券码</div>
                                     </th>
-                                    <th data-key="gameId" class="column2 textCenter sep">
-                                        <div class="padding">活动编号</div>
+                                    <th data-key="code1" class="column3 textCenter sep">
+                                        <div class="padding">核销员</div>
                                     </th>
                                     <th data-key="gameName" class="column4 textCenter sep">
                                         <div class="padding">活动名称</div>
-                                    </th>
-                                    <th data-key="consumeType" class="column7 textCenter sep">
-                                        <div class="padding">核销方式</div>
                                     </th>
                                     <th data-key="awardStyle" class="column6 textCenter sep">
                                         <div class="padding">奖项等级</div>
@@ -68,37 +70,31 @@
                             <tbody>
                                 <tr class="odd" v-for="(item, index) in destructionList" :key="index">
                                     <td class="textCenter pad16 ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">{{item.consumeTime | formatDatetime("yyyy-MM-dd hh:mm:ss")}}</div>
+                                        <div class="padding ellipsis tdWrap">{{item.verificationTime}}</div>
                                     </td>
                                     <td class="textCenter ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">{{item.consummer}}</div>
+                                        <div class="padding ellipsis tdWrap">{{item.code}}</div>
                                     </td>
                                     <td class="textCenter ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">{{item.cusCode}}</div>
+                                        <div class="padding ellipsis tdWrap">{{item.verificationUserName}}</div>
                                     </td>
                                     <td class="textCenter ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">HD47</div>
+                                        <div class="padding ellipsis tdWrap">{{item.activityName}}</div>
                                     </td>
                                     <td class="textCenter ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">{{item.gameName}}</div>
+                                        <div class="padding ellipsis tdWrap">{{item.gift.levelName}}</div>
                                     </td>
                                     <td class="textCenter ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">{{item.consumeType == 2 ? '网页核销': '手机核销'}}</div>
-                                    </td>
-                                    <td class="textCenter ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">{{item.awardStyle}}</div>
-                                    </td>
-                                    <td class="textCenter ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">{{item.award}}</div>
+                                        <div class="padding ellipsis tdWrap">{{item.gift.name}}</div>
                                     </td>
                                     <td class="textLeft noPad awardUser ellipsis tmpShowHoverTips">
                                         <div class="padding ellipsis tdWrap">
-                                            <div class="userPlayer"><img :src="item.info.headImg"></div>
-                                                <div class="playerName" title="">{{item.name}}</div>
+                                            <div class="userPlayer"><img :src="item.customer.headImageUrl"></div>
+                                                <div class="playerName" title="">{{item.customer.nickName}}</div>
                                             </div>
                                     </td>
                                     <td class="textCenter awardTime ellipsis tmpShowHoverTips">
-                                        <div class="padding ellipsis tdWrap">test</div>
+                                        <div class="padding ellipsis tdWrap">{{item.remark}}</div>
                                     </td>
                                 </tr>
                                 <tr class="queryIngTr odd" v-if="destructionList.length == 0">
@@ -132,14 +128,15 @@
 </template>
 
 <script>
-import {
-    destructionList
-} from './activeList.js'
+// import {
+    // destructionList
+// } from './activeList.js'
+import {getList, getWinLotteryRecord} from 'pcApi/jie.js'
 export default {
     name: "destruction",
     data() {
         return {
-            destructionList,
+            destructionList: [],
             timeValue: '',
             pickerOptions2: {
                 shortcuts: [{
@@ -180,20 +177,55 @@ export default {
             pageIndex: 1,
             pageSize: 10,
             totalCount: 0,
+            activeList: [
+            ],
+            currentItem: {
+            }
         };
     },
     computed: {},
     methods: { 
+        command(item) {
+            this.currentItem = item;
+            this.initList();
+        },
         handleSizeChange(val) {
             this.pageSize = val;
-            // this.initList();
+            this.initList();
         },
         handleCurrentChange(val) {
             this.pageIndex = val;
-            // this.initList();
+            this.initList();
         },
+        initList() {
+            if (!this.currentItem.id)  return;
+            getWinLotteryRecord({
+                activityID: this.currentItem.id,
+                pageIndex:this.pageIndex,
+                pageSize:this.pageSize,
+                isVerificated: true,
+            }).then(res => {
+                console.log(res);
+                if (res.errorCode == 0) {
+                    this.totalCount = res.totalCount;
+                    this.destructionList = res.data;
+                }else {
+
+                }
+            })
+        }
     },
-    components: {}
+    components: {},
+    created() {
+        getList({
+            pageIndex: 1,
+            pageSize: 65535
+        }).then(res => {
+            if (res.errorCode == 0) {
+                this.activeList = res.data;
+            }
+        })
+    },
 };
 </script>
 
@@ -202,5 +234,11 @@ export default {
 .faiTableWrap .bottom {
     display: flex;
     align-items: center;
+}
+.searchGameId {
+    width: auto;
+}
+.dropDownBox_main {
+    padding-right: 10px;
 }
 </style>

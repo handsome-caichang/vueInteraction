@@ -74,8 +74,11 @@
             .code-img {
                 width: 300px;
                 height: 300px;
-                margin-top: 30px;
+                margin-top: 20px;
                 margin-bottom: 12px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .point {
@@ -125,6 +128,16 @@
         transform: translate(0, -50%) scale(0.1);
     }
 }
+.closeicon {
+    position: absolute;
+    z-index: 9;
+    right: 0;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    padding: 20px;
+    text-align: center;
+}
 </style>
 
 <template>
@@ -134,10 +147,7 @@
             <div class="as-mask"></div>
                 <div class="as-box center middle">
                     <div class="container-box">
-                        <!-- <svg @click="close" class="icon close" aria-hidden="true">
-                            <use xlink:href="#icon-guanbi"></use>
-                        </svg> -->
-
+                        <img class="closeicon" @click="close" :src="closeImg"/>
                         <div class="code-img" ref="qrcode"></div>
                         <p class="footer" >请使用微信扫描二维码</p>
                     </div>
@@ -149,6 +159,7 @@
 
 <script>
  import QRCode from 'pcAssets/js/qrcode.min.js'
+ import closeImg from '../../assets/images/close.png'
 export default {
     name: "QrCodevue",
     props: {
@@ -158,11 +169,14 @@ export default {
         },
         code: {
             type: String,
-            default: '12'
+            default: ''
         },
     },
     data() {
-        return {};
+        return {
+            closeImg,
+            qrcode: null
+        };
     },
     computed: {
     },
@@ -179,13 +193,17 @@ export default {
                 this.$nextTick(() => {
                     let text = '';
                     text = decodeURIComponent(val);
-                    this.qrcode = new QRCode(this.$refs.qrcode, {
-                        text: text,
-                        width: 200,
-                        height: 200,
-                        colorDark : '#000000',
-                        colorLight : '#ffffff',
-                    })
+                    if (this.qrcode) {
+                        this.qrcode.makeCode(text);
+                    }else {
+                        this.qrcode = new QRCode(this.$refs.qrcode, {
+                            text: text,
+                            width: 200,
+                            height: 200,
+                            colorDark : '#000000',
+                            colorLight : '#ffffff',
+                        });
+                    }
                 })
             }
         }
