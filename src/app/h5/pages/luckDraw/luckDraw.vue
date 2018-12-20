@@ -440,14 +440,14 @@ export default {
         }
     },
     created() {
-        wx.ready(function() {
-            wx.hideAllNonBaseMenuItem();
-        })
         this.set_loadingEnd(true);
         this.resetZhuanpanData();
         this.activityID = this.$route.query.id;
         this.shareLevel = this.$route.query.shareLevel ? this.$route.query.shareLevel : '';
         if (!this.isEdit) {
+            wx.ready(function() {
+                wx.hideAllNonBaseMenuItem();
+            })
             this.desc = this.luckDraw.myDataGifts.length > 0 ? this.luckDraw.advancedSetting.shareWinContent : this.luckDraw.advancedSetting.shareNowinContent;
             if (this.luckDraw.advancedSetting.isCanShare) {
                 this.sharePage();

@@ -32,7 +32,7 @@
 					<div class="u-input">
 						<label>图片验证码</label><div class="inputWrapper picbox">
 							<input  class="short" v-model="validateCode" type="text" placeholder="请输入手机号进行验证" maxlength="11">
-							<div class="pic" :style="'background-image: url(api/user/validationCode?'+timeStamp+')'" @click="changeRegImage"></div>
+							<div class="pic" :style="'background-image: url(/api/user/validationCode?'+timeStamp+')'" @click="changeRegImage"></div>
 						</div><span class="msg hideImp">
 							<i></i><font></font>
 						</span>

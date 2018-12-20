@@ -38,7 +38,7 @@ if (editFlag == 1){
   getconfig().then(res => {
     if (res.errorCode == 0) {
       let config = { //配置微信jssdk
-        debug: false,
+        debug: true,
         appId: res.data.jsConfig.appId,
         timestamp: res.data.jsConfig.timestamp,
         nonceStr: res.data.jsConfig.nonceStr,

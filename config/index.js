@@ -7,11 +7,11 @@ const path = require('path')
 module.exports = {
   proxy: {
     "/api": {
-      target: "http://192.168.0.240:4200",
+      target: "https://attraction-pc-test.xiaogj.com",
       changeOrigin: true
     },
     "/h5api": {
-      target: "http://192.168.0.240:4201",
+      target: "https://attraction-mobile-test.xiaogj.com",
       changeOrigin: true,
       pathRewrite: { "^/h5api": "api" }
     },
