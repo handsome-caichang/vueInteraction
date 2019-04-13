@@ -11,7 +11,7 @@ if (base.env === 'wx'  || base.env === 'wxwork' || base.env === 'browser') {
     u.jssdkApiList = ["chooseImage", "uploadImage", "previewImage", "getLocalImgData",
         "startRecord", "stopRecord", "onVoiceRecordEnd",
         "playVoice", "pauseVoice", "stopVoice", "onVoicePlayEnd", "uploadVoice",
-        "showOptionMenu", "hideOptionMenu", "downloadVoice", "closeWindow", 'onMenuShareTimeline', 'onMenuShareAppMessage', "onMenuShareWeibo", "onMenuShareQZone",
+        "showOptionMenu", "hideOptionMenu", "downloadVoice", "closeWindow", 'onMenuShareTimeline',  'onMenuShareAppMessage',"updateTimelineShareData" ,"updateAppMessageShareData","onMenuShareWeibo", "onMenuShareQZone",
         "showAllNonBaseMenuItem", "hideAllNonBaseMenuItem", 'getNetworkType', "showMenuItems"
     ]
 

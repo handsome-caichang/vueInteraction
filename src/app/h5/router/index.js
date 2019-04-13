@@ -11,8 +11,8 @@ import Router from 'vue-router'
 import AwardDetail from "h5/pages/awardDetail/awardDetail";
 const LuckDraw = () =>
   import(/*webpackChunkName: "luckDraw"*/ "h5/pages/luckDraw/luckDraw.vue");
-// const AwardDetail = () =>
-//   import(/*webpackChunkName: "awardDetail"*/ "h5/pages/awardDetail/awardDetail");
+const ContactInfo = () =>
+  import(/*webpackChunkName: "contactInfo"*/ "h5/pages/contactInfo/contactInfo.vue");
 
 
 Vue.use(Router)
@@ -32,6 +32,11 @@ export default new Router({
       path: "/awardDetail",
       name: "awardDetail",
       component: AwardDetail
+    },
+    {
+      path: "/contactInfo",
+      name: "contactInfo",
+      component: ContactInfo
     }
   ]
 });

@@ -1,7 +1,7 @@
 <template>
 <div class="container gameDataContainer">
     <div class="activityListTitle">
-        <span class="icon"></span><a href="javascript:;" @click="goBack">我的活动</a>/<span class="name">获奖名单</span>
+        <span class="icon"></span><a href="javascript:;" @click="goBack">我的活动</a>
     </div>
     <div class="activeTabMenu">
         <div class="menu" :class="{'checked': currTab}" @click="currTab = true">获奖名单</div>
@@ -10,27 +10,60 @@
     <div v-show="currTab" class="tableContent">
         <div class="showActiveTable" style="min-width: 1000px;">
             <div class="faiTableWrap">
+                <div class="top">
+                    <div class="toolBar ">
+                        <div class="right optBox" style="margin-right: 18px; display: flex;">
+                            <a class="main-Button faiTableButton exportDate" target="_blank" :href="'/api/activity/exportWinLotteryRecord?activityID='+this.id+'&query='+this.winNickName" >
+                                <span class="icon"></span>导出名单
+                            </a>
+                            <!-- <div class="main-Button faiTableButton reloadBtn" @click="initList($event, true)">
+                                <span class="icon" style="background-position: -95px -987px;"></span>刷新
+                            </div> -->
+                            <div class="refresh-box" @click="initList($event, true)">
+                                <div class="refresh-btn">刷新</div>
+                            </div>
+                        </div>
+                        <div class="searchBoxCont" style="float: left; margin: 12px 0 0 16px;">
+                            <input v-model="winNickName" @keydown="keyCodeList" type="search" name="winNickName" class="input" @search="initList" placeholder="搜索玩家昵称">
+                            <div class="searchBtn" @click="initList"></div>
+                        </div>
+                        <!-- <div class="searchBoxCont" style="float: left; margin: 12px 0 0 16px;">
+                            <input type="text" class="input" placeholder="搜索玩家电话号码">
+                            <div class="searchBtn"></div>
+                            <div class="clearBtn hide"></div>
+                        </div> -->
+                    </div>
+                </div>
                 <div class="center">
                     <table class="faiTable" cellpadding="0" cellspacing="0">
                         <thead>
                             <tr class="scrollFixedTr">
-                                <th data-key="awardinfo" class="textCenter columnPer10 sep">
+                                <th class="textCenter columnPer10 sep">
                                     <div class="padding">中奖玩家</div>
                                 </th>
-                                <th data-key="awardinfo" class="textCenter columnPer10 sep">
+                                <th class="textCenter columnPer10 sep">
                                     <div class="padding">活动名称</div>
                                 </th>
-                                <th data-key="awardLevel" class="column textCenter columnPer10 sep">
+                                <th  class="column textCenter columnPer10 sep">
                                     <div class="padding">奖项等级</div>
                                 </th>
-                                <th data-key="award" class="textCenter columnPer10 sep">
+                                <th  class="textCenter columnPer10 sep">
                                     <div class="padding">奖品</div>
                                 </th>
-                                <th data-key="awardTime" class="column7 textCenter columnPer15 awardTime sep">
+                                <th class="column7 textCenter columnPer15 awardTime sep">
                                     <div class="padding">中奖时间</div>
                                 </th>
-                                <th data-key="codeStatus" class="column7 textCenter columnPer10 sep dropDown pointer">
+                                <th class="column7 textCenter columnPer10 sep dropDown pointer">
                                     <div class="padding">卡券状态</div>
+                                </th>
+                                <th class="column7 textCenter columnPer10">
+                                    <div class="padding">姓名</div>
+                                </th>
+                                <th class="column7 textCenter columnPer10">
+                                    <div class="padding">联系电话</div>
+                                </th>
+                                <th class="column7 textCenter columnPer10">
+                                    <div class="padding">联系地址</div>
                                 </th>
                             </tr>
                         </thead>
@@ -60,7 +93,7 @@
                                 </td>
                                 <td class="textCenter awardTime lineHeight ellipsis">
                                     <div class="padding ellipsis tdWrap">
-                                        <p>{{item.createTime}}</p>
+                                        <p>{{item.createTime | formatDatetime('yyyy-MM-dd hh:mm')}}</p>
                                     </div>
                                 </td>
                                 <td class="textCenter lineHeight ellipsis">
@@ -68,6 +101,21 @@
                                         <p v-if="!item.gift.isExpired && !item.isVerificated">未核销</p>
                                         <p v-if="item.isVerificated">已核销</p>
                                         <p v-if="item.gift.isExpired" >已过期</p>
+                                    </div>
+                                </td>
+                                 <td class="textCenter lineHeight ellipsis">
+                                    <div class="padding ellipsis tdWrap">
+                                        <p>{{item.address && item.address.name}}</p>
+                                    </div>
+                                </td>
+                                 <td class="textCenter lineHeight ellipsis">
+                                    <div class="padding ellipsis tdWrap">
+                                        <p>{{item.address && item.address.mobile}}</p>
+                                    </div>
+                                </td>
+                                 <td class="textCenter lineHeight ellipsis">
+                                    <div class="padding ellipsis tdWrap">
+                                        <p>{{item.address && item.address.province}}{{item.address && item.address.city}}{{item.address && item.address.region}}{{item.address && item.address.address}}</p>
                                     </div>
                                 </td>
                             </tr>
@@ -88,6 +136,25 @@
     <div v-show="!currTab" class="tableContent">
         <div class="showActiveTable" style="min-width: 1000px;">
             <div class="faiTableWrap">
+                 <div class="top">
+                    <div class="toolBar ">
+                        <div class="right optBox" style="margin-right: 18px; display: flex;">
+                            <a class="main-Button faiTableButton exportDate" target="_blank" :href="'/api/activity/exportCustomer?activityID='+this.id+'&query='+this.nickName">
+                                <span class="icon"></span>导出玩家
+                            </a>
+                            <div class="refresh-box" @click="initUserList($event, true)">
+                                <div class="refresh-btn">刷新</div>
+                            </div>
+                            <!-- <div class="main-Button faiTableButton"  @click="initUserList($event, true)">
+                                <span class="icon" style="background-position: -95px -987px;"></span>刷新
+                            </div> -->
+                        </div>
+                        <div class="searchBoxCont" style="float: left; margin: 12px 0 0 16px;">
+                            <input v-model="nickName"  @keydown="keyCodeUserList" name="nickName" type="search" @search="initUserList" class="input" placeholder="搜索玩家昵称">
+                            <div class="searchBtn" @click="initUserList" ></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="center">
                     <table class="faiTable" cellpadding="0" cellspacing="0">
                         <thead>
@@ -101,8 +168,17 @@
                                 <th  class="textCenter columnPer10 sep">
                                     <div class="padding">性别</div>
                                 </th>
-                                <th  class="textCenter columnPer10 sep">
+                                <!-- <th  class="textCenter columnPer10 sep">
                                     <div class="padding">城市</div>
+                                </th> -->
+                                <th  class="textCenter columnPer10 sep">
+                                    <div class="padding">姓名</div>
+                                </th>
+                                <th  class="textCenter columnPer10 sep">
+                                    <div class="padding">联系电话</div>
+                                </th>
+                                <th  class="textCenter columnPer10 sep">
+                                    <div class="padding">联系地址</div>
                                 </th>
                                 <th class="columnPer15 textCenter sprizeCol sep">
                                     <div class="padding">首次参与时间</div>
@@ -125,11 +201,20 @@
                                 <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
                                     <div class="padding ellipsis tdWrap">{{item.customer.sex == '1' ? '男' : (item.customer.sex == '2' ? '女': '未知')}}</div>
                                 </td>
-                                <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
+                                <!-- <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
                                     <div class="padding ellipsis tdWrap">{{item.customer.province}}{{item.customer.city}}</div>
+                                </td> -->
+                                <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
+                                    <div class="padding ellipsis tdWrap">{{item.address && item.address.name}}</div>
                                 </td>
                                 <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">{{item.createTime}}</div>
+                                    <div class="padding ellipsis tdWrap">{{item.address && item.address.mobile}}</div>
+                                </td>
+                                <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
+                                    <div class="padding ellipsis tdWrap">{{item.address && item.address.province}}{{item.address && item.address.city}}{{item.address && item.address.region}}{{item.address && item.address.address}}</div>
+                                </td>
+                                <td class="textCenter defaultWidth ellipsis tmpShowHoverTips">
+                                    <div class="padding ellipsis tdWrap">{{item.createTime | formatDatetime('yyyy-MM-dd hh:mm')}}</div>
                                 </td>
                             </tr>
                         </tbody>
@@ -172,7 +257,9 @@ export default {
             ],
             userPageIndex: 1,
             userPageSize: 10,
-            userTotalCount: 0
+            userTotalCount: 0,
+            nickName: '',
+            winNickName: '',
         }
     },
     methods: {
@@ -195,11 +282,17 @@ export default {
             this.userPageIndex = val;
             this.initUserList();
         },
-        initList() {
+        initList(event, flag = false) {
+            if (flag) {
+                this.pageIndex = 1;
+                this.pageSize = 10;
+                this.winNickName = '';
+            }
              getWinLotteryRecord({
                 activityID:this.id,
                 pageIndex:this.pageIndex,
-                pageSize:this.pageSize
+                pageSize:this.pageSize,
+                query:this.winNickName
             }).then(res => {
                 console.log(res);
                 if (res.errorCode == 0) {
@@ -210,11 +303,17 @@ export default {
                 }
             })
         },
-        initUserList() {
+        initUserList(event, flag = false) {
+             if (flag) {
+                this.userPageIndex = 1;
+                this.userPageSize = 10;
+                this.nickName = '';
+            }
             getCustomer({
                 activityID:this.id,
                 pageIndex:this.userPageIndex,
-                pageSize:this.userPageSize
+                pageSize:this.userPageSize,
+                query:this.nickName
             }).then(res => {
                 console.log(res);
                 if (res.errorCode == 0) {
@@ -224,6 +323,16 @@ export default {
                     console.log(res.errorMessage);;
                 }
             })
+        },
+        keyCodeList(event) {
+            if (event.keyCode == 13) {
+                this.initList();
+            }
+        },
+        keyCodeUserList(event) {
+            if (event.keyCode == 13) {
+                this.initUserList();
+            }
         }
     },
     created() {

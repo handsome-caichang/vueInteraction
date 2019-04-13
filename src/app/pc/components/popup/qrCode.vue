@@ -192,7 +192,7 @@ export default {
             if (val) {
                 this.$nextTick(() => {
                     let text = '';
-                    text = decodeURIComponent(val);
+                    text = val;
                     if (this.qrcode) {
                         this.qrcode.makeCode(text);
                     }else {

@@ -2,7 +2,7 @@
 <div class="container">
     <div class="scrollBox hdcontent">
         <div class="hdBannerWrap">
-            <img class="swiper-pic" src="https://1.h40.faiusr.com/4/1/ACgIABAEGAAg2szF3gUosLmimwUw0A84yAE.png">
+            <img class="swiper-pic" src="https://cdn01.xiaogj.com/file/1fa97d5714cb45e5b6ba690f6e606e09/201812/e2be131891904a3685c13f1d46c9a38a.png">
         </div>
         <div class="activeScrollBox">
             <div class="staticClass">
@@ -34,8 +34,6 @@
 
 <script>
 import {mapMutations} from 'vuex'
-import activeImg from '../../assets/images/active.jpg'
-import activeHover from '../../assets/images/activeHover.gif'
 import {getTemplateList} from 'pcApi/jie.js'
 export default {
     name: 'bar-list',

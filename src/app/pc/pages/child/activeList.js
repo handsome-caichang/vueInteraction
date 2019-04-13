@@ -16,7 +16,17 @@ exports.thList = [
     text: "textCenter"
   },
   {
-    name: "最大限制",
+    name: "浏览人数",
+    type: 1,
+    text: "textCenter"
+  },
+  {
+    name: "中奖人数",
+    type: 1,
+    text: "textCenter"
+  },
+  {
+    name: "参与人数/最大限制",
     type: 1,
     text: "textCenter"
   },

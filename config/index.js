@@ -15,10 +15,19 @@ module.exports = {
       changeOrigin: true,
       pathRewrite: { "^/h5api": "api" }
     },
-    "/pages": {
-      target: "http://192.168.0.240:4201",
-      changeOrigin: true
-    }
+    // "/api": {
+    //   target: "http://192.168.0.240:4200",
+    //   changeOrigin: true
+    // },
+    // "/h5api": {
+    //   target: "http://192.168.0.240:4201",
+    //   changeOrigin: true,
+    //   pathRewrite: { "^/h5api": "api" }
+    // },
+    // "/pages": {
+    //   target: "http://192.168.0.240:4201",
+    //   changeOrigin: true
+    // }
   },
   dev: {
     // Paths
@@ -64,13 +73,13 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, "../dist"),
     assetsSubDirectory: "static",
-    assetsPublicPath: "/",
-
+    // assetsPublicPath: "/",
+    assetsPublicPath: "https://cdn01.xiaogj.com/uploads/mobile/yingxiao/",
     /**
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: "#source-map",
 

@@ -12,7 +12,7 @@
                 <input v-model="editData.baseInfo.name" class="activeName input mainInput name" type="text"/>
             </div>
         </div>
-        <div class="flag">*</div>
+        <!-- <div class="flag">*</div> -->
     </div>
     <div class="settingLine">
         <div class="leftTitle">
@@ -24,6 +24,7 @@
                     class="input flex-1"
                     v-model="editData.baseInfo.startTime"
                     type="datetime"
+                    format="yyyy-MM-dd HH:mm"
                     value-format="yyyy-MM-dd HH:mm:ss"
                     placeholder="开始时间">
                 </el-date-picker>
@@ -32,12 +33,13 @@
                     class="input flex-1"
                     v-model="editData.baseInfo.endTime"
                     type="datetime"
+                    format="yyyy-MM-dd HH:mm"
                     value-format="yyyy-MM-dd HH:mm:ss"
                     placeholder="结束时间">
                 </el-date-picker>
             </div>
         </div>
-        <div class="flag">*</div>
+        <!-- <div class="flag">*</div> -->
     </div>
     <div>
         <div class="settingLine">
@@ -102,7 +104,7 @@
                 <input v-model="editData.advancedSetting.shareWinContent" class="activeName input mainInput name" type="text"/>
             </div>
         </div>
-        <div class="flag">*</div>
+        <!-- <div class="flag">*</div> -->
     </div>
     <div class="settingLine actNameSetting">
         <div class="leftTitle">
@@ -113,7 +115,7 @@
                 <input v-model="editData.advancedSetting.shareNowinContent" class="activeName input mainInput name" type="text"/>
             </div>
         </div>
-        <div class="flag">*</div>
+        <!-- <div class="flag">*</div> -->
     </div>
     <div class="settingLine verTipsBox">
         <div class="leftTitle">

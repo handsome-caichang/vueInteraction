@@ -59,14 +59,16 @@
 .isAngular #ticketDetailBox .itemList {
     font-size: 14px;
     padding: 8px 0;
+    display: flex;
 }
 #ticketDetailBox .itemList .title {
-    float: left;
     color: #666;
+    width: 64px;
 }
 #ticketDetailBox .itemList .box {
     width: auto;
-    margin-left: 70px;
+    margin-left: 20px;
+    flex: 1;
 }
 .hostName {
   padding: 0.7rem 2.2rem 1rem 0.7rem;

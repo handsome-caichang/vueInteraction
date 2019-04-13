@@ -44,7 +44,7 @@ export default {
     if (!window.iframeH5Vue) {
         window.iframeH5Vue = this;
     }
-  }
+  },
 }
 </script>
 

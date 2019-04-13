@@ -497,51 +497,6 @@ ng\:form {
   cursor: pointer
 }
 
-.ver_free {
-}
-
-.ver_o_low {
-}
-
-.ver_o_mid {
-}
-
-.ver_std {
-}
-
-.ver_o_adv {
-}
-
-.ver_pro {
-}
-
-.ver_o_hon {
-}
-
-.ver_biz {
-}
-
-.ver_by {
-}
-
-.ver_md {
-}
-
-.ver_zs {
-}
-
-.ver_o_tri {
-}
-
-.ver_o_low {
-}
-
-.ver_o_adv {
-}
-
-.ver_o_hon {
-}
-
 .ver_free_head,
 .ver_biz_head,
 .ver_by_head,
@@ -677,18 +632,6 @@ ng\:form {
   background-position: -311px -587px !important
 }
 
-.ver_notBuy {
-}
-
-.ver_hasBuy {
-}
-
-.ver_o_notBuy {
-}
-
-.ver_o_hasBuy {
-}
-
 .loadBg {
   position: absolute;
   left: 0;
@@ -816,8 +759,6 @@ input[type='checkbox']:checked+label:after {
   right: 0;
   bottom: 0;
   height: 100%;
-  _position: absolute;
-  _height: expression(body.clientHeight);
   background-color: #000;
   filter: alpha(opacity=70);
   z-index: 9032;
@@ -1020,30 +961,6 @@ input[type='checkbox']:checked+label:after {
   height: 16px;
   width: 16px
 }
-
-.ui-widget-content .ui-icon {
-}
-
-.ui-widget-header .ui-icon {
-}
-
-.ui-state-default .ui-icon {
-}
-
-.ui-state-hover .ui-icon,
-.ui-state-focus .ui-icon {
-}
-
-.ui-state-active .ui-icon {
-}
-
-.ui-state-highlight .ui-icon {
-}
-
-.ui-state-error .ui-icon,
-.ui-state-error-text .ui-icon {
-}
-
 .ui-icon-gripsmall-diagonal-se {
   background-position: -84px -228px
 }
@@ -1673,8 +1590,6 @@ input[type='checkbox']:checked+label:after {
   cursor: default
 }
 
-.ui-autocomplete-loading {
-}
 
 * html .ui-autocomplete {
   width: 1px
@@ -1700,12 +1615,6 @@ input[type='checkbox']:checked+label:after {
   border: 0;
   margin: 0;
   cursor: default
-}
-
-.autoCompleteButtonHover {
-}
-
-.autoCompleteButtonDown {
 }
 
 .ui-autocomplete.ui-menu {
@@ -2057,9 +1966,6 @@ input[type='checkbox']:checked+label:after {
   *top: -1px;
   right: 0;
   background: #eef3fe
-}
-
-.faiTableWrap .center table.faiTable thead tr th div.title {
 }
 
 .faiTableWrap .center table.faiTable thead tr th.sep div.title {
@@ -3596,4 +3502,31 @@ input[type='checkbox']:checked+label:after {
   opacity: 0;
   cursor: pointer;
   z-index: -1;
+}
+.refresh-box {
+  height: 56px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.refresh-btn {
+  background: #4381fd;
+  border: 1px solid #4381fd;
+  color: #fff;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 80px;
+  padding: 0 10px;
+  margin-left: 10px;
+  line-height: 34px;
+  height: 34px;
+}
+.refresh-btn:hover {
+  background: #2566e9;
 }

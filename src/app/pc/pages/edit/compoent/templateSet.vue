@@ -9,21 +9,21 @@
             </div>
             <div class="content flex-1">
                 <div class="main">
-                    <input v-model="luckDraw.h5Data.awardDetailName" class="activeName input mainInput name" type="text"/>
+                    <input v-model="luckDraw.h5Data.awardDetailName" placeholder="请填写活动单位名称" class="activeName input mainInput name" type="text"/>
                 </div>
             </div>
-            <div class="flag">*</div>
+            <!-- <div class="flag">*</div> -->
         </div>
         <div class="settingLine actNameSetting">
             <div class="leftTitle">
-                <span class="name">详情显示：</span>
+                <span class="name">兑奖详情标题：</span>
             </div>
             <div class="content flex-1">
                 <div class="main">
                     <input v-model="luckDraw.h5Data.awardDetaiInfo" class="activeName input mainInput name" type="text"/>
                 </div>
             </div>
-            <div class="flag">*</div>
+            <!-- <div class="flag">*</div> -->
         </div>
     </div>
 </template>

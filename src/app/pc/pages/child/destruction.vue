@@ -117,11 +117,11 @@
                     </div>
                 </div>
             </div>
-            <div class="hb_description">
+            <!-- <div class="hb_description">
                 <p>
                     注：由于派发接口原因，无法获取礼品实时状态，派发后5分钟会查询礼品状态，30分钟后会再次查询礼品状态
                 </p>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

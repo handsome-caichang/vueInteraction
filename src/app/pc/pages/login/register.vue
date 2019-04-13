@@ -1,14 +1,14 @@
 <template>
     <div class="m-regForm">
 		<div class="textLine">
-			<span>注册用户</span>
+			<!-- <span>注册用户</span>
 			<span class="number">17,410,038<span class="font12">+</span></span>
 			<span class="sep"></span>
 			<span>安全运行</span>
 			<span class="number">2986<span class="font12">天+</span></span>
 			<span class="sep"></span>
 			<span>覆盖行业</span>
-			<span class="number">100<span class="font12">+</span></span>
+			<span class="number">100<span class="font12">+</span></span> -->
 		</div>
 		<div class="regBox">
 			<div class="content" id="contentId">

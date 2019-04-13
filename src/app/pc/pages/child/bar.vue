@@ -10,7 +10,7 @@
         <div class="manageFrame scrollBox">
             <div class="manageFrameWarp checked">
                 <!-- <bar-list></bar-list> -->
-                <component class="component" :is="currentTabComponent" @toBackGameData="toBackGameData" :id="currentId">
+                <component class="component" :is="currentTab" @toBackGameData="toBackGameData" :id="currentId">
                 </component>
             </div>
         </div>
@@ -25,6 +25,7 @@ import Destruction from './destruction'
 import GameData from './barChild/gameData.vue'
 import UserList from './barChild/userList.vue'
 import {getTemplateList} from 'pcApi/jie.js'
+import { mapState, mapMutations } from 'vuex';
 export default {
     name: 'bar',
     data() {
@@ -42,7 +43,7 @@ export default {
                 {
                     ico: 'iconHexiao',
                     name: '核销管理',
-                    component: 'destruction'
+                    component: 'Destruction'
                 },
                 // {
                 //     ico: 'iconMyinfo',
@@ -50,44 +51,82 @@ export default {
                 //     path: ''
                 // }
             ],
-            currentIndex: 0,
-            currentTab: 'BarList',
+            // currentIndex: 0,
+            // currentTab: 'BarList',
             pageIndex: 0,
             pageSize: 10,
-            currentId: ''
+            currentId: '',
+            componentList: [
+                {
+                    component: 'BarList'
+                },
+                {
+                    component: 'ActiveList'
+                },
+                {
+                    component: 'destruction'
+                },
+                {
+                    component: 'GameData'
+                },
+                {
+                    component: 'UserList'
+                },
+            ]
         }
     },
     computed: {
-        currentTabComponent() {
-            return this.currentTab
-        }
+        ...mapState([
+            'currentTab',
+            'currentIndex'
+        ]),
     },
     methods: {
+        ...mapMutations([
+            'set_tabAndIndex'
+        ]),
         tabClick(item, index) {
-            this.currentIndex = index;
-            this.currentTab = item.component;
+            this.set_tabAndIndex({
+                currentIndex: index,
+                currentTab: item.component
+            });
+            let query = this.$router.history.current.query;
+            let path = this.$router.history.current.path;
+            let newQuery = JSON.parse(JSON.stringify(query));
+            newQuery.tabType = index;
+            this.$router.push({ path, query: newQuery });
         },
         toBackGameData(data,id) {
             if (data == -1) {
-                this.currentTab = "ActiveList";
+                this.set_tabAndIndex({
+                    currentIndex: this.currentIndex,
+                    currentTab: "ActiveList"
+                });
             }else if(data == 1){
-                this.currentTab = 'gameData';
+                 this.set_tabAndIndex({
+                    currentIndex: this.currentIndex,
+                    currentTab: "gameData"
+                });
                 this.currentId = id;
             }else if(data == 2) {
-                this.currentTab = 'userList';
+                 this.set_tabAndIndex({
+                    currentIndex: this.currentIndex,
+                    currentTab: "userList"
+                });
                 this.currentId = id;
             }
         }
     },
     created() {
-        // getTemplateList({
-        //     pageIndex: this.pageIndex,
-        //     pageSize: this.pageSize
-        // }).then(res => {
-        //     console.log(res);
-        //     if (res.errorCode == 0) {
-        //     }
-        // })
+        console.log(this.$route.query);
+        if(this.$route.query && this.$route.query.tabType) {
+            if (this.$route.query.tabType == '1' || this.$route.query.tabType == '2' || this.$route.query.tabType == '3') {
+                this.set_tabAndIndex({
+                    currentIndex: this.$route.query.tabType,
+                    currentTab: this.componentList[this.$route.query.tabType].component
+                });
+            }
+        }
     },
     components: {
         BarList,

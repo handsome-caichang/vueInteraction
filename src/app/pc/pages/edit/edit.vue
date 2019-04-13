@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="editDetail" v-if="iframeLodingEnd">
-                        <component class="component" :is="currentTabComponent" :iframeConentObj="iframeConentObj" :h5Store="h5Store">
+                        <component class="component" :is="currentTabComponent" :iframeConentObj="iframeConentObj" :h5Store="h5Store" @currentIndex="currentIndexChange">
                         </component>
                     </div>
                 </div>
@@ -62,7 +62,7 @@ export default {
                     component: 'baseSet'
                 },
                 {
-                    name: '派件方式',
+                    name: '派奖设置',
                     component: 'sendSet'
                 },
                 {
@@ -81,7 +81,7 @@ export default {
                 name: ''
             },
             editData: {},
-             leftList: [
+            leftList: [
                 {
                 name: "首页",
                 type: "baseSet",
@@ -108,6 +108,7 @@ export default {
             iframeHtml: '',
             resData: {},
             isEdit: true,
+            prizeIndex: 0,
         }
     },
     computed: {
@@ -141,20 +142,34 @@ export default {
     },
     methods: {
         ...mapMutations([
-            'set_headerType'
+            'set_headerType',
+            'set_tabAndIndex',
+            'set_loadingFlag',
         ]),
+        currentIndexChange(prizeIndex) {
+            this.prizeIndex = prizeIndex;
+        },
         checkLeft(item) {
             if (this.checked != item.type)  {
+                let ovlType = this.checked;
                 this.checked = item.type;
                 if (item.type == 'awardYes' || item.type == 'awardNo') {
+                    if (ovlType == 'prizeSet'){
+                        // console.log(this.iframeConentObj);
+                        this.iframeConentObj.$router.replace(`luckDraw?edit=1&id=${this.$route.params.id}`)
+                    }   
                     if (item.type == 'awardYes') {
-                        window.h5AllData.awardDetail =  this.editData.gifts[0];
-                    }
-                    this.iframeConentObj.$router.replace(`/luckDraw?edit=1&id=${this.$route.params.id}`)
-                    this.h5Store.commit('set_luckDrawPopupAwardFalg', true);
+                        window.h5AllData.awardDetail =  this.editData.gifts[this.prizeIndex];
+                    } 
                     this.h5Store.commit('set_luckDrawPopupAwardType', item.data);
-                }else {
+                    this.h5Store.commit('set_luckDrawPopupAwardFalg', true);
+                }else if(item.type == 'prizeSet'){
                     this.currentTab = this.checked;
+                    window.h5AllData.awardDetail =  this.editData.gifts[this.prizeIndex];
+                    this.h5Store.commit('set_luckDrawPopupAwardFalg', false);
+                    this.iframeConentObj.$router.replace(`/${item.data}`)
+                }else {
+                     this.currentTab = this.checked;
                     this.h5Store.commit('set_luckDrawPopupAwardFalg', false);
                     this.iframeConentObj.$router.replace(`/${item.data}?edit=1&id=${this.$route.params.id}`)
                 }
@@ -162,6 +177,11 @@ export default {
         },
         tabClick(item) {
             this.currentTab = item.component;
+            if (this.currentTab == 'baseSet') {
+                this.checkLeft(this.leftList[0]);
+            }else if (this.currentTab == 'prizeSet') {
+                this.checkLeft(this.leftList[1]);
+            }
         },
         saveView() {
             let createdData = app.tool.clone(window.h5AllData.luckDraw);
@@ -171,6 +191,10 @@ export default {
                 createTemplate(createdData).then(res => {
                     console.log(res)
                     if (res.errorCode == 0) {
+                        this.set_tabAndIndex({
+                            currentIndex: 1,
+                            currentTab: 'ActiveList'
+                        });
                         this.$router.replace('/home');
                     }
                 })
@@ -184,20 +208,49 @@ export default {
             }
         },
         close() {
-            let flag = window.confirm('系统可能不会保存您所做的更改。');
-            if (flag) {
-                this.$router.replace('/home')
-            }
+             app.confirm({
+                title: '退出编辑将不会保存您所做的修改，是否确定退出？',
+                titleStyle: {
+                    padding: '25px 10px'
+                },
+                boxStyle: {
+                    width: '400px'
+                }
+            }).then(res => {
+                if (res) {
+                    this.$router.replace('/home')
+                }
+            })
         },
         setData(res) {
+            console.log(this.$route);
+            if (!this.isEdit) {
+                res.lotteryActivityInfo.gifts.forEach(item => {
+                    item.address = '';        
+                    item.telphone = '';        
+                })
+                let jsonH5 = JSON.parse(res.lotteryActivityInfo.h5Data);
+                jsonH5.awardDetailName = '';
+                jsonH5.awardDetaiInfo = '兑奖详情';
+                res.lotteryActivityInfo.h5Data = JSON.stringify(jsonH5);
+            }
             res.lotteryActivityInfo.baseInfo.url = res.lotteryActivityInfo.baseInfo.url.replace(/^\s+|\s+$/gm,'');
             // this.iframeSrc = res.lotteryActivityInfo.baseInfo.url+'/index.html#/luckDraw?edit=1&id='+this.$route.params.id;
-            this.iframeSrc = 'https://attraction-pc-test.xiaogj.com/h5'+'/index.html#/luckDraw?edit=1&id='+this.$route.params.id;
-            // this.iframeSrc = 'http://192.168.0.185:8080/h5'+'/index.html#/luckDraw?edit=1&id='+this.$route.params.id;
+            // this.iframeSrc = 'https://attraction-pc-test.xiaogj.com/h5'+'/index.html#/luckDraw?edit=1&id='+this.$route.params.id;
+           this.iframeSrc = location.origin + '/h5/index.html#/luckDraw?edit=1&id='+this.$route.params.id
+            // this.iframeSrc = 'http://192.168.0.132:8080/h5'+'/index.html#/luckDraw?edit=1&id='+this.$route.params.id;
             this.resData = res.lotteryActivityInfo;
             this.editData = res.lotteryActivityInfo;
             this.baseInfo = this.editData.baseInfo;
             this.resData.h5Data = JSON.parse(this.resData.h5Data);
+            if (!this.isEdit) {
+                this.baseInfo.startTime = app.tool.getNowFormatDate();
+                this.baseInfo.endTime = app.filters.formatDatetime(new Date().getTime() + 3600 * 1000 * 24 * 7,"yyyy-MM-dd hh:mm:ss")
+                this.editData.gifts.forEach(el => {
+                    el.cashStartTime = app.tool.getNowFormatDate();
+                    el.cashEndTime = app.filters.formatDatetime(new Date().getTime() + 3600 * 1000 * 24 * 7,"yyyy-MM-dd hh:mm:ss")
+                });
+            } 
             let iframe = document.createElement('iframe'); 
             iframe.src = this.iframeSrc;
             iframe.scrolling="no";
@@ -221,6 +274,9 @@ export default {
                         }
                     }
                     that.iframeLodingEnd = true;
+                    setTimeout(() => {
+                        that.set_loadingFlag(false)
+                    }, 50);
                 }
             })
         }
@@ -233,6 +289,7 @@ export default {
         prizeSet,
     },
     created() {
+        this.set_loadingFlag(true)
         this.set_headerType('2');
         if (this.$route.query.name == 'add') {
             this.isEdit = false;

@@ -1,10 +1,10 @@
 'use strict'
-
 module.exports = env => {
   const path = require('path')
   const utils = require('./utils')
   const config = require('../config')
   const vueLoaderConfig = require('./vue-loader.conf')
+  var vuxLoader = require("vux-loader");
 
   function resolve(dir) {
     return path.join(__dirname, '..', dir)
@@ -96,6 +96,16 @@ module.exports = env => {
             limit: 10000,
             name: utils.assetsPath("fonts/[name].[hash:7].[ext]")
           }
+        },
+        {//css打包到js中
+          test: /\.scss/,
+          use: [{
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }]
         }
       ]
     },
@@ -112,5 +122,12 @@ module.exports = env => {
       child_process: "empty"
     }
   };
-  return baseWebpackConfig;
+
+  return vuxLoader.merge(baseWebpackConfig, { plugins: ["vux-ui"] });
 };
+
+
+// const vuxLoader = require("vux-loader");
+// module.exports = vuxLoader.merge(webpackConfig, {
+//   plugins: ["vux-ui"]
+// });

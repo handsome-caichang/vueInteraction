@@ -41,8 +41,7 @@ export default {
       },
       advancedSetting: {
         isCanShare: true, // 是否能够分享
-        shareImage:
-          "https://hd.faisys.com/image/game/l_xydzp.jpg?v=201508111845", //  必须
+        shareImage: "1", //  必须
         shareWinContent:
           "​轻轻松松就能抽到大奖，积攒多年的人品终于有用了，你也赶紧来抽奖吧！！", //   中奖分享文案
         shareNowinContent: "​我已经在活动中抽到了奖品，你也快来抽大奖吧！" //    没中奖分享文案
@@ -51,5 +50,7 @@ export default {
   },
   h5Data: {
     awardDetailName: "长沙市校管家教育科技有限公司"
-  }
+  },
+  currentTab: "BarList",
+  currentIndex: 0
 };

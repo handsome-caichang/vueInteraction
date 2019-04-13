@@ -29,7 +29,7 @@
                                     </div>
                                 </td>
                                 <td class="textCenter ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">{{item.startTime}}<br>{{item.endTime}}</div>
+                                    <div class="padding ellipsis tdWrap">{{item.startTime | formatDatetime('yyyy-MM-dd hh:mm')}}<br>{{item.endTime | formatDatetime('yyyy-MM-dd hh:mm')}}</div>
                                 </td>
                                 <td class="textCenter ellipsis tmpShowHoverTips">
                                     <div class="padding ellipsis tdWrap">
@@ -37,7 +37,13 @@
                                     </div>
                                 </td>
                                 <td class="textCenter ellipsis tmpShowHoverTips">
-                                    <div class="padding ellipsis tdWrap">{{item.limitCount == -1 ? "不限":item.limitCount}}</div>
+                                    <div class="padding ellipsis tdWrap">{{item.uvCount}}</div>
+                                </td>
+                                <td class="textCenter ellipsis tmpShowHoverTips">
+                                    <div class="padding ellipsis tdWrap">{{item.winCount}}</div>
+                                </td>
+                                <td class="textCenter ellipsis tmpShowHoverTips">
+                                    <div class="padding ellipsis tdWrap">{{item.joindCustomerCount}}/{{item.limitCount == -1 ? "不限":item.limitCount}}</div>
                                 </td>
                                 <td class="textRight ellipsis">
                                     <div class="padding ellipsis tdWrap">
@@ -79,136 +85,143 @@
 </template>
 
 <script>
-import {
-    mapMutations
-} from 'vuex'
-import {
-    thList
-} from './activeList.js'
-import {getList,publish,stop,delActiv,getQrCode} from 'pcApi/jie.js'
-import QrCodevue from '../../components/popup/qrCode.vue'
+import { mapMutations } from "vuex";
+import { thList } from "./activeList.js";
+import axios from "axios";
+import { getList, publish, stop, delActiv, getQrCode } from "pcApi/jie.js";
+import QrCodevue from "../../components/popup/qrCode.vue";
 export default {
-    name: 'active-list',
-    data() {
-        return {
-            tdList: [],
-            thList,
-            pageIndex: 1,
-            pageSize: 10,
-            totalCount: 0,
-            showCode: false,
-            currentUrl: '',
-        }
+  name: "active-list",
+  data() {
+    return {
+      tdList: [],
+      thList,
+      pageIndex: 1,
+      pageSize: 10,
+      totalCount: 0,
+      showCode: false,
+      currentUrl: ""
+    };
+  },
+  methods: {
+    ...mapMutations(["set_globalMaskFlag"]),
+    handleSizeChange(val) {
+      this.pageSize = val;
+      this.initList();
     },
-    methods: {
-        ...mapMutations([
-            'set_globalMaskFlag'
-        ]),
-         handleSizeChange(val) {
-            this.pageSize = val;
-            this.initList();
-        },
-        handleCurrentChange(val) {
-            this.pageIndex = val;
-            this.initList();
-        },
-        preClick(item) {
-            let url = '';
-            if (item.url.indexOf('?') != -1) {
-                 url = item.url + '&sourceType=3';
+    handleCurrentChange(val) {
+      this.pageIndex = val;
+      this.initList();
+    },
+    preClick(item) {
+      let url = "";
+      if (item.url.indexOf("?") != -1) {
+        url = item.url + encodeURIComponent("&sourceType=3");
+      } else {
+        url = item.url + encodeURIComponent("?sourceType=3");
+      }
+      app.store.commit("set_loadingFlag", true);
+      axios.post('https://url.xiaogj.com/Url/ToShortUrl', {Url:url}).then(res => {
+        app.store.commit("set_loadingFlag", false);
+        if (res.status == 200) {
+            if (res.data.ErrorCode == 200 || res.data.ErrorCode == 422) {
+                url = res.data.Data.shorturl;
+                this.currentUrl = url;
+                this.showCode = true;
             }else {
-                 url = item.url + '?sourceType=3';
+                app.alert('二维码生成失败')
             }
-            this.currentUrl = encodeURIComponent(url);
-            console.log(this.currentUrl);
-            this.showCode = true;
-        },
-        close() {
-            this.showCode = false;
-        },
-        toEdit(id) {
-            this.$router.push({
-                 path: `/edit/${id}`,
-                 query: {
-                     name: 'edit',
-                 }
-             })
-        },
-        goGamedata(val,id) {
-            this.$emit('toBackGameData', val, id);
-            // this.$router.push(`/edit/${id}`)
-        },
-        initList() {
-            this.tdList = [];
-            getList({
-                pageIndex: this.pageIndex,
-                pageSize: this.pageSize,
-            }).then(res => {
-                if (res.errorCode == 0) {
-                    if (res.data.length > 0) {
-                        this.totalCount = res.totalCount;
-                        this.tdList = res.data;
-                    }
-                }
-            })
-        },
-        publi(item, type) {
-            let title = type == 'del' ? '删除' : ( item.isPublish ? '结束' : '发布');
-            app.confirm({
-                title: `确认${title} ${item.name} 该活动？`
-            }).then(res => {
-                if (res) {
-                    if (type == 'del') {
-                        delActiv({
-                            id: item.id
-                        }).then(resp => {
-                            if(resp.errorCode == 0) {
-                                this.initList();
-                            }else {
-                                alert(resp.errorMessage)
-                            }
-                        })
-                    }else if (item.isPublish) {
-                        stop({
-                            id: item.id
-                        }).then(resp => {
-                            if(resp.errorCode == 0) {
-                                this.initList();
-                            }else {
-                                alert(resp.errorMessage)
-                            }
-                        })
-                    }else {
-                        publish({
-                            id: item.id
-                        }).then(resp => {
-                            if(resp.errorCode == 0) {
-                                this.initList();
-                            }else {
-                                alert(resp.errorMessage)
-                            }
-                        })
-                    }
-                }
-            })
         }
+      });
     },
-    created() {
-        this.initList();
+    close() {
+      this.showCode = false;
     },
-    components: {
-        QrCodevue
+    toEdit(id) {
+      this.$router.push({
+        path: `/edit/${id}`,
+        query: {
+          name: "edit"
+        }
+      });
+    },
+    goGamedata(val, id) {
+      this.$emit("toBackGameData", val, id);
+      // this.$router.push(`/edit/${id}`)
+    },
+    initList() {
+      this.tdList = [];
+      getList({
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize
+      }).then(res => {
+        if (res.errorCode == 0) {
+          if (res.data.length > 0) {
+            this.totalCount = res.totalCount;
+            this.tdList = res.data;
+          }
+        }
+      });
+    },
+    publi(item, type) {
+      let title = type == "del" ? "删除" : item.isPublish ? "结束" : "发布";
+      app
+        .confirm({
+          title: `确认${title} ${item.name} 该活动？`
+        })
+        .then(res => {
+          if (res) {
+            if (type == "del") {
+              delActiv({
+                id: item.id
+              }).then(resp => {
+                if (resp.errorCode == 0) {
+                  this.initList();
+                } else {
+                  alert(resp.errorMessage);
+                }
+              });
+            } else if (item.isPublish) {
+              stop({
+                id: item.id
+              }).then(resp => {
+                if (resp.errorCode == 0) {
+                  this.initList();
+                } else {
+                  alert(resp.errorMessage);
+                }
+              });
+            } else {
+              publish({
+                id: item.id
+              }).then(resp => {
+                if (resp.errorCode == 0) {
+                  this.initList();
+                } else {
+                  alert(resp.errorMessage);
+                }
+              });
+            }
+          }
+        });
     }
-}
+  },
+  created() {
+    this.initList();
+  },
+  components: {
+    QrCodevue
+  }
+};
 </script>
 
 <style scoped>
-@import '../../assets/css/activeList.scss';
+@import "../../assets/css/activeList.scss";
 .dropDownBox {
-    width: 70px;
+  width: 70px;
 }
 .faiTableWrap .bottom {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 </style>

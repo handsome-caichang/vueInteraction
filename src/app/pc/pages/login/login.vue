@@ -1,20 +1,21 @@
 <template>
 	<div class="middle">
-		<div class="content">
-			<div class="left">
-				<span class="regBtn" @click="togoRegister"></span>
-			</div>
-			<div class="right">
+		<img :src="bgImg" alt="易招秀" class="bgImg">
+		<!-- <div class="content"> -->
+			<!-- <div class="left"> -->
+				<!-- <span class="regBtn" @click="togoRegister"></span> -->
+			<!-- </div> -->
+			<div style="position: absolute;top: 28%;right: 18%;">
 				<div class="loginBody">
 					<div class="righttop">
 						<div class="loginTab pwdLoginTab checkLoginTab">密码登录</div>
 					</div>
 					<div class="rightmid">
 						<div class="pwdLoginPanel loginPanel">
-							<div class="log-input-container">
+							<div class="log-input-container" @keydown="keyCodeIn">
 								<div class="log-line" >
 									<div class="log-txt" v-if="!loginName">帐号/手机号码</div>
-									<input  type="text" v-model="loginName" autocomplete="off" maxlength="34" class="log-input input2" />
+									<input type="text" v-model="loginName" autocomplete="off" maxlength="34" class="log-input input2" />
 									<div class="logIcoNew logIcoCacct">&nbsp;</div>
 								</div>
 								<div class="log-line" >
@@ -34,13 +35,14 @@
 					<a class="registerHref" @click="togoRegister" >立即注册</a>
 				</div>
 			</div>
-		</div>
+		<!-- </div> -->
 	</div>
 </template>
 
 <script>
 import {login} from 'pcApi/jie'
 import { mapMutations } from 'vuex';
+import bgImg from "./images/bg.png";
 	export default {
 		name: 'login',
 		data() {
@@ -48,7 +50,8 @@ import { mapMutations } from 'vuex';
 				loginName: '',
 				loginPassword: '',
 				errFlag: false,
-				errMsg: '请输入密码'
+				errMsg: '请输入密码',
+				bgImg
 			}
 		},
 		methods: {
@@ -77,6 +80,11 @@ import { mapMutations } from 'vuex';
 					})
 				}
 			},
+			keyCodeIn(event) {
+				if (event.keyCode == 13) {
+					this.loginClick();
+				}
+			}
 		}
 	}
 </script>

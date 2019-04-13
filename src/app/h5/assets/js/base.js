@@ -48,6 +48,26 @@ const base = {
         isAndroid: (/android/gi).test(navigator.appVersion),
         isIDevice: (/iphone|ipad/gi).test(navigator.appVersion),
         isTouchPad: (/hp-tablet/gi).test(navigator.appVersion),
+        trident: navigator.userAgent.indexOf('Trident') > -1, //IE内核
+        presto: navigator.userAgent.indexOf('Presto') > -1, //opera内核
+        webKit: navigator.userAgent.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: navigator.userAgent.indexOf('Gecko') > -1 && navigator.userAgent.indexOf('KHTML') == -1, //火狐内核
+        getExplorer: (function () {
+            var explorer = window.navigator.userAgent,
+                compare = function (s) { return (explorer.indexOf(s) >= 0); },
+                ie11 = (function () { return ("ActiveXObject" in window) })();
+            if (compare("MSIE") || ie11) { return 'ie'; }
+            else if (compare("Firefox") && !ie11) { return 'Firefox'; }
+            else if (compare("Chrome") && !ie11) {
+                if (explorer.indexOf("Edge") > -1) {
+                    return 'Edge';
+                } else {
+                    return 'Chrome';
+                }
+            }
+            else if (compare("Opera") && !ie11) { return 'Opera'; }
+            else if (compare("Safari") && !ie11) { return 'Safari'; }
+        })()
     },
     localTimeToServer: new Date(), //TODO:以后要换成接口获取的服务器时间
 

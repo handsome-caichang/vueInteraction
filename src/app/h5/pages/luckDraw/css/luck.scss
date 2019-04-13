@@ -3,7 +3,8 @@
   outline: 0;
   padding: 0;
   font-size: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-family: PingFangSC-Regular;
 }
 
 a {
@@ -44,8 +45,8 @@ img {
 .activity-lottery-winning {
   background-color: #572967;
   // min-width: 375px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  // overflow-x: hidden;
+  // overflow-y: scroll;
   height: 100%
 }
 
@@ -59,7 +60,7 @@ img {
 
 .activity-lottery-winning .main {
   position: relative;
-  background-color: #ff534d
+  background-color: #FE7C43
 }
 
 .outer-cont {
@@ -96,7 +97,7 @@ img {
 
 .outer-cont .outerImg {
   transform: translate3d(0, 0, 0);
-  width: 95%;
+  width: 85%;
 }
 
 #inner {
@@ -107,8 +108,8 @@ img {
   right: 0;
   bottom: 0;
   margin: auto;
-  width: 5.6rem;
-  height: 6.45rem;
+  width: 35%;
+  height: 45%;
   cursor: pointer
 }
 
@@ -144,7 +145,7 @@ img {
   position: relative;
   left: 0;
   right: 0;
-  margin-top: 10px;
+  margin-top: 20%;
 }
 
 .cover {
@@ -186,7 +187,7 @@ img {
 }
 
 .main img {
-  max-width: 100%;
+  width: 100%;
   border: 0 none
 }
 
@@ -214,7 +215,7 @@ img {
 }
 
 .home .content .ipt_num {
-  color: #fa5208;
+  color: #fff;
   font-size: .6rem;
   margin: 0rem .25rem;
   display: inline-block
@@ -258,32 +259,16 @@ img {
 }
 
 .joinNumLine,
-.totalDraw,
-.dayDraw4Total,
-.dayDraw {
-  text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff
-}
-
-.joinNumLine span,
-.totalDraw span,
-.dayDraw4Total span,
-.dayDraw span {
-  text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0px 1px 0 #fff, 0px -1px 0 #fff
-}
-
-.joinNumLine,
 .dayDraw {
   line-height: 31px
 }
 
 .content .poupMainBox {
-  border: .09rem dotted white;
-  border-radius: .2rem;
-  background-color: #fe675f;
-  color: #fff;
-  margin: 1.1rem .2rem .2rem !important;
-  width: auto !important;
-  padding: .9rem .25rem .75rem
+  color: #333;
+  margin: 20px 20px;
+  padding:0 20px 10px;
+  background:rgba(255, 251, 242, 1);
+  border-radius:8px;
 }
 
 .titleTextBox {
@@ -345,7 +330,7 @@ img {
 }
 
 #ruleBox .awardTitleText {
-  font-weight: 600
+  font-weight: 600;
 }
 
 .new_attentionBox {
@@ -362,17 +347,25 @@ img {
 }
 
 #awardContactInfo .updateBtn {
-  color: #fff000;
-  border: 0;
-  float: right;
-  margin: -1.1rem .5rem 0 0;
-  width: auto !important
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  z-index: 900;
+  color: #999;
+  font-size: 13px;
+  font-family:PingFangSC-Regular;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #awardContactInfo .contactItem {
-  width: 10rem;
-  margin-top: .2rem;
-  margin-left: 0
+  width: 80%;
+  margin-bottom: 10px;
+  margin-left: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .main .homeBgBox {
@@ -657,4 +650,13 @@ pre {
   margin-left: -2.5rem;
   bottom: 2rem;
   border-radius: 4px
+}
+
+.editIcon {
+  background-image: url('../../../assets/images/edit.png');
+  height: 18px;
+  width: 18px;
+  background-size: cover;
+  display: inline-block;
+  margin-right: 4px;
 }

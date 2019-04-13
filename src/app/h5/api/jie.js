@@ -22,3 +22,8 @@ export function upPv(params) {
 export function upAction(params) {
     return axios.ajaxGet("/api/activityStatistics/action", params);
 }
+
+// 更新地址
+export function updateAddress(params) {
+    return axios.ajax("/api/activity/updateAddress", params);
+}

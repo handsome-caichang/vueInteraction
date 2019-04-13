@@ -469,34 +469,6 @@
   margin-right: 3px
 }
 
-.statDiagram .statDiagramPanel .statDiagramContent .statDiagramToolBar .item .bros {
-  background: url(../../../assets/images/hddata.png) 0 0 no-repeat
-}
-
-.statDiagram .statDiagramPanel .statDiagramContent .statDiagramToolBar .item .part {
-  background: url(../../../assets/images/hddata.png) 0 -31px no-repeat
-}
-
-.statDiagram .statDiagramPanel .statDiagramContent .statDiagramToolBar .item .price {
-  background: url(../../../assets/images/hddata.png) 0 -93px no-repeat
-}
-
-.statDiagram .statDiagramPanel .statDiagramContent .statDiagramToolBar .item .usedPri {
-  background: url(../../../assets/images/hddata.png) 0 -186px no-repeat
-}
-
-.statDiagram .statDiagramPanel .statDiagramContent .statDiagramToolBar .item .share {
-  background: url(../../../assets/images/hddata.png) 0 -62px no-repeat
-}
-
-.statDiagram .statDiagramPanel .statDiagramContent .statDiagramToolBar .item .reg {
-  background: url(../../../assets/images/hddata.png) 0 -155px no-repeat
-}
-
-.statDiagram .statDiagramPanel .statDiagramContent .statDiagramToolBar .item .uncheck {
-  background: url(../../../assets/images/hddata.png) 0 -124px no-repeat
-}
-
 .ztqsTips {
   display: block;
   margin-top: -4px
@@ -536,7 +508,7 @@
 }
 
 .columnTitle {
-  padding-right: 16px
+  // padding-right: 16px
 }
 
 .J_statDesc {
@@ -766,4 +738,55 @@ div.jqplot-custom-cursor-legend-title {
       background: #cacaca;
       display: inline-block;
       margin-left: 5px;
+}
+.gameDataContainer .faiTableWrap .top .toolBar {
+  margin-bottom: 0;
+  background: #fff;
+  line-height: 30px;
+}
+.gameDataContainer .faiTableButton {
+  display: inline-block;
+  vertical-align: middle;
+  outline: medium none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  height: 32px;
+  line-height: 32px;
+  color: #fff;
+  margin-left: 12px;
+  margin-top: 12px;
+  padding: 0 12px;
+  background-color: #4381fd;
+  border-radius: 4px;
+}
+.gameDataContainer .faiTableButton:hover {
+  background: #2566e9;
+}
+.gameDataContainer .faiTableButton .icon {
+  width: 22px;
+  height: 24px;
+  background-position: -46px -988px;
+}
+.gameDataContainer .reloadBtn .icon {
+    background-position: -95px -987px;
+}
+.gameDataContainer .exportDate .icon {
+  background-position: -706px -907px;
+}
+.searchBoxCont .searchBtn {
+    position: absolute;
+    width: 32px;
+    height: 30px;
+    top: 0;
+    right: 0;
+    background: url(../../../assets/images/iconall.png) no-repeat -103px -483px;
+    cursor: pointer;
+}
+.searchBoxCont .searchBtn:hover {
+  background-position: -147px -483px !important
+}
+.gameDataContainer .faiTableWrap .center table.faiTable thead tr th {
+  height: 48px;
+  border-top: solid 1px #e7e7e7;
 }

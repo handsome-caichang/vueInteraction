@@ -47,7 +47,6 @@ Vue.use(JDialog, {root: app });
 Vue.mixin({
   filters: filters,
 });
-
 /* eslint-disable no-new */
 window._vue = new Vue({
   el: '#app',

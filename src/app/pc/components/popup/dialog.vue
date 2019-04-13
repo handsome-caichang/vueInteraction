@@ -71,6 +71,7 @@
                     text-align: center;
                     color: #333;
                     font-size: 16px;
+                    cursor: pointer;
                     &.boder-left {
                         position: relative;
                         &:before {
@@ -125,6 +126,10 @@
             <div class="dialog-box" :style="boxStyle">
                 <div class="content-box">
                     <div class="dialog-title" v-if='title' :style='titleStyle'>{{title}}</div>
+                    <div class="scroll-wrapper">
+                        <div class="html-body" v-if='html' v-html='html'></div>
+                        <p class="text-body" v-if='text'  :style='textStyle'>{{text}}</p>
+                    </div>
                 </div>
                 <div class="btn-box">
                     <div class="btn-item" 

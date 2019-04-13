@@ -1,12 +1,12 @@
 <template>
 <div class="resuleBox" style="opacity: 1;">
-    <div v-if="type == '1'" class="resule-gift-box" style="opacity: 1;">
-        <img class="bgc abs" :src="xydzpFailImg">
+    <div v-if="type == '1'" class="resule-gift-box" style="opacity: 1;align-items: center;">
+        <img style="width: 80%;margin-top:20px" :src="xydzpFailImg">
         <img @click="tralg" class="btn abs" :src="againImg" :style="btnStyle">
     </div>
 
-    <div v-if="type == '2'" class="resule-gift-box" style="opacity: 1;">
-        <img class=" abs slaveImg" :src="successBg">
+    <div v-if="type == '2'" class="resule-gift-box" style="opacity: 1;position: relative;">
+        <img class="abs slaveImg" :src="successBg">
         <img class="abs awardImg" :style="resultStyle('2')" :src="theGift">
         <p class="abs resuleText" :style="resultStyle('3')">{{awardDetail.levelName}}</p>
         <p class="abs resuleText" :style="resultStyle('4')">{{awardDetail.name}}</p>
@@ -49,12 +49,14 @@ export default {
     },
     computed: {
         btnStyle() {
-            let imgHeight = Math.round((322.78 / 256 * document.documentElement.clientWidth * 0.8) * 100) / 100;
+            let imgHeight = Math.round((330 / 256 * document.documentElement.clientWidth * 0.8) * 100) / 100;
             let imgYH = Math.round((126 / 256 * document.documentElement.clientWidth * 0.8) * 100) / 100;
             let btnH = Math.round((38.22 / 128 * document.documentElement.clientWidth * 0.4) * 100) / 100;
             let btnTop = Math.round((imgHeight - imgYH / 2 - btnH / 2) * 100) / 100 + 20 + 'px';
             return {
-                top: btnTop
+                top: btnTop,
+                left: '50%',
+                transform: "translateX(-50%)"
             }
         },
     },
@@ -64,10 +66,10 @@ export default {
         },
         resultStyle(type) {
             let cliWidth = document.documentElement.clientWidth,tops = '';
-            let awardTop = Math.round( (140 / 320 * cliWidth) * 100 ) / 100 + 'px'; // 奖品图片的top
-            let levelNameTop = Math.round( (255 / 320 * cliWidth) * 100 ) / 100 + 'px'; // 奖品等级名称的top
-            let nameTop = Math.round( (280 / 320 * cliWidth) * 100 ) / 100 + 'px'; // 奖品名称的top
-            let btnTop = Math.round( (330 / 320 * cliWidth) * 100 ) / 100 + 'px'; // 按钮的top
+            let awardTop = Math.round( (130 / 320 * cliWidth) * 100 ) / 100 + 'px'; // 奖品图片的top
+            let levelNameTop = Math.round( (230 / 320 * cliWidth) * 100 ) / 100 + 'px'; // 奖品等级名称的top
+            let nameTop = Math.round( (260 / 320 * cliWidth) * 100 ) / 100 + 'px'; // 奖品名称的top
+            let btnTop = Math.round( (300 / 320 * cliWidth) * 100 ) / 100 + 'px'; // 按钮的top
            if (type == '2') {
                tops = awardTop;
            }
@@ -94,21 +96,32 @@ export default {
     text-align: center;
     color: rgb(255, 107, 58);
     font-size: 20px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .btnImg {
-    width: 50%;
+    width: 40%;
     top: 350px;
     z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .awardImg {
     width: 30%;
     z-index: 1;
+     top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .slaveImg {
-    width: 90%;
+    width: 80%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .resule-gift-box {
+    width: 100%;
     display: flex;
     justify-content: center;
 }

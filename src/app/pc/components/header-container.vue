@@ -1,5 +1,5 @@
 <template>
-<div class="manageTop" style="min-width: 384px;" v-if="headerType == '1'">
+<div class="manageTop" style="min-width: 384px;position: absolute;" v-if="headerType == '1'">
     <div class="mangeTopLeftPart">
         <a class="logoParent" href="http://www.xiaogj.com" target="_blank">
                 <div class="logo">
@@ -14,9 +14,9 @@
         <div class="manageInfo">
             <div class="myInfoIcon"></div>
             <div class="topBarMyInfoContent" v-if="userInfo">
-                <div class="top">长沙市校管家教育科技有限公司</div>
+                <div class="top" style="text-align: center;">{{userInfo.userName}}</div>
                 <div class="bottom">
-                    <div class="leftB">{{userInfo.userName}}</div><a class="rightB" href="javascript:;" @click="outIn"><div class="icon"></div>退出</a>
+                    <a class="rightB" href="javascript:;" @click="outIn"><div class="icon"></div>退出</a>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
 
 <script>
 import {
-    mapState
+    mapState, mapMutations
 } from 'vuex';
 import logonImg from '../assets/images/logo.png'
 import {
@@ -46,12 +46,21 @@ export default {
         ])
     },
     methods: {
+        ...mapMutations([
+            'set_userInfo',
+            'set_tabAndIndex'
+        ]),
         outIn() {
             app.confirm({
                 title: '确定要退出系统吗？'
             }).then(res => {
                 if (res) {
                     logout().then(res => {
+                        this.set_userInfo(null);
+                        this.set_tabAndIndex({
+                            currentIndex: 0,
+                            currentTab: 'BarList'
+                        });
                         if (res.errorCode == 0) {
                             this.$router.replace('login')
                         }

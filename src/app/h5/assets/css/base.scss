@@ -405,3 +405,19 @@ pre {
     -webkit-transform: scale(1.0)
   }
 }
+
+.unPublish {
+	height: 32px;
+	width: 264px;
+	margin: 0 auto;
+	font-size: 16px !important; 
+	color: #fff;
+	text-align: center;
+	line-height: 32px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	background: url('../images/unpub.png') no-repeat;
+	background-size: 100%
+}

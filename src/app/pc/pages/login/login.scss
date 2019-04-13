@@ -2,7 +2,7 @@
 
 .middle {
   height: auto;
-  margin-top: 22px;
+  // margin-top: 22px;
 }
 .middle .content {
   width: 1058px;
@@ -13,9 +13,9 @@
   height: 534px;
   float: left;
   margin: 31px 100px 0 0;
-  background: url(./images/regversion2016.png) -344px 0 no-repeat;
+  // background: url(./images/regversion2016.png) -344px 0 no-repeat;
   position: relative;
-  position: relative;
+  // position: relative;
 }
 .middle .left .regBtn {
   float: right;
@@ -28,7 +28,7 @@
   font-family: "微软雅黑";
   height: auto;
   float: left;
-  margin-top: 80px;
+  margin-top: 250px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
   -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
@@ -219,4 +219,10 @@
   margin-bottom: 5px;
   border: solid 1px #fdd3d3;
   background: url(./images/login_icon.png) -104px -50px no-repeat #feefef
+}
+.bgImg {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
 }

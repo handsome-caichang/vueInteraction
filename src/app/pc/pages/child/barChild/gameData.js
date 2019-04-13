@@ -7,7 +7,7 @@ exports.option = {
   },
   color: ["#5d9cec", "#62c87f", "#fb6556", "#ffb847"],
   legend: {
-    data: ["浏览人数", "参与人数", "获奖人数", "分享人数"],
+    data: ["浏览人数", "参与人数", "获奖人数"],
   },
   grid: {
     left: "3%",
@@ -34,7 +34,7 @@ exports.shareStatisticOption = {
     }
   },
   legend: {
-    data: ["浏览人数", "参与人数", "分享人数"],
+    data: ["浏览人数", "参与人数"],
     top: "20px"
   },
   toolbox: {
@@ -156,7 +156,7 @@ exports.sexStatDiagramOption = {
   series: [
     {
       color: ["#5d9cec", "#fc6f6d", "#73d68f"],
-      name: "访问来源",
+      name: "性别",
       type: "pie",
       radius: ["40%", "70%"],
       avoidLabelOverlap: false,
@@ -197,7 +197,7 @@ exports.backStatDiagramOption = {
   series: [
     {
       color: ["#73d68f", "#ffb847"],
-      name: "访问来源",
+      name: "网络类型",
       type: "pie",
       radius: ["40%", "70%"],
       avoidLabelOverlap: false,

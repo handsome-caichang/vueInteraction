@@ -23,7 +23,7 @@ textarea {
 }
 
 .portalMoveFrame {
-  -webkit-animation: frameTwinkle .8s 3 linear;
+  animation: frameTwinkle .8s 3 linear;
   border: #e2cb18 0 solid
 }
 
@@ -63,7 +63,7 @@ textarea {
   font-size: 16px
 }
 
-@-webkit-keyframes frameTwinkle {
+@keyframes frameTwinkle {
   from {
     opacity: .3
   }
@@ -110,7 +110,7 @@ textarea {
 
 .moduleLayer .tool {
   position: relative;
-  float: left;
+  // float: left;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.7);
   padding: 4px 6px;
@@ -311,13 +311,6 @@ textarea {
   padding: 0
 }
 
-.editActContainer #cancelButton .cancelIcon {
-  display: inline-block;
-  width: 15px;
-  height: 16px;
-  background: url('../images/officon.png') no-repeat;
-  vertical-align: -2px
-}
 
 .editActiveWarp {
   height: 100%;
@@ -768,14 +761,6 @@ textarea {
   cursor: pointer
 }
 
-.editActive .editContent .settingLine .selectRightIcon {
-  background: url(../images/selectrighticon.png) -39px 5px no-repeat
-}
-
-.editActive .editContent .settingLine .selectRightIcon_check {
-  background: url(../images/selectrighticon.png) -8px 5px no-repeat
-}
-
 .editActive .editContent .settingLine .content .mid {
   width: 46px;
   text-align: center;
@@ -1032,17 +1017,6 @@ textarea {
   width: 95px
 }
 
-.awardsSetting .awardAmountBox .amountIcon {
-  width: 16px;
-  height: 16px;
-  padding: 12px 10px;
-  background: url('../images/bi_new.png') center no-repeat;
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer
-}
-
 .awardsSetting .exitCuscodeTips {
   position: absolute;
   color: #333;
@@ -1266,24 +1240,6 @@ textarea {
   color: #b2b2b2
 }
 
-.awardsSetting .sellMoneyBox .aTips .addPriceIcon {
-  display: inline-block;
-  width: 13px;
-  height: 13px;
-  padding: 1px;
-  margin-right: 4px;
-  vertical-align: middle;
-  background: url(../images/addpriceicon.png) no-repeat -18px -1px
-}
-
-.awardsSetting .sellMoneyBox .aTips:hover .addPriceIcon {
-  background-position: -36px -1px
-}
-
-.awardsSetting .sellMoneyBox .aTips.disabled .addPriceIcon {
-  background-position: -1px -1px
-}
-
 .awardsSetting .scene {
   position: relative;
   display: inline-block;
@@ -1488,16 +1444,6 @@ textarea {
   padding-left: 18px;
   cursor: pointer;
   box-sizing: border-box
-}
-
-#gameTypeSetting .sceneBox .editAwardBtn .editAwardIcon {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translate(0, -50%);
-  width: 13px;
-  height: 13px;
-  background: url("../images/editawardicon.png") no-repeat
 }
 
 #gameTypeSetting .sceneBox .editAwardBox {
@@ -1765,25 +1711,6 @@ textarea {
   right: 0
 }
 
-#questionSettingBox .tipsIcon {
-  position: relative;
-  float: right;
-  width: 17px;
-  height: 21px;
-  background: url(../images/selectarrow.png) -10px 8px no-repeat;
-  cursor: pointer
-}
-
-#questionSettingBox .tipsIcon.rotate180 {
-  transform: rotate(180deg)
-}
-
-#questionSettingBox .tipsIcon.transiton300ms {
-  -moz-transition: .3s all;
-  -webkit-transition: .3s all;
-  -o-transition: .3s all;
-  transition: .3s all
-}
 
 #questionSettingBox #question_list_content {
   position: relative
@@ -2017,15 +1944,6 @@ textarea {
   background-color: #f6f6f6
 }
 
-.actNameSetting .actNameTipsBox .actNameTips .actNameTipsIcon {
-  display: inline-block;
-  vertical-align: middle;
-  width: 15px;
-  height: 16px;
-  margin-right: 5px;
-  // background: url('../images/actnametipsicon.png') no-repeat;
-  vertical-align: middle
-}
 
 .actNameSetting .actNameTipsBox .actNameTips .actNameTipsText {
   display: inline-block;

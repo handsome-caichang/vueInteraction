@@ -8,8 +8,8 @@
     </p>
     <div id="drawSetBox" class="subTabsettingBox">
         <div id="drawInfoBox">
-           <div id="drawTimesSettingBox" class="ng-scope">
-                <div class="settingLine" id="totalDrawTimes">
+           <div id="drawTimesSettingBox" class="">
+                <div class="settingLine">
                     <div class="leftTitle">
                         <span class="name ng-binding">总抽奖机会：</span>
                     </div>
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-               <div class="settingLine ng-scope" id="dayDrawTimes">
+                <div class="settingLine">
                     <div class="leftTitle">
                         <span class="name ng-binding">每日抽奖机会：</span>
                     </div>
@@ -32,11 +32,24 @@
                         <div class="main ng-binding">每人每日有<input id="drawTimesLimit" v-model="editData.lotteryInfo.dailyLimit" maxlength="2" class="input onlyNum minInput" type="number">次抽奖机会</div>
                     </div>
                 </div>
+                <div class="settingLine ">
+                    <div class="leftTitle">
+                        <span class="name ng-binding">联系信息：</span>
+                    </div>
+                    <div class="content flex-1">
+                        <div class="main" >
+                            <input id="contactType0" :class="{'idChecked': editData.lotteryInfo.contactType == 0}" v-model="editData.lotteryInfo.contactType" :value="0" type="radio" name="shar"/><label for="contactType0">关闭</label>
+                            <input id="contactType1" :class="{'idChecked': editData.lotteryInfo.contactType == 1}" v-model="editData.lotteryInfo.contactType" :value="1" type="radio" name="shar" /><label for="contactType1">参与前填写</label>
+                            <input id="contactType2" :class="{'idChecked': editData.lotteryInfo.contactType == 2}" v-model="editData.lotteryInfo.contactType" :value="2" type="radio" name="shar" /><label for="contactType2">中奖后填写</label>
+                            <span>（ 姓名、联系电话、联系地址 ）</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="underLineWay ng-scope">
+            <p class="underLineWay">
                 <span class="fontWeight">中奖率</span>
             </p>
-            <div id="prizedTotalBox" class="ng-scope">
+            <div id="prizedTotalBox" class="">
                 <div class="settingLine">
                     <div class="leftTitle">
                         <span class="name">每人中奖次数：</span>
@@ -68,7 +81,7 @@
                     <input v-model="editData.lotteryInfo.noGiftNotify" class="activeName input mainInput name" type="text"/>
                 </div>
             </div>
-            <div class="flag">*</div>
+            <!-- <div class="flag">*</div> -->
         </div>
     </div>
 </div>

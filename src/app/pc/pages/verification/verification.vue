@@ -4,7 +4,8 @@
         核销奖券<div class="batchCodes pointer"></div>
     </div>
     <div class="verifPanel">
-        <div class="searchBoxCont" style="width: 816px; height: 44px"><input type="text" v-model="code" class="searchInput input" placeholder="请输入需要核销的券码">
+        <div class="searchBoxCont" style="width: 816px; height: 44px">
+            <input type="search" autofocus="autofocus" v-model="code" @keydown="keyCodeIn" @search="searchClick" class="searchInput input" placeholder="请输入需要核销的券码">
             <div class="searchIcon searchBtn" @click="searchClick"></div>
         </div>
         <div class="searchTips" v-if="!isClick">
@@ -72,8 +73,8 @@
                                     <td class="textCenter ellipsis">
                                         <div class="padding ellipsis tdWrap">
                                             <div class="userPlayer ellipsis" style="width:auto;">
-                                                <img :src="gift.headImageUrl">
-                                                <span>{{gift.nickName}}</span>
+                                                <img :src="gift.customer.headImageUrl">
+                                                <span>{{gift.customer.nickName}}</span>
                                             </div>
                                         </div>
                                     </td>
@@ -153,7 +154,13 @@ export default {
                     this.searchClick();
                 }
             })
+        }, 
+        keyCodeIn(event) {
+            if (event.keyCode == 13) {
+                this.searchClick();
+            }
         }
+        
     },
     components: {},
     created() {

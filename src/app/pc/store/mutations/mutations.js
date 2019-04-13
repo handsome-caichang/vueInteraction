@@ -17,5 +17,9 @@ export default {
   },
   set_loadingFlag: function(state, params) {
     state.loadingFlag = params;
+  },
+  set_tabAndIndex: function (state, params) {
+    state.currentIndex = params.currentIndex;
+    state.currentTab = params.currentTab;
   }
 };
